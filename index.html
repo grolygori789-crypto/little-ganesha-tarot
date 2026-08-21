@@ -8,6 +8,7 @@
   <meta name="description" content="Little Ganesha Tarot — The Golden Path by Benedict Interactive">
   <title>Little Ganesha Tarot — The Golden Path</title>
 
+  <link rel="preload" as="image" href="assets/ui/title-hero.png" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+Thai:wght@300;400;500&family=Noto+Serif+Thai:wght@400;500;600&display=swap" rel="stylesheet">
@@ -35,7 +36,18 @@
           width="864"
           height="1536"
           decoding="async"
+          fetchpriority="high"
         >
+
+        <div class="title-screen__living" aria-hidden="true">
+          <div class="title-screen__sky-light"></div>
+          <div class="title-screen__water-shimmer"></div>
+          <div class="ambient-motes" id="ambientMotes"></div>
+          <div class="ambient-petals" id="ambientPetals"></div>
+          <span class="lamp-glow lamp-glow--left"></span>
+          <span class="lamp-glow lamp-glow--right"></span>
+          <span class="lamp-glow lamp-glow--far"></span>
+        </div>
 
         <div class="title-screen__veil" aria-hidden="true"></div>
         <div class="title-screen__shimmer" aria-hidden="true"></div>
@@ -55,6 +67,41 @@
           </button>
         </div>
 
+        <aside class="mini-player" id="miniPlayer" aria-label="Music player" hidden>
+          <div class="mini-player__main">
+            <div class="mini-player__meta">
+              <span class="mini-player__eyebrow" id="playerEyebrow">NOW PLAYING</span>
+              <strong class="mini-player__title" id="playerTitle">Golden Lantern at Twilight</strong>
+            </div>
+            <div class="mini-player__controls">
+              <button class="player-button" id="playerPrevious" type="button" aria-label="Previous track">‹</button>
+              <button class="player-button player-button--primary" id="playerPlay" type="button" aria-label="Pause" data-state="pause">
+                <span class="player-icon player-icon--play" aria-hidden="true">▶</span>
+                <span class="player-icon player-icon--pause" aria-hidden="true">Ⅱ</span>
+              </button>
+              <button class="player-button" id="playerNext" type="button" aria-label="Next track">›</button>
+              <button class="player-button player-button--more" id="playerMore" type="button" aria-label="Audio options" aria-expanded="false">•••</button>
+            </div>
+          </div>
+
+          <div class="mini-player__panel" id="playerPanel" hidden>
+            <label class="volume-control">
+              <span data-copy="volume">Volume</span>
+              <input id="volumeSlider" type="range" min="0" max="100" step="1" value="58">
+            </label>
+            <div class="mini-player__panel-actions">
+              <button class="panel-button" id="shuffleToggle" type="button" aria-pressed="true">
+                <span aria-hidden="true">⤨</span>
+                <span data-copy="shuffle">Shuffle</span>
+              </button>
+              <button class="panel-button panel-button--exit" id="exitButton" type="button">
+                <span aria-hidden="true">↶</span>
+                <span data-copy="exit">Return to Title</span>
+              </button>
+            </div>
+          </div>
+        </aside>
+
         <div class="title-utilities">
           <div class="language-switch" id="languageSwitch" role="group" aria-label="Language">
             <button class="language-switch__option is-active" type="button" data-language="en" aria-pressed="true">EN</button>
@@ -70,9 +117,22 @@
       </div>
     </section>
 
+    <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle" hidden>
+      <div class="modal-card">
+        <span class="modal-card__ornament" aria-hidden="true">✦</span>
+        <h2 id="exitModalTitle" data-copy="exitTitle">Return to Title?</h2>
+        <p data-copy="exitBody">Your language and audio preferences will be kept.</p>
+        <div class="modal-card__actions">
+          <button class="modal-button" id="exitCancel" type="button" data-copy="cancel">Cancel</button>
+          <button class="modal-button modal-button--primary" id="exitConfirm" type="button" data-copy="confirm">Return</button>
+        </div>
+      </div>
+    </div>
+
     <p class="sr-only" id="liveStatus" aria-live="polite"></p>
   </main>
 
+  <script src="js/audio.js" defer></script>
   <script src="js/app.js" defer></script>
 </body>
 </html>
