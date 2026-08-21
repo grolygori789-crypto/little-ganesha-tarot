@@ -1077,6 +1077,107 @@
   .quick-card > span { color: rgba(247,217,147,.72); font-family: Georgia, serif; }
   .quick-card strong { font-size: .88rem; }
 
+  /* V0.3.3 — Premium Sacred Motif System
+     Symbolic presence replaces repeated character artwork. Motifs stay quiet,
+     preserve typography contrast, and remain scalable across mobile/tablet. */
+  .feature-card, .compact-card, .quick-card {
+    isolation: isolate;
+    transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease, background-color .24s ease;
+  }
+  .feature-card > *, .compact-card > *, .quick-card > * { position: relative; z-index: 2; }
+  .feature-card::before, .compact-card::before, .quick-card::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    width: var(--motif-size, 62%);
+    aspect-ratio: 1;
+    top: var(--motif-top, -.45rem);
+    right: var(--motif-right, -.55rem);
+    background-image: var(--motif-image, none);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: var(--motif-opacity, .095);
+    filter: drop-shadow(0 0 12px rgba(229,189,112,.08));
+    transform: rotate(var(--motif-rotate, 0deg)) scale(1);
+    transform-origin: center;
+    pointer-events: none;
+    animation: sacred-motif-breathe 13s ease-in-out infinite alternate;
+  }
+  .feature-card::after, .compact-card::after { z-index: 0; }
+  .feature-card:focus-visible, .compact-card:focus-visible, .quick-card:focus-visible {
+    outline: none;
+    border-color: rgba(247,217,147,.44);
+    box-shadow: 0 16px 42px rgba(0,0,0,.22), 0 0 0 2px rgba(229,189,112,.08), inset 0 1px rgba(255,245,218,.07);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .feature-card:hover, .compact-card:hover, .quick-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(247,217,147,.26);
+      box-shadow: 0 18px 42px rgba(0,0,0,.22), inset 0 1px rgba(255,245,218,.06);
+    }
+    .feature-card:hover::before, .compact-card:hover::before, .quick-card:hover::before { filter: drop-shadow(0 0 16px rgba(229,189,112,.12)); }
+  }
+  .feature-card:active, .compact-card:active, .quick-card:active { transform: scale(.992); }
+
+  .feature-card[data-feature="daily"] {
+    --motif-image: url("../assets/motifs/daily-halo.svg");
+    --motif-size: 72%;
+    --motif-opacity: .11;
+    --motif-top: -1.35rem;
+    --motif-right: -2.25rem;
+  }
+  .feature-card[data-feature="ask"] {
+    --motif-image: url("../assets/motifs/ask-ganesha.svg");
+    --motif-size: 78%;
+    --motif-opacity: .105;
+    --motif-top: -.95rem;
+    --motif-right: -2.65rem;
+  }
+  .feature-card[data-feature="three"] {
+    --motif-image: url("../assets/motifs/three-cards.svg");
+    --motif-size: 72%;
+    --motif-opacity: .105;
+    --motif-top: -.6rem;
+    --motif-right: -1.75rem;
+    --motif-rotate: 1.5deg;
+  }
+  .compact-card[data-feature="golden"] {
+    --motif-image: url("../assets/motifs/golden-path.svg");
+    --motif-size: 82%;
+    --motif-opacity: .10;
+    --motif-top: -.8rem;
+    --motif-right: -2.25rem;
+  }
+  .compact-card[data-feature="obstacle"] {
+    --motif-image: url("../assets/motifs/release-knot.svg");
+    --motif-size: 76%;
+    --motif-opacity: .095;
+    --motif-top: -.75rem;
+    --motif-right: -1.95rem;
+  }
+  .quick-card[data-feature="lucky"] {
+    --motif-image: url("../assets/motifs/lucky-numbers.svg");
+    --motif-size: 96%;
+    --motif-opacity: .065;
+    --motif-top: -1.35rem;
+    --motif-right: -1.15rem;
+  }
+  .quick-card[data-feature="cards"] {
+    --motif-image: url("../assets/motifs/card-library.svg");
+    --motif-size: 91%;
+    --motif-opacity: .064;
+    --motif-top: -1.15rem;
+    --motif-right: -1.05rem;
+  }
+  .quick-card[data-feature="journal"] {
+    --motif-image: url("../assets/motifs/journal-lotus.svg");
+    --motif-size: 91%;
+    --motif-opacity: .064;
+    --motif-top: -1.15rem;
+    --motif-right: -1.05rem;
+  }
+
   .bottom-nav { position: absolute; z-index: 8; left: 50%; bottom: max(.65rem, env(safe-area-inset-bottom)); transform: translateX(-50%); width: min(calc(100% - 1rem), 36rem); min-height: 4.2rem; padding: .35rem .25rem; display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid rgba(247,217,147,.15); border-radius: 1.25rem; background: rgba(4,26,27,.87); box-shadow: 0 14px 48px rgba(0,0,0,.3); backdrop-filter: blur(18px) saturate(1.1); -webkit-backdrop-filter: blur(18px) saturate(1.1); }
   .bottom-nav__button { display: grid; place-items: center; align-content: center; gap: .18rem; min-width: 0; border-radius: .9rem; color: rgba(255,248,233,.48); }
   .bottom-nav__button > span { font-size: 1rem; }
@@ -1139,6 +1240,12 @@
 }
 
 @layer utilities {
+  @keyframes sacred-motif-breathe {
+    0% { transform: rotate(var(--motif-rotate, 0deg)) scale(.985) translate3d(0, 2px, 0); filter: drop-shadow(0 0 9px rgba(229,189,112,.055)); }
+    55% { filter: drop-shadow(0 0 15px rgba(229,189,112,.095)); }
+    100% { transform: rotate(var(--motif-rotate, 0deg)) scale(1.018) translate3d(-2px, -2px, 0); filter: drop-shadow(0 0 13px rgba(229,189,112,.075)); }
+  }
+
   @keyframes living-art-v03 { 0% { transform: scale(1.012) translate3d(0,0,0); } 45% { transform: scale(1.034) translate3d(.28%,-.22%,0); } 100% { transform: scale(1.022) translate3d(-.2%,.08%,0); } }
   @keyframes sky-light-v03 { from { transform: translate3d(-6%,0,0) scale(1.03); opacity: .48; } to { transform: translate3d(7%,1.6%,0) scale(1.1); opacity: .82; } }
   @keyframes water-v03 { from { transform: skewY(-1deg) translate3d(-5%,0,0); opacity: .22; } 50% { opacity: .48; } to { transform: skewY(-1deg) translate3d(6%,1px,0); opacity: .3; } }
@@ -1259,6 +1366,16 @@
 
     .profile-field input {
       min-height: 2.85rem;
+    }
+  }
+}
+
+/* V0.3.3 — motif accessibility / narrow-screen tuning */
+@layer utilities {
+  @media (prefers-reduced-motion: reduce) {
+    .feature-card::before, .compact-card::before, .quick-card::before {
+      animation: none !important;
+      transform: rotate(var(--motif-rotate, 0deg)) scale(1) !important;
     }
   }
 }

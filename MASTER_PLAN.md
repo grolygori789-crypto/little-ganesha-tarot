@@ -1,8 +1,8 @@
-# LITTLE GANESHA TAROT — MASTER PLAN & ZERO-QUESTION DEVELOPMENT HANDOFF V3.3
+# LITTLE GANESHA TAROT — MASTER PLAN & ZERO-QUESTION DEVELOPMENT HANDOFF V3.4
 
 **Project:** Little Ganesha Tarot — The Golden Path  
 **Studio / Publisher:** Benedict Interactive  
-**Canonical document version:** 3.3  
+**Canonical document version:** 3.4  
 **Last updated:** 21 August 2026  
 **Status:** ACTIVE — CANONICAL SOURCE OF TRUTH  
 **Document type:** Master Plan + Product Specification + Engineering Governance + Zero-Question Room Migration Handoff
@@ -13,9 +13,9 @@
 
 This document is the canonical, self-contained development authority for **Little Ganesha Tarot — The Golden Path**.
 
-Version 3.3 consolidates the approved deck canon, visual identity, product direction, app architecture, UX rules, engineering governance, QA standards, worldwide mobile requirements, audio/motion behavior, personal profile rules, support/donation architecture, release discipline, and current implementation status.
+Version 3.4 consolidates the approved deck canon, visual identity, product direction, app architecture, UX rules, engineering governance, QA standards, worldwide mobile requirements, audio/motion behavior, personal profile rules, support/donation architecture, release discipline, and current implementation status.
 
-**V3.3 supersedes earlier Master Plans, migration prompts, development summaries, drafts, experiments, and implementation notes wherever they conflict.** Earlier materials may be consulted only for historical context when they do not contradict this document or a newer explicit instruction from P’Benz.
+**V3.4 supersedes earlier Master Plans, migration prompts, development summaries, drafts, experiments, and implementation notes wherever they conflict.** Earlier materials may be consulted only for historical context when they do not contradict this document or a newer explicit instruction from P’Benz.
 
 The project must continue without asking P’Benz to repeat locked decisions already recorded here. A new room, developer, assistant instance, or future handoff should be able to resume work from this document plus the current repository and approved assets.
 
@@ -24,7 +24,7 @@ The project must continue without asking P’Benz to repeat locked decisions alr
 When instructions conflict, apply this order strictly:
 
 1. **P’Benz’s latest explicit instruction in the current conversation / development turn.**
-2. **This Master Plan & Zero-Question Development Handoff V3.3.**
+2. **This Master Plan & Zero-Question Development Handoff V3.4.**
 3. **Approved canonical production assets** supplied or approved by P’Benz, including the 78-card deck, master card back, title hero, and later approved replacements.
 4. **Current verified implementation in the GitHub repository** after a successful push/deployment, provided it does not conflict with items 1–3.
 5. Prior plans, manifests, prompts, summaries, prototypes, experiments, and obsolete builds.
@@ -1060,7 +1060,35 @@ Current planned secondary features:
 
 Do not promote secondary features so aggressively that they compete with the main reading CTA hierarchy.
 
-## 13.5 Navigation
+## 13.5 Premium Sacred Motif System
+
+The Home/Menu visual language must communicate Little Ganesha's presence **symbolically rather than by repeating full character artwork inside every feature card**. Repeated portraits would reduce hierarchy, increase visual noise, and make the interface feel decorative rather than premium.
+
+The canonical Home-card direction is therefore **Premium Minimal Sacred UI**:
+
+- Little Ganesha may be strongly present on the Title/Hero and selected narrative moments.
+- Home feature cards use restrained symbolic motifs, line art, halos, lotus geometry, sacred glyphs, card outlines, path forms, knots, manuscript marks, and abstract Ganesha cues.
+- Motifs should generally carry only about **4–8% perceived visual weight**, with occasional controlled emphasis up to roughly 10–12% on the hero card when contrast remains safe.
+- Motifs must never sit behind critical text at a contrast level that reduces readability.
+- Motifs are decorative only and must not create additional accessibility announcements or interaction targets.
+- Motifs should share one visual grammar: thin warm-gold strokes, restrained opacity, soft teal/deep-green integration, subtle luminous depth, and no gaudy ornament overload.
+- Full Motion may use an extremely slow motif breathe/drift. Reduced Motion keeps motifs static rather than removing them, preserving premium visual identity without unnecessary movement.
+- Vector/SVG assets are preferred for these motifs because they are lightweight, resolution independent, tintable/controllable, and suitable for worldwide device density.
+
+Canonical motif mapping for the current Home foundation:
+
+- **Daily Guidance** — halo + sacred sparkle / dawn-light geometry.
+- **Ask Ganesha** — abstract half-profile / ear-trunk line presence, never a repeated full portrait.
+- **Three-Card Reading** — three-card geometry / triad symbolism.
+- **The Golden Path** — luminous curved path leading toward a halo/star.
+- **Remove the Obstacle** — knot/loop geometry visibly opening or releasing.
+- **Lucky Numbers** — restrained numerology circle / constellation geometry.
+- **Card Library** — layered card-outline motif.
+- **Journal** — manuscript/open-page lines with a quiet lotus seal.
+
+The motif system is a reusable UI language, not one-off decoration. Future screens should reuse or extend the same grammar rather than invent unrelated ornament for each feature.
+
+## 13.6 Navigation
 
 A bottom navigation model is approved in principle for the app phase, with likely destinations such as:
 
@@ -1790,9 +1818,9 @@ The repository has progressed through the following verified uploaded milestones
 
 A major V0.2.x bug caused by an invisible modal/backdrop intercepting pointer events is considered resolved. Prevention of invisible interactive overlays remains a permanent regression rule.
 
-## 29.2 V0.3.2 PWA Installability candidate
+## 29.2 V0.3.2 PWA Installability foundation uploaded
 
-At the time of this V3.3 Master Plan update, **V0.3.2 is the prepared candidate patch awaiting P’Benz’s repository upload and deployed real-device verification.**
+V0.3.2 has been uploaded to `main` under commit `Add PWA installability and icon wiring`. Static wiring is present in the repository; deployed real-device install behavior still requires device/browser verification before being called runtime-validated.
 
 V0.3.2 intentionally preserves stable V0.3.1 application behavior while adding isolated PWA infrastructure:
 
@@ -1852,17 +1880,38 @@ Static QA **cannot** prove that a specific browser/OS will surface a particular 
 
 The final Little Ganesha icon system uploaded under Master Plan V3.2 remains canonical and is now the required PWA/Home Screen identity. V0.3.2 performs the runtime wiring; it does not redesign the icon.
 
+## 29.6 V0.3.3 Premium Sacred Home Motif candidate
+
+V0.3.3 is the prepared visual-language patch that preserves the V0.3.2 PWA foundation and V0.3.1 application behavior while adding a reusable symbolic motif layer to Home/Menu feature cards.
+
+The patch:
+
+- adds lightweight SVG motifs under `assets/motifs/`,
+- maps each current Home feature to a distinct symbolic visual fingerprint,
+- keeps text/content above decorative motif layers,
+- maintains touch/focus behavior and adds restrained premium focus/hover feedback,
+- keeps motifs visible but static under Reduced Motion,
+- updates service-worker shell caching for the new motif assets,
+- bumps application/cache version to 0.3.3,
+- does not add repeated full Little Ganesha portraits to every card,
+- does not modify tarot canon, audio behavior, profile data, Support placeholders, or reading logic.
+
+Runtime appearance still requires deployed device QA; static validation can only confirm linkage, syntax, asset presence, and regression boundaries.
+
 # 30. Immediate Development Milestones
 
-## Milestone A — V0.3.2 PWA upload and installability stabilization
+## Milestone A — V0.3.2/V0.3.3 foundation stabilization
 
 Goal:
 
-Confirm that the already-working V0.3.1 product foundation remains stable while the deployed site becomes a correctly identified installable web app where supported.
+Confirm that the already-working V0.3.1 product foundation remains stable while V0.3.2 PWA installation identity and V0.3.3 Premium Sacred Home motifs are verified on deployed real devices.
 
 Acceptance focus:
 
 - no regression to Benedict / Title / Home / Settings / profile / audio
+- Home motifs remain subtle, readable, and visibly differentiated by feature
+- no motif obscures Thai or English copy at narrow mobile widths
+- Reduced Motion preserves static motif identity without animation
 - manifest loads from the deployed GitHub Pages project path
 - canonical icon appears in install/Home Screen UI
 - Android Chromium offers app installation when its criteria are satisfied
@@ -2249,10 +2298,29 @@ V3.3 additions / status corrections:
 
 ---
 
-# 44. Canonical Closing Rule
+# 44. V3.4 Change Log
+
+V3.4 preserves all prior governance, tarot canon, PWA, icon, profile, support, audio, motion, worldwide-mobile, and product decisions while establishing the canonical Premium Sacred Home motif system.
+
+V3.4 additions / status corrections:
+
+- records V0.3.2 PWA wiring as uploaded to `main` while keeping real-device install QA honest/pending,
+- defines V0.3.3 as the Premium Sacred Home Motif candidate,
+- locks **Premium Minimal Sacred UI** as the Home-card design direction,
+- rejects repeated full Little Ganesha portraits across every Home card,
+- defines a symbolic motif map for Daily Guidance, Ask Ganesha, Three-Card Reading, The Golden Path, Remove the Obstacle, Lucky Numbers, Card Library, and Journal,
+- prefers lightweight reusable SVG motif assets,
+- locks low visual weight and typography-first readability,
+- preserves motifs as static artwork in Reduced Motion rather than removing the visual identity,
+- requires new motif assets to participate in service-worker/cache versioning,
+- protects V0.3.1/V0.3.2 stable behavior from unnecessary visual refactoring.
+
+---
+
+# 45. Canonical Closing Rule
 
 **When uncertain, choose the solution that best protects tarot correctness, Little Ganesha identity, user trust, worldwide usability, stable working behavior, premium presentation, and long-term maintainability.**
 
 P’Benz retains final explicit authority. Within that boundary, Biu is expected to act proactively and decisively as the product’s fully authorized development lead.
 
-**End of Master Plan & Zero-Question Development Handoff V3.3**
+**End of Master Plan & Zero-Question Development Handoff V3.4**
