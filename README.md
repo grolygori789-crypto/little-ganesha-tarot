@@ -1,8 +1,8 @@
-# Little Ganesha Tarot — App Foundation V0.2
+# Little Ganesha Tarot — App Foundation V0.2.1
 
 Studio: Benedict Interactive
 
-V0.2 upgrades the opening experience without modifying any canonical card or UI master artwork.
+V0.2.1 upgrades the opening experience without modifying any canonical card or UI master artwork.
 
 ## Included in this build
 
@@ -41,4 +41,11 @@ Do not replace or modify the existing canonical card assets or approved UI image
 
 ## Audio notes
 
-The architecture targets a five-track soundtrack. V0.2 activates only the two tracks currently supplied. Additional tracks can be added later without changing the opening UX model.
+The architecture targets a five-track soundtrack. V0.2.1 activates only the two tracks currently supplied. Additional tracks can be added later without changing the opening UX model.
+
+
+## V0.2.1 hotfix
+- Cache-busted CSS/JS URLs for GitHub Pages testing.
+- Fixed Benedict Interactive splash to a consistent 2.6 s hold on normal motion settings.
+- Removed accidental tap-to-skip on the studio ident.
+- Increased Living Title motion visibility while keeping the original art unchanged.

@@ -5,10 +5,6 @@
     language: 'lgt.language'
   };
 
-  const SESSION = {
-    splashSeen: 'lgt.splashSeen'
-  };
-
   const COPY = {
     en: {
       begin: 'TAP TO BEGIN',
@@ -80,7 +76,6 @@
   let language = localStorage.getItem(STORAGE.language) || (browserPrefersThai ? 'th' : 'en');
   let splashDismissed = false;
   let journeyStarted = false;
-  let splashCanSkip = false;
 
   function copy(key) {
     return COPY[language][key] || COPY.en[key] || key;
@@ -132,7 +127,7 @@
     const petals = document.getElementById('ambientPetals');
     if (!motes || !petals || motes.childElementCount || petals.childElementCount) return;
 
-    for (let i = 0; i < 14; i += 1) {
+    for (let i = 0; i < 18; i += 1) {
       const mote = document.createElement('span');
       mote.className = 'ambient-mote';
       mote.style.setProperty('--x', `${8 + (Math.random() * 84)}%`);
@@ -144,7 +139,7 @@
       motes.appendChild(mote);
     }
 
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < 7; i += 1) {
       const petal = document.createElement('span');
       petal.className = 'ambient-petal';
       petal.style.setProperty('--x', `${8 + (Math.random() * 84)}%`);
@@ -160,7 +155,6 @@
   function revealTitle() {
     if (splashDismissed) return;
     splashDismissed = true;
-    sessionStorage.setItem(SESSION.splashSeen, '1');
     splash.classList.add('is-leaving');
     title.hidden = false;
     createAmbientLayers();
@@ -280,17 +274,12 @@
   /* Stable app-level exit hook for the future Settings screen. */
   window.addEventListener('lgt:request-exit-to-title', requestExitToTitle);
 
-  /* The studio card can be skipped, but not before the brand has registered. */
-  const alreadySeenThisSession = sessionStorage.getItem(SESSION.splashSeen) === '1';
-  const minSkipMs = reducedMotion ? 150 : 900;
-  const autoRevealMs = reducedMotion ? 650 : (alreadySeenThisSession ? 1500 : 2350);
-
-  window.setTimeout(() => { splashCanSkip = true; }, minSkipMs);
-  splash.addEventListener('pointerup', () => {
-    if (splashCanSkip) revealTitle();
-  });
+  /* V0.2.1: keep the studio ident consistent and unskippable.
+     A fixed short hold reads more premium and prevents accidental early dismissal. */
+  const autoRevealMs = reducedMotion ? 900 : 2600;
 
   setLanguage(language);
   syncAudioUI();
+  window.LGT_BUILD = '0.2.1';
   window.setTimeout(revealTitle, autoRevealMs);
 })();

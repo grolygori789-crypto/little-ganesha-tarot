@@ -946,3 +946,30 @@
     .title-screen__art { transform: scale(1.012) !important; }
   }
 }
+
+
+/* V0.2.1 — cache-safe visual tuning */
+@layer screens {
+  .title-screen__art { animation-duration: 15s; }
+  .title-screen__sky-light { opacity: .62; animation-duration: 12s; }
+  .title-screen__water-shimmer { animation-duration: 7.2s; }
+  .ambient-mote { box-shadow: 0 0 9px rgba(255, 220, 135, .58); }
+  .lamp-glow { filter: blur(3.5px); }
+}
+
+@layer utilities {
+  @keyframes mote-drift {
+    0%, 100% { opacity: 0; transform: translate3d(0, 12px, 0) scale(.7); }
+    15% { opacity: .5; }
+    48% { opacity: .82; transform: translate3d(var(--drift), -21px, 0) scale(1); }
+    82% { opacity: .28; }
+  }
+
+  @keyframes petal-drift {
+    0% { opacity: 0; transform: translate3d(0, -8px, 0) scale(var(--scale)) rotate(10deg); }
+    12% { opacity: .54; }
+    52% { transform: translate3d(var(--drift), 26px, 0) scale(var(--scale)) rotate(150deg); opacity: .64; }
+    88% { opacity: .22; }
+    100% { opacity: 0; transform: translate3d(var(--drift), 58px, 0) scale(var(--scale)) rotate(285deg); }
+  }
+}
