@@ -81,4 +81,10 @@ assert(appCopy.th.obstacle === 'คลายอุปสรรค', 'Thai obstac
 assert(readingCopy.th.chooseHint.includes('ไม่ต้องคิดมาก'), 'Thai card-choice helper should read naturally.');
 assert(readingCopy.en.storageFail.includes('couldn’t save'), 'English storage error should be plain-language.');
 
+for (const key of ['lensesTitle','lensesHint','workGoals','moneyResources','loveRelationships','innerBalance','opportunitiesWatchouts','guidanceToday']) {
+  assert(readingCopy.en[key] && readingCopy.th[key], `Daily Lens UI copy missing for ${key}.`);
+}
+assert(readingCopy.th.lensesTitle === 'มองไพ่ใบนี้ในเรื่องต่างๆ', 'Thai Daily Lens heading should be direct and natural.');
+assert(readingCopy.en.lensesTitle === 'Explore today’s card', 'English Daily Lens heading should be natural.');
+
 console.log('Global TH/EN UI copy/localization tests: PASS');

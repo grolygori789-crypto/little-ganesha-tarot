@@ -28,7 +28,15 @@
       cardAlt: 'Today’s tarot card: ',
       loading: 'Preparing your card',
       restored: 'TODAY’S CARD',
-      keywords: 'KEYWORDS'
+      keywords: 'KEYWORDS',
+      lensesTitle: 'Explore today’s card',
+      lensesHint: 'Open the area you want to look at more closely.',
+      workGoals: 'Work & Goals',
+      moneyResources: 'Money & Resources',
+      loveRelationships: 'Love & Relationships',
+      innerBalance: 'Inner State & Balance',
+      opportunitiesWatchouts: 'Opportunities & Watch-outs',
+      guidanceToday: 'Guidance for Today'
     },
     th: {
       eyebrow: 'คำแนะนำประจำวัน',
@@ -52,7 +60,15 @@
       cardAlt: 'ไพ่ทาโรต์ประจำวันนี้: ',
       loading: 'กำลังเตรียมไพ่',
       restored: 'ไพ่ของวันนี้',
-      keywords: 'คำสำคัญ'
+      keywords: 'คำสำคัญ',
+      lensesTitle: 'มองไพ่ใบนี้ในเรื่องต่างๆ',
+      lensesHint: 'เลือกเปิดเฉพาะเรื่องที่คุณอยากดูให้ชัดขึ้น',
+      workGoals: 'งานและเป้าหมาย',
+      moneyResources: 'เงินและทรัพยากร',
+      loveRelationships: 'ความรักและความสัมพันธ์',
+      innerBalance: 'พลังใจและสมดุลชีวิต',
+      opportunitiesWatchouts: 'โอกาสและสิ่งที่ควรระวัง',
+      guidanceToday: 'แนวทางสำหรับวันนี้'
     }
   };
 
@@ -131,6 +147,13 @@
           <span id="dailyReflectionLabel"></span>
           <p id="dailyReflection"></p>
         </div>
+        <section class="reading-lenses" id="dailyLenses">
+          <div class="reading-lenses__heading">
+            <span id="dailyLensesTitle"></span>
+            <p id="dailyLensesHint"></p>
+          </div>
+          <div class="reading-lenses__list" id="dailyLensesList"></div>
+        </section>
         <p class="reading-disclaimer" id="dailyDisclaimer"></p>
       </article>
 
@@ -167,6 +190,9 @@
   const meaning = $('dailyMeaning');
   const reflectionLabel = $('dailyReflectionLabel');
   const reflection = $('dailyReflection');
+  const lensesTitle = $('dailyLensesTitle');
+  const lensesHint = $('dailyLensesHint');
+  const lensesList = $('dailyLensesList');
   const disclaimer = $('dailyDisclaimer');
   const storageNote = $('dailyStorageNote');
   const scroll = $('dailyReadingScroll');
@@ -178,6 +204,15 @@
   let activeTimer = null;
   let preloadedFront = null;
   let lifecycleToken = 0;
+
+  const LENS_KEYS = Object.freeze([
+    'workGoals',
+    'moneyResources',
+    'loveRelationships',
+    'innerBalance',
+    'opportunitiesWatchouts',
+    'guidanceToday'
+  ]);
 
   function language() {
     return document.documentElement.lang === 'th' ? 'th' : 'en';
@@ -228,6 +263,8 @@
     themeLabel.textContent = t('theme');
     reflectionLabel.textContent = t('reflection');
     keywordsLabel.textContent = t('keywords');
+    lensesTitle.textContent = t('lensesTitle');
+    lensesHint.textContent = t('lensesHint');
     disclaimer.textContent = t('disclaimer');
     storageNote.textContent = t('storageFail');
     choice.setAttribute('aria-label', t('choose'));
@@ -261,12 +298,47 @@
     if (selectedData) renderCardText(selectedData);
   }
 
+  function renderDailyLenses(card) {
+    const lang = language();
+    const dailyLenses = card?.dailyLenses;
+    if (!dailyLenses) {
+      lensesList.replaceChildren();
+      return;
+    }
+
+    const fragment = document.createDocumentFragment();
+    LENS_KEYS.forEach((key) => {
+      const details = document.createElement('details');
+      details.className = 'reading-lens';
+
+      const summary = document.createElement('summary');
+      const label = document.createElement('span');
+      label.textContent = t(key);
+      summary.appendChild(label);
+
+      const body = document.createElement('p');
+      body.textContent = dailyLenses[key][lang];
+
+      details.append(summary, body);
+      details.addEventListener('toggle', () => {
+        if (!details.open) return;
+        lensesList.querySelectorAll('details[open]').forEach((other) => {
+          if (other !== details) other.open = false;
+        });
+        emitInteraction('daily-lens-open', { lens: key, cardId: card.id });
+      });
+      fragment.appendChild(details);
+    });
+    lensesList.replaceChildren(fragment);
+  }
+
   function renderCardText(card) {
     const lang = language();
     cardTitle.textContent = card.title[lang];
     canonicalTitle.textContent = lang === 'th' ? card.title.en : '';
     meaning.textContent = card.upright[lang];
     reflection.textContent = card.reflection[lang];
+    renderDailyLenses(card);
     keywords.replaceChildren(...card.keywords[lang].map((word) => {
       const span = document.createElement('span');
       span.textContent = word;

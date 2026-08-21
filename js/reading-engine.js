@@ -9,7 +9,7 @@
   const SCHEMA_VERSION = 1;
   const DAILY_STORAGE_KEY = 'lgt.reading.daily.v1';
   const ORIENTATION_UPRIGHT = 'upright';
-  const LEGACY_CONTENT_VERSIONS = new Set(['daily-guidance-v1']);
+  const LEGACY_CONTENT_VERSIONS = new Set(['daily-guidance-v1', 'daily-guidance-v2']);
 
   const SPREADS = Object.freeze({
     daily: Object.freeze({
@@ -311,5 +311,5 @@
   }
 
   window.LGTReadingEngine = new ReadingEngine();
-  window.LGTReadingEngineVersion = '1.0.1';
+  window.LGTReadingEngineVersion = '1.0.2';
 })();

@@ -1,35 +1,33 @@
-# V0.4.1 REV3 — Upload Notes
+# V0.4.2 — Upload Notes
 
-## Important
+## Upload method
 
-**Use this REV3 archive instead of all previous V0.4.1 / REV2 archives.**
+1. Extract the V0.4.2 upload ZIP.
+2. Overlay all included files/folders onto the local repository root.
+3. Open GitHub Desktop and review Changes.
+4. Commit and Push.
 
-REV3 contains the Premium Reading polish, 78-card native rewrite, migration logic, and whole-app TH/EN UI copy pass in one upload.
+The package already uses repository-relative destinations. Do not move QA, release, checksum, governance, or test files back to root.
 
-## Upload
+## Suggested commit name
 
-1. Extract the ZIP.
-2. Overlay all files onto the repository root.
-3. Do not delete unrelated repository files.
-4. Commit and push.
-
-## Suggested commit message
-
-`Polish Reading UX and complete global TH-EN copy pass for V0.4.1`
+`Upgrade Daily Guidance and layout V0.4.2`
 
 ## Post-deploy smoke check
 
-Confirm on the real device:
+Confirm on a real phone:
 
-- build shows `0.4.1`
-- Thai and English Home copy both read naturally
-- onboarding/helper copy changes correctly with language
-- Settings labels/helper copy switch correctly
-- Return to Title reads naturally in Thai (`กลับหน้าเริ่มต้น`)
-- Support labels switch correctly
-- Daily Guidance opens normally
-- revealed card is larger
-- media player is compact only inside Reading
-- same-day Daily Guidance preserves the same card
-- Daily Guidance interpretation reads naturally in both TH/EN
-- no visible stale V0.4.0 strings remain after service-worker refresh
+- Settings/build shows `0.4.2`
+- Daily Guidance opens and restores the same card for the same local day
+- revealed card is clearly larger and remains comfortably inside the viewport
+- Reading media player is centered and does not clip either side
+- each Daily Lens opens and only one lens stays open at a time
+- Thai Daily Lens copy reads naturally and immediately
+- English Daily Lens copy reads naturally and immediately
+- switching TH/EN while reading updates lens labels/content correctly
+- Home, Settings, audio, Title and Return-to-Title behavior remain intact
+- no stale V0.4.1 shell is served after service-worker update/refresh
+
+## Historical files
+
+Older working-tree documents should only be retained when they still serve active rollback/provenance/migration needs. Git history remains the long-term historical archive.
