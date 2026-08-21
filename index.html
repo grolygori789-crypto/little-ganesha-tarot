@@ -6,16 +6,15 @@
   <meta name="theme-color" content="#0c2b2c">
   <meta name="color-scheme" content="dark">
   <meta name="description" content="Little Ganesha Tarot — The Golden Path by Benedict Interactive">
-  <meta name="application-version" content="0.2.2">
+  <meta name="application-version" content="0.3.1">
   <title>Little Ganesha Tarot — The Golden Path</title>
-
   <link rel="preload" as="image" href="assets/ui/title-hero.png" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+Thai:wght@300;400;500&family=Noto+Serif+Thai:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/app.css?v=0.2.2">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600&family=Noto+Serif+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css?v=0.3.1">
 </head>
-<body data-build="0.2.2">
+<body data-build="0.3.1">
   <main class="app-shell" id="app">
     <section class="studio-splash" id="studioSplash" aria-label="Benedict Interactive">
       <div class="studio-splash__glow" aria-hidden="true"></div>
@@ -28,112 +27,171 @@
 
     <section class="title-screen" id="titleScreen" aria-labelledby="gameTitle" hidden>
       <div class="title-screen__backdrop" aria-hidden="true"></div>
-
       <div class="title-screen__stage">
-        <img
-          class="title-screen__art"
-          src="assets/ui/title-hero.png"
-          alt=""
-          width="864"
-          height="1536"
-          decoding="async"
-          fetchpriority="high"
-        >
-
+        <img class="title-screen__art" src="assets/ui/title-hero.png" alt="" width="864" height="1536" decoding="async" fetchpriority="high">
         <div class="title-screen__living" aria-hidden="true">
           <div class="title-screen__sky-light"></div>
           <div class="title-screen__water-shimmer"></div>
+          <div class="title-screen__aurora"></div>
           <div class="ambient-motes" id="ambientMotes"></div>
           <div class="ambient-petals" id="ambientPetals"></div>
           <span class="lamp-glow lamp-glow--left"></span>
           <span class="lamp-glow lamp-glow--right"></span>
           <span class="lamp-glow lamp-glow--far"></span>
         </div>
-
         <div class="title-screen__veil" aria-hidden="true"></div>
-        <div class="title-screen__shimmer" aria-hidden="true"></div>
-
         <header class="title-lockup">
           <span class="title-lockup__lotus" aria-hidden="true">✦</span>
-          <h1 id="gameTitle">
-            <span>LITTLE GANESHA</span>
-            <span class="title-lockup__tarot">TAROT</span>
-          </h1>
+          <h1 id="gameTitle"><span>LITTLE GANESHA</span><span class="title-lockup__tarot">TAROT</span></h1>
           <p class="title-lockup__subtitle">THE GOLDEN PATH</p>
         </header>
-
         <div class="title-actions">
-          <button class="begin-button" id="beginButton" type="button">
-            <span data-copy="begin">TAP TO BEGIN</span>
-          </button>
+          <button class="begin-button" id="beginButton" type="button"><span data-copy="begin">TAP TO BEGIN</span></button>
         </div>
-
-        <aside class="mini-player" id="miniPlayer" aria-label="Music player" hidden>
-          <div class="mini-player__main">
-            <div class="mini-player__meta">
-              <span class="mini-player__eyebrow" id="playerEyebrow">NOW PLAYING</span>
-              <strong class="mini-player__title" id="playerTitle">Golden Lantern at Twilight</strong>
-            </div>
-            <div class="mini-player__controls">
-              <button class="player-button" id="playerPrevious" type="button" aria-label="Previous track">‹</button>
-              <button class="player-button player-button--primary" id="playerPlay" type="button" aria-label="Pause" data-state="pause">
-                <span class="player-icon player-icon--play" aria-hidden="true">▶</span>
-                <span class="player-icon player-icon--pause" aria-hidden="true">Ⅱ</span>
-              </button>
-              <button class="player-button" id="playerNext" type="button" aria-label="Next track">›</button>
-              <button class="player-button player-button--more" id="playerMore" type="button" aria-label="Audio options" aria-expanded="false">•••</button>
-            </div>
-          </div>
-
-          <div class="mini-player__panel" id="playerPanel" hidden>
-            <label class="volume-control">
-              <span data-copy="volume">Volume</span>
-              <input id="volumeSlider" type="range" min="0" max="100" step="1" value="58">
-            </label>
-            <div class="mini-player__panel-actions">
-              <button class="panel-button" id="shuffleToggle" type="button" aria-pressed="true">
-                <span aria-hidden="true">⤨</span>
-                <span data-copy="shuffle">Shuffle</span>
-              </button>
-              <button class="panel-button panel-button--exit" id="exitButton" type="button">
-                <span aria-hidden="true">↶</span>
-                <span data-copy="exit">Return to Title</span>
-              </button>
-            </div>
-          </div>
-        </aside>
-
         <div class="title-utilities">
-          <div class="language-switch" id="languageSwitch" role="group" aria-label="Language">
+          <div class="language-switch" role="group" aria-label="Language">
             <button class="language-switch__option is-active" type="button" data-language="en" aria-pressed="true">EN</button>
             <span class="language-switch__divider" aria-hidden="true"></span>
             <button class="language-switch__option" type="button" data-language="th" aria-pressed="false">ไทย</button>
           </div>
-
-          <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="true" aria-label="Sound on">
-            <span class="sound-toggle__note" aria-hidden="true">♪</span>
-            <span class="sound-toggle__slash" aria-hidden="true"></span>
-          </button>
+          <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="true" aria-label="Sound on"><span aria-hidden="true">♪</span><span class="sound-toggle__slash" aria-hidden="true"></span></button>
         </div>
       </div>
     </section>
 
-    <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle" hidden>
-      <div class="modal-card">
+    <section class="onboarding-screen app-panel" id="onboardingScreen" hidden aria-labelledby="onboardingTitle">
+      <div class="panel-orb" aria-hidden="true"></div>
+      <div class="onboarding-card">
+        <span class="eyebrow" data-copy="welcomeEyebrow">WELCOME TO THE GOLDEN PATH</span>
+        <h2 id="onboardingTitle" data-copy="nameQuestion">What would you like Ganesha to call you?</h2>
+        <p data-copy="nameHint">A first name or nickname is perfect. Both fields are optional and can be changed later.</p>
+        <div class="profile-fields profile-fields--onboarding">
+          <label class="profile-field">
+            <span data-copy="nameLabel">Display name</span>
+            <input id="displayNameInput" maxlength="32" autocomplete="nickname" placeholder="Benz">
+          </label>
+          <label class="profile-field">
+            <span data-copy="birthDate">Date of birth</span>
+            <input id="birthDateInput" type="date" autocomplete="bday">
+            <small data-copy="birthDateHint">Optional · used for future symbolic personalization</small>
+          </label>
+        </div>
+        <p class="privacy-note" data-copy="localOnly">Your personal profile stays on this device.</p>
+        <div class="onboarding-actions">
+          <button class="secondary-button" id="skipNameButton" type="button" data-copy="skip">Skip</button>
+          <button class="primary-button" id="saveNameButton" type="button" data-copy="continue">Continue</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-app app-panel" id="mainApp" hidden>
+      <header class="app-header">
+        <div>
+          <span class="eyebrow">LITTLE GANESHA TAROT</span>
+          <h2 id="homeGreeting">The Golden Path</h2>
+        </div>
+        <button class="icon-button" id="settingsButton" type="button" aria-label="Settings">⚙</button>
+      </header>
+
+      <div class="app-content" id="homeView">
+        <section class="home-intro">
+          <p class="home-kicker" id="homeWelcome" data-copy="homeWelcome">Take a moment. Hold your question gently, and choose your path.</p>
+        </section>
+        <section class="primary-grid" aria-label="Primary readings">
+          <button class="feature-card feature-card--hero" data-feature="daily"><span class="feature-icon">✦</span><strong data-copy="daily">Daily Guidance</strong><small data-copy="dailySub">One card for the energy of today</small></button>
+          <button class="feature-card" data-feature="ask"><span class="feature-icon">◌</span><strong data-copy="ask">Ask Ganesha</strong><small data-copy="askSub">Bring one clear question</small></button>
+          <button class="feature-card" data-feature="three"><span class="feature-icon">Ⅲ</span><strong data-copy="three">Three-Card Reading</strong><small data-copy="threeSub">Past, present and what unfolds next</small></button>
+        </section>
+        <section class="section-block">
+          <div class="section-heading"><span data-copy="signature">Signature Paths</span></div>
+          <div class="compact-grid">
+            <button class="compact-card" data-feature="golden"><strong data-copy="golden">The Golden Path</strong><small data-copy="goldenSub">Where you stand · what blocks you · the way forward</small></button>
+            <button class="compact-card" data-feature="obstacle"><strong data-copy="obstacle">Remove the Obstacle</strong><small data-copy="obstacleSub">The obstacle · what feeds it · what releases it</small></button>
+          </div>
+        </section>
+        <section class="section-block">
+          <div class="section-heading"><span data-copy="explore">Explore</span></div>
+          <div class="quick-row">
+            <button class="quick-card" data-feature="lucky"><span>⑧</span><strong data-copy="lucky">Lucky Numbers</strong></button>
+            <button class="quick-card" data-feature="cards"><span>▤</span><strong data-copy="cards">Card Library</strong></button>
+            <button class="quick-card" data-feature="journal"><span>✎</span><strong data-copy="journal">Journal</strong></button>
+          </div>
+        </section>
+      </div>
+
+      <div class="app-content settings-view" id="settingsView" hidden>
+        <div class="settings-title-row"><button class="back-button" id="settingsBack" type="button" aria-label="Back">‹</button><div><span class="eyebrow" data-copy="preferences">PREFERENCES</span><h2 data-copy="settings">Settings</h2></div></div>
+        <section class="settings-group"><h3 data-copy="experience">Experience</h3>
+          <div class="setting-row"><div><strong data-copy="language">Language</strong><small data-copy="languageSub">Choose English or Thai</small></div><div class="segmented"><button data-language="en" type="button">EN</button><button data-language="th" type="button">ไทย</button></div></div>
+          <div class="setting-row"><div><strong data-copy="motion">Motion</strong><small data-copy="motionSub">System keeps accessibility preferences</small></div><select id="motionSelect"><option value="system" data-copy-option="motionSystem">System</option><option value="full" data-copy-option="motionFull">Full</option><option value="reduced" data-copy-option="motionReduced">Reduced</option></select></div>
+          <div class="setting-row"><div><strong data-copy="immersive">Immersive Mode</strong><small data-copy="immersiveSub">Use the most app-like view your device supports</small></div><label class="switch"><input id="immersiveToggle" type="checkbox" checked><span></span></label></div>
+        </section>
+
+        <section class="settings-group"><h3 data-copy="audio">Audio</h3>
+          <div class="setting-row"><div><strong data-copy="sound">Music</strong><small data-copy="soundSub">Atmospheric soundtrack</small></div><label class="switch"><input id="settingsSoundToggle" type="checkbox" checked><span></span></label></div>
+          <div class="setting-row setting-row--stack"><div><strong data-copy="volume">Volume</strong></div><input id="settingsVolume" class="range" type="range" min="0" max="100" step="1" value="58"></div>
+          <div class="setting-row"><div><strong data-copy="shuffle">Shuffle</strong><small data-copy="shuffleSub">Avoid repeating the same track</small></div><label class="switch"><input id="settingsShuffle" type="checkbox" checked><span></span></label></div>
+        </section>
+
+        <section class="settings-group"><h3 data-copy="profile">Personal Profile</h3>
+          <p class="profile-privacy" data-copy="profilePrivacy">Optional profile data is stored only on this device.</p>
+          <button class="setting-link" id="editProfileButton" type="button"><span><strong data-copy="displayName">Display Name</strong><small id="displayNameValue">Not set</small></span><span>›</span></button>
+          <button class="setting-link" id="editBirthDateButton" type="button"><span><strong data-copy="birthDate">Date of birth</strong><small id="birthDateValue">Not set</small></span><span>›</span></button>
+        </section>
+
+        <section class="settings-group support-group"><h3 data-copy="supportProject">Support the Project</h3><p class="support-note" data-copy="supportNote">Support is optional and never affects readings or features.</p>
+          <article class="support-card"><div><span class="support-badge">WORLDWIDE</span><h4 data-copy="internationalSupport">International Supporters</h4><p data-copy="internationalSupportSub">Buy Me a Coffee</p></div><button class="support-button" type="button" disabled data-copy="comingSoon">Coming soon</button></article>
+          <article class="support-card"><div><span class="support-badge">THAILAND</span><h4 data-copy="thaiSupport">Supporters in Thailand</h4><p data-copy="thaiSupportSub">PromptPay · secure QR card coming next</p></div><button class="support-button" type="button" disabled data-copy="qrPending">QR pending</button></article>
+        </section>
+
+        <section class="settings-group"><button class="danger-link" id="returnTitleButton" type="button" data-copy="returnTitle">Return to Title</button></section>
+        <p class="build-label">BUILD 0.3.1</p>
+      </div>
+
+      <nav class="bottom-nav" aria-label="Primary">
+        <button class="bottom-nav__button is-active" id="homeNavButton" type="button"><span>⌂</span><small data-copy="home">Home</small></button>
+        <button class="bottom-nav__button" data-feature="read" type="button"><span>✦</span><small data-copy="read">Read</small></button>
+        <button class="bottom-nav__button" data-feature="cards" type="button"><span>▤</span><small data-copy="cards">Cards</small></button>
+        <button class="bottom-nav__button" data-feature="journal" type="button"><span>✎</span><small data-copy="journal">Journal</small></button>
+        <button class="bottom-nav__button" id="settingsNavButton" type="button"><span>⚙</span><small data-copy="settings">Settings</small></button>
+      </nav>
+    </section>
+
+    <aside class="mini-player mini-player--global" id="miniPlayer" aria-label="Music player" hidden>
+      <div class="mini-player__main"><div class="mini-player__meta"><span class="mini-player__eyebrow" id="playerEyebrow">NOW PLAYING</span><strong class="mini-player__title" id="playerTitle">Golden Lantern at Twilight</strong></div><div class="mini-player__controls"><button class="player-button" id="playerPrevious" type="button" aria-label="Previous track">‹</button><button class="player-button player-button--primary" id="playerPlay" type="button" aria-label="Pause" data-state="pause"><span class="player-icon player-icon--play" aria-hidden="true">▶</span><span class="player-icon player-icon--pause" aria-hidden="true">Ⅱ</span></button><button class="player-button" id="playerNext" type="button" aria-label="Next track">›</button><button class="player-button player-button--more" id="playerMore" type="button" aria-label="Audio options" aria-expanded="false">•••</button></div></div>
+      <div class="mini-player__panel" id="playerPanel" hidden><label class="volume-control"><span data-copy="volume">Volume</span><input id="volumeSlider" type="range" min="0" max="100" step="1" value="58"></label><div class="mini-player__panel-actions"><button class="panel-button" id="shuffleToggle" type="button" aria-pressed="true"><span aria-hidden="true">⤨</span><span data-copy="shuffle">Shuffle</span></button><button class="panel-button panel-button--exit" id="exitButton" type="button"><span aria-hidden="true">↶</span><span data-copy="returnTitle">Return to Title</span></button></div></div>
+    </aside>
+
+    <div class="toast" id="toast" hidden role="status" aria-live="polite"></div>
+
+    <div class="modal-backdrop" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle" hidden>
+      <div class="modal-card modal-card--profile">
         <span class="modal-card__ornament" aria-hidden="true">✦</span>
-        <h2 id="exitModalTitle" data-copy="exitTitle">Return to Title?</h2>
-        <p data-copy="exitBody">Your language and audio preferences will be kept.</p>
+        <h2 id="profileModalTitle" data-copy="editProfile">Personal Profile</h2>
+        <p data-copy="profileModalHint">Both fields are optional. Your information stays on this device.</p>
+        <div class="profile-fields">
+          <label class="profile-field">
+            <span data-copy="nameLabel">Display name</span>
+            <input id="profileNameInput" maxlength="32" autocomplete="nickname">
+          </label>
+          <label class="profile-field">
+            <span data-copy="birthDate">Date of birth</span>
+            <input id="profileBirthDateInput" type="date" autocomplete="bday">
+            <small data-copy="birthDateHint">Optional · used for future symbolic personalization</small>
+          </label>
+        </div>
+        <button class="profile-clear" id="clearProfileButton" type="button" data-copy="clearProfile">Clear personal profile</button>
         <div class="modal-card__actions">
-          <button class="modal-button" id="exitCancel" type="button" data-copy="cancel">Cancel</button>
-          <button class="modal-button modal-button--primary" id="exitConfirm" type="button" data-copy="confirm">Return</button>
+          <button class="modal-button" id="profileCancel" type="button" data-copy="cancel">Cancel</button>
+          <button class="modal-button modal-button--primary" id="profileSave" type="button" data-copy="save">Save</button>
         </div>
       </div>
     </div>
 
+    <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle" hidden><div class="modal-card"><span class="modal-card__ornament" aria-hidden="true">✦</span><h2 id="exitModalTitle" data-copy="exitTitle">Return to Title?</h2><p data-copy="exitBody">Your preferences will be kept.</p><div class="modal-card__actions"><button class="modal-button" id="exitCancel" type="button" data-copy="cancel">Cancel</button><button class="modal-button modal-button--primary" id="exitConfirm" type="button" data-copy="confirm">Return</button></div></div></div>
     <p class="sr-only" id="liveStatus" aria-live="polite"></p>
   </main>
-
-  <script src="js/audio.js?v=0.2.2" defer></script>
-  <script src="js/app.js?v=0.2.2" defer></script>
+  <script src="js/audio.js?v=0.3.1" defer></script>
+  <script src="js/app.js?v=0.3.1" defer></script>
 </body>
 </html>

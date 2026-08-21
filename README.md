@@ -1,25 +1,40 @@
-# Little Ganesha Tarot — App Foundation V0.2.2
+# Little Ganesha Tarot — App Foundation V0.3.1
 
-Interaction hotfix for the V0.2 Living Title + Audio Foundation.
+Code-only progress build based on the approved V0.2.2 interaction hotfix.
 
-## Root cause fixed
-The transparent Exit modal used the HTML `hidden` attribute while its CSS component rule set `display: grid`. CSS `display` can override the browser's default rendering of `hidden`, leaving an invisible full-screen layer at z-index 50 that intercepted taps/clicks.
+## Included in V0.3.1
+- Living Title retuned so Full Motion is visibly alive within a few seconds.
+- Reduced Motion no longer turns the title into a dead still image; calm light/shimmer remains.
+- Motion preference: System / Full / Reduced.
+- Immersive Mode foundation, default ON, with graceful fallback when Fullscreen API is unavailable.
+- First-entry optional display name + optional date of birth, stored locally on-device only.
+- Personal Profile editor in Settings for name and birth date, with local-only privacy copy and a clear-profile action.
+- TAP TO BEGIN now starts audio and enters the actual app flow.
+- Home/Menu foundation with Daily Guidance, Ask Ganesha, Three-Card Reading, signature paths, Lucky Numbers, Cards and Journal entry points.
+- Global mini player persists after entering the app.
+- Settings foundation: language, motion, immersive mode, music, volume, shuffle, Personal Profile and Return to Title.
+- Support the Project skeleton:
+  - International Supporters — Buy Me a Coffee placeholder.
+  - Supporters in Thailand — PromptPay QR placeholder.
+- No payment link, QR image, account identifier or personal financial information is embedded in this build.
+- Existing audio engine keeps its visibility behavior: background/lock pauses playback and returns intelligently when appropriate.
+- Cache-busted static assets: `?v=0.3.1`.
 
-V0.2.2 adds:
-- global `[hidden] { display: none !important; }` safety rule
-- `pointer-events: none` on the inactive modal backdrop
-- `pointer-events: auto` only when the modal is visible
-- `pointer-events: none` as soon as the Benedict splash starts leaving
-- explicit pointer-event safety for Title controls
-- cache-busted `?v=0.2.2` CSS/JS URLs
+## Not production-final yet
+Reading features currently route to a non-blocking "ready for reading-engine build" notice. Payment destinations are intentionally placeholders until approved production data/artwork is supplied.
 
-Expected test flow:
-1. Benedict Interactive holds for about 2.6 seconds.
-2. Title appears with Living Title motion (unless the device requests reduced motion).
-3. EN / ไทย and sound controls respond.
-4. Tap `TAP TO BEGIN`.
-5. Mini Player appears and Golden Lantern at Twilight fades in if sound is enabled.
-6. Previous / Play-Pause / Next / More work.
-7. Return to Title confirmation works.
+## Overlay instructions
+Copy these files/folders over the repository root, preserving the existing approved `assets/ui/title-hero.png`, card assets and data already in the repository.
 
-Commit suggestion: `Fix invisible overlay blocking title controls`
+## Expected smoke test
+1. Benedict Interactive shows for about 2.6 seconds.
+2. Title shows visible ambient motion on normal-motion devices.
+3. EN/ไทย and sound controls work.
+4. TAP TO BEGIN starts music.
+5. First visit offers optional display name and optional date of birth; later visits skip this step.
+6. Profile data can be edited or cleared from Settings and remains local to the device.
+7. Home/Menu appears after entry.
+8. Settings opens and all preference controls respond.
+9. Support the Project shows separate Worldwide and Thailand placeholders.
+10. Lock/background pauses audio; returning resumes only when the engine had been playing.
+11. Return to Title fades/stops the session and returns to the title.
