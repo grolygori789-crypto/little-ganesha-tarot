@@ -1,8 +1,8 @@
-# LITTLE GANESHA TAROT — MASTER PLAN & ZERO-QUESTION DEVELOPMENT HANDOFF V3.5
+# LITTLE GANESHA TAROT — MASTER PLAN & ZERO-QUESTION DEVELOPMENT HANDOFF V3.6
 
 **Project:** Little Ganesha Tarot — The Golden Path  
 **Studio / Publisher:** Benedict Interactive  
-**Canonical document version:** 3.5  
+**Canonical document version:** 3.6  
 **Last updated:** 21 August 2026  
 **Status:** ACTIVE — CANONICAL SOURCE OF TRUTH  
 **Document type:** Master Plan + Product Specification + Engineering Governance + Zero-Question Room Migration Handoff
@@ -13,9 +13,9 @@
 
 This document is the canonical, self-contained development authority for **Little Ganesha Tarot — The Golden Path**.
 
-Version 3.5 consolidates the approved deck canon, visual identity, product direction, app architecture, UX rules, engineering governance, QA standards, worldwide mobile requirements, audio/motion behavior, personal profile rules, support/donation architecture, release discipline, and current implementation status.
+Version 3.6 consolidates the approved deck canon, visual identity, product direction, app architecture, UX rules, engineering governance, QA standards, worldwide mobile requirements, audio/motion behavior, personal profile rules, support/donation architecture, release discipline, and current implementation status.
 
-**V3.5 supersedes earlier Master Plans, migration prompts, development summaries, drafts, experiments, and implementation notes wherever they conflict.** Earlier materials may be consulted only for historical context when they do not contradict this document or a newer explicit instruction from P’Benz.
+**V3.6 supersedes earlier Master Plans, migration prompts, development summaries, drafts, experiments, and implementation notes wherever they conflict.** Earlier materials may be consulted only for historical context when they do not contradict this document or a newer explicit instruction from P’Benz.
 
 The project must continue without asking P’Benz to repeat locked decisions already recorded here. A new room, developer, assistant instance, or future handoff should be able to resume work from this document plus the current repository and approved assets.
 
@@ -24,7 +24,7 @@ The project must continue without asking P’Benz to repeat locked decisions alr
 When instructions conflict, apply this order strictly:
 
 1. **P’Benz’s latest explicit instruction in the current conversation / development turn.**
-2. **This Master Plan & Zero-Question Development Handoff V3.5.**
+2. **This Master Plan & Zero-Question Development Handoff V3.6.**
 3. **Approved canonical production assets** supplied or approved by P’Benz, including the 78-card deck, master card back, title hero, and later approved replacements.
 4. **Current verified implementation in the GitHub repository** after a successful push/deployment, provided it does not conflict with items 1–3.
 5. Prior plans, manifests, prompts, summaries, prototypes, experiments, and obsolete builds.
@@ -1902,11 +1902,11 @@ V0.3.5 preserves the established audio, profile, PWA/icon, language, Support pla
 
 # 30. Immediate Development Milestones
 
-## Milestone A — V0.3.5 Home/PWA stabilization
+## Milestone A — V0.3.6 Premium Home stabilization
 
 Goal:
 
-Confirm that V0.3.5 corrects the Home visual regressions while preserving the already-working V0.3.1/V0.3.2 application and PWA foundations.
+Confirm that V0.3.6 completes the Premium Home polish over the stabilized V0.3.5 architecture while preserving the already-working V0.3.1/V0.3.2 application and PWA foundations.
 
 Acceptance focus:
 
@@ -1921,7 +1921,7 @@ Acceptance focus:
 - manifest, canonical launcher icon, service worker, cache/versioning, and standalone PWA behavior remain intact,
 - Mini Player, background audio pause/resume, profile edit/clear, Support placeholders, and Return to Title remain stable.
 
-Do not begin deep Reading Engine work if V0.3.5 introduces a serious navigation, audio, state, PWA, or Home-layout regression.
+Do not begin deep Reading Engine work until V0.3.6 passes the post-deployment real-device visual gate and introduces no serious navigation, audio, state, PWA, or Home-layout regression.
 
 ## Milestone B — Reading Engine foundation
 
@@ -2332,10 +2332,30 @@ V3.5 additions / corrections:
 
 ---
 
-# 46. Canonical Closing Rule
+# 46. V3.6 Change Log
+
+V3.6 records the Founder-approved Premium Home Polish pass following successful real-device V0.3.5 stabilization.
+
+V3.6 additions / corrections:
+
+- keeps V0.3.5 Home architecture canonical and explicitly avoids another structural rebuild,
+- refines Home header height and lower-edge transition without allowing content bleed,
+- refines Thai/English typography rhythm while preserving paired-card alignment,
+- removes the English-style comma from Thai personalized greetings,
+- further simplifies Ask Ganesha and related symbolic SVG motifs toward a premium emblem language,
+- slightly strengthens Explore icon legibility without adding a second decorative layer,
+- compacts the global Mini Player while preserving all existing controls and audio behavior,
+- preserves bottom navigation structure and safe-area handling,
+- preserves explicit-only browser Fullscreen behavior and installed PWA standalone behavior,
+- requires V0.3.6 to be built from and hash-verified against the current GitHub V0.3.5 baseline before release,
+- protects audio.js, pwa.js, manifest.webmanifest, audio assets, card assets, title hero, card back, profile behavior, Support placeholders, and reading/navigation foundations from unrelated changes.
+
+---
+
+# 47. Canonical Closing Rule
 
 **When uncertain, choose the solution that best protects tarot correctness, Little Ganesha identity, user trust, worldwide usability, stable working behavior, premium presentation, and long-term maintainability.**
 
 P’Benz retains final explicit authority. Within that boundary, Biu is expected to act proactively and decisively as the product’s fully authorized development lead.
 
-**End of Master Plan & Zero-Question Development Handoff V3.5**
+**End of Master Plan & Zero-Question Development Handoff V3.6**

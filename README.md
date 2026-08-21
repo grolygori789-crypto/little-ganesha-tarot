@@ -1,24 +1,28 @@
-# Little Ganesha Tarot — App Foundation V0.3.5
+# Little Ganesha Tarot — App Foundation V0.3.6
 
 **Project:** Little Ganesha Tarot — The Golden Path  
 **Studio:** Benedict Interactive  
-**Master Plan:** V3.5
+**Master Plan:** V3.6
 
 ## Purpose
-V0.3.5 rebuilds the Home visual system from the stable V0.3.2 application/PWA baseline after V0.3.3 and V0.3.4 failed real-device visual QA.
+V0.3.6 is the Premium Home Polish release over the stabilized V0.3.5 Home architecture. It intentionally avoids another structural rebuild and focuses on refinement, readability, density, and real-device presentation.
 
 ## Key changes
-- Removes duplicate foreground symbols from Primary/Signature cards.
-- Introduces one clean anchored sacred motif per major Home path.
-- Uses a single compact icon system for Explore cards.
-- Re-establishes deterministic Thai/English typography hierarchy.
-- Makes the Home header visually opaque enough that scrolled content cannot bleed through it.
-- Stops automatic Fullscreen API requests on `TAP TO BEGIN`.
-- Browser full screen is now explicitly user-triggered from Settings only.
-- Installed PWA behavior remains `display: standalone` through the manifest.
-- Preserves audio, onboarding/profile, settings, PWA, support placeholders, and navigation foundations.
+- tightens Home header height and softens the lower-edge transition,
+- refines Thai/English typography rhythm while preserving paired-card alignment,
+- removes the English-style comma from Thai personalized greetings,
+- simplifies sacred motifs toward a cleaner premium emblem language,
+- slightly strengthens Explore icon legibility,
+- compacts the global Mini Player without removing controls,
+- retains explicit-only browser Fullscreen behavior,
+- preserves PWA standalone behavior, audio lifecycle, profile storage, Support placeholders, navigation, and card assets.
 
-## Important QA boundary
-Static and structural validation is comprehensive, but final visual acceptance still requires P'Benz to inspect the deployed build on a real mobile display after GitHub Pages deployment.
+## QA status
+- Git-blob baseline verification against current GitHub `main` V0.3.5: PASS
+- static / structural automated checks: 198 / 198 PASS
+- simulated Chromium application-flow checks: 22 / 22 PASS
+- simulated responsive layout checks (TH/EN, 320/360/390/430 widths): 150 / 150 PASS
 
-See `QA_V0_3_5.md` and `RELEASE_NOTES_V0_3_5.md`.
+Final canonical visual acceptance still requires one post-deployment real-device screenshot/device pass because OS font rasterization, browser chrome, DPR, and safe-area behavior cannot be fully proven before deployment.
+
+See `QA_V0_3_6.md` and `RELEASE_NOTES_V0_3_6.md`.

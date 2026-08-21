@@ -1,0 +1,101 @@
+{
+  "project": "Little Ganesha Tarot — The Golden Path",
+  "studio": "Benedict Interactive",
+  "patch_version": "0.3.6",
+  "master_plan_version": "3.6",
+  "baseline_repository": "grolygori789-crypto/little-ganesha-tarot",
+  "baseline_branch": "main",
+  "baseline_commit": "ce0ad2c4554c9cea80907c4f363d64ac5821682d",
+  "baseline_commit_message": "Rebuild home visual system V0.3.5",
+  "release_status": "PRE-DEPLOY RELEASE GATE PASS; post-deploy real-device visual gate required",
+  "upload_mode": "Overlay archive contents onto repository root; do not delete unrelated repository files.",
+  "protected_not_in_patch": [
+    "js/audio.js",
+    "js/pwa.js",
+    "manifest.webmanifest",
+    "data/AUDIO_MANIFEST_V1.json",
+    "assets/audio/*",
+    "assets/icons/*",
+    "assets/ui/*",
+    "assets/cards/*"
+  ],
+  "qa": {
+    "static_structural": "198/198 PASS",
+    "simulated_runtime_flow": "22/22 PASS",
+    "responsive_layout": "150/150 PASS",
+    "total_predeploy": "370/370 PASS",
+    "archive_integrity": "PASS"
+  },
+  "files": [
+    {
+      "path": "MASTER_PLAN.md",
+      "size": 78114,
+      "sha256": "b4647a3bfdf58d1495045c3a5cfde12c3b4acd3c6d8440324a7a5f82f61ae1e8"
+    },
+    {
+      "path": "PATCH_UPLOAD_NOTES.md",
+      "size": 587,
+      "sha256": "5f20419abc0b05b8fd78feafacdd00e54d4c3407a6a025edd067215c66d465bc"
+    },
+    {
+      "path": "QA_V0_3_6.md",
+      "size": 7350,
+      "sha256": "c885a4aca403201ab85d942a3aa43330e831e7eb32bd66a0ee288ff9455d114b"
+    },
+    {
+      "path": "README.md",
+      "size": 1542,
+      "sha256": "7a3e874921ef971dee7f7ae1a6b544793faa48701ebd903a69937d7932c9663e"
+    },
+    {
+      "path": "RELEASE_NOTES_V0_3_6.md",
+      "size": 994,
+      "sha256": "d5222b4a2e425525079efe091a109a8088e130d0566bdfb94bf1f64d17b2c57f"
+    },
+    {
+      "path": "assets/motifs/ask-ganesha.svg",
+      "size": 672,
+      "sha256": "3f1362dde4ec0856edd327a3c96e1a835ec484ff966a9b8a4781af5fe4071a37"
+    },
+    {
+      "path": "assets/motifs/daily-halo.svg",
+      "size": 560,
+      "sha256": "4e5ed75e5abc6939ad9a63f68a7bd1c42e3534aad8865dac00bad81b4fceb339"
+    },
+    {
+      "path": "assets/motifs/golden-path.svg",
+      "size": 508,
+      "sha256": "9bc9246916441f93d0e8b97c3b1fafdd761ae5133c1b1fa15603c6b170cc9b87"
+    },
+    {
+      "path": "assets/motifs/release-knot.svg",
+      "size": 525,
+      "sha256": "a308117c74f23b55066d0d23a7a647f30121d4cf602ad2ea7106b2ccacb6cb8c"
+    },
+    {
+      "path": "assets/motifs/three-cards.svg",
+      "size": 586,
+      "sha256": "7fc56466814f2f0ccc6be96adf5bcfb9edcab93db4c56baa40f93f7d622edd2c"
+    },
+    {
+      "path": "css/app.css",
+      "size": 61076,
+      "sha256": "0eb73e63d99147e85ca26b5404c5fe8dfeea6e17dee335ec194183098be9c9ec"
+    },
+    {
+      "path": "index.html",
+      "size": 17720,
+      "sha256": "9dce02e540cc77a043c7fbdac763eb5fa7fc50bfe03acd836c0b8737f91d26c6"
+    },
+    {
+      "path": "js/app.js",
+      "size": 26491,
+      "sha256": "9443a53b12bc6179669042317ab918c61e6f2a0ce2079c50324ee43b22ff7426"
+    },
+    {
+      "path": "sw.js",
+      "size": 3935,
+      "sha256": "b78879b2714b0548cc42bdb7250655410ccbaaa38fa37a5074af6cf663380a32"
+    }
+  ]
+}

@@ -1524,3 +1524,211 @@
   html[data-motion="reduced"] .motif-card::before,
   html[data-motion="reduced"] .quick-icon { animation: none !important; }
 }
+
+
+/* V0.3.6 — Premium Home Polish
+   Real-device polish over the verified V0.3.5 GitHub baseline.
+   Scope: Home hierarchy, sacred motifs, header edge, Mini Player density. */
+@layer screens {
+  .app-header {
+    min-height: calc(6.02rem + env(safe-area-inset-top));
+    padding: max(1rem, env(safe-area-inset-top)) max(1.1rem, env(safe-area-inset-right)) .86rem max(1.1rem, env(safe-area-inset-left));
+    background: linear-gradient(180deg, rgba(3,23,24,.997) 0%, rgba(4,27,28,.99) 78%, rgba(4,27,28,.965) 100%);
+    border-bottom-color: rgba(247,217,147,.06);
+    box-shadow: 0 12px 30px rgba(0,0,0,.13);
+    -webkit-backdrop-filter: blur(18px) saturate(1.04);
+    backdrop-filter: blur(18px) saturate(1.04);
+  }
+  .app-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -11px;
+    height: 11px;
+    background: linear-gradient(180deg, rgba(4,27,28,.34), transparent);
+    pointer-events: none;
+  }
+  .app-header h2 {
+    margin-top: .18rem;
+    font-size: clamp(1.68rem, 6.75vw, 2.06rem);
+    line-height: 1.15;
+    letter-spacing: -.018em;
+  }
+  html[lang="th"] .app-header h2 {
+    font-size: clamp(1.64rem, 6.5vw, 2rem);
+    line-height: 1.26;
+    letter-spacing: 0;
+  }
+
+  #homeView.app-content {
+    padding-top: calc(6.92rem + env(safe-area-inset-top));
+    padding-bottom: calc(11.45rem + env(safe-area-inset-bottom));
+  }
+  .home-intro {
+    margin: 0 auto 1.06rem;
+    padding-top: .12rem;
+  }
+  .home-kicker {
+    max-width: 31.5rem;
+    font-size: clamp(.98rem, 4.2vw, 1.17rem);
+    line-height: 1.56;
+    color: rgba(255,248,233,.71);
+    text-wrap: pretty;
+  }
+  html[lang="th"] .home-kicker {
+    font-size: clamp(.98rem, 4.15vw, 1.16rem);
+    line-height: 1.61;
+  }
+
+  .primary-grid, .compact-grid, .quick-row { gap: .8rem; }
+  .section-block { margin-top: 1.48rem; }
+  .section-heading {
+    margin-bottom: .64rem;
+    font-size: .65rem;
+    letter-spacing: .17em;
+    color: rgba(247,217,147,.60);
+  }
+  html[lang="th"] .section-heading {
+    font-size: .71rem;
+    letter-spacing: .025em;
+  }
+
+  .feature-card, .compact-card, .quick-card {
+    border-color: rgba(247,217,147,.14);
+    background: linear-gradient(152deg, rgba(19,62,60,.79), rgba(7,34,35,.83));
+    box-shadow: 0 12px 30px rgba(0,0,0,.155), inset 0 1px rgba(255,245,218,.045);
+  }
+  .feature-card {
+    min-height: 9rem;
+    padding: 1.04rem 1.02rem .98rem;
+  }
+  .feature-card--hero {
+    min-height: 9.72rem;
+    background: radial-gradient(circle at 85% 48%, rgba(229,189,112,.12), transparent 8rem), linear-gradient(145deg, rgba(25,77,73,.84), rgba(7,35,35,.85));
+  }
+  .card-copy { max-width: 75%; }
+  .feature-card:not(.feature-card--hero) .card-copy { max-width: 86%; }
+  .compact-card .card-copy { max-width: 85%; }
+
+  .feature-card:not(.feature-card--hero) .card-copy strong {
+    min-height: 2.5em;
+    font-size: clamp(1.04rem, 4.46vw, 1.17rem);
+    line-height: 1.34;
+  }
+  html[lang="th"] .feature-card:not(.feature-card--hero) .card-copy strong {
+    min-height: 2.68em;
+    font-size: clamp(1rem, 4.28vw, 1.14rem);
+    line-height: 1.43;
+  }
+  .feature-card--hero .card-copy strong {
+    font-size: clamp(1.18rem, 4.95vw, 1.31rem);
+    line-height: 1.32;
+  }
+  html[lang="th"] .feature-card--hero .card-copy strong {
+    font-size: clamp(1.14rem, 4.78vw, 1.28rem);
+    line-height: 1.42;
+  }
+  .feature-card .card-copy small, .compact-card .card-copy small {
+    margin-top: .39rem;
+    font-size: clamp(.76rem, 3.1vw, .86rem);
+    line-height: 1.48;
+  }
+  html[lang="th"] .feature-card .card-copy small,
+  html[lang="th"] .compact-card .card-copy small {
+    font-size: clamp(.76rem, 3.08vw, .85rem);
+    line-height: 1.56;
+  }
+
+  .motif-card::before { filter: drop-shadow(0 0 9px rgba(229,189,112,.045)); }
+  .motif-card--daily::before {
+    width: 9.65rem; height: 9.65rem; right: .18rem; top: 50%; transform: translateY(-50%); opacity: .215;
+  }
+  .motif-card--ask::before {
+    width: 7.95rem; height: 7.95rem; right: -.12rem; top: 50%; transform: translateY(-51%); opacity: .16;
+  }
+  .motif-card--three::before {
+    width: 6.95rem; height: 6.95rem; right: .18rem; top: 50%; transform: translateY(-51%); opacity: .155;
+  }
+
+  .compact-card { min-height: 7.45rem; padding: .98rem; }
+  .compact-card .card-copy strong {
+    min-height: 2.34em;
+    font-size: clamp(.96rem, 3.98vw, 1.05rem);
+    line-height: 1.34;
+  }
+  html[lang="th"] .compact-card .card-copy strong {
+    min-height: 2.48em;
+    font-size: clamp(.96rem, 3.88vw, 1.04rem);
+    line-height: 1.43;
+  }
+  .motif-card--golden::before { width: 6.8rem; height: 6.8rem; right: .08rem; bottom: .12rem; opacity: .14; }
+  .motif-card--obstacle::before { width: 6.55rem; height: 6.55rem; right: .08rem; bottom: .23rem; opacity: .135; }
+
+  .quick-card { min-height: 5.3rem; padding: .72rem .44rem .68rem; gap: .35rem; }
+  .quick-icon { width: 1.86rem; height: 1.86rem; opacity: .84; }
+  .quick-card strong { min-height: 1.35em; font-size: clamp(.74rem, 3.15vw, .85rem); line-height: 1.29; }
+  html[lang="th"] .quick-card strong { font-size: clamp(.76rem, 3.1vw, .85rem); line-height: 1.35; }
+
+  .bottom-nav {
+    min-height: 4rem;
+    padding: .3rem .24rem;
+    border-radius: 1.18rem;
+    background: rgba(4,26,27,.89);
+    box-shadow: 0 14px 44px rgba(0,0,0,.28), inset 0 1px rgba(255,245,218,.025);
+  }
+  .bottom-nav__button small { font-size: .57rem; }
+
+  .mini-player {
+    width: min(calc(100% - 1rem), 35rem);
+    border-radius: 1.05rem;
+    border-color: rgba(255,234,190,.19);
+    background: linear-gradient(145deg, rgba(5,30,31,.82), rgba(8,40,40,.67));
+    box-shadow: 0 13px 36px rgba(0,10,12,.28), inset 0 1px 0 rgba(255,242,211,.055);
+  }
+  .mini-player__main {
+    gap: .58rem;
+    min-height: 3.55rem;
+    padding: .52rem .62rem .52rem .84rem;
+  }
+  .mini-player__eyebrow { margin-bottom: .06rem; font-size: .53rem; letter-spacing: .19em; }
+  html[lang="th"] .mini-player__eyebrow { font-size: .54rem; }
+  .mini-player__title { font-size: .92rem; line-height: 1.1; }
+  .mini-player__controls { gap: .03rem; }
+  .player-button { width: 1.96rem; height: 1.96rem; font-size: 1.04rem; }
+  .player-button--primary { width: 2.22rem; height: 2.22rem; }
+  .player-button--more { width: 1.68rem; font-size: .82rem; }
+  .player-icon--play { font-size: .61rem; }
+  .player-icon--pause { font-size: .68rem; }
+  .mini-player__panel { padding: .1rem .84rem .76rem; }
+  .mini-player--global { bottom: max(4.98rem, calc(env(safe-area-inset-bottom) + 4.48rem)); }
+
+  @media (max-width: 420px) {
+    .app-header { min-height: calc(5.88rem + env(safe-area-inset-top)); }
+    #homeView.app-content { padding-top: calc(6.74rem + env(safe-area-inset-top)); }
+    .home-kicker { font-size: .97rem; }
+    .feature-card { min-height: 8.7rem; }
+    .feature-card--hero { min-height: 9.32rem; }
+    .compact-card { min-height: 7.24rem; }
+    .mini-player--global { bottom: max(4.76rem, calc(env(safe-area-inset-bottom) + 4.28rem)); }
+  }
+  @media (min-width: 340px) and (max-width: 360px) {
+    .primary-grid, .compact-grid { grid-template-columns: 1fr 1fr; }
+    .feature-card--hero { grid-column: 1 / -1; }
+  }
+  @media (max-width: 360px) {
+    #homeView.app-content { padding-top: calc(6.9rem + env(safe-area-inset-top)); }
+    .home-kicker { font-size: .94rem; line-height: 1.56; }
+    .feature-card:not(.feature-card--hero) .card-copy { max-width: 88%; }
+    .compact-card .card-copy { max-width: 87%; }
+    .motif-card--ask::before { width: 7.3rem; height: 7.3rem; right: -.55rem; opacity: .145; }
+    .motif-card--three::before { width: 6.45rem; height: 6.45rem; right: -.08rem; opacity: .145; }
+    .mini-player__title { font-size: .87rem; }
+    .bottom-nav__button small { font-size: .54rem; }
+  }
+  @media (orientation: landscape) and (max-height: 540px) {
+    .app-header::after { display: none; }
+    #homeView.app-content { padding-top: calc(4.65rem + env(safe-area-inset-top)); }
+    .mini-player--global { bottom: max(4.4rem, calc(env(safe-area-inset-bottom) + 3.9rem)); }
+  }
+}
