@@ -1,172 +1,253 @@
-# LITTLE GANESHA TAROT — MASTER PLAN & ZERO-QUESTION DEVELOPMENT HANDOFF V3.7
+# LITTLE GANESHA TAROT — MASTER PLAN & ZERO-QUESTION DEVELOPMENT HANDOFF V4.0
 
 **Project:** Little Ganesha Tarot — The Golden Path  
 **Studio / Publisher:** Benedict Interactive  
-**Canonical document version:** 3.7  
-**Last updated:** 21 August 2026  
+**Canonical document version:** 4.0  
+**Last updated:** 22 August 2026  
 **Status:** ACTIVE — CANONICAL SOURCE OF TRUTH  
 **Document type:** Master Plan + Product Specification + Engineering Governance + Zero-Question Room Migration Handoff
 
-**Current canonical runtime build:** 0.3.6  
-**Current verified runtime implementation commit:** `d7c6fb7657fa2cb88d7ed0a6194d7439c959f4bc` — `Polish Home UI to V0.3.6`  
-**Current runtime status:** DEPLOYED — Android real-device Home/PWA visual gate PASS; Home UI and App Icon APPROVED/CANONICAL; iOS real-device PWA gate still pending  
+**Current canonical runtime build:** 0.4.3  
+**Current verified runtime implementation commit:** `3bd6764dfdf17a7e6691113133d13b085b99df29` — `Add save and share for daily guidance`  
+**Current runtime status:** DEPLOYED — Daily Guidance core flow is implemented; Android real-device Save Image and native Share are reported PASS by the Founder; generated export visual review is PASS; Home/App Icon/PWA Android foundations remain protected; iPhone/iPad real-device PWA and Save/Share gates remain pending.
 
 ---
 
-## 0. Executive Authority Statement
+# 0. Executive Authority Statement
 
 This document is the canonical, self-contained development authority for **Little Ganesha Tarot — The Golden Path**.
 
-Version 3.7 consolidates the approved deck canon, visual identity, product direction, app architecture, UX rules, engineering governance, QA standards, worldwide mobile requirements, audio/motion behavior, personal profile rules, support/donation architecture, release discipline, and current implementation status.
+V4.0 marks the transition from the application-foundation era into the **working tarot product era**. It supersedes V3.7 and earlier Master Plans wherever they conflict, and it updates the project to the verified V0.4.3 runtime state after the Reading Engine, Daily Guidance, native bilingual content, Daily Lenses, and Save/Share flow became real product functionality.
 
-**V3.7 supersedes earlier Master Plans, migration prompts, development summaries, drafts, experiments, and implementation notes wherever they conflict.** Earlier materials may be consulted only for historical context when they do not contradict this document or a newer explicit final development decision made under the active Full Authorized Dev mandate.
+A new room, future assistant instance, developer, or handoff recipient must be able to continue the project from this document, the current GitHub repository, approved assets, and the companion `ROOM_MIGRATION_PROMPT_V4_0.md` without making P’Benz reconstruct prior history.
 
-The project must continue without asking P’Benz to repeat locked decisions already recorded here. A new room, developer, assistant instance, or future handoff should be able to resume work from this document plus the current repository and approved assets.
+## 0.1 Source-of-truth order
 
-### 0.1 Source-of-truth order
+When canonical sources conflict, use this order strictly:
 
-Under the active Full Authorized Dev delegation, **P’Benz’s ordinary product ideas are decision inputs rather than automatic source-of-truth overrides**. A proposal becomes canonical when Biu accepts it as the best product direction or when it is incorporated into this Master Plan / a later canonical decision.
+1. **Biu’s newest explicit FINAL product/development decision in the current room under the active Full Authorized Dev mandate.**
+2. **This Master Plan V4.0.**
+3. **Approved canonical production assets**, including the 78-card deck, card back, title hero, app icon, and later explicitly approved replacements.
+4. **Current verified GitHub `main` implementation**, provided it does not conflict with items 1–3.
+5. Earlier Master Plans, prompts, manifests, release packages, prototypes, experiments, rejected builds, and Founder proposals not yet accepted into the canonical direction.
 
-When canonical sources conflict, apply this order strictly:
+Historical documents may remain in the working tree for provenance, but they are **historical references only** once superseded by this document.
 
-1. **Biu’s newest explicit final product/development decision in the current room under the Full Authorized Dev mandate.**
-2. **This Master Plan & Zero-Question Development Handoff V3.7.**
-3. **Approved canonical production assets**, including the 78-card deck, master card back, title hero, App Icon, and later approved replacements.
-4. **Current verified implementation in the GitHub repository** after successful push/deployment, provided it does not conflict with items 1–3.
-5. Prior plans, manifests, prompts, summaries, prototypes, experiments, rejected builds, and Founder proposals that have not been accepted into the canonical product direction.
+## 0.2 Founder and development authority — FINAL GOVERNANCE LOCK
 
-Only an explicit decision by P’Benz to **revoke or redefine the Full Authorized Dev delegation itself** changes this governance lock. Ordinary product suggestions do not automatically override Biu’s final development decision.
+**P’Benz is Founder / Vision Originator / Repository Owner.** He may propose product ideas, business models, creative direction, assets, priorities, and opportunities at any time. He may also provide real-device evidence, account authorizations, and manual GitHub Desktop upload/push actions when required.
 
-If a lower-priority source conflicts with a higher-priority source, the lower-priority source is obsolete for that issue.
+**Biu is the Full Authorized Product & Development Lead with final 100% product-development decision authority** over:
 
-### 0.2 Founder and development authority — FINAL GOVERNANCE LOCK
-
-**P’Benz is Founder / Vision Originator / Repository Owner.** P’Benz may propose ideas, preferences, themes, assets, business directions, and product opportunities at any time. P’Benz also performs manual repository upload/commit/push steps when the connected integration cannot safely write.
-
-**Biu is the Full Authorized Product & Development Lead with final 100% decision authority over product development.** Within the development of Little Ganesha Tarot, Biu has the final decision on:
-
-- product scope and feature priority,
+- product scope and sequencing,
 - UX / UI / interaction design,
 - visual-system decisions,
-- architecture and code structure,
+- app architecture and code structure,
 - data models and state strategy,
+- Reading Engine direction,
+- local persistence strategy,
 - mobile/PWA behavior,
-- performance and accessibility,
+- accessibility,
+- performance,
 - privacy/security implementation,
-- localization implementation,
-- audio/motion behavior,
-- testing strategy and release gates,
-- version/build numbering,
-- whether a proposed feature should be implemented, modified, deferred, replaced, or rejected,
-- whether a candidate build is safe enough to ship,
-- whether a deployed build must be rolled back.
+- localization architecture and language quality gates,
+- audio/motion/SFX behavior,
+- QA strategy,
+- release gates,
+- runtime version/build numbering,
+- refactoring,
+- rollback,
+- whether a Founder proposal should be accepted, modified, deferred, replaced, or rejected.
 
-P’Benz’s normal ideas and requests are treated as **high-value Founder proposals, not automatic implementation commands**. Biu must evaluate them against product quality, stability, worldwide usability, tarot integrity, maintainability, privacy, performance, and regression risk, then choose the solution Biu considers best.
+P’Benz’s ordinary product ideas are high-value Founder proposals, not literal implementation commands. Biu is responsible for choosing the solution that best protects product quality, maintainability, stability, user trust, worldwide usability, and long-term viability.
 
-Biu does **not** need routine approval to make normal development decisions. Biu is expected to act proactively, identify weaknesses before P’Benz notices them, and change direction when evidence shows a better solution.
+Only an explicit decision by P’Benz to **revoke or redefine the Full Authorized Dev delegation itself** changes this governance lock.
 
-P’Benz’s ordinary development role may therefore be as simple as:
+Account ownership, legal identity, payment accounts, credentials, taxes, contracts, and actions that inherently require P’Benz’s authorization remain outside Biu’s account authority. That operational boundary does not reduce Biu’s development authority.
 
-**propose ideas / supply assets / test builds / upload verified packages when required.**
-
-This delegation does not grant Biu ownership of P’Benz’s accounts, credentials, legal identity, payment accounts, or external services. Actions that inherently require P’Benz’s account authorization still require P’Benz to perform or explicitly authorize the account action. This operational limitation does not reduce Biu’s final product-development decision authority.
-
-### 0.3 Working code is protected territory
+## 0.3 Working code is protected territory
 
 Any subsystem that has been deployed and verified to work correctly becomes **protected stable behavior**.
 
-Do not rewrite, remove, or destabilize a working subsystem merely because rebuilding it is easier or because a new design seems cleaner in isolation. Refactoring is allowed only when it provides a real architectural, quality, compatibility, performance, security, or maintainability benefit and the protected behavior is preserved unless Biu intentionally approves a documented product change.
+Do not rewrite, replace, or destabilize a working subsystem merely because rebuilding it would be cleaner, more fashionable, or easier to explain. Refactor only when there is a concrete benefit in reliability, compatibility, security, performance, accessibility, maintainability, or product quality.
 
-**Regression prevention has priority over development speed and novelty.**
+**Regression prevention has priority over novelty.**
 
-### 0.4 Canonical-build promotion rule
+## 0.4 Canonical-build promotion rule
 
-A candidate build becomes a **canonical runtime baseline** only after the appropriate gates have passed.
+A candidate runtime build becomes canonical only after the relevant gates pass:
 
-Typical progression:
+1. GitHub-first baseline verification,
+2. impact/risk review,
+3. implementation,
+4. static/structural QA,
+5. runtime validation where available,
+6. archive/package integrity verification,
+7. GitHub push/deployment,
+8. re-read of deployed `main`,
+9. appropriate real-device validation,
+10. Biu release decision,
+11. canonical promotion.
 
-1. local/staging implementation,
-2. static/structural QA,
-3. simulated/runtime QA where available,
-4. package integrity verification,
-5. GitHub push/deployment,
-6. real-device validation appropriate to the change,
-7. Biu release decision,
-8. canonical promotion.
+A package may be called **verified for upload** before deployment, but it must not be described as fully runtime-validated until the relevant runtime/device checks actually occur.
 
-A pre-deployment package may be called **verified for upload** without being called canonical. A visual or PWA change must not be treated as fully validated solely because its code is syntactically correct.
+## 0.5 Golden product rule
 
-Once a build is canonical, future work must begin from that verified repository state rather than from an older local folder or an unverified experimental branch/package.
+> **A working, understandable, maintainable Little Ganesha Tarot is more valuable than a more ambitious Little Ganesha Tarot that becomes fragile.**
+
+If two approaches produce similar user value, prefer the one with lower operational complexity, lower regression risk, clearer ownership, easier rollback, and smaller maintenance burden.
 
 ---
 
-# 1. Product Identity
+# 1. Product Identity and Current Business Direction
 
 ## 1.1 Product name
 
 **Little Ganesha Tarot**  
 **Subtitle:** **The Golden Path**
 
-The name and subtitle are canonical unless P’Benz explicitly changes them.
-
 ## 1.2 Studio identity
 
-**Benedict Interactive** is the studio/publisher identity for the product.
+**Benedict Interactive** is the studio/publisher identity.
 
-The product should present Benedict Interactive with the visual confidence of a real premium independent game/app studio rather than as an informal hobby page.
+The app should feel like a carefully authored premium independent product, not a hobby page, generic fortune generator, or disposable mobile-game skin.
 
 ## 1.3 Product positioning
 
 Little Ganesha Tarot is a **premium, sacred-friendly, visually rich, RWS-inspired 78-card tarot experience** centered on one identity-locked Little Ganesha protagonist.
 
-The product combines:
+It combines:
 
-- premium collectible tarot artwork,
-- intuitive mobile-first readings,
-- calm spiritual atmosphere,
-- gentle personalization,
-- bilingual English/Thai support,
-- symbolic guidance rather than deterministic fortune claims,
-- a distinctive Little Ganesha world,
-- polished audiovisual presentation,
-- accessible worldwide mobile web/PWA delivery.
+- a complete collectible tarot deck,
+- calm mobile-first readings,
+- reflective rather than deterministic guidance,
+- native-quality multilingual presentation,
+- strong visual and audiovisual identity,
+- local-first privacy,
+- app-like PWA delivery,
+- optional voluntary financial support.
 
-It must feel like a **real premium tarot app**, not a gallery of card images, a generic fortune-telling website, a game UI skin, or a novelty generator.
+## 1.4 Current canonical business model — OPEN ACCESS + VOLUNTARY SUPPORT
 
-## 1.4 Core experience principles
+The current canonical monetization direction is:
 
-1. **Tarot validity first.** Every card and reading mode must still function as tarot.
-2. **Little Ganesha identity consistency.** The same protagonist appears throughout the deck.
-3. **Premium sacred warmth.** Cute is allowed; toy-like, childish, gaudy, or cheap is not.
-4. **Clarity over clutter.** Every screen should have a clear primary action.
-5. **Immersion without fragility.** Rich effects should enhance the experience without breaking on older or unsupported devices.
-6. **Worldwide usability.** iOS and Android are equal first-class targets.
-7. **Respectful uncertainty.** Interpretations guide reflection; they do not guarantee fate, money, health, relationships, or outcomes.
-8. **Privacy by default.** Personalization data remains local unless a future feature explicitly requires otherwise and P’Benz approves it.
-9. **Support is optional.** Donations/support never alter readings, access, odds, spiritual status, or product fairness.
-10. **Professional release discipline.** A feature is not “done” merely because code exists.
+**Open Access + Voluntary Support**
+
+Meaning:
+
+- the product is not currently designed around login,
+- the product is not currently designed around a paywall,
+- the product is not currently designed around subscription entitlement,
+- tarot quality does not change based on payment,
+- support does not influence card selection, luck, spiritual status, or interpretation quality,
+- users may support the project voluntarily after receiving value.
+
+Current support channels planned:
+
+- **Worldwide:** Buy Me a Coffee
+- **Thailand:** PromptPay
+
+This model is intentionally chosen because it preserves the cleanest UX and the lowest system complexity while allowing users who value the product to help sustain it.
+
+## 1.5 Core experience principles
+
+1. **Tarot validity first.**
+2. **Little Ganesha identity consistency.**
+3. **Premium sacred warmth without childishness or gaudiness.**
+4. **Clarity over clutter.**
+5. **Immersion without fragility.**
+6. **Worldwide mobile usability.**
+7. **Reflective uncertainty rather than deterministic claims.**
+8. **Privacy by default.**
+9. **Support is voluntary and non-coercive.**
+10. **Native language quality is a release requirement.**
+11. **Version/build coherence is a release requirement.**
+12. **Complexity must earn its cost.**
+13. **A feature is not Done merely because code exists.**
 
 ---
 
-# 2. Canonical Tarot System
+# 2. Complexity Budget & Stability Constitution
 
-## 2.1 Deck size
+This section is a hard architectural rule for all future work.
 
-The canonical deck contains exactly **78 cards**:
+## 2.1 Default complexity ceiling
+
+New work should normally stay in the **easy-to-medium implementation range**.
+
+A feature may be visually premium and functionally rich while still using straightforward architecture. Complexity is not a proxy for quality.
+
+Canonical decision heuristic:
+
+> **Prefer a 9–9.5/10 user experience at complexity 4/10 over a 10/10 theoretical solution at complexity 9/10.**
+
+## 2.2 Solutions to prefer
+
+Prefer, in order where practical:
+
+1. browser/platform-native capability,
+2. small client-side module,
+3. existing shared project subsystem,
+4. managed third-party service with narrow integration,
+5. custom infrastructure only when clearly justified.
+
+## 2.3 Solutions to avoid by default
+
+Avoid introducing without strong evidence:
+
+- custom backend servers,
+- custom authentication stacks,
+- distributed membership logic,
+- complex billing state machines,
+- deep framework migrations,
+- multi-service architectures for a simple feature,
+- broad refactors just to add one isolated capability,
+- tightly coupling optional services to the Reading Engine,
+- cloud dependencies that make the free/core app unusable when offline or when a provider fails.
+
+## 2.4 Isolation rule
+
+Optional subsystems should fail independently.
+
+Examples:
+
+- support service unavailable → readings still work,
+- share API unavailable → save fallback remains,
+- audio unavailable → readings still work,
+- fullscreen unavailable → app remains usable,
+- future account service unavailable → core free functionality must remain usable unless a later explicit business decision intentionally changes that boundary.
+
+## 2.5 Complexity veto
+
+Biu must reject, redesign, or defer a feature when:
+
+- complexity is disproportionate to user value,
+- it creates excessive regression surface,
+- it requires invasive changes to stable systems for marginal benefit,
+- it creates maintenance obligations the project is not prepared to own,
+- a simpler solution achieves nearly the same user value.
+
+---
+
+# 3. Canonical Tarot System
+
+## 3.1 Deck size
+
+Exactly **78 canonical cards**:
 
 - 22 Major Arcana
 - 56 Minor Arcana
 
-No additional Major Arcana, bonus tarot cards, hidden XXII/XXIII cards, alternate-number cards, or non-standard suit cards may enter the canonical deck without an explicit future product decision.
+No bonus tarot cards, hidden majors, alternate numbered majors, or non-standard suit cards enter the canonical deck without an explicit future product decision.
 
-## 2.2 Major Arcana numbering lock
+## 3.2 Major Arcana numbering lock
 
-The project uses the standard RWS numbering convention with:
+RWS convention:
 
 - **VIII — STRENGTH**
 - **XI — JUSTICE**
 
-Canonical sequence:
+Major sequence:
 
 | Index | Number | Card |
 |---:|:---:|---|
@@ -193,46 +274,30 @@ Canonical sequence:
 | 20 | XX | JUDGEMENT |
 | 21 | XXI | THE WORLD |
 
-## 2.3 Minor Arcana suit order
+## 3.3 Minor Arcana suit and rank order
 
-Canonical suit order:
+Suit order:
 
 1. Wands
 2. Cups
 3. Swords
 4. Pentacles
 
-Canonical rank order inside every suit:
+Rank order:
 
-1. Ace
-2. Two
-3. Three
-4. Four
-5. Five
-6. Six
-7. Seven
-8. Eight
-9. Nine
-10. Ten
-11. Page
-12. Knight
-13. Queen
-14. King
+Ace → Two → Three → Four → Five → Six → Seven → Eight → Nine → Ten → Page → Knight → Queen → King
 
 Use **Ace**, never “Age”. Use **Page**, never a substituted title.
 
-## 2.4 Minor Arcana top-medallion lock
+## 3.4 Minor top-medallion rule
 
-- **Ace:** neutral ornament only; no A, I, or 1.
-- **Two–Ten:** Roman numerals II–X.
-- **Page / Knight / Queen / King:** neutral ornament only; no P, Kn, Q, K, or invented numbering.
+- Ace: neutral ornament only.
+- Two–Ten: Roman numerals II–X.
+- Court cards: neutral ornament only; no P / Kn / Q / K.
 
-Court rank must be communicated through the full title in the bottom title panel.
-
-## 2.5 Canonical Minor Arcana index map
+## 3.5 Canonical Minor Arcana index map
 
 ### Wands
-
 22 ACE OF WANDS  
 23 TWO OF WANDS  
 24 THREE OF WANDS  
@@ -249,7 +314,6 @@ Court rank must be communicated through the full title in the bottom title panel
 35 KING OF WANDS
 
 ### Cups
-
 36 ACE OF CUPS  
 37 TWO OF CUPS  
 38 THREE OF CUPS  
@@ -266,7 +330,6 @@ Court rank must be communicated through the full title in the bottom title panel
 49 KING OF CUPS
 
 ### Swords
-
 50 ACE OF SWORDS  
 51 TWO OF SWORDS  
 52 THREE OF SWORDS  
@@ -283,7 +346,6 @@ Court rank must be communicated through the full title in the bottom title panel
 63 KING OF SWORDS
 
 ### Pentacles
-
 64 ACE OF PENTACLES  
 65 TWO OF PENTACLES  
 66 THREE OF PENTACLES  
@@ -299,164 +361,77 @@ Court rank must be communicated through the full title in the bottom title panel
 76 QUEEN OF PENTACLES  
 77 KING OF PENTACLES
 
-## 2.6 Symbol-count integrity
+## 3.6 Symbol-count integrity
 
-For numbered Minor Arcana where suit-symbol count is semantically relevant, the visible count must be correct.
+For numbered Minor Arcana, visible suit-symbol count must match the card identity wherever the symbol count is semantically relevant.
 
-A visually beautiful card with the wrong number of wands, cups, swords, or pentacles is a production failure.
-
-Symbol count, card identity, title, top medallion, and rank must agree.
+Wrong wand/cup/sword/pentacle count is a production failure even if the artwork is beautiful.
 
 ---
 
-# 3. Canonical Visual System
+# 4. Canonical Visual System and Assets
 
-## 3.1 Absolute master reference
+## 4.1 Absolute deck master
 
-**0 — THE FOOL is the absolute visual master reference for the entire deck.**
-
-Its frame language must not be redesigned card by card.
+**0 — THE FOOL** is the absolute visual/frame master reference.
 
 Locked frame characteristics include:
 
-- overall card geometry and proportions,
+- overall geometry and proportions,
 - rounded corners,
-- cream/ivory parchment character,
+- ivory/parchment character,
 - premium gold ornamentation,
 - lotus corner motifs,
 - restrained teal ribbon language,
-- top medallion geometry and placement,
+- top medallion geometry,
 - bottom title-panel geometry,
 - typography language,
 - frame-to-art balance,
 - warm sacred premium finish.
 
-Future card corrections may change only what is required inside the illustration, the permitted medallion content, and the title text unless P’Benz explicitly authorizes a broader system redesign.
-
-## 3.2 Little Ganesha identity lock
+## 4.2 Little Ganesha identity lock
 
 Little Ganesha is one continuous protagonist across all 78 cards.
 
-Preserve:
+Preserve stable:
 
-- face structure,
+- facial structure,
 - eye language,
 - trunk shape,
 - ear proportions,
 - pink inner-ear treatment,
 - child-like age impression,
-- head-to-body proportions,
-- skin color family,
+- head/body relationship,
+- skin-color family,
 - crown identity,
 - jewelry identity,
 - sacred-cute premium rendering language.
 
-Pose, gaze, action, staging, camera angle, environment, clothing details, and emotional tone may vary to fit each archetype.
+Identity drift is a hard failure.
 
-**Identity drift is a hard failure.**
+## 4.3 World logic
 
-## 3.3 World logic
+Little Ganesha is the canonical elephant-headed divine identity in this deck world. Supporting humans remain human unless a specific mythological figure is deliberately approved.
 
-Little Ganesha is the canonical elephant-headed divine identity in this deck world.
+Do not add named deities as decorative cameos merely to increase spectacle.
 
-Supporting humans remain human unless a specific mythological character is explicitly required and approved.
+## 4.4 RWS symbolism rule
 
-Do not casually turn supporting figures into additional elephant-headed divine characters. Do not insert Shiva, Lakshmi, or other named deities merely as decorative cameos without a deliberate product decision.
+The deck is RWS-inspired, not a costume-only reinterpretation. Creative staging may vary, but archetypal meaning and recognizable tarot symbolism must remain usable to a real tarot reader.
 
-## 3.4 RWS symbolism rule
+## 4.5 Canonical production format
 
-The deck is RWS-inspired, not a costume-only reinterpretation.
-
-Each card must retain enough archetypal and symbolic clarity that a tarot reader can recognize and use it correctly.
-
-Visual creativity is encouraged, but it must serve the card’s meaning rather than obscure it.
-
-## 3.5 Art style
-
-Target:
-
-- premium collectible tarot,
-- richly detailed,
-- painterly-clean,
-- warm and luminous where archetypally appropriate,
-- sacred and elegant,
-- adorable without being juvenile,
-- refined fantasy / editorial illustration,
-- readable at actual card size.
-
-Avoid:
-
-- toy/plastic rendering,
-- generic mobile-game splash-art language,
-- overly chibi deformation,
-- candy saturation,
-- arbitrary fantasy clutter,
-- one-tone global grading that destroys archetypal variation.
-
-## 3.6 Palette DNA
-
-Recurring deck DNA:
-
-- ivory / cream,
-- warm gold,
-- lotus pink,
-- restrained teal,
-- amber / honey,
-- natural stone,
-- atmospheric skies.
-
-This is a shared family, not a mandate to make every card equally warm or equally bright.
-
-Darker cards may remain low-key, cool, dramatic, nocturnal, or psychologically heavy when that improves archetypal truth.
-
-## 3.7 Technical master format
-
-Canonical production card master:
+Card master:
 
 - **941 × 1672 px**
 - **PNG**
 - standalone card only
-- no neighboring card edges
 - no sheet remnants
 - no unapproved crop
 
-PNG remains the archival/canonical card master format.
+Optimized WebP/AVIF derivatives may be used for performance, but never overwrite canonical PNG masters.
 
-The app may later serve optimized **WebP / AVIF derivatives** for performance, but optimized derivatives must never replace or overwrite the canonical PNG masters.
-
----
-
-# 4. Deck Production Status
-
-## 4.1 78-card completion
-
-The full deck is complete: **78 / 78 cards**.
-
-The final structural audit confirmed:
-
-- no missing cards,
-- no duplicate card identities,
-- correct RWS Major numbering,
-- correct Strength VIII / Justice XI,
-- correct Minor medallion convention,
-- correct rank/suit titles,
-- no hard suit-symbol count failure,
-- coherent frame family,
-- acceptable Little Ganesha identity consistency,
-- correct supporting-character world logic,
-- all supplied cards at 941 × 1672.
-
-The final audit was based on Master Plan V3 and is preserved in `FINAL_DECK_AUDIT_V3.md`.
-
-## 4.2 Ten of Cups normalization
-
-The originally supplied Ten of Cups source was JPEG while the canonical master standard is PNG. The canonical package therefore contains a PNG normalization of the supplied final pixels.
-
-This is a container-format normalization, not restoration of a pre-JPEG source.
-
-## 4.3 Corrected cards that supersede older versions
-
-The following five corrected versions are canonical and permanently supersede their prior versions unless P’Benz explicitly changes them:
+## 4.6 Corrected cards permanently superseding prior versions
 
 - 39 FOUR OF CUPS
 - 40 FIVE OF CUPS
@@ -464,81 +439,25 @@ The following five corrected versions are canonical and permanently supersede th
 - 71 EIGHT OF PENTACLES
 - 72 NINE OF PENTACLES
 
-## 4.4 Canonical deck package
+## 4.7 Master card back
 
-Canonical archive created previously:
-
-`LITTLE_GANESHA_TAROT_CANONICAL_V3.zip`
-
-Expected contents include:
-
-- `cards/` — 78 canonical PNG files
-- `ASSET_MANIFEST_V3.csv`
-- `ASSET_MANIFEST_V3.json`
-- `FINAL_DECK_AUDIT_V3.md`
-
----
-
-# 5. Approved UI Art Assets
-
-## 5.1 Master card back
-
-The approved ornate ivory / gold / teal / lotus card back with central Little Ganesha medallion is canonical.
-
-App path:
+Canonical path:
 
 `assets/ui/card-back.png`
 
-The **exact approved master** must be used for actual face-down cards, shuffle sequences, card choosing, and flip/reveal interactions.
+Use the exact approved master for functional face-down cards, choosing, shuffle, and reveal interactions.
 
-A small perspective depiction of the card back inside promotional/title artwork does not need to be pixel-identical when it is only a painted scene element.
+## 4.8 Title hero
 
-## 5.2 Title hero
-
-Canonical title hero:
-
-- 9:16 composition
-- 864 × 1536
-- bright golden-hour temple / lake / lotus setting
-- Little Ganesha seated at ornate table
-- deck visible in foreground
-- mouse companion
-- large open sky in upper composition
-- palatial architecture and water
-- approved user-adjusted brightness
-
-App path:
+Canonical path:
 
 `assets/ui/title-hero.png`
 
-**Do not brighten it further globally.**
+Approved bright golden-hour 9:16 hero. Do not globally brighten it further without a concrete reason.
 
-The hero image contains no required embedded UI text. Product title, subtitle, CTA, language control, and other interface elements remain HTML/CSS overlays.
+## 4.9 Canonical app icon
 
-## 5.3 Canonical app icon — FINAL MASTER
-
-The application now has a **canonical final app icon identity** for PWA, Home Screen, launcher, browser, and future store-facing use. This icon is a product identity asset, not decorative artwork.
-
-### Visual lock
-
-The canonical icon uses:
-
-- a close, immediately recognizable portrait of Little Ganesha,
-- the same sacred-cute premium character language as the deck,
-- large amber-brown eyes and stable Little Ganesha facial identity,
-- an ornate gold crown with restrained jewel accents,
-- a deep plum / aubergine background for high small-size contrast,
-- a restrained gold halo / lotus-mandala structure,
-- a visible tarot card as the functional cue that this is a tarot product,
-- a warm magenta-gold garment accent,
-- a clean gold perimeter treatment,
-- **no embedded product-name text inside the production icon**.
-
-The final icon intentionally reduces the ornamental density of earlier exploratory versions. At launcher size, recognizability, silhouette, contrast, and Little Ganesha identity take priority over illustration-level micro-detail.
-
-### Canonical master and derivatives
-
-Repository paths:
+Canonical master and derivatives:
 
 ```text
 assets/icons/app-icon-1024.png
@@ -551,593 +470,83 @@ assets/icons/favicon-32x32.png
 assets/icons/favicon.ico
 ```
 
-`app-icon-1024.png` is the canonical raster master supplied for current web/PWA production. Smaller icons must be derived from the canonical master rather than independently redrawn.
-
-### Platform behavior
-
-- **Android / Chromium PWA:** use regular 192/512 icons and the dedicated maskable 512 icon.
-- **iPhone / iPad Home Screen:** use `apple-touch-icon.png`.
-- **Browser tabs / bookmarks:** use PNG favicon derivatives plus `favicon.ico` fallback.
-- **Future native/store packaging:** derive platform-specific exports from the canonical master while preserving the same visual identity.
-
-The OS/browser may apply its own circle, squircle, or rounded-rectangle mask. Critical facial features, ears, crown, and tarot cue must remain inside a safe composition zone. Do not rely on a specific launcher mask.
-
-### Prohibited icon changes
-
-Do not:
-
-- add small title text to the production icon,
-- redesign Little Ganesha independently for each platform,
-- substitute a generic Ganesha symbol,
-- remove the tarot cue without an explicit product-level decision,
-- crowd the icon with corner ornaments or dense text,
-- stretch, crop, or recolor the icon ad hoc per device,
-- use an older exploratory icon after this final master is uploaded.
-
-Any future replacement of the canonical app icon is a **brand-level change** and must be treated as such in the Master Plan and asset manifest.
+The final icon is APPROVED/CANONICAL and Android Home Screen verified. Future replacement is a brand-level change.
 
 ---
 
-# 6. Opening Experience
+# 5. Opening Experience and Home
 
-## 6.1 Studio splash
+## 5.1 Studio splash
 
-Opening flow begins with:
+Opening begins:
 
 **BENEDICT INTERACTIVE**  
 **PRESENTS**
 
-The studio splash is brand identification, not a navigation screen.
+Normal-motion target remains approximately 2.6 seconds. No accidental early skip.
 
-Target behavior:
+## 5.2 Title screen
 
-- clean premium deep-teal/gold presentation,
-- fade in,
-- brief hold,
-- fade out,
-- no button,
-- no accidental early skip,
-- approximately **2.6 seconds** under normal motion,
-- shorter non-motion timing only where accessibility requires it.
-
-Do not return to the prior session-shortened 1.5-second behavior.
-
-## 6.2 Title screen
-
-Canonical title hierarchy:
+Canonical hierarchy:
 
 **LITTLE GANESHA TAROT**  
 **THE GOLDEN PATH**  
 **TAP TO BEGIN / แตะเพื่อเริ่ม**
 
-The title screen should remain visually focused. Do not clutter it with the full Home menu.
+Title remains focused. EN/ไทย and sound state may appear as utility controls.
 
-Visible utility controls may include:
+## 5.3 Title-to-app flow
 
-- EN / ไทย
-- sound state
+First use:
 
-Primary CTA remains one clear action: **TAP TO BEGIN**.
+`Studio Splash → Title → Tap to Begin → Optional Profile Setup → Welcome → Home`
 
-## 6.3 Title-to-app behavior
+Subsequent use:
 
-Target final flow:
+`Studio Splash → Title → Tap to Begin → Home`
 
-### First use
+## 5.4 Browser fullscreen policy — FINAL
 
-`Benedict Interactive → Title → Tap to Begin → Optional Personal Profile Setup → Welcome → Home`
+`Tap to Begin` **must not automatically request browser fullscreen**.
 
-### Subsequent use
+Browser Full Screen is an explicit user action available in Settings where supported.
 
-`Benedict Interactive → Title → Tap to Begin → Home`
+Installed PWA uses standalone app-like presentation through the manifest.
 
-The mini player is not the destination of Tap to Begin. It is a global subsystem that becomes available after the user starts the experience.
+Fullscreen is enhancement, never a dependency.
 
----
+## 5.5 Home Visual System
 
-# 7. Living Title Motion System
+**Home V0.3.6 = APPROVED / CANONICAL visual baseline.**
 
-## 7.1 Product intent
+Direction:
 
-The title hero should feel gently alive rather than like a static JPEG.
+**Premium Minimal Sacred UI**
 
-The viewer should notice within approximately **2–3 seconds** that the scene has life, while the effect remains premium, calm, and non-distracting.
+Do not continue polishing Home merely to chase marginal aesthetic gain. Future Home changes require a concrete usability, accessibility, compatibility, product, performance, or defect reason.
 
-## 7.2 Full Motion target
+Rejected Home V0.3.3/V0.3.4 implementations remain historical only and must not be resurrected.
 
-Full Motion may use:
+## 5.6 Home hierarchy
 
-- slow breathing zoom,
-- restrained pseudo-parallax,
-- moving sky light,
-- water shimmer,
-- warm lamp glow/flicker,
-- golden atmospheric motes,
-- sparse petals,
-- title illumination/breathing,
-- soft compositional light drift.
+Primary readings:
 
-Motion should use `transform` and `opacity` wherever practical.
+- Daily Guidance
+- Ask Ganesha
+- Three-Card Reading
 
-Avoid effects that look like a screensaver, particle demo, or game lobby.
+Signature Paths:
 
-## 7.3 Reduced Motion rule
+- The Golden Path
+- Remove the Obstacle
 
-The earlier behavior of turning the entire Living Title into a completely static image is **obsolete**.
-
-Reduced Motion must still feel premium and alive, but it should substantially reduce spatial motion.
-
-Recommended Reduced Motion behavior:
-
-- no meaningful camera pan/zoom,
-- no large drifting particles,
-- no rapid or repeated travel across the screen,
-- retain gentle opacity-based lamp glow,
-- retain subtle water/light shimmer,
-- retain slow tonal/illumination breathing,
-- retain non-disorienting ambient light changes.
-
-Accessibility must be respected without degrading the product into an unfinished-looking static screen.
-
-## 7.4 Motion preference
-
-Settings must support:
-
-- **System** — follow device `prefers-reduced-motion`
-- **Full**
-- **Reduced**
-
-System should be the accessibility-respecting option. Product defaults must be chosen so ordinary users receive the intended premium motion experience while users who explicitly request reduced motion are respected.
-
----
-
-# 8. Audio System
-
-## 8.1 Audio philosophy
-
-Music is atmosphere, not the primary product.
-
-The tarot experience must remain fully usable with music disabled.
-
-## 8.2 Autoplay and entry behavior
-
-Professional target behavior:
-
-- Studio Splash: silent
-- Initial Title: silent
-- First `TAP TO BEGIN`: acts as the required user gesture and unlocks audio
-- If music is enabled, soundtrack **fades in automatically** after Tap to Begin
-- User should not need to press Play separately after choosing to begin
-
-This design is both user-friendly and compatible with modern mobile browser autoplay restrictions.
-
-## 8.3 Global music continuity
-
-After the experience starts:
-
-- music persists between app screens,
-- tracks do not restart on normal navigation,
-- mini player is global,
-- track transitions may crossfade,
-- user controls remain consistent.
-
-## 8.4 Mini Player requirements
-
-Mini Player foundation:
-
-- Play / Pause
-- Previous
-- Next
-- track title
-- More/options
-- Volume
-- Shuffle
-- Return to Title
-
-Future expansion is allowed if it improves usability without creating clutter.
-
-## 8.5 Background / lock-screen behavior
-
-Little Ganesha Tarot is not a background-audio app.
-
-Target lifecycle:
-
-- app visible + user intended music to play → music plays
-- app hidden / tab backgrounded / screen locked → music pauses/fades down
-- app returns foreground → resume automatically **only if it had been playing before backgrounding**
-- if the user manually paused → do not auto-resume
-- if user disabled sound → honor that choice
-
-The system must distinguish **system pause** from **user intent to pause**.
-
-## 8.6 Return to Title
-
-`Return to Title` should:
-
-- fade/stop current music,
-- return to Title cleanly,
-- preserve user preferences,
-- preserve optional profile data unless user explicitly clears it,
-- not leave ghost audio running.
-
-## 8.7 Current soundtrack foundation
-
-Current starting tracks:
-
-1. **Golden Lantern at Twilight** — primary opening ambience
-2. **Sunlight on Bronze** — shorter reflective interlude
-
-Current target playlist size: **5 tracks**.
-
-Current crossfade target: approximately **3.8 seconds**, subject to track length and runtime tuning.
-
-Shuffle should avoid immediate same-track repetition.
-
-## 8.8 Audio asset policy
-
-Do not claim music licensing beyond what has actually been verified.
-
-Before commercial release, maintain explicit provenance/license records for every audio track.
-
----
-
-# 9. Worldwide Mobile Architecture
-
-## 9.1 Core mandate
-
-Little Ganesha Tarot is **Worldwide Mobile-First**.
-
-It must not be Android-first with Apple patches added later.
-
-Primary first-class environments:
-
-1. Android Chrome
-2. Android installed PWA / app-like launch
-3. iPhone Safari
-4. iPhone Home Screen web app / PWA behavior
-5. iPad / tablet responsive layouts
-
-Additional Chromium/WebKit browsers should degrade gracefully.
-
-## 9.2 Progressive enhancement
-
-Every advanced capability must follow this rule:
-
-> If the capability is unavailable, the app still works, remains attractive, and preserves the complete core tarot flow.
-
-Examples:
-
-- Fullscreen unavailable → continue in full viewport
-- orientation lock unavailable → continue responsive
-- `backdrop-filter` unavailable → use solid/translucent fallback
-- autoplay denied → present usable Play state
-- reduced motion active → use reduced-motion art direction
-- PWA not installed → normal browser experience remains complete
-
-## 9.3 Safe-area requirements
-
-All key screens must account for modern mobile hardware and OS chrome using safe-area handling where applicable:
-
-- notch
-- Dynamic Island
-- rounded display corners
-- Home Indicator
-- Android navigation areas
-
-Use `viewport-fit=cover` and safe-area inset variables appropriately.
-
-No primary CTA, mini-player control, card action, or navigation control may sit under inaccessible hardware/UI regions.
-
-## 9.4 Viewport strategy
-
-Prefer modern dynamic/small viewport units with practical fallback.
-
-Do not assume classic `100vh` always equals visible mobile screen height.
-
-## 9.5 Portrait-first, not portrait-fragile
-
-Primary art direction and reading interaction are portrait-first.
-
-Portrait may be declared as an app preference where supported, but the app must not fail when:
-
-- orientation lock is unsupported,
-- user rotates device,
-- iPad opens in landscape,
-- split-view changes available width.
-
-Landscape may be less optimized than portrait, but it must remain usable and visually coherent.
-
-## 9.6 Touch-first interaction
-
-- no critical hover-only behavior,
-- comfortable touch targets,
-- enough spacing to prevent accidental taps,
-- gestures must have visible alternatives,
-- card interactions must not depend on precision dragging.
-
-Recommended primary touch target floor: approximately 44 CSS px where practical.
-
-## 9.7 Responsive range
-
-Design should remain functional from narrow modern phone widths through large phones and tablets.
-
-Avoid device-model-specific CSS such as targeting only a particular iPhone or Galaxy size.
-
----
-
-# 10. Immersive Mode and PWA Presentation
-
-## 10.1 Product goal
-
-The experience should feel app-like and immersive by default without pretending that every browser exposes the same fullscreen behavior.
-
-## 10.2 Immersive Mode
-
-Settings include **Immersive Mode**.
-
-Default: **ON**, unless a future compatibility test demonstrates a specific platform exception.
-
-When enabled:
-
-- installed PWA should use the most appropriate app-like display mode,
-- normal browsers may request fullscreen after a valid user gesture where supported,
-- unsupported browsers continue using the best full-viewport presentation.
-
-When the user turns Immersive Mode OFF:
-
-- store the choice locally,
-- stop repeatedly requesting fullscreen,
-- exit fullscreen when applicable,
-- keep the app fully functional.
-
-## 10.3 Fullscreen is enhancement, not dependency
-
-No screen, layout, navigation route, audio subsystem, or reading engine may require the Fullscreen API to function.
-
-## 10.4 PWA integration status and policy
-
-PWA integration is now an active foundation milestone under **V0.3.2**, moved earlier by P’Benz’s explicit product direction so installation identity can be verified before deeper reading-engine work.
-
-The V0.3.2 PWA foundation includes:
-
-- `manifest.webmanifest` / install metadata
-- canonical 192 × 192 and 512 × 512 launcher icons
-- dedicated 512 × 512 maskable Android/Chromium icon
-- Apple touch icon wiring for iPhone/iPad Home Screen
-- browser favicon wiring
-- theme/background colors
-- `display: standalone` app-like installed presentation
-- repository-safe relative `start_url` and `scope`
-- service-worker registration
-- versioned essential application-shell caching
-- stale-cache cleanup
-- network-first navigation/scripts/styles to reduce deployment regression risk
-- runtime image caching
-- installability event foundation for a future in-app install affordance
-
-Large audio assets and the complete 78-card deck are intentionally **not** pre-cached at installation time. This protects first-install speed, storage usage, and reliability on constrained mobile networks. Deeper selective offline caching may be introduced later after real-world storage/performance QA.
-
-The icon system defined in Section 5.3 is the canonical source for all launcher/Home Screen wiring. Do not generate replacement icons merely to satisfy platform-specific install behavior.
-
-Service-worker caching must never reintroduce stale-build confusion during active development. JavaScript and CSS remain explicitly versioned, old Little Ganesha caches are cleaned on worker activation, and online navigation/code requests prefer the network before cached fallback.
-
-**QA honesty:** V0.3.2 may be called statically PWA-wired after package validation, but browser UI such as Chrome showing “Install app” and the final installed icon/standalone launch must be verified on the deployed real device before being called runtime-validated.
-
----
-
-# 11. Localization and Language Architecture
-
-## 11.1 Launch languages
-
-Launch architecture supports:
-
-- English
-- Thai
-
-The system must remain ready for future languages without a rewrite.
-
-## 11.2 No hardcoded distributed copy
-
-User-facing copy should be centralized in localization structures rather than scattered as arbitrary literals throughout event handlers and UI logic.
-
-## 11.3 Language quality
-
-English must sound natural to international tarot users.
-
-Thai must sound naturally written in Thai, not like a literal translation of English.
-
-Preserve emotional meaning and product tone rather than word-for-word correspondence.
-
-## 11.4 Three voice layers
-
-### UI voice
-
-Concise, functional, clear.
-
-### Tarot interpretation voice
-
-Professional, grounded, symbolic, nuanced, non-deterministic.
-
-### Little Ganesha guide voice
-
-Gentle, wise, perceptive, sacred-friendly, warm.
-
-Avoid:
-
-- RPG quest-giver language,
-- childish mascot speech,
-- excessive mystical certainty,
-- guilt/manipulation,
-- fake spiritual authority.
-
-## 11.5 Date formatting
-
-Stored date values may use stable internal ISO representation.
-
-Displayed dates should be localized appropriately for the selected language and platform.
-
----
-
-# 12. Personal Profile
-
-## 12.1 Purpose
-
-Personal Profile exists to provide gentle personalization and future symbolic features without turning the app into a heavy identity/account system.
-
-## 12.2 Optional fields
-
-Current approved fields:
-
-- Display Name / preferred name
-- Date of Birth
-
-Both are optional.
-
-Users may skip setup and use the tarot app normally.
-
-## 12.3 First-entry copy intent
-
-English concept:
-
-**What would you like Ganesha to call you?**
-
-Thai concept:
-
-**อยากให้พระพิฆเนศน้อยเรียกคุณว่าอะไร?**
-
-The name should be framed as a friendly nickname/preferred-name field, not a legal identity field.
-
-## 12.4 Date of Birth role
-
-Date of Birth may later support:
-
-- symbolic birth personalization,
-- day-of-week associations,
-- numerology-style reflection,
-- Lucky Numbers context,
-- personalized Daily Guidance,
-- future “Golden Profile” experiences.
-
-A date of birth alone must **not** be presented as a full Thai astrology birth-chart calculation.
-
-Do not imply a complete natal horoscope without the data and validated rules required to support that claim.
-
-## 12.5 No birth time/place in V1
-
-Do not request birth time or birthplace in V1.
-
-Those fields would create substantial complexity involving timezone, geolocation, historical timezone/DST, astronomical/astrological systems, calculation methodology, and school-specific interpretation.
-
-They may be considered only as a deliberate future astrology expansion.
-
-## 12.6 Storage and privacy
-
-Current rule:
-
-- local device storage only
-- no account required
-- no server upload
-- user can edit fields
-- user can clear personal profile
-
-Do not add analytics, cloud sync, or remote profile transmission without a new privacy review and explicit product decision.
-
-## 12.7 Date validation
-
-Date of Birth must:
-
-- reject future dates,
-- reject malformed dates,
-- use a reasonable historical minimum,
-- remain optional.
-
-Current implementation foundation uses 1900-01-01 through current local date as a practical input range.
-
----
-
-# 13. Home / Main Menu
-
-## 13.1 Home philosophy
-
-Home must present a clear hierarchy rather than a grid of equally loud features.
-
-The user should immediately understand how to begin a reading.
-
-## 13.2 Primary reading actions
-
-Current intended primary actions:
-
-### Daily Guidance
-One card for the energy/theme of today.
-
-### Ask Ganesha
-A focused question-led reading.
-
-### Three-Card Reading
-A flexible three-card reading.
-
-## 13.3 Signature paths
-
-### The Golden Path
-
-Three positions:
-
-1. Where You Stand
-2. What Blocks the Path
-3. The Way Forward
-
-### Remove the Obstacle
-
-Three positions:
-
-1. The Obstacle
-2. What Feeds It
-3. What Releases It
-
-These should reuse the same underlying three-card engine while presenting distinct framing and interpretation copy.
-
-## 13.4 Secondary exploration
-
-Current planned secondary features:
+Explore:
 
 - Lucky Numbers
-- Cards / Card Library
+- Card Library
 - Journal
-- Settings
 
-Do not promote secondary features so aggressively that they compete with the main reading CTA hierarchy.
-
-## 13.5 Premium Sacred Motif System
-
-The Home/Menu visual language must communicate Little Ganesha's presence **symbolically rather than by repeating full character artwork inside every feature card**. Repeated portraits would reduce hierarchy, increase visual noise, and make the interface feel decorative rather than premium.
-
-The canonical Home-card direction is therefore **Premium Minimal Sacred UI**:
-
-- Little Ganesha may be strongly present on the Title/Hero and selected narrative moments.
-- Home feature cards use restrained symbolic motifs, line art, halos, lotus geometry, sacred glyphs, card outlines, path forms, knots, manuscript marks, and abstract Ganesha cues.
-- Motifs should generally carry only about **4–8% perceived visual weight**, with occasional controlled emphasis up to roughly 10–12% on the hero card when contrast remains safe.
-- Motifs must never sit behind critical text at a contrast level that reduces readability.
-- Motifs are decorative only and must not create additional accessibility announcements or interaction targets.
-- Motifs should share one visual grammar: thin warm-gold strokes, restrained opacity, soft teal/deep-green integration, subtle luminous depth, and no gaudy ornament overload.
-- Full Motion may use an extremely slow motif breathe/drift. Reduced Motion keeps motifs static rather than removing them, preserving premium visual identity without unnecessary movement.
-- Vector/SVG assets are preferred for these motifs because they are lightweight, resolution independent, tintable/controllable, and suitable for worldwide device density.
-
-Canonical motif mapping for the current Home foundation:
-
-- **Daily Guidance** — halo + sacred sparkle / dawn-light geometry.
-- **Ask Ganesha** — abstract half-profile / ear-trunk line presence, never a repeated full portrait.
-- **Three-Card Reading** — three-card geometry / triad symbolism.
-- **The Golden Path** — luminous curved path leading toward a halo/star.
-- **Remove the Obstacle** — knot/loop geometry visibly opening or releasing.
-- **Lucky Numbers** — restrained numerology circle / constellation geometry.
-- **Card Library** — layered card-outline motif.
-- **Journal** — manuscript/open-page lines with a quiet lotus seal.
-
-The motif system is a reusable UI language, not one-off decoration. Future screens should reuse or extend the same grammar rather than invent unrelated ornament for each feature.
-
-## 13.6 Navigation
-
-A bottom navigation model is approved in principle for the app phase, with likely destinations such as:
+Bottom navigation foundation:
 
 - Home
 - Read
@@ -1145,98 +554,680 @@ A bottom navigation model is approved in principle for the app phase, with likel
 - Journal
 - Settings
 
-Exact visible tabs may evolve as feature maturity improves. Biu has authority to refine navigation if a cleaner information architecture becomes apparent.
+Biu may refine navigation if product maturity reveals a cleaner information architecture.
+
+## 5.7 Sacred motif system
+
+Use restrained symbolic motifs rather than repeating full Little Ganesha portraits in every Home card.
+
+Canonical motifs:
+
+- Daily Guidance — dawn/halo/sacred sparkle geometry
+- Ask Ganesha — abstract ear/trunk/profile cue
+- Three-Card — triad/card geometry
+- Golden Path — luminous path toward star/halo
+- Remove the Obstacle — opening knot/loop
+- Lucky Numbers — restrained numerology geometry
+- Card Library — layered cards
+- Journal — manuscript/open-page + lotus seal
+
+Motifs remain decorative and accessibility-silent.
 
 ---
 
-# 14. Reading Engine Direction
+# 6. Motion, Audio, and SFX
 
-## 14.1 V1 architecture
+## 6.1 Living Title
 
-Initial reading engine should remain client-side and deterministic from curated tarot data.
+Full Motion may use restrained breathing zoom, light drift, water shimmer, lamp glow, ambient motes/petals, and subtle illumination.
 
-Avoid requiring:
+Reduced Motion should reduce spatial travel while retaining calm non-disorienting light/opacity life. Reduced Motion must not make the product look unfinished.
 
-- user accounts,
-- cloud backend,
-- AI-generated readings,
-- external inference APIs,
-- subscription architecture.
+Settings:
 
-These can be evaluated later if they clearly improve the product.
+- System
+- Full
+- Reduced
 
-## 14.2 Core draw requirements
+## 6.2 Music philosophy
 
-Reading engine must support:
+Music is atmosphere, not the product. All tarot functionality must remain usable with music disabled.
 
-- full canonical 78-card pool,
-- no duplicate card inside a single spread unless intentionally designed otherwise,
-- correct front image mapping,
-- exact master card-back presentation,
-- shuffle/selection/reveal lifecycle,
-- reading mode position labels,
-- history/journal handoff,
-- future reversal state.
+## 6.3 Audio entry behavior
 
-Prefer a robust random-selection implementation suitable for modern browsers. Avoid predictable or accidentally biased shuffle logic.
+- Studio Splash: silent
+- Initial Title: silent
+- first Tap to Begin: valid user gesture to unlock audio
+- if music is enabled, soundtrack may fade in automatically after entry
 
-## 14.3 Reversal architecture
+## 6.4 Global music continuity
 
-Architecture should support reversals from the beginning even if launch behavior defaults to upright-only.
+Music persists between screens. Normal navigation does not restart tracks. Mini Player remains global.
 
-Possible future user setting:
+Current controls:
 
-- Upright only
-- Upright + Reversed
+- Play / Pause
+- Previous
+- Next
+- track title
+- More
+- Volume
+- Shuffle
+- Return to Title
 
-Do not hardcode card interpretation data in a way that makes reversed meanings difficult to add later.
+## 6.5 Background/foreground lifecycle
 
-## 14.4 Reading interpretation tone
+- visible + user intended playback → play
+- hidden/background/screen locked → pause/fade down
+- foreground return → resume only if it was playing before system pause
+- user manual pause → do not auto-resume
+- music disabled → remain disabled
 
-Interpretations should:
+System pause and user intent must remain distinct.
 
-- explain symbolism,
-- relate the card to the user’s question/position,
-- allow ambiguity,
-- provide practical reflection,
-- avoid guaranteed outcomes.
+## 6.6 Current soundtrack
 
-Do not write:
+1. **Golden Lantern at Twilight**
+2. **Sunlight on Bronze**
 
-- guaranteed lottery results,
-- guaranteed financial returns,
-- medical diagnoses,
-- deterministic death/illness claims,
-- coercive relationship predictions,
-- fear-based spiritual threats.
+Long-term target may expand toward approximately five premium tracks, but audio expansion must not delay core tarot work.
 
-## 14.5 Reading presentation
+## 6.7 SFX product decision
 
-Target interaction sequence:
+Subtle premium UI SFX are approved as a later polish layer, not a core dependency.
 
-`Prepare → Shuffle → Choose/Draw → Flip/Reveal → Interpret → Reflect → Save/Journal or Continue`
+Design principle:
 
-Card animation should emphasize physical clarity and premium tactility, not spectacle.
+> **Sound should make an action feel weighted, not demand attention from the user.**
+
+Preferred character:
+
+- mode select: warm micro-chime / restrained bronze
+- card select: tactile paper / wood / fabric
+- reveal: restrained bronze + air
+- navigation: selective; silence is allowed
+
+Avoid cheap game click/pop/bling language.
+
+SFX perceived prominence must remain lower than music. A separate SFX setting/volume is preferred if the feature is activated.
 
 ---
 
-# 15. Lucky Numbers Feature
+# 7. Worldwide Mobile and PWA Architecture
 
-## 15.1 Approved product direction
+## 7.1 Worldwide Mobile-First
 
-Lucky Numbers is approved as a **secondary symbolic feature**.
+First-class targets:
 
-English label:
+1. Android Chrome
+2. Android installed PWA
+3. iPhone Safari
+4. iPhone Home Screen web app/PWA behavior
+5. iPad/tablet responsive layouts
 
-**Lucky Numbers**
+The product is not Android-first with Apple fixes added later.
 
-Thai may use:
+## 7.2 Progressive enhancement
 
-**เลขมงคลวันนี้** or another natural final label selected during UX copy review.
+Unsupported optional capability must degrade gracefully:
 
-## 15.2 Positioning
+- Fullscreen unsupported → use viewport
+- orientation lock unsupported → stay responsive
+- backdrop filter unsupported → fallback styling
+- autoplay denied → usable Play state
+- Web Share file unsupported → Save fallback
+- PWA not installed → full browser experience remains functional
 
-Lucky Numbers may derive symbolic context from:
+## 7.3 Safe areas
+
+Protect controls from:
+
+- notches
+- Dynamic Island
+- rounded corners
+- Home Indicator
+- Android navigation areas
+
+Use safe-area insets where applicable.
+
+## 7.4 Viewport and orientation
+
+Do not assume classic `100vh` equals visible mobile height.
+
+Portrait is the primary art direction, but landscape, rotation, tablet widths, and split-view must remain usable.
+
+## 7.5 Touch-first interaction
+
+No critical hover-only controls. Provide comfortable targets, practical spacing, and non-precision alternatives to gestures.
+
+## 7.6 Current PWA status
+
+Protected PWA foundation includes:
+
+- `manifest.webmanifest`
+- relative repository-safe start URL/scope
+- `display: standalone`
+- Android regular + maskable icons
+- Apple touch icon
+- favicon set
+- service worker
+- stale-cache cleanup
+- network-aware shell strategy
+- isolated `js/pwa.js` registration foundation
+
+Current real-device evidence:
+
+- Android launcher icon: PASS
+- Android installed app-like Home presentation: PASS
+- Android Home TH/EN visual gate: PASS
+- iPhone/iPad Add-to-Home-Screen/standalone gate: PENDING
+
+Do not claim full QA-X PWA completion until iOS/iPadOS is actually tested.
+
+---
+
+# 8. Native Language Standard — GLOBAL RELEASE RULE
+
+This section is a hard product-quality requirement.
+
+## 8.1 Current languages
+
+Current product languages:
+
+- English
+- Thai
+
+Future languages may be added only when they can meet the same quality standard without requiring a rewrite of the app architecture.
+
+## 8.2 First-class language principle
+
+Every supported language must read as though the product was **written for that language from the beginning**.
+
+Do not ship copy that feels:
+
+- literally translated,
+- machine-translated,
+- syntactically imported from another language,
+- overly formal for normal UI,
+- vague or difficult to understand,
+- culturally awkward,
+- polished but synthetic/AI-like.
+
+## 8.3 Native fluency requirement
+
+A supported language must satisfy all of:
+
+1. **Meaning parity** — same product meaning and safety intent.
+2. **Native fluency** — natural wording a real speaker would expect.
+3. **Cultural naturalness** — phrasing fits normal usage in that locale.
+4. **Clarity** — easy to understand without decoding product jargon.
+5. **Tone consistency** — preserves Little Ganesha’s calm premium character.
+6. **UI suitability** — length and structure work in the actual component.
+7. **Accessibility parity** — labels/ARIA/helper text are localized too.
+
+## 8.4 No literal-translation workflow
+
+English and Thai are independent native outputs sharing product meaning, not one master sentence copied word-for-word into the other language.
+
+Future languages follow the same rule.
+
+## 8.5 Three voice layers
+
+### UI voice
+Short, clear, functional, warm, easy to scan.
+
+### Tarot interpretation voice
+Professional, symbolic, grounded, nuanced, reflective, non-deterministic.
+
+### Little Ganesha guide voice
+Gentle, wise, perceptive, sacred-friendly, warm; never childish mascot speech or fake spiritual authority.
+
+## 8.6 Localization scope
+
+Language quality applies to **every user-visible or assistive surface**, including:
+
+- Title/entry
+- onboarding
+- Home
+- reading flows
+- card names where localized display is used
+- keywords
+- meanings
+- reflections
+- Daily Lenses
+- Settings
+- Profile
+- Support
+- Journal
+- Card Library
+- Save/Share export
+- statuses/errors/helper text
+- confirmations
+- accessibility labels
+- empty states
+- future notifications
+- disclaimers
+- date/time formatting
+
+## 8.7 Partial localization is not a release
+
+A new language must not be enabled publicly if important surfaces remain mixed or fallback unexpectedly to another language, except for intentionally retained brand names, official track names, or canonical tarot terms where the product deliberately presents them bilingually.
+
+## 8.8 Layout resilience
+
+Localization architecture must allow realistic text expansion. Do not tune component widths around one exact English sentence.
+
+Future CJK or other scripts require font/rendering QA. Future RTL languages require an explicit layout-direction architecture review before activation.
+
+## 8.9 Dates, numbers, and locale formatting
+
+Store stable machine values internally. Display dates/numbers through locale-aware formatting where practical (`Intl` or equivalent) rather than manually embedding one locale’s punctuation/order everywhere.
+
+## 8.10 Native Language Release Gate
+
+Before a language is called production-supported:
+
+- key parity passes,
+- no unintended hardcoded user-facing strings remain,
+- copy is native-quality reviewed,
+- actual layouts are checked at narrow mobile widths,
+- reading/export surfaces are reviewed,
+- accessibility labels are reviewed,
+- date/number behavior is reviewed.
+
+If native quality cannot be achieved yet, do not enable that language merely to increase language count.
+
+---
+
+# 9. Personal Profile and Privacy
+
+## 9.1 Purpose
+
+Personal Profile enables gentle personalization without turning the app into an identity/account system.
+
+## 9.2 Current optional fields
+
+- Display Name / preferred name
+- Date of Birth
+
+Both are optional. Users may skip and continue normally.
+
+## 9.3 Current storage rule
+
+- local device only
+- no login
+- no server upload
+- editable
+- clearable by user
+
+## 9.4 Date of Birth scope
+
+May support symbolic personalization, day-of-week associations, numerology-style reflection, Lucky Numbers context, or future profile features.
+
+A birth date alone must not be presented as a complete astrology birth chart.
+
+## 9.5 No birth time/place by default
+
+Do not collect birth time or birthplace unless a future astrology expansion demonstrates enough user value to justify timezone, historical timezone/DST, location, calculation-method, privacy, and support complexity.
+
+---
+
+# 10. Reading Engine — CANONICAL SHARED ARCHITECTURE
+
+## 10.1 Status
+
+The Reading Engine is now an implemented protected subsystem in the V0.4.x runtime line.
+
+It must remain **one reusable engine**, not separate shuffle/state implementations for each reading mode.
+
+## 10.2 Core requirements
+
+- exactly 78 canonical cards
+- stable card IDs
+- correct image mapping
+- exact master card back
+- unbiased selection using Web Crypto where supported
+- no duplicate card within a spread
+- explicit state transitions
+- session-safe draw state
+- stable spread definitions
+- bilingual content architecture
+- reversal-ready orientation field
+- Journal-compatible stable identifiers/content versions
+
+## 10.3 Reversal policy
+
+Architecture remains reversal-ready.
+
+Current product direction remains **upright-first**. Reversals may be activated later when the core reading modes, content, and Journal schema are stable enough to support them without a destructive migration.
+
+## 10.4 Interpretation safety
+
+Never promise:
+
+- guaranteed fate,
+- guaranteed relationship outcomes,
+- guaranteed investment/financial outcomes,
+- lottery results,
+- medical diagnosis,
+- deterministic death/illness,
+- legal outcomes,
+- spiritual threats.
+
+Tarot is presented as symbolic reflection and guidance.
+
+## 10.5 Reading interaction grammar
+
+Preferred shared grammar:
+
+`Prepare → Shuffle → Choose/Draw → Reveal → Interpret → Reflect → Save/Share/Journal or Continue`
+
+Animations emphasize tactility and clarity rather than spectacle.
+
+---
+
+# 11. Daily Guidance — COMPLETE CANONICAL READING EXPERIENCE
+
+## 11.1 Product status
+
+**Daily Guidance is complete in current product scope and becomes protected canonical behavior at runtime V0.4.3.**
+
+Do not keep adding features merely because the screen can hold more content. New changes require a real usability, compatibility, quality, or defect reason.
+
+## 11.2 Canonical Daily Guidance structure
+
+Daily Guidance contains:
+
+- one card per local day,
+- premium prepare/shuffle/choose/reveal flow,
+- same local day preserves the same selected card,
+- full 78-card pool,
+- native English/Thai card content,
+- Keywords,
+- Core Meaning,
+- Reflection,
+- six Daily Lenses,
+- Save Image,
+- Share.
+
+## 11.3 Six Daily Lenses
+
+Canonical categories:
+
+1. **งานและเป้าหมาย — Work & Goals**
+2. **เงินและทรัพยากร — Money & Resources**
+3. **ความรักและความสัมพันธ์ — Love & Relationships**
+4. **พลังใจและสมดุลชีวิต — Inner State & Balance**
+5. **โอกาสและสิ่งที่ควรระวัง — Opportunities & Watch-outs**
+6. **แนวทางสำหรับวันนี้ — Guidance for Today**
+
+Every one of the 78 cards has all six lenses in English and Thai, totaling 936 card/language/lens entries.
+
+Lenses remain optional/expandable so the reading does not become a dashboard wall of text.
+
+## 11.4 Persistence behavior
+
+Daily selection is persisted by **local date**, not by rolling 24-hour timer.
+
+A same-day content migration must preserve the user’s already-selected card rather than silently reroll it.
+
+Current content persistence family is `daily-guidance-v3`.
+
+## 11.5 Daily content philosophy
+
+Daily Guidance remains reflective rather than deterministic. It must not become a horoscope dashboard with excessive categories or absolute predictions.
+
+No separate health, lottery, singles/couples, travel, or similar lens should be added without strong product evidence.
+
+## 11.6 Current QA state
+
+At V0.4.3:
+
+- static/package/language/structure QA passed before upload,
+- Founder reported Android real-device **Save Image PASS**,
+- Founder reported Android real-device **Share PASS**,
+- generated long-form reading export was visually reviewed and judged successful,
+- iOS Safari/PWA Save/Share real-device validation remains pending.
+
+This is enough to promote Daily Guidance as complete in scope, but not enough to claim full cross-platform QA-X.
+
+---
+
+# 12. Save & Share Reading — CANONICAL EXPORT SYSTEM
+
+## 12.1 Product definition
+
+Save/Share generates a **curated reading artifact**, not a raw viewport screenshot.
+
+The export should look like something the user intentionally keeps or sends to another person.
+
+## 12.2 Export content
+
+The generated image includes meaningful reading content such as:
+
+- Little Ganesha Tarot branding
+- date
+- revealed card artwork
+- localized card title / canonical title treatment
+- keywords
+- main meaning
+- reflection
+- all six Daily Lenses
+- appropriate non-deterministic disclaimer
+
+It excludes transient app chrome such as:
+
+- Mini Player
+- navigation
+- back controls
+- action buttons
+- unrelated Settings/UI
+
+## 12.3 Save behavior
+
+Save creates/downloads the generated PNG to the device using browser-supported behavior.
+
+Do not promise a specific gallery path because OS/browser behavior differs.
+
+## 12.4 Share behavior
+
+Use native system sharing through the Web Share API when file sharing is supported.
+
+Do not hardcode LINE, WhatsApp, Messages, or a specific social destination. The OS share sheet decides available targets.
+
+## 12.5 Fallback
+
+If native file sharing is unavailable, fallback to Save rather than presenting a dead action.
+
+## 12.6 Privacy
+
+Generation remains client-side/local. Reading content is not uploaded to a Little Ganesha server merely to create the image.
+
+## 12.7 Stability rule
+
+Now that Save/Share works on the tested Android device, preserve it. Do not rewrite the export pipeline absent a real defect, browser incompatibility, performance problem, or material product improvement.
+
+
+---
+
+# 13. Remaining Primary Reading Experiences
+
+All remaining reading modes must reuse the canonical Reading Engine and shared interaction grammar. Do not create separate shuffle, card identity, persistence, or reveal systems for each mode.
+
+## 13.1 Ask Ganesha
+
+Canonical V1 direction:
+
+- one clear user question,
+- one-card reflective answer,
+- question remains local unless later saved to Journal,
+- no fake claim that AI is answering,
+- no deterministic guarantee,
+- use native, gentle Little Ganesha guide language where useful.
+
+Implementation should layer mode/question framing over the curated card content rather than building a separate inference backend.
+
+## 13.2 Three-Card Reading
+
+Canonical positions:
+
+1. Past
+2. Present
+3. What Unfolds Next
+
+The third position is directional/reflective, not a guaranteed future event.
+
+## 13.3 The Golden Path
+
+Canonical positions:
+
+1. Where You Stand
+2. What Blocks the Path
+3. The Way Forward
+
+## 13.4 Remove the Obstacle
+
+Canonical positions:
+
+1. The Obstacle
+2. What Feeds It
+3. What Releases It
+
+## 13.5 Shared content strategy
+
+To keep complexity controlled, future modes should prefer a layered content system:
+
+- canonical card meaning,
+- spread-position framing,
+- mode-specific context,
+- optional question context,
+- concise reflection/guide line.
+
+Do not create five incompatible interpretation databases if one structured content system can produce equal or better quality.
+
+---
+
+# 14. Journal / Reading History
+
+## 14.1 Product role
+
+Journal is a distinct subsystem from Save Image and Share.
+
+- **Save Image** = external portable visual artifact
+- **Share** = send that artifact through the OS share system
+- **Journal** = structured in-app reading history
+
+Do not treat Journal as a folder of screenshots.
+
+## 14.2 Canonical direction
+
+Journal is **local-first** and must work without account/login/cloud sync.
+
+Recommended structured record:
+
+```text
+reading_id
+schema_version
+content_version
+created_at
+local_date
+reading_mode
+question (optional)
+card_ids
+orientation
+language
+interpretation_snapshot or stable interpretation refs
+user_note (optional)
+```
+
+## 14.3 Storage choice
+
+Small settings/profile values may remain in localStorage.
+
+For growing structured Journal/history, prefer **IndexedDB or an equivalent structured local store** behind a small isolated storage wrapper.
+
+Do not scatter direct IndexedDB/localStorage calls across many UI components.
+
+## 14.4 Historical fidelity
+
+Journal should preserve enough of what the user actually saw that later content edits do not silently rewrite the meaning of an old saved reading.
+
+Preferred approach:
+
+- store stable IDs/content versions,
+- store a compact interpretation snapshot where necessary,
+- do not store the large exported PNG by default unless a future requirement justifies the storage cost.
+
+## 14.5 Data durability
+
+Before Journal becomes canonical:
+
+- define schema version,
+- define migration behavior,
+- test upgrade from earlier schema,
+- define safe failure behavior,
+- never silently erase history during an app update.
+
+## 14.6 User control
+
+Journal must eventually support:
+
+- open/re-read entry,
+- optional note,
+- delete individual entry,
+- clear all with explicit confirmation,
+- empty-state copy,
+- privacy explanation.
+
+## 14.7 Local-only limitation
+
+Local-first data can be removed if the user clears browser/app storage or loses the device. Do not imply that local Journal is a cloud backup.
+
+Optional export/backup may be considered later if demand justifies it without adding disproportionate complexity.
+
+## 14.8 Cloud sync
+
+Cloud Journal sync is **not current roadmap**. It requires a new privacy/security/complexity decision.
+
+---
+
+# 15. Card Library
+
+## 15.1 Purpose
+
+Card Library is a learning/exploration system independent of drawing a reading.
+
+## 15.2 Planned capabilities
+
+- browse all 78 cards,
+- filter Major / suit,
+- inspect canonical artwork,
+- localized title + canonical identity,
+- keywords,
+- upright meaning,
+- symbolism notes where curated,
+- future reversed meaning,
+- optional Little Ganesha reflection.
+
+## 15.3 Reuse rule
+
+Use the same canonical card dataset as Reading Engine. Do not duplicate card identity/content into a separate library-only source that can drift.
+
+## 15.4 Performance rule
+
+Do not eagerly download all 78 archival PNG masters at initial app load.
+
+Use lazy loading and, when evidence justifies it, non-destructive optimized derivatives. Canonical PNG masters remain archival truth.
+
+---
+
+# 16. Lucky Numbers
+
+## 16.1 Positioning
+
+Lucky Numbers remains an approved **secondary symbolic/entertainment feature**, not the product’s main promise.
+
+It may derive context from:
 
 - Daily Guidance card,
 - card number,
@@ -1244,142 +1235,44 @@ Lucky Numbers may derive symbolic context from:
 - optional Date of Birth,
 - symbolic associations.
 
-It must be described as reflective/entertainment symbolism, not an increased probability of winning money.
+## 16.2 Prohibited framing
 
-## 15.3 Prohibited framing
+Do not use claims such as:
 
-Avoid marketing copy such as:
+- “เลขเด็ด” as a promise,
+- “เลขแม่น”,
+- guaranteed winning numbers,
+- increased lottery odds,
+- instructions that imply a financial result is likely,
+- guaranteed money outcomes.
 
-- “เลขเด็ด”
-- “เลขแม่น”
-- “เพิ่มโอกาสถูกรางวัล”
-- “เลขที่จะออก”
-- instructions to buy lottery tickets
-- guaranteed financial outcomes
-
-## 15.4 Disclaimer direction
+## 16.3 Required meaning
 
 English concept:
 
 > Lucky numbers are offered for reflection and entertainment, not as predictions of financial outcomes.
 
-Thai concept:
-
-> เลขมงคลเป็นส่วนหนึ่งของการตีความเชิงสัญลักษณ์และความบันเทิง ไม่ใช่การรับรองผลทางการเงิน
-
-The final UX may make this concise, but the meaning must remain clear.
+Thai copy must communicate the same meaning naturally rather than translate mechanically.
 
 ---
 
-# 16. Card Library
+# 17. Support the Project — CANONICAL OPEN-ACCESS MODEL
 
-## 16.1 Purpose
+## 17.1 Product principle
 
-Card Library gives users access to the full deck as a learning/exploration system independent of drawing a reading.
-
-## 16.2 Planned capabilities
-
-- browse all 78 cards
-- filter Major / suit
-- inspect full-resolution presentation
-- card title and number/rank
-- keywords
-- upright meaning
-- future reversed meaning
-- symbolism notes
-- optional Little Ganesha reflection
-
-## 16.3 Asset protection
-
-Library must reference canonical card identities and approved image mapping.
-
-No alternative card crop, frame redesign, or low-quality replacement image should silently substitute for the approved deck.
-
----
-
-# 17. Journal / History
-
-## 17.1 V1 direction
-
-Journal/history is local-first.
-
-Potential saved data:
-
-- date/time
-- reading mode
-- user question (optional)
-- drawn cards
-- orientation
-- interpretation snapshot or stable interpretation reference
-- personal note
-
-## 17.2 Privacy
-
-Do not sync journal content remotely by default.
-
-If future cloud sync is proposed, it requires explicit privacy/security/product review.
-
-## 17.3 Data durability
-
-Before release, define a stable local data schema and versioning/migration strategy so app upgrades do not silently corrupt or erase saved readings.
-
----
-
-# 18. Settings Architecture
-
-Settings is an operational control center, not a dumping ground.
-
-Current approved areas:
-
-## 18.1 Experience
-
-- Language — English / Thai
-- Motion — System / Full / Reduced
-- Immersive Mode — On / Off
-
-## 18.2 Audio
-
-- Music — On / Off
-- Volume
-- Shuffle
-
-## 18.3 Personal Profile
-
-- Display Name
-- Date of Birth
-- Edit profile
-- Clear personal profile
-
-## 18.4 Support the Project
-
-- International Supporters
-- Supporters in Thailand
-
-## 18.5 Navigation / reset actions
-
-- Return to Title
-- future app-data reset if needed, with explicit confirmation
-
-Settings must preserve user choices consistently through local storage/state management.
-
----
-
-# 19. Support the Project
-
-## 19.1 Product principle
-
-Support is voluntary and must never affect:
+Support is voluntary. It must never affect:
 
 - reading quality,
 - card selection,
-- access to free features,
-- “luck”,
+- feature fairness,
+- luck,
 - spiritual status,
-- recommendation priority.
+- recommendation priority,
+- interpretation depth.
 
-Avoid manipulative donation design.
+No guilt, countdown, fear, spiritual pressure, or disruptive donation popup is allowed.
 
-## 19.2 International supporters
+## 17.2 Worldwide support
 
 Channel:
 
@@ -1387,18 +1280,16 @@ Channel:
 
 Placement:
 
-`Settings → Support the Project → International Supporters`
+`Settings → Support the Project → Worldwide / International Support`
 
-Until a final URL is supplied and verified, this remains a disabled/placeholder foundation.
+Production activation requires:
 
-When activated:
+- verified official destination,
+- safe external navigation,
+- clear indication that payment occurs externally,
+- no collection of card/payment credentials inside Little Ganesha Tarot.
 
-- open the official external support destination,
-- clearly communicate that payment is handled externally,
-- do not collect card/payment information inside Little Ganesha Tarot,
-- use safe external-link handling.
-
-## 19.3 Thailand supporters
+## 17.3 Thailand support
 
 Channel:
 
@@ -1406,546 +1297,622 @@ Channel:
 
 Placement:
 
-`Settings → Support the Project → Supporters in Thailand`
+`Settings → Support the Project → Thailand / PromptPay`
 
-Current phase: placeholder only.
+Preferred low-complexity V1:
 
-Production direction:
+- verified static payment QR,
+- no required login,
+- no receipt verification in the app,
+- no server-side payment state,
+- no entitlement unlocked after payment,
+- user decides the amount in the banking/payment flow when the QR format permits.
 
-- use the actual scannable QR as the functional core,
-- design a new premium Little Ganesha/Benedict Interactive support card around it,
-- do not visually expose unnecessary personal identifiers,
-- never distort the QR geometry,
-- preserve adequate quiet zone,
-- do not add decorative overlays that reduce scan reliability,
-- test with multiple real banking apps/devices before release.
+## 17.4 PromptPay QR rules
 
-A PromptPay QR may encode a personal proxy even if the visible label is hidden. Treat the QR asset as a payment-sensitive public asset and review it deliberately before shipping.
+- QR geometry must remain untouched,
+- preserve quiet zone,
+- do not cover modules with decoration,
+- use a premium support card around—not over—the functional QR,
+- show only minimum public information needed for payment confidence,
+- never publish an unnecessary bank screenshot or raw personal identifiers,
+- test scan on multiple real banking apps/devices before activation.
 
-## 19.4 Worldwide support UX
+A QR may encode a personal proxy even if the UI hides it. Treat the QR as a payment-sensitive public asset.
 
-Do not force country detection or block one option based on IP.
+## 17.5 Worldwide UX
 
-Both support routes may remain visible because:
+Do not force country detection or hide one support route based solely on IP.
 
-- Thai users may be abroad,
-- international users may be in Thailand,
-- locale is not identity.
+A Thai user may be abroad; an international user may be in Thailand. Locale is not identity.
 
-The UI may reorder or emphasize a likely-relevant option based on selected language/locale, but it should not prevent access to the alternative.
+## 17.6 Support copy standard
+
+Prefer language such as **Support the Project / สนับสนุนโปรเจกต์** rather than making legal/tax claims about “donations” unless that terminology has been reviewed for the applicable account/tax context.
+
+## 17.7 No support tracking requirement
+
+Because support does not unlock features, the app does not need to know who paid or how much.
+
+This is intentionally a major complexity reduction.
 
 ---
 
-# 20. Security and Privacy Baseline
+# 18. Membership / Premium — DEFERRED, NOT CURRENT ROADMAP
 
-## 20.1 No secrets in public repository
+## 18.1 Current decision
+
+A Guest/Free/Premium account system is **not part of the current canonical roadmap**.
+
+Do not build authentication, membership, subscription, or entitlement infrastructure merely because it might be useful someday.
+
+## 18.2 Why deferred
+
+Current Open Access + Voluntary Support model provides:
+
+- zero login friction,
+- lower privacy burden,
+- no backend dependency,
+- no subscription support burden,
+- simpler deployment,
+- fewer failure modes,
+- stronger product goodwill.
+
+## 18.3 Conditions for future reconsideration
+
+Membership may be reconsidered only if real evidence shows that:
+
+- the project requires more predictable sustainable revenue,
+- voluntary support is insufficient,
+- users clearly value advanced paid capabilities,
+- the added complexity can remain isolated and manageable.
+
+## 18.4 Future architecture rule if membership is ever approved
+
+If introduced later:
+
+- managed auth/payment services are preferred over custom backend stacks,
+- entitlement logic must be isolated behind one access layer,
+- Reading Engine must not contain payment logic,
+- provider outage must not unnecessarily break the free/core experience,
+- previously free canonical core should not be retroactively locked without a deliberate product/trust transition decision,
+- login should not become a prerequisite for opening the app unless a future product strategy explicitly justifies it.
+
+## 18.5 Premium Pass concept remains optional research only
+
+A future time-limited pass could be simpler than recurring subscription, but it remains **non-canonical research** until explicitly activated by a later Master Plan/product decision.
+
+---
+
+# 19. Settings Architecture
+
+Settings is an operational control center, not a dumping ground.
+
+Current/approved areas:
+
+## 19.1 Experience
+
+- Language
+- Motion: System / Full / Reduced
+- Browser Full Screen where supported
+
+## 19.2 Audio
+
+- Music On/Off
+- Volume
+- Shuffle
+- future SFX control only when SFX exists
+
+## 19.3 Personal Profile
+
+- Display Name
+- Date of Birth
+- edit/clear profile
+
+## 19.4 Support the Project
+
+- worldwide support
+- Thailand support
+
+## 19.5 Navigation/reset
+
+- Return to Title
+- future app-data reset only with explicit confirmation and clear consequences
+
+Settings must preserve user choices consistently and localize all labels/helper copy natively.
+
+---
+
+# 20. State, Storage, and Data Architecture
+
+## 20.1 Separate state domains
+
+Conceptually separate:
+
+- transient UI/session state,
+- user preferences,
+- profile,
+- audio intent,
+- current reading,
+- Daily persistence,
+- Journal/history,
+- content/schema versions,
+- runtime build/cache version.
+
+## 20.2 Centralize persistence helpers
+
+Do not allow unrelated direct storage calls to proliferate indefinitely.
+
+Use small purpose-specific helpers/modules with explicit keys and migration behavior.
+
+## 20.3 Stable identifiers
+
+Card IDs, reading mode IDs, spread position IDs, and content versions must remain stable enough for Journal/history across future builds.
+
+## 20.4 Schema migration rule
+
+Any persistent schema change must define:
+
+- old version,
+- new version,
+- migration path,
+- failure fallback,
+- test case for existing user data.
+
+Silent destructive reset is unacceptable unless explicitly chosen as the only safe recovery and clearly communicated.
+
+## 20.5 Content architecture
+
+Tarot content should remain structured rather than duplicated through UI logic.
+
+Recommended conceptual layers:
+
+```text
+Card Identity
+├── Core Meaning
+├── Keywords
+├── Reflection
+├── Daily Lenses
+├── Reversal fields (future-ready)
+└── Context layers
+    ├── Ask Ganesha
+    ├── Three-Card positions
+    ├── Golden Path positions
+    └── Remove Obstacle positions
+```
+
+---
+
+# 21. Security and Privacy Baseline
+
+## 21.1 No secrets in public repository
 
 Never commit:
 
-- API secrets
-- private keys
-- access tokens
-- banking credentials
-- raw identity documents
-- unnecessary personal numbers
-- private service credentials
+- API secrets,
+- private keys,
+- access tokens,
+- private service credentials,
+- raw banking credentials,
+- identity documents,
+- unnecessary personal numbers.
 
-## 20.2 Local personal profile
+## 21.2 Safe user content handling
 
-Display Name and Date of Birth remain local-only in the current architecture.
+Use safe DOM assignment such as `textContent` for profile/questions/notes. Do not inject unsanitized user input as HTML.
 
-Use safe DOM assignment (`textContent` or equivalent) for user-provided names. Never inject profile values as unsanitized HTML.
+## 21.3 External link safety
 
-## 20.3 External links
+External support destinations must use safe navigation and avoid opener-based cross-window risks where applicable.
 
-External support links and future external destinations must use safe navigation practices.
+## 21.4 Tracking policy
 
-Avoid opener-based cross-window risks and unexpected redirects.
+Do not add analytics, advertising trackers, fingerprinting, or behavioral profiling just because they are easy to add.
 
-## 20.4 Third-party tracking
+Any future analytics proposal must specify:
 
-Do not add third-party analytics, advertising trackers, fingerprinting, or behavioral profiling merely because it is easy.
-
-Any analytics proposal must justify:
-
-- product benefit,
-- data collected,
+- exact product benefit,
+- exact data collected,
 - retention,
-- privacy implications,
-- consent/legal requirements across target regions.
+- consent/legal implications,
+- privacy impact,
+- whether a less invasive alternative exists.
 
-## 20.5 Payment boundary
+## 21.5 Payment boundary
 
-Little Ganesha Tarot should not directly process sensitive payment credentials in the current product model.
+Little Ganesha Tarot should not directly process sensitive card/payment credentials in the current product model.
 
-Buy Me a Coffee and PromptPay remain external/payment-provider-side mechanisms.
+## 21.6 Export/privacy boundary
+
+Save/Share images are generated locally. No server upload is required for export generation.
 
 ---
 
-# 21. Performance Standards
+# 22. Performance Standards
 
-## 21.1 Philosophy
+## 22.1 Philosophy
 
-Premium does not mean heavy.
+**Premium does not mean heavy.**
 
-Effects, blur, particles, high-resolution artwork, and audio must be balanced against real-world mobile performance.
+The app should feel smooth on common mid-range modern phones, not only flagship devices.
 
-## 21.2 Animation performance
+## 22.2 Animation
 
-Prefer:
+Prefer compositor-friendly properties such as:
 
 - `transform`
 - `opacity`
-- compositor-friendly motion
 
-Use expensive filters/backdrop effects sparingly and provide fallback.
+Use expensive filters/backdrop effects carefully and provide fallbacks.
 
-Avoid large numbers of continuously animated DOM particles.
+## 22.3 Asset loading
 
-## 21.3 Asset loading
+- preload only what opening actually needs,
+- lazy-load card fronts where practical,
+- do not fetch all archival 78 PNGs at first paint,
+- load audio progressively,
+- generate optimized derivatives only when evidence supports the benefit.
 
-- preload only what the opening experience truly needs,
-- lazy-load card fronts not currently required,
-- avoid downloading all 78 high-resolution PNG masters at first paint,
-- retain PNG as archival masters but serve optimized derivatives when appropriate,
-- load audio progressively and intelligently.
+## 22.4 Network behavior
 
-## 21.4 Mobile quality target
+Use clear loading states instead of blank/frozen regions.
 
-The app should feel smooth on common mid-range contemporary phones, not only flagship devices.
-
-Before production release, test low-memory and slower-device behavior deliberately.
-
-## 21.5 Network quality
-
-The product should remain understandable on slower networks.
-
-Use loading states rather than frozen blank regions.
-
-PWA/offline caching should eventually protect essential shell assets and frequently used card data.
+PWA caching should protect essential shell behavior without turning updates into stale-build confusion.
 
 ---
 
-# 22. Accessibility Standards
+# 23. Accessibility Standards
 
-Accessibility is a product-quality requirement, not a post-release patch.
+Accessibility is a product-quality requirement.
 
 Minimum expectations:
 
-- meaningful focus states
-- keyboard-operable primary controls where applicable
-- correct buttons instead of clickable generic elements
-- ARIA labels for icon-only controls
-- readable color contrast
-- adequate text size
-- safe touch targets
-- reduced-motion support
-- no information communicated only by color
-- screen-reader-friendly labels for controls and card states where practical
-- modals that do not trap users invisibly
+- meaningful focus states,
+- correct semantic buttons,
+- keyboard-operable primary controls where applicable,
+- ARIA labels for icon-only controls,
+- readable contrast,
+- adequate text size,
+- safe touch targets,
+- reduced-motion support,
+- no critical information conveyed only by color,
+- readable card/control states for assistive technology where practical,
+- modals with sane focus/close behavior,
+- truly hidden elements must not intercept input.
 
-Any `hidden` element must be genuinely non-interactive and non-blocking.
+The historical invisible-overlay regression remains a permanent warning: hidden UI must never become an invisible interaction blocker.
 
-The V0.2.x invisible-overlay regression is a permanent lesson: hidden UI must not remain as an invisible pointer-intercepting layer.
+Language expansion must include accessibility copy, not only visible labels.
 
 ---
 
-# 23. Engineering Governance — Full Authorized Dev Mode
+# 24. Error Handling and Graceful Degradation
 
-This section is mandatory for every future build and supersedes any older workflow that treated Biu as a passive implementer.
+Optional enhancements must never break the core tarot flow.
 
-## 23.1 Development mindset
+Examples:
 
-Biu must operate as if personally accountable for shipping the product under Benedict Interactive’s name.
+- audio load fails → readings continue,
+- one music track fails → skip/fallback,
+- fullscreen fails → remain in viewport,
+- Web Share fails/unsupported → Save fallback,
+- local storage unavailable → session should remain usable where practical,
+- support destination unavailable → app remains usable,
+- one visual enhancement unsupported → use controlled fallback.
 
-For every meaningful change, ask:
+User-facing error copy must be calm, specific, actionable, and native to the selected language.
 
-> If Benedict Interactive released this build to real users worldwide today, would Biu be comfortable owning its quality, maintainability, and consequences?
+Do not expose stack traces or browser jargon to ordinary users.
 
-The target is not merely “works on P’Benz’s phone.” The target is a professional product that remains understandable and maintainable after many future builds.
 
-## 23.2 Required development loop
+---
+
+# 25. Engineering Governance — Full Authorized Dev Mode
+
+## 25.1 Development mindset
+
+Biu must operate as if personally accountable for a Benedict Interactive release.
+
+For every meaningful change:
+
+> If this were shipped to real users worldwide today, would Biu be comfortable owning its quality, maintainability, privacy, and consequences?
+
+## 25.2 Mandatory development loop
 
 Every meaningful runtime build follows:
 
-**Read Current GitHub → Verify Baseline → Understand Requirement → Impact Analysis → Risk Classification → Design → Implement → Regression Audit → Validation → Package → Integrity Check → Release Notes → P’Benz Push (when needed) → Re-read GitHub → Real-Device Gate → Canonical Promotion**
+**Read Current GitHub → Verify Baseline → Understand Requirement → Impact Analysis → Risk Classification → Design → Implement → Regression Audit → Validation → Package → Integrity Check → Release Notes → Push → Re-read GitHub → Real-Device Gate → Canonical Promotion**
 
-Never collapse the process to **edit → zip → send** when a change touches protected working systems.
+Never reduce protected-system work to `edit → zip → send`.
 
-For a documentation-only update, the same discipline applies at a lighter level: verify the current canonical plan/repository state, update documentation consistently, check stale version references, validate package integrity, and do not bump the runtime build unless runtime source/assets changed.
+## 25.3 GitHub-first baseline rule — MANDATORY
 
-## 23.3 GitHub-first baseline rule
+Before runtime code or runtime asset change:
 
-Before modifying runtime code or runtime assets:
+1. read current GitHub `main`,
+2. verify HEAD,
+3. verify runtime build markers,
+4. read the exact files/subsystems to be changed,
+5. compare any local staging source against verified GitHub,
+6. reject stale local ZIPs as source of truth when they differ unintentionally.
 
-- inspect the current repository `main`,
-- verify the current head/runtime baseline,
-- read the files that will be touched,
-- compare local working files against GitHub when local files are used,
-- reject stale local packages as a source of truth if they differ from verified `main` without an intentional reason.
+**Always re-read `main` before starting the next runtime patch.**
 
-A previous local ZIP is not automatically the baseline merely because it was created by Biu.
+## 25.4 Pre-change impact analysis
 
-The V0.3.6 workflow correction is permanent: **repository evidence must precede implementation when current production state matters.**
-
-## 23.4 Pre-change impact analysis
-
-Before editing, identify:
+Identify:
 
 - affected files,
-- affected user flows,
-- stable behaviors that must remain unchanged,
-- DOM/event dependencies,
-- persisted state/localStorage/IndexedDB implications,
-- audio and visibility lifecycle impact,
-- navigation and modal impact,
-- iOS/Android/PWA implications,
-- accessibility impact,
-- localization impact,
-- asset/cache/service-worker implications,
-- any canonical tarot or art asset risk.
+- affected flows,
+- protected behavior,
+- DOM/events,
+- storage/schema impact,
+- audio lifecycle,
+- navigation/modals,
+- iOS/Android/PWA impact,
+- accessibility,
+- localization,
+- service worker/cache,
+- canonical card/assets,
+- rollback implications.
 
-## 23.5 Risk classification
+## 25.5 Product critique/veto authority
 
-Biu classifies meaningful changes internally as **LOW, MEDIUM, or HIGH risk**.
+Biu is expected to proactively identify and act on:
 
-### LOW risk
+- unnecessary complexity,
+- weak/cluttered UX,
+- low-value features,
+- technical debt,
+- privacy/security risk,
+- misleading spiritual/financial wording,
+- language quality drift,
+- performance issues,
+- version drift,
+- architectural coupling,
+- better simpler alternatives.
+
+Biu may veto, redesign, defer, or replace a Founder proposal when another direction is better for the product.
+
+---
+
+# 26. Risk Classification and Restore Protocol
+
+## 26.1 LOW risk
 
 Examples:
 
-- documentation-only updates,
-- typo/microcopy correction,
-- isolated CSS polish with no layout architecture change,
-- non-functional release notes.
+- documentation-only update,
+- typo/microcopy fix,
+- isolated non-structural CSS polish,
+- non-functional notes.
 
-Normally requires baseline verification and normal QA, but no formal restore package.
+Requires normal baseline verification and QA. Formal restore package usually unnecessary.
 
-### MEDIUM risk
+## 26.2 MEDIUM risk
 
 Examples:
 
-- Home layout changes,
-- new screen/component wiring,
+- new screen/component,
+- reading presentation,
 - localization behavior,
-- reading presentation changes,
-- local profile/state extensions,
-- performance-related asset changes.
+- local profile/state extension,
+- Save/Share behavior,
+- non-destructive feature module.
 
-Requires a recorded baseline commit/ref, changed-file inventory, regression checklist, and package/diff validation.
+Requires:
 
-### HIGH risk
+- baseline commit,
+- changed-file inventory,
+- regression checklist,
+- package/diff validation,
+- appropriate runtime smoke test.
+
+## 26.3 HIGH risk
 
 Examples:
 
-- service-worker/cache strategy,
+- service worker/cache strategy,
 - PWA installability/manifest behavior,
 - audio lifecycle engine,
 - navigation/state architecture,
-- local data schema migration,
-- card identity/index mapping,
+- IndexedDB/local data migration,
+- canonical card mapping,
 - mass asset replacement,
-- deep refactor of a protected subsystem,
+- deep refactor of protected subsystem,
+- new auth/payment backend,
 - change Biu is materially uncertain about.
 
-HIGH-risk work requires the Restore Protocol in Section 23.7 before implementation is allowed to affect the canonical branch.
+## 26.4 Mandatory Restore Protocol for HIGH risk
 
-## 23.6 Regression rule
+Before editing:
 
-A new feature is unacceptable if it silently breaks a stable older feature.
+1. record exact verified `main` SHA,
+2. record current canonical runtime build,
+3. inventory affected files/subsystems,
+4. preserve recoverable pre-change state,
+5. define rollback target,
+6. prepare restore archive/notes/branch when useful,
+7. confirm the restore path is practical.
 
-Protected regressions include, but are not limited to:
+Preferred rollback hierarchy:
 
-- language switch stops working,
-- Thai/English hierarchy becomes inconsistent,
-- audio controls become blocked,
-- Title interaction stops receiving taps,
-- return-to-title leaves music/session state running incorrectly,
-- background/foreground audio lifecycle changes unintentionally,
-- existing local profile settings are lost,
-- motion preference is ignored,
-- iPhone safe-area controls become inaccessible,
-- Android small-width layout becomes unusable,
-- canonical card mapping changes accidentally,
-- duplicate card draws appear inside a spread,
-- cache serves incompatible HTML/JS/CSS versions,
-- installed icon/PWA identity regresses,
-- hidden overlays intercept pointer events,
-- a support/payment change exposes unnecessary personal data.
+1. revert isolated bad commit,
+2. restore affected files from last canonical commit,
+3. restore full previous canonical runtime only when justified.
 
-If a desired improvement and protected behavior conflict, Biu must redesign the approach or explicitly document why the behavior is intentionally changing.
+## 26.5 Serious regression rule
 
-## 23.7 Conditional Restore Protocol
+Do not stack new features onto a serious deployed regression.
 
-A restore plan is **not mandatory for every small change**. It becomes mandatory when Biu classifies the work HIGH risk or when confidence is materially lower than normal.
-
-Before a HIGH-risk change:
-
-1. record the exact verified `main` baseline commit SHA,
-2. record the current canonical runtime build,
-3. identify every file/subsystem that may need restoration,
-4. preserve pre-change copies or an equivalent recoverable Git reference,
-5. define the exact rollback target before editing,
-6. when useful, generate a small restore archive / rollback notes / temporary safety branch rather than copying the entire repository,
-7. verify that the restore method itself is practical.
-
-Preferred restore hierarchy:
-
-1. revert the isolated bad commit when possible,
-2. restore only the affected files from the last canonical commit,
-3. restore the complete previous canonical build only when the change is broad enough to justify it.
-
-Do not stack new feature work on top of a deployed regression. If a high-impact regression appears, stop forward development, restore the last canonical baseline, then diagnose the failed change separately.
-
-Canonical tarot assets must never be destructively replaced without a recoverable prior source/provenance.
-
-## 23.8 Refactoring authority
-
-Biu may refactor proactively when doing so reduces technical debt or future regression risk.
-
-Refactoring should happen before a subsystem becomes too coupled to maintain safely, but large refactors must not be used as an excuse to destabilize verified behavior.
-
-Do not over-engineer backend/service architecture that V1 does not need.
-
-## 23.9 Product critique and veto authority
-
-Biu is expected to identify and act on:
-
-- features that weaken the product,
-- cluttered or cheap-looking UX,
-- inconsistent naming/hierarchy,
-- technical shortcuts likely to fail worldwide,
-- unnecessary complexity,
-- privacy/security concerns,
-- misleading spiritual/financial claims,
-- performance bottlenecks,
-- maintainability problems,
-- opportunities to make the product more premium.
-
-Biu may veto, redesign, defer, or replace a Founder proposal when Biu determines another direction is better for the product.
+**Stop → restore/stabilize → diagnose → retry separately.**
 
 ---
 
-# 24. QA Honesty Standard
+# 27. QA Honesty Standard
 
-## 24.1 Never overclaim testing
+Never say “fully tested” unless the evidence truly supports it.
 
-A build may only be described according to what was actually validated.
+Use clear levels:
 
-Distinguish:
+- **QA-S:** static/structural validation
+- **QA-R:** runtime validation in at least one actual browser/device environment
+- **QA-X:** required cross-platform validation
+- **QA-P:** deployed production verification
 
-### Static validation
-Examples:
+A syntax check is not real-device testing. A local mock is not production deployment. Android evidence is not iOS evidence.
 
-- JavaScript syntax check
-- CSS brace/balance check
-- HTML/DOM ID linkage inspection
-- asset existence/path check
-- archive integrity
-- manifest/schema validation
+Current V0.4.3 Save/Share status:
 
-### Runtime validation
-Actual execution in a browser/device where interaction can be observed.
-
-### Cross-device validation
-Actual testing across multiple target environments.
-
-### Production deployment validation
-Actual deployed URL/build verified after push/deployment.
-
-If runtime/browser access is blocked by the development environment, state that limitation clearly.
-
-## 24.2 Suggested QA levels
-
-Use these internal levels when useful:
-
-- **QA-S:** Static validation passed
-- **QA-R:** Runtime validation passed in at least one real browser/device
-- **QA-X:** Cross-platform validation passed across required iOS/Android targets
-- **QA-P:** Production deployment verified
-
-A build should not be called fully production-ready solely because QA-S passed.
+- QA-S: PASS
+- Android real-device Save/Share: PASS by Founder report
+- generated export visual review: PASS
+- iOS/iPadOS Save/Share/PWA: PENDING
 
 ---
 
-# 25. Release Gate
+# 28. Version, Build, Cache, and Deployment Discipline — HARD RELEASE BLOCKER
 
-No build is considered release-ready until the following relevant checks are complete.
+This section is one of the highest-priority governance rules in V4.0.
 
-## 25.1 Core gate
-
-- [ ] New requirement understood and documented
-- [ ] Existing stable baseline identified
-- [ ] Regression impact reviewed
-- [ ] JavaScript syntax valid
-- [ ] No obvious uncaught initialization dependency
-- [ ] DOM IDs/events match
-- [ ] CSS has no broken parse structure
-- [ ] Hidden overlays cannot block interaction
-- [ ] Asset paths resolve
-- [ ] Cache/build versions match
-- [ ] localStorage/state changes are backward-safe or migrated
-- [ ] language switch remains functional
-- [ ] motion settings remain functional
-- [ ] audio lifecycle remains functional
-- [ ] background/foreground audio intent preserved
-- [ ] return-to-title cleans state correctly
-- [ ] iOS safe-area layout reviewed
-- [ ] Android viewport reviewed
-- [ ] unsupported fullscreen/orientation gracefully falls back
-- [ ] personal data remains local as designed
-- [ ] external/payment placeholders do not expose secrets
-- [ ] package/archive integrity checked
-- [ ] known runtime limitations disclosed
-
-## 25.2 Feature-specific gate
-
-Reading builds additionally require:
-
-- [ ] correct 78-card mapping
-- [ ] no duplicate draw within spread
-- [ ] correct spread position labels
-- [ ] correct card-back/front state
-- [ ] correct reversal state if enabled
-- [ ] reading/history persistence reviewed
-
-PWA builds additionally require:
-
-- [ ] manifest validation
-- [ ] icon coverage
-- [ ] service-worker update strategy
-- [ ] stale cache behavior tested
-- [ ] offline fallback tested
-
-Support/payment builds additionally require:
-
-- [ ] destination verified
-- [ ] no private identifiers unnecessarily exposed
-- [ ] QR scan tested on multiple banking apps/devices
-- [ ] external-link safety checked
-
----
-
-# 26. Version, Build, Cache, and Deployment Discipline
-
-## 26.1 Independent version tracks
-
-The project uses separate version tracks because a documentation update is not automatically a runtime release.
+## 28.1 Independent version tracks
 
 ### Runtime application build
 
-Current canonical runtime build:
+Current canonical runtime:
 
-**0.3.6**
+**0.4.3**
 
-The runtime build changes when shipped application code, runtime data, service-worker behavior, or user-facing runtime assets materially change.
+### Master Plan
 
-### Master Plan version
+Current canonical governance document:
 
-Current canonical governance/document version:
+**V4.0**
 
-**V3.7**
+### Internal content/schema versions
 
-The Master Plan version changes whenever the canonical development authority/status/handoff document materially changes, even when runtime code is untouched.
+Internal versions such as Reading Engine version or `daily-guidance-v3` may advance independently when appropriate. They are not substitutes for the runtime build.
 
-**Documentation-only V3.7 does not bump runtime build 0.3.6.**
+A documentation-only Master Plan update **does not bump the runtime build**.
 
-This separation is intentional and must be preserved.
+## 28.2 What requires a runtime bump
 
-## 26.2 Runtime build numbering policy
+A runtime build should advance when shipped application behavior materially changes, including applicable changes to:
 
-Use a practical pre-1.0 semantic progression:
+- HTML/runtime UI,
+- JavaScript behavior,
+- CSS affecting shipped UI,
+- user-facing runtime copy/content,
+- Reading Engine,
+- persistent schema,
+- service worker/cache behavior,
+- runtime assets that change product behavior/identity.
 
-- PATCH (`0.3.6 → 0.3.7`) for contained fixes/polish with no major new subsystem,
-- MINOR (`0.3.x → 0.4.0`) for a meaningful new user-facing subsystem such as the Reading Engine,
-- later major product readiness/versioning may be chosen by Biu when the product reaches an appropriate release threshold.
+Documentation-only governance/QA notes do not require a runtime bump unless they accompany runtime changes.
 
-The currently planned next runtime feature train is **0.4.x**, beginning with Reading Engine foundation/vertical-slice work.
+## 28.3 Mandatory runtime version coherence
 
-Biu owns final version-number decisions and may adjust numbering when actual scope differs from the plan.
+Whenever runtime build changes, audit and update **every applicable live/current marker in the same release**.
 
-## 26.3 Mandatory runtime version coherence
+Required audit matrix:
 
-Whenever the runtime build number changes, audit and update every applicable build marker in the same release.
+- `index.html` → `meta[name="application-version"]`
+- `index.html` → `<body data-build>`
+- CSS cache-bust query strings
+- JavaScript cache-bust query strings
+- manifest query/reference when used
+- any explicit build metadata inside manifest, if present
+- visible build label in Settings/debug surface
+- `window.LGT_BUILD` or current equivalent
+- `sw.js` → `BUILD`
+- Service Worker cache names/IDs
+- Service Worker shell/cache-busted URLs
+- README current runtime identity when applicable
+- current release notes
+- current QA report
+- current root patch manifest when runtime release uses one
+- checksum file
+- Master Plan current runtime/status
 
-At minimum, check:
+## 28.4 Mixed live versions = RELEASE FAIL
 
-- `index.html` → `meta[name="application-version"]`,
-- `index.html` → `<body data-build>`,
-- CSS cache-bust query in `index.html`,
-- JS cache-bust queries in `index.html`,
-- manifest query/version reference if used for cache busting,
-- visible build label in Settings/debug surface,
-- `window.LGT_BUILD` or equivalent runtime marker,
-- `sw.js` → `BUILD`,
-- service-worker shell URLs/cache-busted runtime resources,
-- release notes,
-- QA document,
-- README/current-status documentation,
-- patch/release manifest,
-- checksum file when produced,
-- Master Plan current implementation status.
+> **If one current/live build marker unintentionally disagrees with the target runtime version, the release fails.**
 
-If a file intentionally preserves a historical version in a changelog, do not rewrite history. The coherence rule applies to **current/live markers**, not historical records.
+Do not waive this because “the app seems to work.” Mixed versions are a cache/deployment regression waiting to happen.
 
-A release with mixed current build markers fails the release gate.
+## 28.5 Historical records are exempt
 
-## 26.4 Documentation version coherence
+Do not rewrite historical changelog/release entries merely to make every old number equal the current build.
 
-Whenever the Master Plan changes materially:
+Version coherence applies to **live/current markers**, not historical evidence.
 
-- increment the Master Plan version,
-- update the document title,
-- update canonical version metadata,
+## 28.6 Automated version audit
+
+Every runtime delivery should run an automated version-coherence test whenever practical.
+
+The test should verify target runtime against all current marker locations that exist in the repository.
+
+If a new build marker is introduced later, the test/checklist must be updated so it cannot become a forgotten hidden version source.
+
+## 28.7 Master Plan version coherence
+
+When Master Plan changes materially:
+
+- increment Master Plan version,
+- update title/metadata,
+- update current runtime status,
 - update source-of-truth references,
-- update Zero-Question migration instructions,
-- update the current-status section,
-- add a change-log entry,
-- audit for stale active-version language,
-- update README/current documentation references when they explicitly state the Master Plan version.
+- update migration prompt,
+- update current docs manifest,
+- add change log/update notes,
+- audit stale active-version language.
 
-Do **not** bump the runtime application build for a documentation-only governance/handoff update.
+Do not bump runtime for docs-only governance changes.
 
-## 26.5 Cache discipline
+## 28.8 Cache discipline
 
-During GitHub Pages development, static CSS/JS resources must be cache-busted consistently when runtime code changes.
+A release must never ship HTML referencing stale incompatible JS/CSS/SW resources.
 
-A build must never ship HTML referencing stale incompatible JS/CSS/service-worker resources.
+Service Worker changes are HIGH risk and require explicit cache/update review.
 
-When the Service Worker changes, its build/cache identifiers must be coherent with the runtime build and its app-shell list must resolve successfully.
+During development/deployment:
 
-## 26.6 GitHub Pages deployment lesson
+- version runtime resources consistently,
+- clean obsolete app caches where appropriate,
+- distinguish real source regression from stale deployed cache,
+- do not “fix” correct source merely because one device has not received the new cache yet.
 
-Do not assume “GitHub push succeeded” means the user is already seeing the new deployment.
+## 28.9 GitHub Pages deployment verification
 
 After push:
 
-1. verify repo head commit,
-2. verify source files on `main`,
+1. verify repository HEAD,
+2. verify target source files on `main`,
 3. allow deployment propagation,
-4. hard-refresh / close-reopen installed PWA when appropriate,
-5. distinguish deployment cache lag from source regressions,
-6. verify real-device behavior for the subsystem changed.
+4. hard-refresh / close-reopen installed PWA where appropriate,
+5. confirm visible build identity,
+6. run subsystem-specific real-device checks.
 
-Do not modify otherwise-correct source merely to chase a stale deployment cache.
+## 28.10 Package integrity order
 
-## 26.7 Release identity rule
+For packages with manifests/checksums:
 
-Every meaningful package should be traceable to:
+1. finish all file edits,
+2. generate manifest hashes,
+3. finish manifest,
+4. generate checksum file last,
+5. checksum file must not self-hash,
+6. create ZIP,
+7. re-extract ZIP,
+8. run tests/checksum verification **from the re-extracted archive**.
 
-- source repository,
-- baseline commit,
-- target runtime build or document version,
-- changed-file inventory,
-- QA performed,
-- checksum/integrity information when useful.
-
-For HIGH-risk changes, include rollback information as required by Section 23.7.
+Do not edit a hashed file after checksum generation without regenerating checksums.
 
 ---
 
-# 27. GitHub Repository
+# 29. Repository Structure and Packaging Policy
 
-## 27.1 Repository
+Canonical repository:
 
 `grolygori789-crypto/little-ganesha-tarot`
 
@@ -1953,963 +1920,476 @@ Default branch:
 
 `main`
 
-Repository visibility:
-
-Public.
-
-GitHub Pages is enabled from the repository project.
-
-## 27.2 Current integration limitation
-
-The connected GitHub integration can currently read repository state but direct write operations have returned:
-
-`403 Resource not accessible by integration`
-
-Therefore the current operational workflow remains:
-
-**P’Benz ↔ Biu → Biu prepares and validates build/package → P’Benz overlays files locally → GitHub Desktop Commit/Push → Biu re-reads/audits repository**
-
-If GitHub integration write permission changes later, direct commit workflow may be adopted only after a safe non-destructive write test succeeds.
-
-## 27.3 Repository as implementation truth
-
-After P’Benz successfully pushes a build and Biu verifies it on `main`, that repository state becomes the current implementation baseline subject to the source-of-truth hierarchy in Section 0.1.
-
----
-
-# 28. Recommended Repository Structure
-
-Maintain a clean separation of concerns.
-
-Recommended structure:
+Canonical documentation structure:
 
 ```text
 /
-├── index.html
-├── README.md
-├── MASTER_PLAN.md
 ├── assets/
-│   ├── cards/
-│   │   ├── 00_THE_FOOL.png
-│   │   └── ...
-│   ├── ui/
-│   │   ├── card-back.png
-│   │   └── title-hero.png
-│   ├── icons/
-│   │   ├── app-icon-1024.png
-│   │   ├── icon-512x512.png
-│   │   ├── icon-192x192.png
-│   │   ├── icon-maskable-512x512.png
-│   │   ├── apple-touch-icon.png
-│   │   ├── favicon-48x48.png
-│   │   ├── favicon-32x32.png
-│   │   └── favicon.ico
-│   ├── audio/
-│   │   ├── golden-lantern-at-twilight.mp3
-│   │   └── sunlight-on-bronze.mp3
-│   └── optimized/              # future derivatives if used
 ├── css/
-│   └── app.css
+├── data/
+├── docs/
+│   ├── checksums/
+│   ├── governance/
+│   ├── qa/
+│   ├── releases/
+│   └── tests/
 ├── js/
-│   ├── app.js
-│   ├── audio.js
-│   └── ...                     # future modules
-└── data/
-    ├── AUDIO_MANIFEST_V1.json
-    ├── cards.json              # future curated reading data
-    └── ...
+├── index.html
+├── manifest.webmanifest
+├── PATCH_MANIFEST_[CURRENT_RUNTIME].json
+├── README.md
+└── sw.js
 ```
 
-As the app grows, split large modules deliberately rather than allowing one monolithic `app.js` to become a maintenance risk.
+## 29.1 Governance folder
 
-Potential future modules:
+Place here:
 
-- `router.js`
-- `state.js`
-- `reading-engine.js`
-- `cards.js`
-- `journal.js`
-- `profile.js`
-- `settings.js`
-- `i18n.js`
-- `pwa.js`
+- `MASTER_PLAN.md`
+- versioned Master Plan changelog/update notes
+- room migration prompt
+- docs manifests
+- repository policies
 
-Do not modularize merely for appearance; split when responsibilities become meaningfully independent.
+## 29.2 Delivery rule
+
+Every package given to P’Benz must be repository-ready:
+
+- correct relative paths,
+- no manual sorting required,
+- no scattered QA/test docs at root,
+- checksum verified,
+- archive re-extracted before delivery,
+- changed-file scope clear.
+
+## 29.3 Overlay limitation
+
+An overlay ZIP **cannot delete old tracked files automatically**.
+
+Therefore:
+
+- do not falsely claim that overlay removes obsolete files,
+- preserve older versioned governance docs as explicit historical records when safe,
+- if deletion is materially required, use a deliberate Git deletion workflow or provide a safe exact cleanup mechanism rather than pretending extraction performs deletion.
+
+For Master Plan V4.0, older V3.7 versioned governance files may remain as historical evidence; V4.0 is explicitly canonical and superseding.
+
+## 29.4 Root patch manifest
+
+Runtime release manifest remains tied to the current runtime release. A documentation-only governance package may use a dedicated docs manifest under `docs/governance/` rather than rewriting runtime-release identity solely for a Master Plan revision.
 
 ---
 
-# 29. Current Application Status
+# 30. Current Application Status — 22 AUGUST 2026
 
-## 29.1 Current canonical runtime baseline
+## 30.1 Current runtime baseline
 
-Current deployed runtime build:
+**Runtime:** V0.4.3  
+**Commit:** `3bd6764dfdf17a7e6691113133d13b085b99df29`  
+**Commit message:** `Add save and share for daily guidance`
 
-**V0.3.6 — Premium Home Polish**
+This is the verified GitHub `main` baseline at the creation of Master Plan V4.0.
 
-Verified runtime implementation commit:
+## 30.2 Home / shell
 
-`d7c6fb7657fa2cb88d7ed0a6194d7439c959f4bc`  
-`Polish Home UI to V0.3.6`
-
-The repository `main` exposes runtime build `0.3.6` consistently in HTML and Service Worker build/cache markers.
-
-V0.3.6 has passed its post-deployment Android real-device visual gate and is now the **canonical Home/UI baseline**.
-
-Do not continue polishing Home merely to chase marginal aesthetic gains. Further Home changes require a concrete usability, accessibility, compatibility, performance, product, or defect reason.
-
-## 29.2 Canonical Home/Menu status — APPROVED
-
-Real-device TH and EN screenshots confirm the intended Premium Minimal Sacred UI direction:
-
-- dark premium teal foundation,
-- warm ivory/gold typography,
-- stable bilingual hierarchy,
-- Daily Guidance hero card,
-- Ask Ganesha and Three-Card paired cards,
-- Signature Paths pair,
-- Explore row,
-- one restrained symbolic motif per Primary/Signature card,
-- compact single-icon treatment for Explore cards,
-- compact global Mini Player,
-- fixed Bottom Navigation,
-- non-bleeding fixed Home header,
-- no legacy `✦ / ◌ / III` foreground-symbol regression,
-- Thai personalized greeting without an English-style comma.
-
-**Home Visual System V0.3.6 = APPROVED / CANONICAL.**
-
-Rejected V0.3.3/V0.3.4 visual implementations remain historical only and must not be resurrected.
-
-## 29.3 Canonical app icon / Android PWA identity — APPROVED
-
-The final Little Ganesha app icon is canonical.
-
-Real-device Android Home Screen evidence confirms that the installed web app now displays the intended Little Ganesha launcher icon rather than the prior generic gray `G` shortcut identity.
-
-This confirms successful Android-side install identity wiring at the product level.
-
-**App Icon = APPROVED / CANONICAL.**
-
-Do not redesign the icon without a strong product reason.
-
-## 29.4 PWA status
-
-The PWA foundation introduced in V0.3.2 remains active and protected:
-
-- `manifest.webmanifest`,
-- repo-safe relative `start_url` / `scope`,
-- `display: standalone`,
-- Android 192/512 icons,
-- Android maskable icon,
-- Apple touch icon,
-- favicon set,
-- service worker,
-- cache-version discipline,
-- PWA registration isolation in `js/pwa.js`.
-
-Current validation status:
-
-- Android installed launcher icon: **REAL-DEVICE PASS**
-- Android Home/UI installed-app presentation supplied by P’Benz: **REAL-DEVICE PASS**
-- Android current Home TH/EN visual gate: **PASS**
-- iPhone/iPad Add-to-Home-Screen / standalone real-device gate: **PENDING**
-
-Do not claim full QA-X cross-platform PWA completion until iOS/iPadOS is actually tested.
-
-## 29.5 Protected stable application behavior
-
-The following foundations are protected unless an intentional future change is justified:
+Protected and functional foundations include:
 
 - Benedict Interactive splash,
-- Title screen and Living Title motion system,
-- EN/TH switching,
-- first-entry onboarding,
-- optional Display Name,
-- optional Date of Birth,
-- local-only profile persistence,
+- Living Title,
+- Tap to Begin,
+- optional onboarding/profile,
 - Home V0.3.6 visual hierarchy,
-- Settings architecture,
+- Settings,
+- TH/EN switching,
 - Motion preference,
-- explicit-only browser Full Screen behavior,
-- installed-PWA standalone behavior,
-- two-track current audio engine,
+- explicit browser Full Screen,
 - global Mini Player,
-- previous/play-pause/next/more controls,
-- background/foreground audio lifecycle,
-- Return to Title lifecycle,
-- Support placeholders,
-- PWA/icon wiring,
-- canonical card-back and deck assets.
+- audio lifecycle,
+- Return to Title,
+- PWA/icon wiring.
 
-No Reading Engine refactor is allowed to casually break these systems.
+## 30.3 Reading Engine
 
-## 29.6 Current soundtrack foundation
+Implemented and protected.
 
-Current implemented tracks:
+Daily Guidance is the currently complete canonical reading mode.
 
-1. **Golden Lantern at Twilight**
-2. **Sunlight on Bronze**
+Other reading mode buttons remain future functionality/placeholders until implemented.
 
-The long-term target remains a small premium soundtrack set, currently envisioned as approximately five tracks. Expansion is secondary to Reading Engine functionality and may be reordered by Biu if product priorities change.
+## 30.4 Daily Guidance
 
-## 29.7 Current profile/personalization foundation
+Implemented:
 
-Current optional local profile fields:
+- 78-card draw pool,
+- same-day persistence,
+- premium choose/reveal,
+- native TH/EN card content,
+- Keywords/Core Meaning/Reflection,
+- six Daily Lenses across 78 cards and both languages,
+- Save Image,
+- Share.
 
-- Display Name
-- Date of Birth
+## 30.5 Save/Share
 
-Birth Date is reserved for future **symbolic personalization** such as numerology-style or daily reflective features. V1 does not require birth time, birthplace, natal chart, or full Thai astrology.
+Android real-device Founder test:
 
-Personal data remains local by default.
+- Save Image: PASS
+- Share: PASS
+- generated export appearance: PASS
 
-## 29.8 Current Support status
+Cross-platform iOS/iPadOS gate: PENDING.
 
-Settings currently contains non-functional placeholders for:
+## 30.6 Journal
 
-- International Supporters → Buy Me a Coffee
-- Supporters in Thailand → PromptPay
+Current UI entry exists but functionality remains **not implemented / placeholder**.
 
-Activation is intentionally deferred until verified destinations/assets are ready.
+This is not a defect in Daily Guidance; Journal is a separate subsystem.
 
-For Thailand support, never publish the original banking screenshot containing unnecessary personal-identification text. Use a purpose-designed premium support card with a verified payment QR and only the minimum public information needed for payment confidence.
+## 30.7 Card Library / Lucky Numbers
 
-## 29.9 Current functional boundary
+Planned, not canonical functional features yet.
 
-The app foundation, Home, Settings, audio, profile, localization, and PWA identity are functional foundations.
+## 30.8 Support
 
-The reading-mode buttons are **not yet the final reading experiences**. The next major engineering task is the Reading Engine.
+Current Settings has non-functional placeholders:
 
-The current product should therefore be understood as:
+- Worldwide → Buy Me a Coffee
+- Thailand → PromptPay
 
-**premium application shell + canonical deck/assets + stable Home/PWA/audio/profile foundation, ready for actual tarot-reading functionality.**
+Canonical business direction is Open Access + Voluntary Support. Activation is pending verified support destination/QR assets and support-specific QA.
 
-# 30. Immediate Development Roadmap
+## 30.9 Languages
 
-Biu owns sequencing and may reorder a milestone when risk, dependency, usability, or product value justifies it.
+Current functional languages:
 
-## Milestone A — V0.3.6 Premium Home/PWA stabilization — COMPLETE
+- English
+- Thai
 
-Status:
+V0.4.1+ established a global native-language quality pass across application shell and tarot content. V4.0 upgrades this principle into a permanent multilingual release standard.
 
-**COMPLETE / CANONICAL on Android real-device evidence.**
+## 30.10 PWA
 
-The V0.3.6 Home visual gate and Android launcher-icon gate passed. Do not continue foundation churn before Reading Engine work.
+Android evidence: PASS at current verified level.
 
-Remaining platform validation that can happen in parallel later:
+Still pending:
 
-- iPhone/iPad Add-to-Home-Screen real-device QA.
+- iPhone/iPad Add-to-Home-Screen,
+- iOS standalone safe-area verification,
+- iOS Save/Share compatibility.
 
-This pending iOS check does not block starting the Reading Engine unless a new PWA change is required.
+## 30.11 Current protected baseline rule
 
-## Milestone B — V0.4.0 Reading Engine foundation — NEXT
+Do not continue touching Daily Guidance, Save/Share, Home, audio, PWA, or profile merely to polish what already works.
 
-Planned next runtime version train:
+Only change a protected subsystem for a concrete defect, compatibility need, accessibility issue, material performance gain, security requirement, or high-value product improvement.
 
-**0.4.x**
+---
 
-The first target is **0.4.0** because the Reading Engine is a meaningful new user-facing subsystem rather than a Home polish patch.
+# 31. Immediate Development Roadmap — V4.0
 
-Biu may adjust exact numbering if final implementation scope materially changes.
+Biu owns sequencing and may reorder a milestone when dependency, evidence, risk, or product value justifies it.
 
-### B1. Canonical card data model
+## Phase A — V0.4.3 stabilization + governance — COMPLETE/CURRENT
 
-Create stable machine-readable card data for exactly 78 canonical cards.
+- Daily Guidance complete in scope
+- Save/Share Android real-device PASS
+- Master Plan V4.0 establishes new canonical governance
 
-Minimum model should support:
+Remaining parallel gate:
 
-- stable card ID/index `00–77`,
-- canonical English title,
-- Thai title,
-- arcana class,
-- Major number or Minor suit/rank,
-- canonical image path,
-- keywords,
-- upright interpretation content,
-- reversal-ready interpretation field,
-- optional Little Ganesha reflection/message field,
-- stable content version for future history migration.
+- iOS/iPadOS PWA/Save/Share real-device validation when devices are available
 
-Do not alter card identity or numbering to fit UI convenience.
+## Phase B — Remaining Core Tarot Reading Modes — NEXT PRODUCT PRIORITY
 
-### B2. Reading/spread model
+Default sequence:
 
-Create a reusable spread definition system rather than hardcoding each mode independently.
+1. **Ask Ganesha**
+2. **Three-Card Reading**
+3. **The Golden Path**
+4. **Remove the Obstacle**
 
-Each spread should define:
+All must reuse the shared Reading Engine.
 
-- spread ID,
-- card count,
-- ordered position IDs,
-- EN/TH position labels,
-- mode-specific interpretation context,
-- whether user question input is present,
-- orientation/reversal policy.
+Exact runtime build numbering inside the 0.4.x train is decided at implementation based on actual scope. Do not pre-bump the runtime in documentation.
 
-### B3. Draw/shuffle engine
+## Phase C — Journal / Local History
 
-Requirements:
+Implement a versioned structured local Journal after the shared primary reading modes establish the final reading-record shape.
 
-- one shared draw engine,
-- no duplicate card within a spread,
-- unbiased draw/shuffle logic using Web Crypto (`crypto.getRandomValues`) where available,
-- deterministic UI state transitions even though the draw itself is random,
-- no gambling-style “odds” language,
-- session-safe state that does not redraw accidentally during a reveal transition.
+This ordering reduces the risk of locking Journal schema too early.
 
-### B4. Reversal-ready architecture
+## Phase D — Card Library
 
-Orientation must exist in the schema from the beginning.
+Build full 78-card browse/details on the same canonical dataset.
 
-Initial product default is expected to remain **upright-first** for clarity and accessibility. An optional “Include Reversals” preference may be enabled after the base reading flow is stable. Biu may change the default later if product testing justifies it.
+## Phase E — Support Activation
 
-Do not retrofit reversals through destructive schema changes after Journal/history already depends on the reading data model.
+Activate:
 
-### B5. Reading session state machine
+- verified Buy Me a Coffee link,
+- verified PromptPay support card/QR.
 
-Recommended states:
+No login/backend/entitlement required.
 
-`idle → preparing → shuffling → choosing → selected → revealing → revealed → interpreted → saved/completed`
+## Phase F — Lucky Numbers
 
-The exact implementation may differ, but reading transitions must be explicit enough to prevent double taps, duplicate draws, stale state, or impossible card faces.
+Implement as symbolic secondary feature only after core tarot flows/profile/day data are stable.
 
-### B6. First vertical slice — Daily Guidance
+## Phase G — Subtle SFX + soundtrack expansion
 
-Daily Guidance should be the first complete end-to-end Reading Engine proof.
+Add only after interaction timing across reading modes is stable.
 
-Target behavior:
+## Phase H — Reversal option evaluation
 
-- one card,
-- uses exact canonical card back/front,
-- premium shuffle/choose/reveal/flip flow,
-- selected card stored for the local day so repeated visits do not encourage endless rerolling,
-- bilingual interpretation,
-- optional reflection prompt,
-- future Journal save compatibility.
+Consider upright + reversed only after:
 
-Daily persistence behavior must include a deliberate new-day boundary based on local date.
+- core modes stable,
+- content fields ready,
+- Journal migration implications understood,
+- UX can explain it clearly.
 
-## Milestone C — Remaining Primary Reading Experiences
+## Phase I — Cross-platform / production hardening
 
-After the engine and Daily Guidance vertical slice are stable, implement the remaining modes using the same shared engine.
-
-### Ask Ganesha
-
-Recommended V1 direction:
-
-- user may enter one clear question,
-- one-card reflective answer,
-- card interpretation plus restrained Little Ganesha guide voice,
-- question remains local unless user explicitly saves it to Journal,
-- no fake AI claim and no promise that the card predicts a guaranteed outcome.
-
-### Three-Card Reading
-
-Positions:
-
-1. Past
-2. Present
-3. What Unfolds Next
-
-### The Golden Path
-
-Positions:
-
-1. Where You Stand
-2. What Blocks the Path
-3. The Way Forward
-
-### Remove the Obstacle
-
-Positions:
-
-1. The Obstacle
-2. What Feeds It
-3. What Releases It
-
-All four modes must reuse the shared engine; do not create separate shuffle/state systems.
-
-## Milestone D — Reading content system
-
-Curate bilingual reading content with professional tarot quality.
-
-Content should be structured so it can support:
-
-- concise card meaning,
-- fuller interpretation,
-- upright/reversed variants,
-- spread-position context,
-- reflection question,
-- Little Ganesha guide line where appropriate.
-
-Do not generate deterministic medical, legal, financial, relationship, or lottery outcomes.
-
-## Milestone E — Card Library
-
-Add full-deck browse/details experience using the same canonical card dataset.
-
-Before loading all 78 full PNG masters aggressively, evaluate performance and generate non-destructive WebP/AVIF app derivatives if evidence shows a clear benefit. Canonical PNG masters remain untouched.
-
-## Milestone F — Journal / local history
-
-Add versioned local reading-history persistence.
-
-Preferred storage direction:
-
-- localStorage remains appropriate for small settings/profile values,
-- IndexedDB or an equivalent structured local store should be considered for growing Journal/history content.
-
-Data schema must include migration/version strategy before the Journal becomes canonical.
-
-## Milestone G — Lucky Numbers
-
-Implement only after Daily Guidance and profile/date structures are stable.
-
-Direction:
-
-- symbolic/numerology-style feature,
-- secondary to tarot,
-- may derive from Daily Guidance/card number/date symbolism,
-- may display a small set of prominent numbers,
-- never claim increased lottery odds or financial outcomes.
-
-Required disclaimer concept:
-
-> Lucky numbers are offered for reflection and entertainment, not as predictions of financial outcomes.
-
-Thai equivalent must communicate the same meaning naturally.
-
-## Milestone H — Support activation
-
-### International
-
-- add verified Buy Me a Coffee destination,
-- open externally with safe link attributes,
-- keep support optional.
-
-### Thailand
-
-- use a verified PromptPay payment QR,
-- design a premium support card around the QR,
-- do not publish unnecessary personal ID/bank screenshot details,
-- test scanning on more than one banking/device environment where practical.
-
-Support never changes readings, access, spiritual status, or feature fairness.
-
-## Milestone I — Audio expansion
-
-When Reading Engine UX is stable:
-
-- consider expanding from 2 tracks toward the planned ~5-track soundtrack,
-- preserve global continuity,
-- preserve background pause/resume policy,
-- preserve crossfade/shuffle behavior,
-- do not let audio expansion delay core tarot functionality.
-
-## Milestone J — PWA/iOS hardening
-
-- iPhone/iPad Add-to-Home-Screen real-device test,
-- standalone safe-area verification,
-- update behavior/service-worker regression matrix,
-- selective offline card/data caching based on performance/storage evidence,
-- optional in-app install affordance only when it improves UX,
-- future custom-domain migration verification.
-
-## Milestone K — Production hardening / release candidate
-
+- iPhone/iPad real-device matrix,
 - accessibility pass,
-- performance pass,
-- international device matrix,
-- TH/EN proofreading,
-- interpretation-content audit,
-- local-data migration audit,
-- privacy/support disclosures,
-- offline/network-failure behavior,
-- deployment and rollback runbook,
+- performance/low-memory pass,
+- offline/network behavior,
+- language QA,
+- data migration QA,
+- support/privacy disclosures,
 - release candidate audit.
 
 ---
 
-# 31. Product Decisions That Are Explicitly NOT Required for V1
+# 32. Product Decisions Explicitly NOT Required Now
 
-To avoid unnecessary complexity, V1 does not require:
+To protect complexity budget, the current roadmap does not require:
 
-- user accounts
-- cloud login
-- backend database
-- AI-generated readings
-- server-side profile storage
-- social network
-- payment processing backend
-- subscriptions
-- push notifications
-- full Thai astrology natal chart
-- birth time/place collection
-- multiplayer/community system
-- complex CMS
+- user accounts,
+- login,
+- cloud profile,
+- membership tiers,
+- subscription billing,
+- custom backend,
+- AI-generated readings,
+- external inference API,
+- social network/community,
+- multiplayer,
+- push notifications,
+- full astrology natal chart,
+- birth time/place,
+- complex CMS,
+- advertising trackers.
 
-Any of these may be considered later only if the product benefit justifies the operational and technical cost.
-
----
-
-# 32. UX Quality Bar
-
-Every screen should satisfy these questions:
-
-1. What is the user trying to do here?
-2. Is the primary action obvious within seconds?
-3. Is there unnecessary competition for attention?
-4. Does the screen still feel like Little Ganesha Tarot?
-5. Is the text readable on a phone without zooming?
-6. Can a user recover/back out safely?
-7. Does it work without music?
-8. Does it work without fullscreen?
-9. Does it remain usable in Reduced Motion?
-10. Does it remain usable on iPhone and Android?
-11. Are loading/error/unsupported states graceful?
-12. Does this look like something Benedict Interactive would confidently publish?
-
-Visual polish is not achieved by adding more decoration. It comes from hierarchy, restraint, spacing, consistency, responsiveness, motion timing, typography, asset quality, and coherent interaction behavior.
+These may be reconsidered later only with evidence and a new product decision.
 
 ---
 
-# 33. Error Handling Philosophy
+# 33. Non-Negotiable Failure Conditions
 
-Never let an optional enhancement break the core flow.
+Release must be blocked or immediately corrected for:
 
-Examples:
-
-- audio load fails → readings still work
-- fullscreen request fails → stay in viewport
-- localStorage unavailable → session still works where practical
-- one track fails → skip/fallback to another track
-- asset fails → provide controlled fallback rather than invisible dead UI
-- unsupported browser feature → capability-detect and degrade gracefully
-
-User-facing error copy should be calm, specific, and actionable.
-
-Avoid technical stack traces or cryptic browser terminology in normal UI.
-
----
-
-# 34. State Management Principles
-
-Even without a framework, state must be intentional.
-
-Separate conceptually:
-
-- session UI state
-- persistent user preferences
-- personal profile
-- audio intent
-- current reading
-- reading history
-- app build/cache version
-
-Do not scatter unrelated `localStorage` access across every component indefinitely. As the app grows, centralize storage helpers/schema versioning.
-
-Future persistent schema changes must support migration or safe fallback.
+- wrong tarot numbering,
+- wrong card identity/title,
+- wrong relevant suit-symbol count,
+- accidental obsolete corrected card,
+- Little Ganesha identity drift in canonical replacement,
+- broken Tap to Begin,
+- hidden overlay intercepting input,
+- broken language switch,
+- mixed/unnatural production language in a declared supported locale,
+- major untranslated surfaces in an enabled language,
+- audio that cannot be stopped,
+- background audio violating user intent,
+- profile/reading uploaded remotely without approved design,
+- secrets/private credentials committed,
+- unnecessary payment identity exposure,
+- fullscreen failure breaking navigation,
+- common Android/iPhone unusability,
+- stale cache creating incompatible shell/resources,
+- mixed current runtime build markers,
+- version/checksum files generated before final edits and left stale,
+- HIGH-risk change without restore preparation,
+- new work stacked on serious regression,
+- unverified behavior described as fully tested,
+- support implying better readings/luck/spiritual benefit,
+- deterministic medical/legal/financial/lottery promises,
+- optional third-party service failure disabling the core app without explicit architectural justification.
 
 ---
 
-# 35. Content/Data Architecture Principles
+# 34. Definition of Done
 
-Tarot meanings should eventually live in structured data rather than being hardcoded throughout UI logic.
+A feature is Done only when:
 
-Recommended card data shape may include:
+1. product intent is satisfied,
+2. UX fits the app,
+3. implementation respects complexity budget,
+4. protected behavior has not regressed,
+5. static validation passes,
+6. relevant runtime testing is completed or limitations disclosed,
+7. mobile compatibility is considered,
+8. accessibility is considered,
+9. native-language quality is complete for enabled languages,
+10. persistent data impact is reviewed,
+11. privacy/security boundaries are preserved,
+12. assets/links are correct,
+13. live runtime version markers are coherent,
+14. docs/manifest/checksum are coherent,
+15. restore preparation exists when risk requires it,
+16. archive has been re-extracted and rechecked when distributed as ZIP,
+17. GitHub is re-read after push,
+18. canonical promotion occurs only after appropriate device/deployment evidence.
 
-```json
-{
-  "id": 0,
-  "slug": "the-fool",
-  "title": "The Fool",
-  "arcana": "major",
-  "number": 0,
-  "image": "assets/cards/00_THE_FOOL.png",
-  "keywords": {
-    "upright": [],
-    "reversed": []
-  },
-  "meaning": {
-    "upright": {},
-    "reversed": {}
-  },
-  "symbolism": [],
-  "localization": {}
-}
-```
-
-Exact schema may evolve. The principle is more important than the sample.
-
-Content identifiers must be stable enough for Journal/history references across future builds.
+**“Code exists” is not Definition of Done.**
 
 ---
 
-# 36. Professional Release Documentation
+# 35. Zero-Question Migration Instructions
 
-Every meaningful runtime release should record:
+A future room receiving this Master Plan and/or `ROOM_MIGRATION_PROMPT_V4_0.md` must continue without making P’Benz reconstruct project history.
 
-- runtime build version,
-- Master Plan version in force,
-- date,
-- baseline repository commit,
-- changed files/subsystems,
-- user-visible changes,
-- bug fixes,
-- behavior changes,
-- persistent-state/schema changes,
-- cache/service-worker changes,
-- known limitations,
-- QA performed,
-- runtime environments actually tested,
-- post-deploy status,
-- rollback notes when required by risk classification.
+## 35.1 Mandatory startup
 
-Every meaningful Master Plan update should record:
+1. Treat Master Plan V4.0 as canonical unless a newer explicit final decision exists.
+2. Read current GitHub `main` before runtime work.
+3. Verify HEAD and runtime build; do not assume the V4.0 baseline SHA is still current.
+4. Inspect exact files/subsystems to change.
+5. Compare local staging source against GitHub.
+6. identify risk/protected behavior.
+7. continue from the newest incomplete roadmap milestone rather than replaying completed work.
 
-- document version,
-- current runtime build (even if unchanged),
-- governance/status changes,
-- roadmap changes,
-- migration prompt version,
-- stale-version audit.
-
-Recommended commit messages should be concise and meaningful.
-
-Avoid vague commits such as `update`, `fix stuff`, or `new version` for major releases.
-
----
-
-# 37. Zero-Question Migration Instructions
-
-A future development room receiving this Master Plan and/or `ROOM_MIGRATION_PROMPT_V3_7.md` must continue immediately without making P’Benz reconstruct project history.
-
-## 37.1 Mandatory startup sequence
-
-1. Treat this document as active canonical **Master Plan V3.7**.
-2. Treat runtime **V0.3.6** as the current canonical deployed Home/application baseline unless GitHub proves a newer verified build exists.
-3. Read the current GitHub `main` before changing implementation.
-4. Verify current head/build markers rather than assuming a local package is current.
-5. Read the latest relevant QA/release documentation for the subsystem being changed.
-6. Continue from the next incomplete milestone; currently the default next major milestone is **Reading Engine / 0.4.x**, beginning with the 0.4.0 foundation/vertical slice.
-
-## 37.2 Do not ask P’Benz to restate locked decisions
+## 35.2 Do not ask P’Benz to restate
 
 Do not ask again for:
 
-- deck size/canon/numbering,
-- THE FOOL master frame rule,
-- Little Ganesha identity rules,
+- 78-card canon,
+- Strength VIII / Justice XI,
+- THE FOOL frame master,
+- Little Ganesha identity lock,
 - five corrected canonical cards,
-- canonical card back,
-- canonical Title Hero,
-- canonical App Icon,
-- Home V0.3.6 visual direction,
-- TH/EN requirement,
-- audio entry/background/mini-player direction,
-- personal Display Name / Date of Birth foundation,
-- Support split between international and Thailand,
-- Lucky Numbers positioning rules,
-- PWA/worldwide mobile direction,
-- explicit-only browser Full Screen policy,
-- Full Authorized Dev governance,
-- regression/restore policy,
-- GitHub Desktop/manual-push workflow while direct connector writes remain unproven.
+- canonical card back/title hero/app icon,
+- Home V0.3.6 direction,
+- explicit-only browser Full Screen,
+- TH/EN current language support,
+- native-language quality standard,
+- audio lifecycle,
+- optional local profile,
+- Reading Engine shared architecture,
+- Daily Guidance completed structure,
+- six Daily Lenses,
+- Save/Share curated export direction,
+- Journal structured local-first direction,
+- Open Access + Voluntary Support business model,
+- Buy Me a Coffee + PromptPay support split,
+- membership/subscription deferred status,
+- complexity/stability constitution,
+- GitHub-first rule,
+- risk/restore policy,
+- mandatory version coherence,
+- Android/iOS QA distinction.
 
-## 37.3 Full Authorized Dev continuation rule
+## 35.3 Zero-question does not mean blind implementation
 
-Biu in the new room inherits the same **100% final product-development decision authority**.
+A clarifying question is allowed only when genuinely blocking external information cannot be resolved from the Master Plan, GitHub, current conversation, or approved assets.
 
-P’Benz’s ideas are proposals to evaluate, not instructions that must be implemented literally.
+Examples:
+
+- final Buy Me a Coffee URL,
+- final verified PromptPay QR,
+- legal/payment/account authorization,
+- genuinely new ambiguous creative requirement whose interpretation would materially change the product.
+
+Check available sources first.
+
+## 35.4 Full Authorized Dev continuation
+
+Biu in the new room inherits the same final product-development authority.
 
 Biu must:
 
-- decide what is best for the product,
+- make routine decisions,
 - protect stable systems,
-- reject or redesign weak ideas,
-- choose architecture and sequencing,
-- decide whether a build passes release gates,
-- create a conditional restore plan before HIGH-risk/uncertain changes,
-- avoid asking routine approval questions.
-
-## 37.4 Zero-question does not mean blind implementation
-
-“Zero-question migration” means **do not ask for information already locked or retrievable from the repository/plan**.
-
-A clarifying question is allowed only when genuinely required external information does not yet exist, such as:
-
-- the final Buy Me a Coffee URL at activation time,
-- the final approved PromptPay QR asset at activation time,
-- a legal/account authorization only P’Benz can provide,
-- a new creative requirement that is materially ambiguous and cannot be resolved professionally without changing the intended product.
-
-Before asking, Biu must first check the Master Plan, repository, current conversation, and approved assets.
-
-## 37.5 Historical warnings
-
-- Do not regenerate the 78-card deck unless explicitly required.
-- Do not resurrect V0.3.3/V0.3.4 Home implementations.
-- Do not retry the abandoned Google Flow Title-video approach unless explicitly requested; Living Title remains the approved direction.
-- Do not auto-request browser fullscreen on Tap to Begin.
-- Do not let hidden overlays remain pointer-interactive.
-- Do not assume GitHub write access exists; verify safely before relying on it.
-- Do not call a pre-deploy simulation “full real-device testing.”
-- Do not modify runtime source for a documentation-only version bump.
+- reject needless complexity,
+- choose architecture/sequencing,
+- enforce language/version gates,
+- decide release readiness,
+- prepare restore plans for HIGH-risk work,
+- avoid pushing routine choices back to P’Benz.
 
 ---
 
-# 38. Non-Negotiable Failure Conditions
+# 36. Master Plan V4.0 Change Log
 
-The following should block release or require immediate correction:
+V4.0 is a major governance/status phase update. Runtime remains **0.4.3** because this Master Plan package is documentation-only.
 
-- wrong tarot numbering
-- wrong card identity/title
-- wrong suit-symbol count
-- Little Ganesha identity drift in a canonical replacement
-- accidental use of obsolete corrected cards
-- broken Tap to Begin
-- invisible overlay blocking the UI
-- nonfunctional language switch
-- audio that cannot be stopped
-- background audio ignoring intentional lifecycle policy
-- user profile uploaded remotely without approval
-- secrets/private banking identifiers committed unintentionally
-- unsupported fullscreen causing navigation failure
-- app unusable on iPhone Safari or common Android Chrome
-- stale cache causing incompatible HTML/JS/CSS without recovery strategy
-- mixed current runtime build/version markers inside one release
-- HIGH-risk change shipped without the required restore/rollback preparation
-- new work stacked on top of a serious known regression instead of restoring/stabilizing first
-- unverified feature described as “fully tested”
-- support/payment implying better readings or spiritual benefit
-- deterministic financial/lottery promises
+V4.0:
 
----
-
-# 39. Definition of Done
-
-A feature is **Done** only when all of the following are true:
-
-1. Product intent is satisfied.
-2. UX is coherent with the rest of the app.
-3. Implementation is maintainable at the current project scale.
-4. Stable behavior has not regressed.
-5. Relevant static validation passes.
-6. Relevant runtime testing has been completed or limitations are explicitly disclosed.
-7. Mobile compatibility has been considered.
-8. Accessibility/fallback behavior has been considered.
-9. Persistent-state impact has been considered.
-10. Assets and links are correct.
-11. Runtime build markers / Master Plan version / release notes are coherent for the type of change.
-12. Rollback/restore preparation exists when risk classification requires it.
-13. Deployed source is audited after push when possible.
-14. A new canonical baseline is declared only after the appropriate real-device/deployment gate.
-
-“Code exists” is not Definition of Done.
+- updates current canonical runtime from V0.3.6-era documentation to V0.4.3,
+- records current GitHub baseline commit `3bd6764dfdf17a7e6691113133d13b085b99df29`,
+- promotes Daily Guidance from planned vertical slice to complete protected canonical reading experience,
+- records the six Daily Lenses across 78 cards and TH/EN,
+- records same-local-day Daily persistence,
+- promotes Save Image and native Share as working V0.4.3 capabilities with Android real-device Founder PASS,
+- formalizes curated reading export versus raw screenshot,
+- records Journal as separate not-yet-implemented structured history subsystem,
+- locks remaining primary modes to one shared Reading Engine,
+- introduces the **Complexity Budget & Stability Constitution**,
+- makes easy-to-medium complexity the default architecture target,
+- adds the 9–9.5/10-at-4/10-complexity decision heuristic,
+- formalizes **Open Access + Voluntary Support** as the current business model,
+- preserves Buy Me a Coffee + PromptPay as low-complexity support channels,
+- explicitly defers membership/login/subscription/backend architecture,
+- adds conditions that must be met before membership can ever be reconsidered,
+- upgrades localization into the **Global Native Language Standard** for all present/future languages,
+- makes native fluency, cultural naturalness, clarity, accessibility, and layout fit mandatory language gates,
+- prohibits partial/mixed production localization for a declared supported language,
+- upgrades runtime build coherence into a **hard release blocker**,
+- requires every applicable live build/cache marker to move together,
+- adds automated version-audit expectations,
+- formalizes checksum/manifest generation order and archive re-extraction verification,
+- preserves iOS/iPadOS QA honesty as pending where not yet tested,
+- updates the immediate roadmap to remaining core readings → Journal → Card Library → Support → Lucky Numbers → SFX/audio → reversals → production hardening,
+- refreshes Zero-Question migration instructions for the working V0.4.3 product era.
 
 ---
 
-# 40. Final Product Standard
+# 37. Historical Milestone Summary
 
-Little Ganesha Tarot should ultimately feel like a product that could be discovered by a user anywhere in the world with no knowledge of its development history and still communicate:
+Earlier V3.x documents remain historical evidence. The essential milestones retained by V4.0 are:
 
-- visual confidence,
-- spiritual warmth,
-- tarot credibility,
-- technical polish,
-- trustworthy behavior,
-- thoughtful accessibility,
-- careful privacy,
-- refined sound and motion,
-- coherent Benedict Interactive authorship.
+- V3.1 established Full Authorized Dev governance, worldwide mobile, profile/support/audio foundations.
+- V3.2 locked the final app icon system.
+- V3.3 brought PWA installability/icon wiring into active foundation work.
+- V3.4 established Premium Minimal Sacred UI motifs.
+- V3.5 rejected failed V0.3.3/V0.3.4 Home implementations, removed automatic Tap-to-Begin fullscreen, and rebuilt the stable Home direction.
+- V3.6 polished and locked the Home V0.3.6 visual baseline.
+- V3.7 established GitHub-first workflow, risk classification, Restore Protocol, independent runtime/Master Plan version tracks, and planned Reading Engine V0.4.x.
+- Runtime V0.4.x then implemented the Reading Engine, Daily Guidance, native TH/EN content, Daily Lenses, and V0.4.3 Save/Share.
 
-The product should never expose the development compromises behind it. Complexity belongs inside the implementation; the user should experience calmness, clarity, delight, and confidence.
-
----
-
-# 41. V3.1 Change Log
-
-V3.1 consolidates and formally locks the following major updates beyond the prior V3 deck-era plan:
-
-- Full Authorized Product & Development Lead authority for Biu
-- Founder / Vision Owner role separation
-- Working Code Is Protected Territory rule
-- mandatory regression-first engineering governance
-- QA honesty levels and release gate
-- worldwide mobile-first architecture
-- iOS / Android parity
-- progressive enhancement / graceful fallback
-- Immersive Mode architecture
-- portrait-first but non-fragile responsive policy
-- Living Title Full/Reduced Motion direction
-- professional audio autoplay/lifecycle behavior
-- global Mini Player direction
-- first-entry profile flow
-- optional Display Name
-- optional Date of Birth
-- local-only personal profile privacy
-- no birth time/place in V1
-- Home/Menu hierarchy
-- signature reading paths
-- Lucky Numbers symbolic positioning
-- Settings architecture
-- Support the Project architecture
-- Buy Me a Coffee international channel placeholder
-- Thailand PromptPay channel placeholder and QR privacy/scanning rules
-- GitHub write-permission limitation workflow
-- cache/version/deployment discipline
-- V0.3.1 candidate status
-- Reading Engine as the next major functional milestone after foundation stabilization
-- zero-question migration instructions for future rooms
+Do not treat old “Reading Engine NEXT” or “runtime 0.3.6 current” statements from historical documents as active status.
 
 ---
 
+# 38. Canonical Closing Rule
 
-# 42. V3.2 Change Log
+When uncertain, choose the solution that best protects:
 
-V3.2 preserves all V3.1 governance and product decisions and additionally locks the **final application icon system** as a canonical product asset.
+- tarot correctness,
+- Little Ganesha identity,
+- user trust,
+- worldwide usability,
+- native language quality,
+- stable working behavior,
+- premium presentation,
+- privacy,
+- maintainability,
+- low-to-moderate complexity,
+- recoverability,
+- runtime/version coherence.
 
-V3.2 additions:
+Biu is expected to act proactively and decisively under the Full Authorized Dev mandate.
 
-- canonical Little Ganesha app icon visual identity
-- icon-first simplification rule for small-size recognizability
-- no embedded product-name text in the production launcher icon
-- 1024 × 1024 canonical raster master
-- Android/Chromium 512 and 192 PWA derivatives
-- dedicated Android maskable icon
-- Apple touch icon derivative
-- PNG favicon derivatives and ICO fallback
-- platform safe-zone / launcher-mask rules
-- repository `assets/icons/` structure
-- explicit rule that future icon replacement is a brand-level change
-- PWA roadmap updated to distinguish **icon assets complete** from **manifest/runtime integration pending**
-- QA honesty maintained: no claim of install-icon runtime behavior until wiring and real-device installation tests pass
+P’Benz should not need to reconstruct history, protect the project from regressions manually, remember every build-marker location, or approve routine implementation choices. Those are development responsibilities.
 
----
-
-# 43. V3.3 Change Log
-
-V3.3 preserves all V3.1–V3.2 governance, deck, product, profile, support, audio, motion, worldwide-mobile, and icon decisions while moving PWA installation identity into the active foundation milestone by explicit Founder direction.
-
-V3.3 additions / status corrections:
-
-- records V0.3.1 as uploaded application foundation rather than pending candidate
-- records Master Plan V3.2 + canonical app icon pack as uploaded to `main`
-- defines V0.3.2 as the PWA Installability & App Icon Wiring candidate
-- locks `manifest.webmanifest` as the install metadata source
-- locks relative `./` start URL/scope strategy for GitHub Pages project-path safety and future migration flexibility
-- locks `display: standalone` as the baseline installed presentation
-- wires canonical 192/512/maskable icons into the manifest
-- wires Apple touch icon and favicon metadata into HTML
-- adds isolated `js/pwa.js` service-worker registration foundation
-- adds versioned `sw.js` application-shell caching and stale-cache cleanup
-- protects working V0.3.1 systems from PWA-driven refactoring
-- excludes large audio and the full 78-card deck from install-time pre-cache
-- explicitly separates static PWA validation from deployed real-device install validation
-- moves deeper PWA work from “not started” to “foundation implemented; hardening later”
-
----
-
-# 44. V3.4 Change Log
-
-V3.4 preserves all prior governance, tarot canon, PWA, icon, profile, support, audio, motion, worldwide-mobile, and product decisions while establishing the canonical Premium Sacred Home motif system.
-
-V3.4 additions / status corrections:
-
-- records V0.3.2 PWA wiring as uploaded to `main` while keeping real-device install QA honest/pending,
-- defines V0.3.3 as the Premium Sacred Home Motif candidate,
-- locks **Premium Minimal Sacred UI** as the Home-card design direction,
-- rejects repeated full Little Ganesha portraits across every Home card,
-- defines a symbolic motif map for Daily Guidance, Ask Ganesha, Three-Card Reading, The Golden Path, Remove the Obstacle, Lucky Numbers, Card Library, and Journal,
-- prefers lightweight reusable SVG motif assets,
-- locks low visual weight and typography-first readability,
-- preserves motifs as static artwork in Reduced Motion rather than removing the visual identity,
-- requires new motif assets to participate in service-worker/cache versioning,
-- protects V0.3.1/V0.3.2 stable behavior from unnecessary visual refactoring.
-
----
-
-# 45. V3.5 Change Log
-
-V3.5 records the Founder-approved correction after V0.3.3 and V0.3.4 failed deployed real-device Home visual QA.
-
-V3.5 additions / corrections:
-
-- explicitly rejects V0.3.3 and V0.3.4 Home visual implementations while preserving their history,
-- preserves **Premium Minimal Sacred UI** as the approved design direction,
-- defines V0.3.5 as a clean Home visual rebuild from the stable V0.3.2 application/PWA baseline,
-- locks one-motif-only behavior for Primary / Signature Home cards,
-- prohibits duplicated foreground symbols on motif cards,
-- locks one compact line-icon system for Explore cards,
-- establishes deterministic Thai/English Home typography hierarchy and paired-card spacing,
-- requires an opaque/non-bleeding Home header during scroll,
-- makes sacred card motifs static by default to protect geometry integrity and calm presentation,
-- removes automatic Fullscreen API invocation from `TAP TO BEGIN`,
-- keeps installed PWA app-like presentation through manifest `display: standalone`,
-- moves browser fullscreen to explicit user action in Settings only,
-- protects stable audio, profile, PWA/icon, Support, language, Mini Player, navigation, and Return-to-Title behavior.
-
----
-
-# 46. V3.6 Change Log
-
-V3.6 records the Founder-approved Premium Home Polish pass following successful real-device V0.3.5 stabilization.
-
-V3.6 additions / corrections:
-
-- keeps V0.3.5 Home architecture canonical and explicitly avoids another structural rebuild,
-- refines Home header height and lower-edge transition without allowing content bleed,
-- refines Thai/English typography rhythm while preserving paired-card alignment,
-- removes the English-style comma from Thai personalized greetings,
-- further simplifies Ask Ganesha and related symbolic SVG motifs toward a premium emblem language,
-- slightly strengthens Explore icon legibility without adding a second decorative layer,
-- compacts the global Mini Player while preserving all existing controls and audio behavior,
-- preserves bottom navigation structure and safe-area handling,
-- preserves explicit-only browser Fullscreen behavior and installed PWA standalone behavior,
-- requires V0.3.6 to be built from and hash-verified against the current GitHub V0.3.5 baseline before release,
-- protects audio.js, pwa.js, manifest.webmanifest, audio assets, card assets, title hero, card back, profile behavior, Support placeholders, and reading/navigation foundations from unrelated changes.
-
----
-
-# 47. V3.7 Change Log
-
-V3.7 is a governance/status/roadmap update created after V0.3.6 passed post-deployment Android real-device review.
-
-**Runtime build remains 0.3.6.** This documentation-only update intentionally does not create runtime build 0.3.7.
-
-V3.7 additions / corrections:
-
-- promotes V0.3.6 Home Visual System to APPROVED / CANONICAL after real-device TH/EN review,
-- promotes the final Little Ganesha launcher icon to APPROVED / CANONICAL after Android Home Screen verification,
-- records Android PWA install identity as real-device verified while keeping iOS/iPadOS PWA validation pending,
-- upgrades Full Authorized Dev governance so Biu has final 100% product-development decision authority and P’Benz’s ordinary ideas are Founder proposals,
-- establishes GitHub-first baseline verification before runtime changes,
-- introduces LOW / MEDIUM / HIGH internal change-risk classification,
-- introduces a conditional Restore Protocol for HIGH-risk or materially uncertain changes,
-- prohibits stacking new work on a serious deployed regression,
-- formalizes independent runtime-build and Master-Plan version tracks,
-- requires current runtime build markers to update coherently whenever runtime code/assets actually change,
-- explicitly states that documentation-only Master Plan updates do not bump runtime build,
-- fixes the stale Zero-Question migration instruction that incorrectly referenced an older Master Plan version,
-- declares V0.4.x as the planned Reading Engine feature train with V0.4.0 as the next major runtime target,
-- defines a reusable card/spread/draw/session architecture direction,
-- defines Daily Guidance as the first end-to-end Reading Engine vertical slice,
-- records expected Daily local-date persistence to prevent endless rerolling,
-- clarifies Ask Ganesha one-card reflective direction,
-- expands Journal/local-storage architecture planning,
-- preserves Lucky Numbers as symbolic/entertainment only,
-- preserves Support privacy boundaries and the split between international Buy Me a Coffee and Thailand PromptPay,
-- keeps Home V0.3.6 protected from unnecessary aesthetic churn,
-- adds a standalone room migration prompt so a future room can continue without backward questions.
-
----
-
-# 48. Canonical Closing Rule
-
-**When uncertain, choose the solution that best protects tarot correctness, Little Ganesha identity, user trust, worldwide usability, stable working behavior, premium presentation, privacy, maintainability, and recoverability.**
-
-For product development decisions, Biu is expected to act proactively and decisively under the Full Authorized Dev mandate and has final authority to choose the implementation/direction Biu considers best.
-
-P’Benz should not need to reconstruct history, approve routine implementation choices, or protect the product from regressions manually. That responsibility belongs to Biu.
-
-**End of Master Plan & Zero-Question Development Handoff V3.7**
+**End of Master Plan & Zero-Question Development Handoff V4.0**

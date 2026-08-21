@@ -1,0 +1,72 @@
+{
+  "project": "Little Ganesha Tarot — The Golden Path",
+  "studio": "Benedict Interactive",
+  "document_release": "Master Plan V4.0",
+  "master_plan_version": "4.0",
+  "runtime_build_unchanged": "0.4.3",
+  "release_type": "Documentation / governance only",
+  "risk_classification": "LOW",
+  "risk_reason": "Documentation/governance-only update; no runtime source, runtime data, service worker, manifest, CSS, JS, audio, or asset files are included.",
+  "baseline_repository": "grolygori789-crypto/little-ganesha-tarot",
+  "baseline_branch": "main",
+  "baseline_head_commit": "3bd6764dfdf17a7e6691113133d13b085b99df29",
+  "baseline_head_message": "Add save and share for daily guidance",
+  "baseline_runtime_build": "0.4.3",
+  "canonical_master_plan": "docs/governance/MASTER_PLAN.md",
+  "canonical_room_migration_prompt": "docs/governance/ROOM_MIGRATION_PROMPT_V4_0.md",
+  "supersedes_active_governance": "Master Plan V3.7 and ROOM_MIGRATION_PROMPT_V3_7.md where conflicting",
+  "historical_v3_7_files_may_remain": true,
+  "historical_note": "Overlay delivery does not perform Git deletions. Older V3.7 versioned documents may remain as historical evidence but are not active source of truth after V4.0 is uploaded.",
+  "runtime_files_modified": false,
+  "files": [
+    {
+      "path": "docs/governance/MASTER_PLAN.md",
+      "action": "replace",
+      "size": 71816,
+      "sha256": "a8c7004eadc187299860c9ffba59ae491f3c8e3d5ea56f8764a6da29424eb614"
+    },
+    {
+      "path": "docs/governance/ROOM_MIGRATION_PROMPT_V4_0.md",
+      "action": "add",
+      "size": 16401,
+      "sha256": "7fd93851870f01d7982e42605a4695208b8b645f022f30612a36439637b8f8dd"
+    },
+    {
+      "path": "docs/governance/MASTER_PLAN_V4_0_CHANGELOG.md",
+      "action": "add",
+      "size": 1996,
+      "sha256": "044d4390e166942a71ebd67a09b7490d9d66166e87800369a01cc700b35a7ec8"
+    },
+    {
+      "path": "docs/governance/DOCS_UPDATE_NOTES_V4_0.md",
+      "action": "add",
+      "size": 1328,
+      "sha256": "aad16f59a3fe288bf1aacefef044e4f1c06118a846c429259cc35b9cea0337a0"
+    },
+    {
+      "path": "docs/qa/QA_MASTER_PLAN_V4_0.md",
+      "action": "add",
+      "size": 2129,
+      "sha256": "22e085cab56e3a783b021327342172340b28eb8052b41befcc62821d40796df5"
+    },
+    {
+      "path": "docs/tests/test-governance-v4.js",
+      "action": "add",
+      "size": 3619,
+      "sha256": "b93c6b522cb5505b9ae592fe090c70d1deaa9fb1557dda3f7806e9cea737dc86"
+    }
+  ],
+  "qa": {
+    "github_first_baseline_verified": "PASS",
+    "governance_structure_test": "PASS before manifest finalization; rerun required from final archive",
+    "master_plan_current_runtime_metadata": "PASS",
+    "native_language_standard_present": "PASS",
+    "complexity_stability_constitution_present": "PASS",
+    "runtime_version_coherence_hard_gate_present": "PASS",
+    "zero_question_migration_prompt_present": "PASS",
+    "android_daily_save_share_user_report": "PASS",
+    "ios_ipados_cross_platform": "PENDING",
+    "runtime_impact": "NONE"
+  },
+  "packaging_rule": "Finalize docs → manifest → checksum last → ZIP → re-extract → run governance test + JSON validation + checksum verification from extracted archive."
+}
