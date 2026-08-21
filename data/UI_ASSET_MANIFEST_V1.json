@@ -1,0 +1,22 @@
+{
+  "project": "Little Ganesha Tarot: The Golden Path",
+  "studio": "Benedict Interactive",
+  "ui_assets": [
+    {
+      "path": "assets/ui/card-back.png",
+      "width": 941,
+      "height": 1672,
+      "format": "PNG",
+      "sha256": "4304e3cffe4defa84047d421395efea527d22759909f2f2f65e88e0eb794c0c8",
+      "status": "approved"
+    },
+    {
+      "path": "assets/ui/title-hero.png",
+      "width": 864,
+      "height": 1536,
+      "format": "PNG",
+      "sha256": "a0d32ed344105817485ddb7a0137583cce1369413476815ca80cee06ab947408",
+      "status": "approved"
+    }
+  ]
+}
