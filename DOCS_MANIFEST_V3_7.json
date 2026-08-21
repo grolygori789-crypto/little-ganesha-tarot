@@ -1,0 +1,67 @@
+{
+  "project": "Little Ganesha Tarot — The Golden Path",
+  "studio": "Benedict Interactive",
+  "document_version": "3.7",
+  "runtime_build_unchanged": "0.3.6",
+  "runtime_baseline_commit": "d7c6fb7657fa2cb88d7ed0a6194d7439c959f4bc",
+  "release_type": "documentation/governance/status/roadmap/zero-question handoff only",
+  "consistency": {
+    "master_plan_version": "3.7",
+    "runtime_build": "0.3.6",
+    "runtime_commit": "d7c6fb7657fa2cb88d7ed0a6194d7439c959f4bc",
+    "docs_only": true,
+    "runtime_files_modified": false,
+    "android_home_real_device_gate": "PASS",
+    "android_launcher_icon_gate": "PASS",
+    "ios_pwa_real_device_gate": "PENDING",
+    "next_runtime_train": "0.4.x",
+    "next_default_target": "0.4.0 Reading Engine Foundation"
+  },
+  "files": [
+    {
+      "path": "DOCS_UPDATE_NOTES_V3_7.md",
+      "size": 1005,
+      "sha256": "9519b72349983615a7f9bebfd0ae938f85cf3c7bba83d7d417590871c6fcc3ac"
+    },
+    {
+      "path": "MASTER_PLAN.md",
+      "size": 99764,
+      "sha256": "f1e00a5b9c077706c7a3a6a1169bcf28cbc07a06ed875139655ca9903d7dfbaa"
+    },
+    {
+      "path": "MASTER_PLAN_V3_7_CHANGELOG.md",
+      "size": 1560,
+      "sha256": "cc5f3d557b3c8346ad5a485a297f4f93c77d25a19e696f9ace5da2f44fd8ac4b"
+    },
+    {
+      "path": "QA_MASTER_PLAN_V3_7.md",
+      "size": 1341,
+      "sha256": "1bd063deb4a6e887eccbc56baca3ae2549fbe2e9a0acd11de0b6340b2a5050c8"
+    },
+    {
+      "path": "QA_V0_3_6.md",
+      "size": 8872,
+      "sha256": "e4deae1f63205818d308e1a1ded4c7e1895435f60afa62788892903807299a98"
+    },
+    {
+      "path": "README.md",
+      "size": 1682,
+      "sha256": "c2783ab338357f49e630461b53af476af7ba14dec71e2a7137e79ae5ec936201"
+    },
+    {
+      "path": "RELEASE_NOTES_V0_3_6.md",
+      "size": 1605,
+      "sha256": "abafe97b028c5111462ddbf9f591b3e47c008af3004ab9d49d1f6f1186daa5ab"
+    },
+    {
+      "path": "ROOM_MIGRATION_PROMPT_V3_7.md",
+      "size": 9794,
+      "sha256": "7ff08b9c369a1d48d9e11b9678d0ec3721c1ea37c597a60cdaeabe9e9ec444f1"
+    },
+    {
+      "path": "ROOM_MIGRATION_PROMPT_V3_7.txt",
+      "size": 9794,
+      "sha256": "7ff08b9c369a1d48d9e11b9678d0ec3721c1ea37c597a60cdaeabe9e9ec444f1"
+    }
+  ]
+}

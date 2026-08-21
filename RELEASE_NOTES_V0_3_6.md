@@ -23,3 +23,14 @@ Refine the already-stable V0.3.5 Home experience without another architectural r
 
 ## Release posture
 This is a polish release, not a feature release. Any post-deployment real-device regression should block Reading Engine work until corrected.
+
+
+## Post-deployment acceptance
+
+V0.3.6 was deployed to GitHub Pages under commit `d7c6fb7657fa2cb88d7ed0a6194d7439c959f4bc`. Android real-device review of TH/EN Home screens passed. The canonical Little Ganesha launcher icon is also confirmed on the Android Home Screen.
+
+**Final Home status:** APPROVED / CANONICAL.
+
+Further Home polish is frozen unless a concrete defect, accessibility issue, performance issue, compatibility issue, or meaningful product improvement justifies reopening the screen.
+
+Full iPhone/iPad PWA real-device validation remains pending and is tracked separately from Home acceptance.

@@ -2,7 +2,7 @@
 
 **Project:** Little Ganesha Tarot — The Golden Path  
 **Studio:** Benedict Interactive  
-**Master Plan:** V3.6
+**Master Plan:** V3.7
 
 ## Purpose
 V0.3.6 is the Premium Home Polish release over the stabilized V0.3.5 Home architecture. It intentionally avoids another structural rebuild and focuses on refinement, readability, density, and real-device presentation.
@@ -18,11 +18,15 @@ V0.3.6 is the Premium Home Polish release over the stabilized V0.3.5 Home archit
 - preserves PWA standalone behavior, audio lifecycle, profile storage, Support placeholders, navigation, and card assets.
 
 ## QA status
-- Git-blob baseline verification against current GitHub `main` V0.3.5: PASS
+- pre-deploy Git-blob baseline verification against GitHub V0.3.5: PASS
 - static / structural automated checks: 198 / 198 PASS
 - simulated Chromium application-flow checks: 22 / 22 PASS
-- simulated responsive layout checks (TH/EN, 320/360/390/430 widths): 150 / 150 PASS
+- simulated responsive-layout checks: 150 / 150 PASS
+- post-deployment Android real-device TH/EN Home visual gate: PASS
+- Android launcher App Icon/PWA identity: PASS
+- Home Visual System V0.3.6: APPROVED / CANONICAL
+- iPhone/iPad PWA real-device gate: pending
 
-Final canonical visual acceptance still requires one post-deployment real-device screenshot/device pass because OS font rasterization, browser chrome, DPR, and safe-area behavior cannot be fully proven before deployment.
+Runtime remains V0.3.6. Master Plan V3.7 is a documentation/governance/roadmap update and intentionally does not bump the runtime build.
 
-See `QA_V0_3_6.md` and `RELEASE_NOTES_V0_3_6.md`.
+See `QA_V0_3_6.md`, `RELEASE_NOTES_V0_3_6.md`, `MASTER_PLAN.md`, and `ROOM_MIGRATION_PROMPT_V3_7.md`.
