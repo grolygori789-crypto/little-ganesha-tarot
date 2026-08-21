@@ -280,6 +280,6 @@
 
   setLanguage(language);
   syncAudioUI();
-  window.LGT_BUILD = '0.2.1';
+  window.LGT_BUILD = '0.2.2';
   window.setTimeout(revealTitle, autoRevealMs);
 })();

@@ -1,7 +1,7 @@
 {
   "project": "Little Ganesha Tarot: The Golden Path",
   "studio": "Benedict Interactive",
-  "version": "V0.2",
+  "version": "V0.2.2",
   "target_playlist_size": 5,
   "crossfade_seconds": 3.8,
   "shuffle_default": true,

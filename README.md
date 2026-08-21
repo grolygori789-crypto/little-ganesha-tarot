@@ -1,51 +1,25 @@
-# Little Ganesha Tarot — App Foundation V0.2.1
+# Little Ganesha Tarot — App Foundation V0.2.2
 
-Studio: Benedict Interactive
+Interaction hotfix for the V0.2 Living Title + Audio Foundation.
 
-V0.2.1 upgrades the opening experience without modifying any canonical card or UI master artwork.
+## Root cause fixed
+The transparent Exit modal used the HTML `hidden` attribute while its CSS component rule set `display: grid`. CSS `display` can override the browser's default rendering of `hidden`, leaving an invisible full-screen layer at z-index 50 that intercepted taps/clicks.
 
-## Included in this build
+V0.2.2 adds:
+- global `[hidden] { display: none !important; }` safety rule
+- `pointer-events: none` on the inactive modal backdrop
+- `pointer-events: auto` only when the modal is visible
+- `pointer-events: none` as soon as the Benedict splash starts leaving
+- explicit pointer-event safety for Title controls
+- cache-busted `?v=0.2.2` CSS/JS URLs
 
-- Refined Benedict Interactive splash timing and one-pass gold wordmark treatment.
-- Living Title presentation built entirely with HTML/CSS/JS layers over the approved `assets/ui/title-hero.png`.
-- Subtle breathing camera motion, atmospheric light drift, water shimmer, golden motes, petals and lamp glow.
-- `prefers-reduced-motion` fallback.
-- Audio engine that starts only after `TAP TO BEGIN`, respecting browser autoplay rules.
-- Two active starting tracks, with `Golden Lantern at Twilight` selected as the opening track.
-- Play / pause / previous / next controls.
-- Shuffle with no immediate repeat.
-- Automatic crossfade near the end of tracks.
-- Volume, mute and audio preferences persisted in `localStorage`.
-- Background pause / resume handling.
-- Compact mini player after `TAP TO BEGIN`.
-- Return-to-Title foundation with confirmation.
-- Bilingual English / Thai UI copy for all new controls.
+Expected test flow:
+1. Benedict Interactive holds for about 2.6 seconds.
+2. Title appears with Living Title motion (unless the device requests reduced motion).
+3. EN / ไทย and sound controls respond.
+4. Tap `TAP TO BEGIN`.
+5. Mini Player appears and Golden Lantern at Twilight fades in if sound is enabled.
+6. Previous / Play-Pause / Next / More work.
+7. Return to Title confirmation works.
 
-## Merge into the repository root
-
-Copy the contents of this package into the root of `little-ganesha-tarot` and allow these existing files to be replaced:
-
-- `index.html`
-- `css/app.css`
-- `js/app.js`
-- `README.md`
-
-New files:
-
-- `js/audio.js`
-- `assets/audio/golden-lantern-at-twilight.mp3`
-- `assets/audio/sunlight-on-bronze.mp3`
-- `data/AUDIO_MANIFEST_V1.json`
-
-Do not replace or modify the existing canonical card assets or approved UI images.
-
-## Audio notes
-
-The architecture targets a five-track soundtrack. V0.2.1 activates only the two tracks currently supplied. Additional tracks can be added later without changing the opening UX model.
-
-
-## V0.2.1 hotfix
-- Cache-busted CSS/JS URLs for GitHub Pages testing.
-- Fixed Benedict Interactive splash to a consistent 2.6 s hold on normal motion settings.
-- Removed accidental tap-to-skip on the studio ident.
-- Increased Living Title motion visibility while keeping the original art unchanged.
+Commit suggestion: `Fix invisible overlay blocking title controls`
