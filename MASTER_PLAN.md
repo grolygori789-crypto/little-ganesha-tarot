@@ -1,8 +1,8 @@
-# LITTLE GANESHA TAROT — MASTER PLAN & ZERO-QUESTION DEVELOPMENT HANDOFF V3.2
+# LITTLE GANESHA TAROT — MASTER PLAN & ZERO-QUESTION DEVELOPMENT HANDOFF V3.3
 
 **Project:** Little Ganesha Tarot — The Golden Path  
 **Studio / Publisher:** Benedict Interactive  
-**Canonical document version:** 3.2  
+**Canonical document version:** 3.3  
 **Last updated:** 21 August 2026  
 **Status:** ACTIVE — CANONICAL SOURCE OF TRUTH  
 **Document type:** Master Plan + Product Specification + Engineering Governance + Zero-Question Room Migration Handoff
@@ -13,9 +13,9 @@
 
 This document is the canonical, self-contained development authority for **Little Ganesha Tarot — The Golden Path**.
 
-Version 3.1 consolidates the approved deck canon, visual identity, product direction, app architecture, UX rules, engineering governance, QA standards, worldwide mobile requirements, audio/motion behavior, personal profile rules, support/donation architecture, release discipline, and current implementation status.
+Version 3.3 consolidates the approved deck canon, visual identity, product direction, app architecture, UX rules, engineering governance, QA standards, worldwide mobile requirements, audio/motion behavior, personal profile rules, support/donation architecture, release discipline, and current implementation status.
 
-**V3.2 supersedes earlier Master Plans, migration prompts, development summaries, drafts, experiments, and implementation notes wherever they conflict.** Earlier materials may be consulted only for historical context when they do not contradict this document or a newer explicit instruction from P’Benz.
+**V3.3 supersedes earlier Master Plans, migration prompts, development summaries, drafts, experiments, and implementation notes wherever they conflict.** Earlier materials may be consulted only for historical context when they do not contradict this document or a newer explicit instruction from P’Benz.
 
 The project must continue without asking P’Benz to repeat locked decisions already recorded here. A new room, developer, assistant instance, or future handoff should be able to resume work from this document plus the current repository and approved assets.
 
@@ -24,7 +24,7 @@ The project must continue without asking P’Benz to repeat locked decisions alr
 When instructions conflict, apply this order strictly:
 
 1. **P’Benz’s latest explicit instruction in the current conversation / development turn.**
-2. **This Master Plan & Zero-Question Development Handoff V3.2.**
+2. **This Master Plan & Zero-Question Development Handoff V3.3.**
 3. **Approved canonical production assets** supplied or approved by P’Benz, including the 78-card deck, master card back, title hero, and later approved replacements.
 4. **Current verified implementation in the GitHub repository** after a successful push/deployment, provided it does not conflict with items 1–3.
 5. Prior plans, manifests, prompts, summaries, prototypes, experiments, and obsolete builds.
@@ -847,25 +847,34 @@ When the user turns Immersive Mode OFF:
 
 No screen, layout, navigation route, audio subsystem, or reading engine may require the Fullscreen API to function.
 
-## 10.4 PWA roadmap
+## 10.4 PWA integration status and policy
 
-PWA support is expected, but should be introduced in a controlled milestone after the core screen and reading architecture is stable.
+PWA integration is now an active foundation milestone under **V0.3.2**, moved earlier by P’Benz’s explicit product direction so installation identity can be verified before deeper reading-engine work.
 
-PWA phase should include:
+The V0.3.2 PWA foundation includes:
 
-- manifest / install metadata
-- **canonical app icon pack — asset design COMPLETE; app wiring still required**
+- `manifest.webmanifest` / install metadata
+- canonical 192 × 192 and 512 × 512 launcher icons
+- dedicated 512 × 512 maskable Android/Chromium icon
+- Apple touch icon wiring for iPhone/iPad Home Screen
+- browser favicon wiring
 - theme/background colors
-- standalone/app-like display behavior
-- installability checks
-- service worker
-- offline strategy for essential UI and card assets
-- safe update behavior
-- cache invalidation/versioning
+- `display: standalone` app-like installed presentation
+- repository-safe relative `start_url` and `scope`
+- service-worker registration
+- versioned essential application-shell caching
+- stale-cache cleanup
+- network-first navigation/scripts/styles to reduce deployment regression risk
+- runtime image caching
+- installability event foundation for a future in-app install affordance
 
-The icon system defined in Section 5.3 must be wired into the manifest and HTML metadata when the PWA integration patch is implemented. Do not generate replacement icons merely to complete PWA wiring.
+Large audio assets and the complete 78-card deck are intentionally **not** pre-cached at installation time. This protects first-install speed, storage usage, and reliability on constrained mobile networks. Deeper selective offline caching may be introduced later after real-world storage/performance QA.
 
-Do not let service-worker caching reintroduce stale-build confusion during active development.
+The icon system defined in Section 5.3 is the canonical source for all launcher/Home Screen wiring. Do not generate replacement icons merely to satisfy platform-specific install behavior.
+
+Service-worker caching must never reintroduce stale-build confusion during active development. JavaScript and CSS remain explicitly versioned, old Little Ganesha caches are cleaned on worker activation, and online navigation/code requests prefer the network before cached fallback.
+
+**QA honesty:** V0.3.2 may be called statically PWA-wired after package validation, but browser UI such as Chrome showing “Install app” and the final installed icon/standalone launch must be verified on the deployed real device before being called runtime-validated.
 
 ---
 
@@ -1771,108 +1780,97 @@ Do not modularize merely for appearance; split when responsibilities become mean
 
 # 29. Current Application Status
 
-## 29.1 Stable previous foundation
+## 29.1 Stable application foundation on `main`
 
-V0.2.x established and debugged:
+The repository has progressed through the following verified uploaded milestones:
+
+- V0.2.x — Benedict splash, Title, Living Title foundation, language, audio engine, Mini Player, Return to Title, interaction-overlay repair, cache-busting discipline
+- V0.3.1 — first-entry Personal Profile, optional Display Name, optional Date of Birth, Home/Menu foundation, Settings, Motion preference, Immersive Mode foundation, global Mini Player, audio lifecycle, Support placeholders
+- Master Plan V3.2 + canonical final app icon pack — uploaded to `main`
+
+A major V0.2.x bug caused by an invisible modal/backdrop intercepting pointer events is considered resolved. Prevention of invisible interactive overlays remains a permanent regression rule.
+
+## 29.2 V0.3.2 PWA Installability candidate
+
+At the time of this V3.3 Master Plan update, **V0.3.2 is the prepared candidate patch awaiting P’Benz’s repository upload and deployed real-device verification.**
+
+V0.3.2 intentionally preserves stable V0.3.1 application behavior while adding isolated PWA infrastructure:
+
+- `manifest.webmanifest`
+- relative `start_url: "./"` and `scope: "./"` suitable for the current GitHub Pages project path and easier future custom-domain migration
+- `display: "standalone"`
+- canonical 192 × 192 and 512 × 512 icons
+- canonical maskable 512 × 512 Android icon
+- Apple touch icon metadata
+- favicon metadata
+- iOS/iPadOS web-app metadata
+- `js/pwa.js` service-worker registration
+- `sw.js` versioned application-shell caching
+- old Little Ganesha cache cleanup on activation
+- network-first navigation / JS / CSS strategy
+- runtime image caching
+- no installation-time pre-cache of the full tarot deck or music library
+- build/cache version 0.3.2
+
+## 29.3 Protected V0.3.1 behavior
+
+The PWA patch must not regress:
 
 - Benedict Interactive splash
-- Title screen
-- Living Title foundations
-- language switching
+- Living Title
+- TH/EN switching
+- first-entry Personal Profile
+- local-only Display Name / Date of Birth
+- Home/Menu foundation
+- Settings
+- Motion mode
+- Immersive Mode
 - audio engine
 - Mini Player
-- Return to Title
-- interaction overlay fix
-- cache-safe versioning discipline
-
-A major V0.2.x bug was traced to an invisible modal/backdrop layer intercepting pointer events. That bug is considered resolved and its prevention is now a permanent QA rule.
-
-## 29.2 Prepared V0.3.1 candidate
-
-At the time of this Master Plan update, **V0.3.1 is a prepared candidate package and should be treated as pending repository upload/verification until P’Benz pushes it and Biu confirms `main`.**
-
-The prepared V0.3.1 package contains:
-
-- Benedict splash
-- Living Title
-- global audio foundation
-- first-entry optional profile setup
-- Display Name
-- Date of Birth
-- Home/Menu foundation
-- Daily Guidance entry
-- Ask Ganesha entry
-- Three-Card Reading entry
-- The Golden Path entry
-- Remove the Obstacle entry
-- Lucky Numbers entry
-- Cards entry
-- Journal entry
-- Settings
-- Motion setting
-- Immersive Mode foundation
-- audio settings
-- Personal Profile settings
-- Support the Project placeholders
-- International / Buy Me a Coffee placeholder
-- Thailand / PromptPay placeholder
-- global Mini Player
+- background/foreground audio lifecycle
+- Support placeholders
 - Return to Title
 
-Reading feature buttons in the foundation may present “ready for reading-engine build” behavior rather than a fake completed reading. This is correct until the actual Reading Engine milestone is implemented.
+No refactor of these systems is justified merely to add installability. PWA concerns are intentionally isolated.
 
-## 29.3 V0.3.1 implementation checks already performed
+## 29.4 PWA validation boundary
 
-The prepared package has been inspected for:
+Static package QA may verify:
 
-- expected file presence
-- app build marker 0.3.1
-- Personal Profile wiring
-- localStorage profile keys
-- Date of Birth validation boundaries
-- Immersive fallback logic
-- audio background/foreground lifecycle wiring
-- support placeholders
-- global Mini Player structure
+- manifest JSON validity
+- required manifest fields
+- icon dimensions / presence
+- relative URL resolution under the GitHub Pages project path
+- HTML manifest/icon linkage
+- JavaScript/service-worker syntax
+- service-worker cache-list file existence
+- build markers
 
-Final runtime QA still depends on P’Benz testing the uploaded build on real devices and the subsequent GitHub/deployment audit.
+Static QA **cannot** prove that a specific browser/OS will surface a particular install-menu label at a particular moment. Real deployed QA must verify Android Chromium install UI, launcher icon, standalone launch, and iPhone/iPad Add-to-Home-Screen behavior.
 
-## 29.4 Canonical app icon pack prepared
+## 29.5 Canonical app icon system
 
-A final production app-icon identity and derivative pack have been prepared for repository upload alongside this Master Plan. The icon pack is canonical once uploaded and verified on `main`.
-
-Prepared assets:
-
-- 1024 × 1024 canonical master
-- 512 × 512 PWA icon
-- 192 × 192 PWA icon
-- 512 × 512 maskable Android icon
-- 180 × 180 Apple touch icon
-- 48 × 48 and 32 × 32 favicon PNGs
-- multi-size `favicon.ico` fallback
-
-The icon artwork is considered visually approved under Full Authorized Development Authority. **Manifest/HTML wiring is not claimed complete until the application patch explicitly links these assets and install behavior is runtime-tested.**
-
----
+The final Little Ganesha icon system uploaded under Master Plan V3.2 remains canonical and is now the required PWA/Home Screen identity. V0.3.2 performs the runtime wiring; it does not redesign the icon.
 
 # 30. Immediate Development Milestones
 
-## Milestone A — V0.3.1 upload and stabilization
+## Milestone A — V0.3.2 PWA upload and installability stabilization
 
 Goal:
 
-Confirm that the prepared foundation behaves correctly after deployment.
+Confirm that the already-working V0.3.1 product foundation remains stable while the deployed site becomes a correctly identified installable web app where supported.
 
 Acceptance focus:
 
-- Benedict timing
-- Living Title visibly alive
-- Reduced Motion still premium
-- language switching
-- Tap to Begin
-- first-entry flow
-- Home entry
-- music auto-start after gesture
+- no regression to Benedict / Title / Home / Settings / profile / audio
+- manifest loads from the deployed GitHub Pages project path
+- canonical icon appears in install/Home Screen UI
+- Android Chromium offers app installation when its criteria are satisfied
+- installed Android launch uses standalone/app-like presentation
+- iPhone/iPad Add to Home Screen uses the Apple touch icon
+- service worker registers without blocking normal online operation
+- reload after deployment does not resurrect incompatible stale JS/CSS
+- offline shell fallback works after at least one successful online load
 - Mini Player global behavior
 - background pause/resume
 - Settings
@@ -1927,14 +1925,14 @@ Add symbolic number logic after Daily Guidance / profile data structures are sta
 - test QR scan reliability
 - preserve privacy boundaries
 
-## Milestone H — PWA hardening
+## Milestone H — PWA hardening beyond V0.3.2 foundation
 
-- manifest/icons
-- service worker
-- cache/update strategy
-- offline shell/assets
-- install flow
-- iOS/Android PWA QA
+- real-device install regression matrix
+- controlled update UX if future worker updates need user messaging
+- selective card/offline data caching based on storage/performance evidence
+- optional in-app install affordance using the established installability event foundation
+- iOS/Android PWA QA expansion
+- future custom-domain migration verification
 
 ## Milestone I — Production hardening
 
@@ -2228,10 +2226,33 @@ V3.2 additions:
 
 ---
 
-# 43. Canonical Closing Rule
+# 43. V3.3 Change Log
+
+V3.3 preserves all V3.1–V3.2 governance, deck, product, profile, support, audio, motion, worldwide-mobile, and icon decisions while moving PWA installation identity into the active foundation milestone by explicit Founder direction.
+
+V3.3 additions / status corrections:
+
+- records V0.3.1 as uploaded application foundation rather than pending candidate
+- records Master Plan V3.2 + canonical app icon pack as uploaded to `main`
+- defines V0.3.2 as the PWA Installability & App Icon Wiring candidate
+- locks `manifest.webmanifest` as the install metadata source
+- locks relative `./` start URL/scope strategy for GitHub Pages project-path safety and future migration flexibility
+- locks `display: standalone` as the baseline installed presentation
+- wires canonical 192/512/maskable icons into the manifest
+- wires Apple touch icon and favicon metadata into HTML
+- adds isolated `js/pwa.js` service-worker registration foundation
+- adds versioned `sw.js` application-shell caching and stale-cache cleanup
+- protects working V0.3.1 systems from PWA-driven refactoring
+- excludes large audio and the full 78-card deck from install-time pre-cache
+- explicitly separates static PWA validation from deployed real-device install validation
+- moves deeper PWA work from “not started” to “foundation implemented; hardening later”
+
+---
+
+# 44. Canonical Closing Rule
 
 **When uncertain, choose the solution that best protects tarot correctness, Little Ganesha identity, user trust, worldwide usability, stable working behavior, premium presentation, and long-term maintainability.**
 
 P’Benz retains final explicit authority. Within that boundary, Biu is expected to act proactively and decisively as the product’s fully authorized development lead.
 
-**End of Master Plan & Zero-Question Development Handoff V3.2**
+**End of Master Plan & Zero-Question Development Handoff V3.3**
