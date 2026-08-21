@@ -1047,15 +1047,15 @@
   .secondary-button { color: rgba(255,248,233,.68); background: rgba(255,255,255,.025); }
 
   .main-app { z-index: 7; overflow: hidden; }
-  .app-header { position: absolute; z-index: 4; top: 0; left: 0; right: 0; min-height: calc(5.5rem + env(safe-area-inset-top)); padding: max(1.05rem, env(safe-area-inset-top)) max(1.15rem, env(safe-area-inset-right)) .8rem max(1.15rem, env(safe-area-inset-left)); display: flex; align-items: flex-end; justify-content: space-between; background: linear-gradient(180deg, rgba(5,25,26,.96), rgba(5,25,26,.72) 64%, transparent); pointer-events: none; }
+  .app-header { position: absolute; z-index: 4; top: 0; left: 0; right: 0; min-height: calc(6.2rem + env(safe-area-inset-top)); padding: max(1.15rem, env(safe-area-inset-top)) max(1.15rem, env(safe-area-inset-right)) 1rem max(1.15rem, env(safe-area-inset-left)); display: flex; align-items: flex-end; justify-content: space-between; background: linear-gradient(180deg, rgba(5,25,26,.97), rgba(5,25,26,.76) 62%, rgba(5,25,26,.16) 92%, transparent); pointer-events: none; }
   .app-header > * { pointer-events: auto; }
   .app-header h2 { margin: .16rem 0 0; font-family: "Cormorant Garamond", "Noto Serif Thai", serif; font-size: clamp(1.55rem, 7vw, 2.25rem); font-weight: 600; color: var(--gold-bright); }
   .icon-button { display: grid; place-items: center; width: 2.65rem; height: 2.65rem; border-radius: 50%; border: 1px solid rgba(247,217,147,.17); background: rgba(6,32,33,.55); color: rgba(255,248,233,.8); backdrop-filter: blur(10px); }
 
-  .app-content { position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: calc(6rem + env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) calc(11.6rem + env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left)); scrollbar-width: none; }
+  .app-content { position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: calc(7.75rem + env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) calc(11.6rem + env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left)); scrollbar-width: none; }
   .app-content::-webkit-scrollbar { display: none; }
-  .home-intro { max-width: 36rem; margin: 0 auto 1rem; }
-  .home-kicker { margin: 0; font-family: "Cormorant Garamond", "Noto Serif Thai", serif; font-size: clamp(1.1rem, 4.8vw, 1.4rem); line-height: 1.42; color: rgba(255,248,233,.77); }
+  .home-intro { max-width: 36rem; margin: .15rem auto 1rem; padding-right: 1.25rem; }
+  .home-kicker { margin: 0; font-family: "Cormorant Garamond", "Noto Serif Thai", serif; font-size: clamp(1.05rem, 4.7vw, 1.32rem); line-height: 1.5; color: rgba(255,248,233,.76); max-width: 30rem; }
   .primary-grid, .compact-grid, .quick-row { width: min(100%, 36rem); margin-inline: auto; display: grid; gap: .8rem; }
   .primary-grid { grid-template-columns: 1fr 1fr; }
   .feature-card, .compact-card, .quick-card { position: relative; overflow: hidden; border: 1px solid rgba(247,217,147,.14); background: linear-gradient(155deg, rgba(20,62,61,.72), rgba(7,33,34,.72)); box-shadow: 0 14px 34px rgba(0,0,0,.17), inset 0 1px rgba(255,245,218,.04); text-align: left; }
@@ -1077,9 +1077,9 @@
   .quick-card > span { color: rgba(247,217,147,.72); font-family: Georgia, serif; }
   .quick-card strong { font-size: .88rem; }
 
-  /* V0.3.3 — Premium Sacred Motif System
-     Symbolic presence replaces repeated character artwork. Motifs stay quiet,
-     preserve typography contrast, and remain scalable across mobile/tablet. */
+  /* V0.3.4 — Refined Sacred Motif System
+     Anchored decorative motifs replace full-character artwork on Home cards.
+     The visual goal is premium, legible, and recognizably sacred without noise. */
   .feature-card, .compact-card, .quick-card {
     isolation: isolate;
     transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease, background-color .24s ease;
@@ -1089,20 +1089,22 @@
     content: "";
     position: absolute;
     z-index: 0;
-    width: var(--motif-size, 62%);
+    width: var(--motif-size, 7.25rem);
     aspect-ratio: 1;
-    top: var(--motif-top, -.45rem);
-    right: var(--motif-right, -.55rem);
+    top: var(--motif-top, auto);
+    right: var(--motif-right, .7rem);
+    bottom: var(--motif-bottom, .7rem);
+    left: var(--motif-left, auto);
     background-image: var(--motif-image, none);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    opacity: var(--motif-opacity, .095);
-    filter: drop-shadow(0 0 12px rgba(229,189,112,.08));
-    transform: rotate(var(--motif-rotate, 0deg)) scale(1);
+    opacity: var(--motif-opacity, .16);
+    filter: drop-shadow(0 0 10px rgba(229,189,112,.06));
+    transform: rotate(var(--motif-rotate, 0deg));
     transform-origin: center;
     pointer-events: none;
-    animation: sacred-motif-breathe 13s ease-in-out infinite alternate;
+    animation: sacred-motif-drift 16s ease-in-out infinite alternate;
   }
   .feature-card::after, .compact-card::after { z-index: 0; }
   .feature-card:focus-visible, .compact-card:focus-visible, .quick-card:focus-visible {
@@ -1116,68 +1118,77 @@
       border-color: rgba(247,217,147,.26);
       box-shadow: 0 18px 42px rgba(0,0,0,.22), inset 0 1px rgba(255,245,218,.06);
     }
-    .feature-card:hover::before, .compact-card:hover::before, .quick-card:hover::before { filter: drop-shadow(0 0 16px rgba(229,189,112,.12)); }
+    .feature-card:hover::before, .compact-card:hover::before, .quick-card:hover::before { opacity: calc(var(--motif-opacity, .16) + .02); }
   }
   .feature-card:active, .compact-card:active, .quick-card:active { transform: scale(.992); }
 
   .feature-card[data-feature="daily"] {
     --motif-image: url("../assets/motifs/daily-halo.svg");
-    --motif-size: 72%;
-    --motif-opacity: .11;
-    --motif-top: -1.35rem;
-    --motif-right: -2.25rem;
+    --motif-size: 10rem;
+    --motif-opacity: .18;
+    --motif-top: 50%;
+    --motif-right: .35rem;
+    --motif-bottom: auto;
+    --motif-translate-y: -50%;
   }
+  .feature-card[data-feature="daily"]::before { transform: translateY(-50%) rotate(var(--motif-rotate, 0deg)); }
+
   .feature-card[data-feature="ask"] {
     --motif-image: url("../assets/motifs/ask-ganesha.svg");
-    --motif-size: 78%;
-    --motif-opacity: .105;
-    --motif-top: -.95rem;
-    --motif-right: -2.65rem;
+    --motif-size: 8.8rem;
+    --motif-opacity: .16;
+    --motif-top: .35rem;
+    --motif-right: -.2rem;
+    --motif-bottom: auto;
   }
   .feature-card[data-feature="three"] {
     --motif-image: url("../assets/motifs/three-cards.svg");
-    --motif-size: 72%;
-    --motif-opacity: .105;
-    --motif-top: -.6rem;
-    --motif-right: -1.75rem;
-    --motif-rotate: 1.5deg;
+    --motif-size: 8rem;
+    --motif-opacity: .165;
+    --motif-top: .3rem;
+    --motif-right: .3rem;
+    --motif-bottom: auto;
   }
   .compact-card[data-feature="golden"] {
     --motif-image: url("../assets/motifs/golden-path.svg");
-    --motif-size: 82%;
-    --motif-opacity: .10;
-    --motif-top: -.8rem;
-    --motif-right: -2.25rem;
+    --motif-size: 8.2rem;
+    --motif-opacity: .16;
+    --motif-top: auto;
+    --motif-bottom: .2rem;
+    --motif-right: .1rem;
   }
   .compact-card[data-feature="obstacle"] {
     --motif-image: url("../assets/motifs/release-knot.svg");
-    --motif-size: 76%;
-    --motif-opacity: .095;
-    --motif-top: -.75rem;
-    --motif-right: -1.95rem;
+    --motif-size: 7.7rem;
+    --motif-opacity: .155;
+    --motif-top: auto;
+    --motif-bottom: .45rem;
+    --motif-right: .3rem;
   }
   .quick-card[data-feature="lucky"] {
     --motif-image: url("../assets/motifs/lucky-numbers.svg");
-    --motif-size: 96%;
-    --motif-opacity: .065;
-    --motif-top: -1.35rem;
-    --motif-right: -1.15rem;
+    --motif-size: 4.3rem;
+    --motif-opacity: .18;
+    --motif-top: .35rem;
+    --motif-right: .4rem;
+    --motif-bottom: auto;
   }
   .quick-card[data-feature="cards"] {
     --motif-image: url("../assets/motifs/card-library.svg");
-    --motif-size: 91%;
-    --motif-opacity: .064;
-    --motif-top: -1.15rem;
-    --motif-right: -1.05rem;
+    --motif-size: 4.2rem;
+    --motif-opacity: .18;
+    --motif-top: .35rem;
+    --motif-right: .4rem;
+    --motif-bottom: auto;
   }
   .quick-card[data-feature="journal"] {
     --motif-image: url("../assets/motifs/journal-lotus.svg");
-    --motif-size: 91%;
-    --motif-opacity: .064;
-    --motif-top: -1.15rem;
-    --motif-right: -1.05rem;
+    --motif-size: 4.2rem;
+    --motif-opacity: .18;
+    --motif-top: .35rem;
+    --motif-right: .4rem;
+    --motif-bottom: auto;
   }
-
   .bottom-nav { position: absolute; z-index: 8; left: 50%; bottom: max(.65rem, env(safe-area-inset-bottom)); transform: translateX(-50%); width: min(calc(100% - 1rem), 36rem); min-height: 4.2rem; padding: .35rem .25rem; display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid rgba(247,217,147,.15); border-radius: 1.25rem; background: rgba(4,26,27,.87); box-shadow: 0 14px 48px rgba(0,0,0,.3); backdrop-filter: blur(18px) saturate(1.1); -webkit-backdrop-filter: blur(18px) saturate(1.1); }
   .bottom-nav__button { display: grid; place-items: center; align-content: center; gap: .18rem; min-width: 0; border-radius: .9rem; color: rgba(255,248,233,.48); }
   .bottom-nav__button > span { font-size: 1rem; }
@@ -1233,17 +1244,16 @@
   }
   @media (orientation: landscape) and (max-height: 540px) {
     .app-header { min-height: calc(4rem + env(safe-area-inset-top)); }
-    .app-content { padding-top: calc(4.4rem + env(safe-area-inset-top)); }
+    .app-content { padding-top: calc(5rem + env(safe-area-inset-top)); }
     .bottom-nav { min-height: 3.45rem; }
     .mini-player--global { bottom: max(4.45rem, calc(env(safe-area-inset-bottom) + 4rem)); }
   }
 }
 
 @layer utilities {
-  @keyframes sacred-motif-breathe {
-    0% { transform: rotate(var(--motif-rotate, 0deg)) scale(.985) translate3d(0, 2px, 0); filter: drop-shadow(0 0 9px rgba(229,189,112,.055)); }
-    55% { filter: drop-shadow(0 0 15px rgba(229,189,112,.095)); }
-    100% { transform: rotate(var(--motif-rotate, 0deg)) scale(1.018) translate3d(-2px, -2px, 0); filter: drop-shadow(0 0 13px rgba(229,189,112,.075)); }
+  @keyframes sacred-motif-drift {
+    0% { transform: translate3d(0, 1px, 0) rotate(var(--motif-rotate, 0deg)); filter: drop-shadow(0 0 10px rgba(229,189,112,.055)); }
+    100% { transform: translate3d(-1px, -2px, 0) rotate(var(--motif-rotate, 0deg)); filter: drop-shadow(0 0 12px rgba(229,189,112,.075)); }
   }
 
   @keyframes living-art-v03 { 0% { transform: scale(1.012) translate3d(0,0,0); } 45% { transform: scale(1.034) translate3d(.28%,-.22%,0); } 100% { transform: scale(1.022) translate3d(-.2%,.08%,0); } }
@@ -1370,7 +1380,7 @@
   }
 }
 
-/* V0.3.3 — motif accessibility / narrow-screen tuning */
+/* V0.3.4 — motif accessibility / narrow-screen tuning */
 @layer utilities {
   @media (prefers-reduced-motion: reduce) {
     .feature-card::before, .compact-card::before, .quick-card::before {

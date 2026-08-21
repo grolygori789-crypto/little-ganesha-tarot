@@ -1,6 +1,6 @@
 'use strict';
 
-const BUILD = '0.3.3';
+const BUILD = '0.3.4';
 const CACHE_PREFIX = 'little-ganesha-tarot-';
 const SHELL_CACHE = `${CACHE_PREFIX}shell-${BUILD}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${BUILD}`;
@@ -11,11 +11,11 @@ const url = (path) => new URL(path, scopeURL).href;
 const APP_SHELL = [
   url('./'),
   url('index.html'),
-  url('manifest.webmanifest?v=0.3.3'),
-  url('css/app.css?v=0.3.3'),
-  url('js/pwa.js?v=0.3.3'),
-  url('js/audio.js?v=0.3.3'),
-  url('js/app.js?v=0.3.3'),
+  url('manifest.webmanifest?v=0.3.4'),
+  url('css/app.css?v=0.3.4'),
+  url('js/pwa.js?v=0.3.4'),
+  url('js/audio.js?v=0.3.4'),
+  url('js/app.js?v=0.3.4'),
   url('data/AUDIO_MANIFEST_V1.json'),
   url('assets/ui/title-hero.png'),
   url('assets/icons/icon-192x192.png'),

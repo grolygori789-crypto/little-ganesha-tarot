@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-  <g stroke="#F7D993" stroke-linejoin="round" stroke-linecap="round">
-    <rect x="128" y="152" width="166" height="226" rx="18" transform="rotate(-8 128 152)" opacity=".13" stroke-width="1.8"/>
-    <rect x="218" y="126" width="166" height="226" rx="18" transform="rotate(7 218 126)" opacity=".18" stroke-width="1.8"/>
-    <rect x="173" y="137" width="166" height="226" rx="18" opacity=".52" stroke-width="2.4"/>
-    <path d="M256 190c18 18 31 35 31 53 0 18-13 32-31 32s-31-14-31-32c0-18 13-35 31-53Z" opacity=".38" stroke-width="2"/>
-    <path d="M216 313h80" opacity=".16" stroke-width="1.6"/>
+  <g stroke="#F3D791" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="150" y="164" width="150" height="206" rx="18" transform="rotate(-7 150 164)" opacity=".18" stroke-width="1.8"/>
+    <rect x="232" y="138" width="150" height="206" rx="18" transform="rotate(6 232 138)" opacity=".18" stroke-width="1.8"/>
+    <rect x="190" y="145" width="150" height="206" rx="18" opacity=".58" stroke-width="2.1"/>
+    <path d="M265 197l8 18 18 8-18 8-8 18-8-18-18-8 18-8 8-18Z" opacity=".48" stroke-width="1.9"/>
+    <path d="M225 300h80" opacity=".16" stroke-width="1.5"/>
   </g>
 </svg>

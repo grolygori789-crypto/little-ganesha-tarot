@@ -1,10 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-  <g stroke="#F7D993" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="366" cy="128" r="54" opacity=".18" stroke-width="1.8"/>
-    <circle cx="366" cy="128" r="31" opacity=".12" stroke-width="1.4"/>
-    <path d="M366 103l6 17 17 6-17 6-6 17-6-17-17-6 17-6 6-17Z" opacity=".62" stroke-width="2"/>
-    <path d="M104 386c62-28 103-57 123-90 22-36 16-77 47-105 22-20 52-26 86-26" opacity=".54" stroke-width="3"/>
-    <path d="M106 405c72-27 120-57 145-91 28-39 22-81 53-105 17-13 36-19 58-19" opacity=".18" stroke-width="1.8"/>
-    <path d="M101 366c45-17 77-38 96-62" opacity=".13" stroke-width="1.5"/>
+  <g stroke="#F3D791" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="382" cy="122" r="50" opacity=".16" stroke-width="1.8"/>
+    <path d="M382 94l6 16 16 6-16 6-6 16-6-16-16-6 16-6 6-16Z" opacity=".68" stroke-width="2"/>
+    <path d="M98 388c54-21 94-49 121-84 26-34 37-79 83-107 23-14 48-20 76-20" opacity=".56" stroke-width="2.7"/>
+    <path d="M100 409c66-22 114-52 144-92 26-34 37-75 77-99" opacity=".14" stroke-width="1.7"/>
   </g>
 </svg>

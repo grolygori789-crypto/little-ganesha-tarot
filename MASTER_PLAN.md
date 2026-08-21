@@ -2324,3 +2324,8 @@ V3.4 additions / status corrections:
 P’Benz retains final explicit authority. Within that boundary, Biu is expected to act proactively and decisively as the product’s fully authorized development lead.
 
 **End of Master Plan & Zero-Question Development Handoff V3.4**
+
+
+## V0.3.4 — Refined Sacred Motif correction
+
+V0.3.4 supersedes the first V0.3.3 motif execution for Home/Menu cards. The project keeps the Premium Minimal Sacred UI direction, but corrects the implementation so motifs are anchored, visibly intentional, and non-regressive on narrow mobile layouts.

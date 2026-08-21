@@ -1,10 +1,10 @@
-# Little Ganesha Tarot — App Foundation V0.3.3
+# Little Ganesha Tarot — App Foundation V0.3.4
 
 **Milestone:** Premium Sacred Home Motif System  
 **Base:** V0.3.2 PWA Installability & App Icon Wiring  
 **Master Plan:** V3.4
 
-## V0.3.3 adds
+## V0.3.4 refines
 - A reusable **Premium Minimal Sacred UI** motif language for the Home/Menu.
 - Lightweight SVG motifs for each current Home feature instead of repeating full Little Ganesha portraits.
 - Distinct symbolic fingerprints for Daily Guidance, Ask Ganesha, Three-Card Reading, The Golden Path, Remove the Obstacle, Lucky Numbers, Card Library, and Journal.
@@ -12,7 +12,7 @@
 - Very slow full-motion motif breathing plus a static Reduced Motion fallback.
 - Restrained focus/hover/touch polish without changing navigation behavior.
 - Service-worker shell caching for the new motif assets.
-- Build/cache version 0.3.3.
+- Build/cache version 0.3.4.
 - Master Plan V3.4 with the visual-language decision locked canonically.
 
 ## Protected behavior
@@ -46,4 +46,11 @@ After GitHub Pages deploys:
 6. Confirm the Mini Player and bottom navigation remain visually above/clear of the Home content.
 7. Re-check PWA install/icon behavior from V0.3.2.
 
-See `HOME_MOTIF_RELEASE_NOTES.md` and `QA_V0_3_3.md` for implementation and validation details.
+See `HOME_MOTIF_RELEASE_NOTES_V0_3_4.md` and `QA_V0_3_4.md` for implementation and validation details.
+
+
+## V0.3.4 design correction
+
+- Replaces the first motif pass with cleaner anchored sacred motifs.
+- Fixes home-header spacing regression on narrow mobile screens.
+- Increases motif visibility while keeping typography clear.
