@@ -14,20 +14,20 @@ const content = read('js/reading-content.js');
 const css = read('css/reading.css');
 
 for (const marker of [
-  'meta name="application-version" content="0.4.2"',
-  'body data-build="0.4.2"',
-  'css/app.css?v=0.4.2',
-  'css/reading.css?v=0.4.2',
-  'js/pwa.js?v=0.4.2',
-  'js/audio.js?v=0.4.2',
-  'js/app.js?v=0.4.2',
-  'js/reading-content.js?v=0.4.2',
-  'js/reading-engine.js?v=0.4.2',
-  'js/reading-ui.js?v=0.4.2'
+  'meta name="application-version" content="0.4.3"',
+  'body data-build="0.4.3"',
+  'css/app.css?v=0.4.3',
+  'css/reading.css?v=0.4.3',
+  'js/pwa.js?v=0.4.3',
+  'js/audio.js?v=0.4.3',
+  'js/app.js?v=0.4.3',
+  'js/reading-content.js?v=0.4.3',
+  'js/reading-engine.js?v=0.4.3',
+  'js/reading-ui.js?v=0.4.3'
 ]) assert(index.includes(marker), `Missing index build marker/resource: ${marker}`);
 
-assert(app.includes("window.LGT_BUILD = '0.4.2'"), 'app.js build marker mismatch.');
-assert(sw.includes("const BUILD = '0.4.2';"), 'Service Worker build marker mismatch.');
+assert(app.includes("window.LGT_BUILD = '0.4.3'"), 'app.js build marker mismatch.');
+assert(sw.includes("const BUILD = '0.4.3';"), 'Service Worker build marker mismatch.');
 for (const path of ['css/reading.css','js/reading-content.js','js/reading-engine.js','js/reading-ui.js','assets/ui/card-back.png']) {
   assert(sw.includes(path), `Service Worker shell missing ${path}.`);
 }
@@ -47,6 +47,8 @@ assert(content.includes("const CONTENT_VERSION = 'daily-guidance-v3'"), 'Daily L
 assert(engine.includes("LEGACY_CONTENT_VERSIONS = new Set(['daily-guidance-v1', 'daily-guidance-v2'])"), 'Daily content migration compatibility missing.');
 assert(engine.includes("window.LGTReadingEngineVersion = '1.0.2'"), 'Reading Engine patch version marker missing.');
 assert(ui.includes("theme: 'สิ่งที่ไพ่สะท้อนวันนี้'"), 'Native Thai reading label missing.');
+assert(ui.includes('dailySaveShare') && ui.includes('buildReadingImageBlob') && ui.includes('navigator.share') && ui.includes("runExport('share')"), 'Daily save/share export flow missing.');
+assert(css.includes('reading-share__actions') && css.includes('reading-secondary--strong'), 'Daily save/share styling missing.');
 
 const strippedCss = css.replace(/\/\*[\s\S]*?\*\//g,'').replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g,'');
 let depth = 0;
@@ -65,11 +67,11 @@ const staticIdSet = new Set(ids);
 assert(dynamicIds.every(id => !staticIdSet.has(id)), 'Daily Guidance ID collides with canonical static DOM.');
 
 const scriptOrder = [
-  'js/app.js?v=0.4.2',
-  'js/reading-content.js?v=0.4.2',
-  'js/reading-engine.js?v=0.4.2',
-  'js/reading-ui.js?v=0.4.2'
+  'js/app.js?v=0.4.3',
+  'js/reading-content.js?v=0.4.3',
+  'js/reading-engine.js?v=0.4.3',
+  'js/reading-ui.js?v=0.4.3'
 ].map(token => index.indexOf(token));
 assert(scriptOrder.every(index => index >= 0) && scriptOrder.every((value, i) => i === 0 || value > scriptOrder[i - 1]), 'Reading script dependency order is invalid.');
 
-console.log('V0.4.2 package/version/Daily Lenses checks: PASS');
+console.log('V0.4.3 package/version/save-share checks: PASS');

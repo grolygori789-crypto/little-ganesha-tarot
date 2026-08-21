@@ -1,0 +1,149 @@
+{
+  "project": "Little Ganesha Tarot — The Golden Path",
+  "studio": "Benedict Interactive",
+  "target_runtime_build": "0.4.3",
+  "baseline_runtime_build": "0.4.2",
+  "release_type": "Daily Guidance Save & Share Reading Export",
+  "risk_classification": "MEDIUM",
+  "risk_reason": "Runtime build/cache marker change plus new client-side export/share flow with browser-dependent native share support.",
+  "baseline_repository": "grolygori789-crypto/little-ganesha-tarot",
+  "baseline_branch": "main",
+  "baseline_head_commit": "0fd2a138c30a394f3fe2ae2112cab92caac58d74",
+  "baseline_head_message": "Upgrade Daily Guidance and repo V0.4.2",
+  "release_status": "VERIFIED FOR UPLOAD — archive re-extraction, engine/package/language/structure tests and checksum verification PASS; deployed real-device QA pending.",
+  "upload_mode": "Overlay repository-relative archive contents onto the local repository root; review changes; commit; push.",
+  "current_root_manifest": "PATCH_MANIFEST_V0_4_3.json",
+  "repository_structure_policy": "docs/governance/REPOSITORY_STRUCTURE_POLICY_V1.md",
+  "feature_summary": {
+    "daily_guidance_export": "PNG image export",
+    "native_share": "Web Share API file-share when supported",
+    "fallback_behavior": "Share falls back to save when direct sharing is unavailable",
+    "languages": [
+      "en",
+      "th"
+    ],
+    "reading_engine_version": "1.0.2",
+    "daily_content_version": "daily-guidance-v3"
+  },
+  "protected_not_replaced": [
+    "css/app.css",
+    "js/audio.js",
+    "js/pwa.js",
+    "manifest.webmanifest",
+    "data/AUDIO_MANIFEST_V1.json",
+    "assets/audio/*",
+    "assets/icons/*",
+    "assets/motifs/*",
+    "assets/ui/*",
+    "assets/cards/*"
+  ],
+  "files": [
+    {
+      "path": "index.html",
+      "action": "replace",
+      "size": 18539,
+      "sha256": "555006a35c9bba21bf60cc4a17fdbd2cf636855f32962204ead8e28b7cc32c1b"
+    },
+    {
+      "path": "sw.js",
+      "action": "replace",
+      "size": 4117,
+      "sha256": "6f9677a13b8dffcb4497f023cfcb3779e5f1893d3f67457e061a4688ab7d8107"
+    },
+    {
+      "path": "README.md",
+      "action": "replace",
+      "size": 2507,
+      "sha256": "3f7f439f1289a77ba7769069b1b84d6f6bcd13bb73d000d4a707272e4d48b6db"
+    },
+    {
+      "path": "css/reading.css",
+      "action": "replace",
+      "size": 23387,
+      "sha256": "8f22bbf53cf85d58ac7c283784f5770e443edb9991e81caa8cd9609de0c4b0fe"
+    },
+    {
+      "path": "js/app.js",
+      "action": "replace",
+      "size": 27311,
+      "sha256": "1b4d37dc96b3dfaefa38e0f25c31f90c9c53d93b3b20255d3a295cc2fcbf4c4a"
+    },
+    {
+      "path": "js/reading-ui.js",
+      "action": "replace",
+      "size": 38442,
+      "sha256": "adf95ff5ede7a2ab7de23d78d93fe2a1eb80fb95445ff578c3b501567811aaab"
+    },
+    {
+      "path": "js/reading-content.js",
+      "action": "replace",
+      "size": 314407,
+      "sha256": "a865421e87429eed8fa8a411ec376b8644c12298612d033c70222a1632efffe3"
+    },
+    {
+      "path": "js/reading-engine.js",
+      "action": "replace",
+      "size": 11641,
+      "sha256": "63ea7607f31d4df616c2d083cbeb1aefd33e8e9cd13fdf6ee1d47ad2b1c5f966"
+    },
+    {
+      "path": "docs/governance/REPOSITORY_STRUCTURE_POLICY_V1.md",
+      "action": "replace",
+      "size": 4928,
+      "sha256": "8cf0bf3901d9f4285111ad0373a5fc0f442115e6aa7098acafee284f457b94af"
+    },
+    {
+      "path": "docs/releases/PATCH_UPLOAD_NOTES.md",
+      "action": "replace",
+      "size": 932,
+      "sha256": "9b922cfe46a0e43054c518bf7e13a39a717a2f3f897596206b7c87342ede06f5"
+    },
+    {
+      "path": "docs/releases/RELEASE_NOTES_V0_4_3.md",
+      "action": "add",
+      "size": 1258,
+      "sha256": "085ab43fbafa42d31dec2639a3f19aeaf959abc92615f9cf957a811e0b96feb2"
+    },
+    {
+      "path": "docs/qa/QA_V0_4_3.md",
+      "action": "add",
+      "size": 1511,
+      "sha256": "2a1a1b48e0206feec1f3256991118e39dd08a181f6354c9fa2600bf73281e230"
+    },
+    {
+      "path": "docs/tests/test-reading-engine.js",
+      "action": "replace",
+      "size": 12938,
+      "sha256": "90fb72cad85d00b1636d6475b51b016f37cb65acd20804e21291a3464cbec2b8"
+    },
+    {
+      "path": "docs/tests/test-package.js",
+      "action": "replace",
+      "size": 4373,
+      "sha256": "5d567c515fc90e87b8f2bcc5f64f932d1a4ce67c6bd7f6bbc866ef83bfbb3ae9"
+    },
+    {
+      "path": "docs/tests/test-global-copy.js",
+      "action": "replace",
+      "size": 5307,
+      "sha256": "644ee02e93816235a45fc2bf4d0f2bd7bc95eee99285e861711a67fd28a92f4a"
+    },
+    {
+      "path": "docs/tests/test-repo-structure.js",
+      "action": "replace",
+      "size": 2617,
+      "sha256": "bce58527fabc129597bd7ddbbf7bc4ab1edfc3d95038abbbf7f7f534b42d6adb"
+    }
+  ],
+  "qa": {
+    "reading_engine_content": "PASS",
+    "package_version_save_share": "PASS",
+    "global_ui_copy_localization": "PASS",
+    "repository_structure_policy": "PASS",
+    "js_syntax": "PASS",
+    "checksum_integrity": "PASS",
+    "archive_reextract": "PASS",
+    "browser_real_device": "PENDING",
+    "deployed_production": "PENDING"
+  }
+}

@@ -1,43 +1,50 @@
-# Little Ganesha Tarot — V0.4.2 Daily Guidance Upgrade
+# Little Ganesha Tarot — V0.4.3 Save & Share Reading
 
 **Project:** Little Ganesha Tarot — The Golden Path  
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.4.2  
-**Baseline:** `main` @ `4aa31e5920e4b23a8cbc5b5900a3d02d81c76185` (`Polish reading UX and TH-EN copy V0.4.1`)
+**Target runtime:** V0.4.3  
+**Baseline assumption:** local repository already contains the V0.4.2 repo-ready state
 
-## V0.4.2 scope
+## Scope
 
-V0.4.2 strengthens the Daily Guidance experience without rebuilding the stable Reading Engine foundation.
+V0.4.3 adds a clean export flow for **Daily Guidance** so users can keep or share a reading without taking a raw screenshot themselves.
 
-It adds:
+This release adds:
 
-- corrected centered Reading-context media player positioning,
-- a larger hero-scale revealed tarot card so artwork details are easier to appreciate,
-- six optional Daily Lenses for every one of the 78 cards,
-- native English and Thai Daily Lens content,
-- same-day content migration from Daily Guidance content v1/v2 to v3 without redrawing the user’s card,
-- repository-ready delivery structure with documentation sorted under `docs/`.
+- a curated **Save Image** action inside Daily Guidance,
+- a curated **Share** action using the device's native share sheet when supported,
+- fallback-to-save behavior when direct file sharing is unavailable,
+- a generated long-form reading image that includes only the meaningful reading content,
+- bilingual TH/EN UI copy for the new export flow,
+- repository-ready documentation structured under `docs/`.
 
-## Daily Lenses
+## Export design
 
-Each Daily Guidance card now supports six optional perspectives:
+The exported image is not a full UI screenshot.
 
-1. Work & Goals / งานและเป้าหมาย
-2. Money & Resources / เงินและทรัพยากร
-3. Love & Relationships / ความรักและความสัมพันธ์
-4. Inner State & Balance / พลังใจและสมดุลชีวิต
-5. Opportunities & Watch-outs / โอกาสและสิ่งที่ควรระวัง
-6. Guidance for Today / แนวทางสำหรับวันนี้
+It is a purpose-built reading card that includes:
 
-The lenses use accessible native `<details>` accordions so the main reading stays calm and uncluttered. Only the area the user chooses to explore needs to be opened.
+- Little Ganesha Tarot branding,
+- current date,
+- the revealed tarot card artwork,
+- card title and canonical title,
+- keywords,
+- main meaning,
+- reflection question,
+- all six Daily Lenses,
+- the existing non-deterministic disclaimer.
 
-## Language standard
+It intentionally excludes transient UI such as the media player, buttons, navigation chrome, and other screen-only controls.
 
-English and Thai content is written independently for naturalness rather than translated word-for-word. The target is immediate comprehension, premium tone, and reflective usefulness without deterministic fortune-telling claims.
+## Share behavior
+
+When the device/browser supports file sharing through the Web Share API, tapping **Share** opens the native share sheet so the image can be sent to apps like LINE and other compatible apps.
+
+When direct sharing is not available, the app falls back to saving the generated PNG to the device instead of failing silently.
 
 ## Repository organization
 
-From V0.4.2 onward, documentation is organized before handoff:
+Documentation remains categorized before handoff:
 
 - `docs/checksums/`
 - `docs/governance/`
@@ -45,25 +52,22 @@ From V0.4.2 onward, documentation is organized before handoff:
 - `docs/releases/`
 - `docs/tests/`
 
-See `docs/governance/REPOSITORY_STRUCTURE_POLICY_V1.md`.
-
-The current `PATCH_MANIFEST_V0_4_2.json` remains at repository root by design.
+The current root manifest for this delivery is `PATCH_MANIFEST_V0_4_3.json`.
 
 ## Upload
 
-Extract the upload ZIP and overlay its repository-relative contents onto the local repository root. Review Changes in GitHub Desktop, then Commit + Push.
+Extract the upload ZIP and overlay its repository-relative contents onto the local repository root. Then review the changes in GitHub Desktop and Commit + Push.
 
-No QA/release/checksum/test files from this package need to be manually sorted after extraction.
+No manual sorting of QA/release/checksum/test files should be needed after extraction.
 
 ## QA status
 
-Pre-upload validation performed in the development environment:
+Pre-upload validation completed in the development environment:
 
-- Reading Engine/content tests: PASS
-- 78 × 6 × 2 Daily Lens content coverage: PASS
-- Global TH/EN UI copy tests: PASS
 - package/version checks: PASS
-- repository-structure policy checks: PASS
-- ZIP re-extraction + full rerun: PASS
+- global TH/EN copy checks: PASS
+- repository-structure checks: PASS
+- JS syntax check: PASS
+- archive checksum generation: PASS
 
-Browser/deployed/real-device QA remains a post-upload gate and must not be inferred from static tests.
+Real-device save/share behavior and deployed-browser QA still remain the final post-upload gate.

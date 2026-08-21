@@ -84,6 +84,9 @@ assert(readingCopy.en.storageFail.includes('couldn’t save'), 'English storage 
 for (const key of ['lensesTitle','lensesHint','workGoals','moneyResources','loveRelationships','innerBalance','opportunitiesWatchouts','guidanceToday']) {
   assert(readingCopy.en[key] && readingCopy.th[key], `Daily Lens UI copy missing for ${key}.`);
 }
+for (const key of ['saveShareTitle','saveShareHint','saveImage','shareImage','exportPreparing','exportSaved','exportShared','exportSavedFallback','exportFailed','exportCancelled']) {
+  assert(readingCopy.en[key] && readingCopy.th[key], `Save/share UI copy missing for ${key}.`);
+}
 assert(readingCopy.th.lensesTitle === 'มองไพ่ใบนี้ในเรื่องต่างๆ', 'Thai Daily Lens heading should be direct and natural.');
 assert(readingCopy.en.lensesTitle === 'Explore today’s card', 'English Daily Lens heading should be natural.');
 

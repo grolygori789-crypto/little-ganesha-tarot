@@ -569,6 +569,89 @@
     color: rgba(255,248,233,.7);
   }
 
+
+
+  .reading-share {
+    margin-top: 1.35rem;
+    padding-top: 1.15rem;
+    border-top: 1px solid rgba(255,248,233,.07);
+  }
+
+  .reading-share__heading { text-align: center; }
+
+  .reading-share__heading > span {
+    display: block;
+    font-family: "Cormorant Garamond", "Noto Serif Thai", Georgia, serif;
+    font-size: .61rem;
+    font-weight: 600;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+    color: rgba(229,189,112,.7);
+  }
+
+  html[lang="th"] .reading-share__heading > span {
+    font-family: "Noto Serif Thai", serif;
+    letter-spacing: .045em;
+    text-transform: none;
+  }
+
+  .reading-share__heading p {
+    margin: .38rem auto 0;
+    max-width: 24rem;
+    font-family: "Noto Serif Thai", "Cormorant Garamond", serif;
+    font-size: .72rem;
+    line-height: 1.55;
+    color: rgba(255,248,233,.48);
+  }
+
+  .reading-share__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .58rem;
+    margin-top: .9rem;
+  }
+
+  .reading-secondary {
+    min-height: 2.9rem;
+    padding: .72rem 1rem;
+    border: 1px solid rgba(247,217,147,.18);
+    border-radius: 999px;
+    background: rgba(255,255,255,.025);
+    color: rgba(255,248,233,.82);
+    font-family: "Cormorant Garamond", "Noto Serif Thai", Georgia, serif;
+    font-size: .86rem;
+    font-weight: 600;
+    letter-spacing: .065em;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+  }
+
+  html[lang="th"] .reading-secondary {
+    font-family: "Noto Serif Thai", serif;
+    letter-spacing: .02em;
+  }
+
+  .reading-secondary:hover {
+    border-color: rgba(247,217,147,.34);
+    background: rgba(229,189,112,.05);
+  }
+
+  .reading-secondary:active { transform: scale(.98); }
+  .reading-secondary:disabled { opacity: .52; cursor: default; }
+
+  .reading-secondary--strong {
+    background: linear-gradient(180deg, rgba(229,189,112,.12), rgba(229,189,112,.055)), rgba(6,29,30,.58);
+    border-color: rgba(247,217,147,.3);
+  }
+
+  .reading-share__status {
+    min-height: 1.2rem;
+    margin: .72rem 0 0;
+    text-align: center;
+    font-size: .68rem;
+    line-height: 1.55;
+    color: rgba(255,248,233,.56);
+  }
+
   .reading-disclaimer {
     margin: 1.3rem 0 0;
     padding-top: 1rem;
@@ -598,6 +681,7 @@
     .reading-choice { gap: .36rem; }
     .reading-card--selected { width: min(78vw, 17.5rem); }
     .reading-interpretation { padding-inline: 1rem; }
+    .reading-share__actions { grid-template-columns: 1fr; }
   }
 
   @media (orientation: landscape) and (max-height: 540px) {

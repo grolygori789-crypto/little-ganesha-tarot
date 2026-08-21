@@ -1,33 +1,31 @@
-# V0.4.2 — Upload Notes
+# V0.4.3 — Upload Notes
 
 ## Upload method
 
-1. Extract the V0.4.2 upload ZIP.
-2. Overlay all included files/folders onto the local repository root.
-3. Open GitHub Desktop and review Changes.
-4. Commit and Push.
+1. Extract the V0.4.3 upload ZIP.
+2. Overlay the extracted repository-relative files/folders onto the local repository root.
+3. Review changes in GitHub Desktop.
+4. Commit and push.
 
-The package already uses repository-relative destinations. Do not move QA, release, checksum, governance, or test files back to root.
+## Recommended short commit names
 
-## Suggested commit name
+All options below stay under 50 characters:
 
-`Upgrade Daily Guidance and layout V0.4.2`
+- `Add save and share for daily guidance`
+- `Daily guidance save share V0.4.3`
+- `Add reading image export and share`
 
-## Post-deploy smoke check
+## Quick verification after overlay
 
-Confirm on a real phone:
+Check that:
 
-- Settings/build shows `0.4.2`
-- Daily Guidance opens and restores the same card for the same local day
-- revealed card is clearly larger and remains comfortably inside the viewport
-- Reading media player is centered and does not clip either side
-- each Daily Lens opens and only one lens stays open at a time
-- Thai Daily Lens copy reads naturally and immediately
-- English Daily Lens copy reads naturally and immediately
-- switching TH/EN while reading updates lens labels/content correctly
-- Home, Settings, audio, Title and Return-to-Title behavior remain intact
-- no stale V0.4.1 shell is served after service-worker update/refresh
+- Settings/build shows `0.4.3`
+- Daily Guidance still reveals the same card correctly
+- after reveal, **Save Image** and **Share** buttons appear
+- tapping **Save Image** downloads a PNG
+- tapping **Share** opens the native share sheet on supported devices
+- if direct share is unsupported, the app falls back to saving the image instead
 
-## Historical files
+## Important behavior note
 
-Older working-tree documents should only be retained when they still serve active rollback/provenance/migration needs. Git history remains the long-term historical archive.
+The exported PNG is a curated reading image, not a raw screenshot. This is intentional.

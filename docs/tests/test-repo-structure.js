@@ -41,7 +41,7 @@ for (const file of topFiles) {
 }
 
 assert(topFiles.includes('README.md'), 'README.md must remain at repository root.');
-assert(topFiles.includes('PATCH_MANIFEST_V0_4_2.json'), 'Current patch manifest must remain at repository root.');
+assert(topFiles.includes('PATCH_MANIFEST_V0_4_3.json'), 'Current patch manifest must remain at repository root.');
 assert(topFiles.includes('index.html'), 'index.html missing from upload package.');
 assert(topFiles.includes('sw.js'), 'sw.js missing from upload package.');
 
@@ -51,9 +51,9 @@ for (const required of ['test-reading-engine.js','test-package.js','test-global-
 }
 
 assert(fs.existsSync(path.join(root, 'docs', 'governance', 'REPOSITORY_STRUCTURE_POLICY_V1.md')), 'Canonical repository structure policy missing.');
-assert(fs.existsSync(path.join(root, 'docs', 'qa', 'QA_V0_4_2.md')), 'Current QA report missing from docs/qa/.');
-assert(fs.existsSync(path.join(root, 'docs', 'releases', 'RELEASE_NOTES_V0_4_2.md')), 'Current release notes missing from docs/releases/.');
+assert(fs.existsSync(path.join(root, 'docs', 'qa', 'QA_V0_4_3.md')), 'Current QA report missing from docs/qa/.');
+assert(fs.existsSync(path.join(root, 'docs', 'releases', 'RELEASE_NOTES_V0_4_3.md')), 'Current release notes missing from docs/releases/.');
 assert(fs.existsSync(path.join(root, 'docs', 'releases', 'PATCH_UPLOAD_NOTES.md')), 'Current upload notes missing from docs/releases/.');
-assert(fs.existsSync(path.join(root, 'docs', 'checksums', 'CHECKSUMS_V0_4_2.sha256')), 'Current checksums missing from docs/checksums/.');
+assert(fs.existsSync(path.join(root, 'docs', 'checksums', 'CHECKSUMS_V0_4_3.sha256')), 'Current checksums missing from docs/checksums/.');
 
 console.log('Repository structure policy checks: PASS');
