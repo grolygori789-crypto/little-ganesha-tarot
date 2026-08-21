@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0c2b2c">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Little Ganesha Tarot — The Golden Path by Benedict Interactive">
+  <title>Little Ganesha Tarot — The Golden Path</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+Thai:wght@300;400;500&family=Noto+Serif+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <main class="app-shell" id="app">
+    <section class="studio-splash" id="studioSplash" aria-label="Benedict Interactive">
+      <div class="studio-splash__glow" aria-hidden="true"></div>
+      <div class="studio-wordmark">
+        <span class="studio-wordmark__ornament" aria-hidden="true"></span>
+        <p class="studio-wordmark__name">BENEDICT INTERACTIVE</p>
+        <p class="studio-wordmark__caption">PRESENTS</p>
+      </div>
+    </section>
+
+    <section class="title-screen" id="titleScreen" aria-labelledby="gameTitle" hidden>
+      <div class="title-screen__backdrop" aria-hidden="true"></div>
+
+      <div class="title-screen__stage">
+        <img
+          class="title-screen__art"
+          src="assets/ui/title-hero.png"
+          alt=""
+          width="864"
+          height="1536"
+          decoding="async"
+        >
+
+        <div class="title-screen__veil" aria-hidden="true"></div>
+        <div class="title-screen__shimmer" aria-hidden="true"></div>
+
+        <header class="title-lockup">
+          <span class="title-lockup__lotus" aria-hidden="true">✦</span>
+          <h1 id="gameTitle">
+            <span>LITTLE GANESHA</span>
+            <span class="title-lockup__tarot">TAROT</span>
+          </h1>
+          <p class="title-lockup__subtitle">THE GOLDEN PATH</p>
+        </header>
+
+        <div class="title-actions">
+          <button class="begin-button" id="beginButton" type="button">
+            <span data-copy="begin">TAP TO BEGIN</span>
+          </button>
+        </div>
+
+        <div class="title-utilities">
+          <div class="language-switch" id="languageSwitch" role="group" aria-label="Language">
+            <button class="language-switch__option is-active" type="button" data-language="en" aria-pressed="true">EN</button>
+            <span class="language-switch__divider" aria-hidden="true"></span>
+            <button class="language-switch__option" type="button" data-language="th" aria-pressed="false">ไทย</button>
+          </div>
+
+          <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="true" aria-label="Sound on">
+            <span class="sound-toggle__note" aria-hidden="true">♪</span>
+            <span class="sound-toggle__slash" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <p class="sr-only" id="liveStatus" aria-live="polite"></p>
+  </main>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
