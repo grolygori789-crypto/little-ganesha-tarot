@@ -9,6 +9,7 @@
   const SCHEMA_VERSION = 1;
   const DAILY_STORAGE_KEY = 'lgt.reading.daily.v1';
   const ORIENTATION_UPRIGHT = 'upright';
+  const LEGACY_CONTENT_VERSIONS = new Set(['daily-guidance-v1']);
 
   const SPREADS = Object.freeze({
     daily: Object.freeze({
@@ -25,7 +26,7 @@
       id: 'ask',
       cardCount: 1,
       positions: Object.freeze([
-        Object.freeze({ id: 'answer', label: Object.freeze({ en: 'Reflection', th: 'คำสะท้อน' }) })
+        Object.freeze({ id: 'answer', label: Object.freeze({ en: 'Reflection', th: 'สิ่งที่ไพ่สะท้อน' }) })
       ]),
       interpretationContext: 'question-reflection',
       questionInput: true,
@@ -37,7 +38,7 @@
       positions: Object.freeze([
         Object.freeze({ id: 'past', label: Object.freeze({ en: 'Past', th: 'อดีต' }) }),
         Object.freeze({ id: 'present', label: Object.freeze({ en: 'Present', th: 'ปัจจุบัน' }) }),
-        Object.freeze({ id: 'next', label: Object.freeze({ en: 'What Unfolds Next', th: 'สิ่งที่กำลังคลี่คลาย' }) })
+        Object.freeze({ id: 'next', label: Object.freeze({ en: 'What Unfolds Next', th: 'สิ่งที่กำลังเกิดขึ้นต่อจากนี้' }) })
       ]),
       interpretationContext: 'three-card',
       questionInput: false,
@@ -47,7 +48,7 @@
       id: 'golden',
       cardCount: 3,
       positions: Object.freeze([
-        Object.freeze({ id: 'where-you-stand', label: Object.freeze({ en: 'Where You Stand', th: 'จุดที่คุณยืนอยู่' }) }),
+        Object.freeze({ id: 'where-you-stand', label: Object.freeze({ en: 'Where You Stand', th: 'จุดที่คุณอยู่ตอนนี้' }) }),
         Object.freeze({ id: 'what-blocks', label: Object.freeze({ en: 'What Blocks the Path', th: 'สิ่งที่ขวางทาง' }) }),
         Object.freeze({ id: 'way-forward', label: Object.freeze({ en: 'The Way Forward', th: 'หนทางข้างหน้า' }) })
       ]),
@@ -60,8 +61,8 @@
       cardCount: 3,
       positions: Object.freeze([
         Object.freeze({ id: 'obstacle', label: Object.freeze({ en: 'The Obstacle', th: 'อุปสรรค' }) }),
-        Object.freeze({ id: 'feeds-it', label: Object.freeze({ en: 'What Feeds It', th: 'สิ่งที่หล่อเลี้ยงมัน' }) }),
-        Object.freeze({ id: 'releases-it', label: Object.freeze({ en: 'What Releases It', th: 'สิ่งที่ช่วยคลายมัน' }) })
+        Object.freeze({ id: 'feeds-it', label: Object.freeze({ en: 'What Feeds It', th: 'สิ่งที่ทำให้อุปสรรคนี้ยังอยู่' }) }),
+        Object.freeze({ id: 'releases-it', label: Object.freeze({ en: 'What Releases It', th: 'สิ่งที่ช่วยคลายอุปสรรค' }) })
       ]),
       interpretationContext: 'remove-obstacle',
       questionInput: false,
@@ -139,9 +140,10 @@
       const raw = localStorage.getItem(DAILY_STORAGE_KEY);
       if (!raw) return null;
       const parsed = JSON.parse(raw);
+      const contentVersionValid = parsed?.contentVersion === CONTENT.version || LEGACY_CONTENT_VERSIONS.has(parsed?.contentVersion);
       if (
         parsed?.schemaVersion !== SCHEMA_VERSION ||
-        parsed?.contentVersion !== CONTENT.version ||
+        !contentVersionValid ||
         parsed?.spreadId !== 'daily' ||
         !/^\d{4}-\d{2}-\d{2}$/.test(parsed?.localDate || '') ||
         !Array.isArray(parsed?.cards) ||
@@ -151,6 +153,10 @@
       ) {
         localStorage.removeItem(DAILY_STORAGE_KEY);
         return null;
+      }
+      if (parsed.contentVersion !== CONTENT.version) {
+        parsed.contentVersion = CONTENT.version;
+        safeWriteDaily(parsed);
       }
       return parsed;
     } catch (_) {
@@ -305,5 +311,5 @@
   }
 
   window.LGTReadingEngine = new ReadingEngine();
-  window.LGTReadingEngineVersion = '1.0.0';
+  window.LGTReadingEngineVersion = '1.0.1';
 })();

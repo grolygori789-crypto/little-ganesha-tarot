@@ -1,0 +1,62 @@
+{
+  "project": "Little Ganesha Tarot — The Golden Path",
+  "studio": "Benedict Interactive",
+  "target_runtime_build": "0.4.1",
+  "candidate_revision": "REV3_GLOBAL_NATIVE",
+  "master_plan_version": "3.7",
+  "baseline_repository": "grolygori789-crypto/little-ganesha-tarot",
+  "baseline_branch": "main",
+  "baseline_head_commit": "5a06a25983ef6ee5fd56e08b7e3739725eda9982",
+  "baseline_head_message": "Add Reading Engine/Daily Guidance V0.4.0 candidate",
+  "baseline_runtime_build": "0.4.0",
+  "release_type": "Premium Reading Polish + 78-card Native TH/EN + Global UI Copy Pass",
+  "risk_classification": "HIGH",
+  "risk_reason": "The candidate changes Service Worker/cache build markers in addition to controlled Reading/content/UI copy changes.",
+  "release_status": "VERIFIED FOR UPLOAD after static/package/Node/archive-integrity gates; deployed real-device QA pending.",
+  "upload_mode": "Overlay archive contents onto repository root; do not delete unrelated repository files.",
+  "supersedes": [
+    "Little_Ganesha_Tarot_V0_4_1_UPLOAD_CANDIDATE.zip",
+    "Little_Ganesha_Tarot_V0_4_1_REV2_NATIVE_LANGUAGE_UPLOAD_CANDIDATE.zip"
+  ],
+  "restore_archive": {
+    "filename": "Little_Ganesha_Tarot_V0_4_1_REV3_RESTORE_TO_V0_4_0.zip",
+    "sha256": "e51002b2d3169d4fcda05a8fe7aad4cdfd3f725dfa63c886bd680eb52e8b0744",
+    "rollback_runtime": "0.4.0"
+  },
+  "qa": {
+    "reading_engine_content": "PASS — 20 repeated runs",
+    "global_ui_copy_localization": "PASS — 10 repeated runs",
+    "package_version_polish": "PASS",
+    "archive_reextract": "PASS",
+    "deployed_real_device": "PENDING"
+  },
+  "protected_not_replaced": [
+    "css/app.css",
+    "js/audio.js",
+    "js/pwa.js",
+    "manifest.webmanifest",
+    "data/AUDIO_MANIFEST_V1.json",
+    "assets/audio/*",
+    "assets/icons/*",
+    "assets/motifs/*",
+    "assets/ui/*",
+    "assets/cards/*"
+  ],
+  "files": [
+    {"path":"index.html","action":"replace","size":18539,"sha256":"8c9a5e931b490471053a94610e856ebddb39256a1f6e383ba90a097d5e3502f2"},
+    {"path":"js/app.js","action":"replace","size":27311,"sha256":"5aad76127343f7d0cb4cc210371bd3ade890bd2d2e04a59be3113882f37b9483"},
+    {"path":"sw.js","action":"replace","size":4117,"sha256":"84af72f0ff5621622f25cbfa5097d3b80dc7337b4fc0b6c2edd04c16f7e00e9d"},
+    {"path":"css/reading.css","action":"replace","size":18466,"sha256":"cb84b2644c987f6616ac8c6d5163e67d936520757d78e8054bead84dd7540808"},
+    {"path":"js/reading-ui.js","action":"replace","size":19152,"sha256":"7822e3d4f3244d9b4a01a3f39775ee292de786871bf7764e538b8c9c89628e22"},
+    {"path":"js/reading-content.js","action":"replace","size":120003,"sha256":"39b80eb199f8c1f9ba5b328555190218b5211eb169a43e672e07b51142661d2f"},
+    {"path":"js/reading-engine.js","action":"replace","size":11620,"sha256":"32b8a4ec03256247880b5467ee8f98e36a9540b09e7bd3c2debfcd416cbdb7ad"},
+    {"path":"README.md","action":"replace","size":1519,"sha256":"85dc1102fd94e7daf65cff1f4232e0bbb8f3b4a4d83d3356e1f7c7b388f9b61c"},
+    {"path":"PATCH_UPLOAD_NOTES.md","action":"replace","size":1141,"sha256":"88c515b4453562eabeef15da8a7f8599ae8d7c2584b40e011a02239350d0eb90"},
+    {"path":"RELEASE_NOTES_V0_4_1.md","action":"replace","size":1346,"sha256":"b0eba51ca7a73f9be84363108e666627dfcee7aa29d42f47ccc9a76b8ffdd618"},
+    {"path":"QA_V0_4_1.md","action":"replace","size":1720,"sha256":"3bf75f15a9732ab4549e8811d33064ccaa4f769fa71144be614dd80a51e0890c"},
+    {"path":"GLOBAL_LANGUAGE_QA_V0_4_1.md","action":"add","size":4679,"sha256":"59ba9f197e8a7d7192e654602dd86536fb9c19f67b21c61daa6110c53f8a4e24"},
+    {"path":"docs/test-reading-engine.js","action":"replace","size":11839,"sha256":"e6d80fa895133fe752f449e923c2e3e4acf826f913a5402e583313f5cbf47cf5"},
+    {"path":"docs/test-package.js","action":"replace","size":3545,"sha256":"1bea857b623939c8020ce7214544e22f9d3597b26d5ed6c24da6f67d64f44283"},
+    {"path":"docs/test-global-copy.js","action":"add","size":4486,"sha256":"cdbaad2eeb542fabf4d47e38b26f3eeaeb5f63b820532ad4837ce4f77da13d7b"}
+  ]
+}

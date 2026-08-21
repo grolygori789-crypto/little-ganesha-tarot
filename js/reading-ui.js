@@ -9,22 +9,22 @@
     en: {
       eyebrow: 'DAILY GUIDANCE',
       title: 'A card for today',
-      intro: 'Take a quiet moment. Let the deck settle, then choose the card that draws you.',
-      restoredIntro: 'Your card for today is already waiting. You can return to it as often as you need.',
+      intro: 'Take a moment, settle in, and choose the card you feel drawn to.',
+      restoredIntro: 'Today’s card is already set. You can return to the same card whenever you like.',
       begin: 'Begin',
-      shuffling: 'Let the deck settle',
+      shuffling: 'Shuffling the deck',
       choose: 'Choose one card',
-      chooseHint: 'There is no right choice. Notice which one you reach for.',
+      chooseHint: 'There is no right or wrong choice. Pick the card you feel drawn to.',
       selected: 'Your card is chosen',
-      selectedHint: 'This card is now held for today on this device.',
-      reveal: 'Reveal today’s card',
+      selectedHint: 'This is your Daily Guidance card for today on this device.',
+      reveal: 'Reveal the card',
       theme: 'TODAY’S THEME',
-      reflection: 'A QUESTION TO CARRY',
-      done: 'Return to Home',
+      reflection: 'REFLECTION QUESTION',
+      done: 'Back to Home',
       back: 'Back to Home',
       upright: 'UPRIGHT',
-      disclaimer: 'Tarot here is a reflective tool, not a fixed prediction. Take what is useful and leave the rest.',
-      storageFail: 'This device could not save today’s card. It may not stay locked after a reload.',
+      disclaimer: 'Use tarot as a tool for reflection, not a fixed prediction. Keep what feels useful and leave the rest.',
+      storageFail: 'This device couldn’t save today’s card, so it may change after you reload the app.',
       cardAlt: 'Today’s tarot card: ',
       loading: 'Preparing your card',
       restored: 'TODAY’S CARD',
@@ -33,24 +33,24 @@
     th: {
       eyebrow: 'คำแนะนำประจำวัน',
       title: 'ไพ่หนึ่งใบสำหรับวันนี้',
-      intro: 'ใช้เวลาสักครู่ ปล่อยให้สำรับค่อยๆ สงบ แล้วเลือกใบที่ดึงดูดใจคุณ',
-      restoredIntro: 'ไพ่ของวันนี้รอคุณอยู่แล้ว คุณกลับมาอ่านใบเดิมได้ทุกครั้งที่ต้องการ',
-      begin: 'เริ่มเปิดไพ่',
-      shuffling: 'ปล่อยให้สำรับค่อยๆ สงบ',
+      intro: 'ใช้เวลาสักครู่ ผ่อนใจให้สบาย แล้วเลือกไพ่ใบที่รู้สึกดึงดูดใจคุณที่สุด',
+      restoredIntro: 'ไพ่ประจำวันนี้ถูกเลือกไว้แล้ว คุณกลับมาอ่านใบเดิมได้ทุกเมื่อ',
+      begin: 'เริ่ม',
+      shuffling: 'กำลังสับไพ่',
       choose: 'เลือกไพ่หนึ่งใบ',
-      chooseHint: 'ไม่มีใบที่เลือกถูกหรือผิด ลองสังเกตว่าใจพาคุณไปหาใบไหน',
-      selected: 'ไพ่ของคุณถูกเลือกแล้ว',
-      selectedHint: 'ไพ่ใบนี้จะถูกเก็บไว้เป็นไพ่ประจำวันนี้บนอุปกรณ์เครื่องนี้',
-      reveal: 'เปิดไพ่ของวันนี้',
-      theme: 'พลังของวันนี้',
-      reflection: 'คำถามสำหรับวันนี้',
+      chooseHint: 'ไม่ต้องคิดมากว่าใบไหนถูกหรือผิด เลือกใบที่คุณรู้สึกอยากหยิบมากที่สุด',
+      selected: 'เลือกไพ่แล้ว',
+      selectedHint: 'ไพ่ใบนี้จะเป็นไพ่ประจำวันนี้ของคุณบนอุปกรณ์เครื่องนี้',
+      reveal: 'เปิดไพ่',
+      theme: 'สิ่งที่ไพ่สะท้อนวันนี้',
+      reflection: 'คำถามชวนทบทวน',
       done: 'กลับหน้าหลัก',
       back: 'กลับหน้าหลัก',
       upright: 'ไพ่ตั้งตรง',
-      disclaimer: 'ไพ่ทาโรต์ในที่นี้เป็นเครื่องมือสำหรับการสะท้อน ไม่ใช่คำทำนายตายตัว รับเฉพาะสิ่งที่มีความหมายกับคุณ',
-      storageFail: 'อุปกรณ์นี้ไม่สามารถบันทึกไพ่ของวันนี้ได้ ไพ่จึงอาจไม่ถูกล็อกไว้หลังโหลดหน้าใหม่',
+      disclaimer: 'ใช้ไพ่ทาโรต์เป็นเครื่องมือช่วยทบทวนตัวเอง ไม่ใช่คำทำนายที่ตายตัว เลือกรับเฉพาะสิ่งที่เป็นประโยชน์กับคุณ',
+      storageFail: 'อุปกรณ์นี้บันทึกไพ่ของวันนี้ไม่ได้ ไพ่จึงอาจเปลี่ยนหลังเปิดแอปใหม่',
       cardAlt: 'ไพ่ทาโรต์ประจำวันนี้: ',
-      loading: 'กำลังเตรียมไพ่ของคุณ',
+      loading: 'กำลังเตรียมไพ่',
       restored: 'ไพ่ของวันนี้',
       keywords: 'คำสำคัญ'
     }
@@ -216,6 +216,10 @@
     else mainApp.removeAttribute('aria-hidden');
   }
 
+  function setReadingMode(value) {
+    document.body.classList.toggle('is-reading-open', value);
+  }
+
   function updateStaticCopy() {
     eyebrow.textContent = t('eyebrow');
     title.textContent = t('title');
@@ -226,6 +230,10 @@
     keywordsLabel.textContent = t('keywords');
     disclaimer.textContent = t('disclaimer');
     storageNote.textContent = t('storageFail');
+    choice.setAttribute('aria-label', t('choose'));
+    choice.querySelectorAll('[data-choice-index]').forEach((button) => {
+      button.setAttribute('aria-label', `${t('choose')} ${Number(button.dataset.choiceIndex) + 1}`);
+    });
 
     if (currentView === 'intro') {
       intro.textContent = t('intro');
@@ -320,6 +328,7 @@
       const button = document.createElement('button');
       button.className = 'reading-card reading-card--choice';
       button.type = 'button';
+      button.dataset.choiceIndex = String(index);
       button.setAttribute('aria-label', `${t('choose')} ${index + 1}`);
       button.innerHTML = `<img src="${CONTENT.cardBack}" alt="" decoding="async">`;
       button.addEventListener('click', () => chooseCard(index, button), { once: true });
@@ -429,6 +438,7 @@
     selectedData = daily.card;
 
     setMainInert(true);
+    setReadingMode(true);
     shell.hidden = false;
     requestAnimationFrame(() => shell.classList.add('is-active'));
     emitInteraction('reading-open');
@@ -454,6 +464,7 @@
       resetVisuals();
       session = null;
       setMainInert(false);
+      setReadingMode(false);
       if (previousFocus instanceof HTMLElement && document.contains(previousFocus)) {
         previousFocus.focus({ preventScroll: true });
       }

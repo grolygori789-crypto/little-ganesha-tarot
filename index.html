@@ -11,10 +11,10 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="dark">
   <meta name="description" content="Little Ganesha Tarot — The Golden Path by Benedict Interactive">
-  <meta name="application-version" content="0.4.0">
+  <meta name="application-version" content="0.4.1">
   <title>Little Ganesha Tarot — The Golden Path</title>
 
-  <link rel="manifest" href="manifest.webmanifest?v=0.4.0">
+  <link rel="manifest" href="manifest.webmanifest?v=0.4.1">
   <link rel="icon" href="assets/icons/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
@@ -23,10 +23,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600&family=Noto+Serif+Thai:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/app.css?v=0.4.0">
-  <link rel="stylesheet" href="css/reading.css?v=0.4.0">
+  <link rel="stylesheet" href="css/app.css?v=0.4.1">
+  <link rel="stylesheet" href="css/reading.css?v=0.4.1">
 </head>
-<body data-build="0.4.0">
+<body data-build="0.4.1">
   <main class="app-shell" id="app">
     <section class="studio-splash" id="studioSplash" aria-label="Benedict Interactive">
       <div class="studio-splash__glow" aria-hidden="true"></div>
@@ -61,7 +61,7 @@
           <button class="begin-button" id="beginButton" type="button"><span data-copy="begin">TAP TO BEGIN</span></button>
         </div>
         <div class="title-utilities">
-          <div class="language-switch" role="group" aria-label="Language">
+          <div class="language-switch" role="group" aria-label="Language" data-copy-aria="languageAria">
             <button class="language-switch__option is-active" type="button" data-language="en" aria-pressed="true">EN</button>
             <span class="language-switch__divider" aria-hidden="true"></span>
             <button class="language-switch__option" type="button" data-language="th" aria-pressed="false">ไทย</button>
@@ -102,23 +102,23 @@
           <span class="eyebrow">LITTLE GANESHA TAROT</span>
           <h2 id="homeGreeting">The Golden Path</h2>
         </div>
-        <button class="icon-button" id="settingsButton" type="button" aria-label="Settings">⚙</button>
+        <button class="icon-button" id="settingsButton" type="button" aria-label="Settings" data-copy-aria="settingsAria">⚙</button>
       </header>
 
       <div class="app-content" id="homeView">
         <section class="home-intro">
           <p class="home-kicker" id="homeWelcome" data-copy="homeWelcome">Take a moment. Hold your question gently, and choose your path.</p>
         </section>
-        <section class="primary-grid" aria-label="Primary readings">
-          <button class="feature-card feature-card--hero motif-card motif-card--daily" data-feature="daily" type="button"><span class="card-copy"><strong data-copy="daily">Daily Guidance</strong><small data-copy="dailySub">One card for the energy of today</small></span></button>
+        <section class="primary-grid" aria-label="Primary readings" data-copy-aria="primaryReadingsAria">
+          <button class="feature-card feature-card--hero motif-card motif-card--daily" data-feature="daily" type="button"><span class="card-copy"><strong data-copy="daily">Daily Guidance</strong><small data-copy="dailySub">One card to reflect on today</small></span></button>
           <button class="feature-card motif-card motif-card--ask" data-feature="ask" type="button"><span class="card-copy"><strong data-copy="ask">Ask Ganesha</strong><small data-copy="askSub">Bring one clear question</small></span></button>
-          <button class="feature-card motif-card motif-card--three" data-feature="three" type="button"><span class="card-copy"><strong data-copy="three">Three-Card Reading</strong><small data-copy="threeSub">Past, present and what unfolds next</small></span></button>
+          <button class="feature-card motif-card motif-card--three" data-feature="three" type="button"><span class="card-copy"><strong data-copy="three">Three-Card Reading</strong><small data-copy="threeSub">Past, present, and what unfolds next</small></span></button>
         </section>
         <section class="section-block">
           <div class="section-heading"><span data-copy="signature">Signature Paths</span></div>
           <div class="compact-grid">
             <button class="compact-card motif-card motif-card--golden" data-feature="golden" type="button"><span class="card-copy"><strong data-copy="golden">The Golden Path</strong><small data-copy="goldenSub">Where you stand · what blocks you · the way forward</small></span></button>
-            <button class="compact-card motif-card motif-card--obstacle" data-feature="obstacle" type="button"><span class="card-copy"><strong data-copy="obstacle">Remove the Obstacle</strong><small data-copy="obstacleSub">The obstacle · what feeds it · what releases it</small></span></button>
+            <button class="compact-card motif-card motif-card--obstacle" data-feature="obstacle" type="button"><span class="card-copy"><strong data-copy="obstacle">Remove the Obstacle</strong><small data-copy="obstacleSub">The obstacle · what sustains it · what helps release it</small></span></button>
           </div>
         </section>
         <section class="section-block">
@@ -132,17 +132,17 @@
       </div>
 
       <div class="app-content settings-view" id="settingsView" hidden>
-        <div class="settings-title-row"><button class="back-button" id="settingsBack" type="button" aria-label="Back">‹</button><div><span class="eyebrow" data-copy="preferences">PREFERENCES</span><h2 data-copy="settings">Settings</h2></div></div>
+        <div class="settings-title-row"><button class="back-button" id="settingsBack" type="button" aria-label="Back" data-copy-aria="backAria">‹</button><div><span class="eyebrow" data-copy="preferences">PREFERENCES</span><h2 data-copy="settings">Settings</h2></div></div>
         <section class="settings-group"><h3 data-copy="experience">Experience</h3>
-          <div class="setting-row"><div><strong data-copy="language">Language</strong><small data-copy="languageSub">Choose English or Thai</small></div><div class="segmented"><button data-language="en" type="button">EN</button><button data-language="th" type="button">ไทย</button></div></div>
-          <div class="setting-row"><div><strong data-copy="motion">Motion</strong><small data-copy="motionSub">System keeps accessibility preferences</small></div><select id="motionSelect"><option value="system" data-copy-option="motionSystem">System</option><option value="full" data-copy-option="motionFull">Full</option><option value="reduced" data-copy-option="motionReduced">Reduced</option></select></div>
-          <div class="setting-row" id="browserFullscreenRow"><div><strong data-copy="immersive">Browser Full Screen</strong><small data-copy="immersiveSub">Optional · installed app already opens in app-like mode</small></div><label class="switch"><input id="immersiveToggle" type="checkbox"><span></span></label></div>
+          <div class="setting-row"><div><strong data-copy="language">Language</strong><small data-copy="languageSub">Choose English or Thai</small></div><div class="segmented" role="group" aria-label="Language" data-copy-aria="languageAria"><button data-language="en" type="button">EN</button><button data-language="th" type="button">ไทย</button></div></div>
+          <div class="setting-row"><div><strong data-copy="motion">Motion</strong><small data-copy="motionSub">System follows your device accessibility setting</small></div><select id="motionSelect" aria-label="Motion" data-copy-aria="motion"><option value="system" data-copy-option="motionSystem">System</option><option value="full" data-copy-option="motionFull">Full</option><option value="reduced" data-copy-option="motionReduced">Reduced</option></select></div>
+          <div class="setting-row" id="browserFullscreenRow"><div><strong data-copy="immersive">Browser Full Screen</strong><small data-copy="immersiveSub">Optional · installed app already opens in app-like mode</small></div><label class="switch"><input id="immersiveToggle" type="checkbox" aria-label="Browser Full Screen" data-copy-aria="immersive"><span></span></label></div>
         </section>
 
         <section class="settings-group"><h3 data-copy="audio">Audio</h3>
-          <div class="setting-row"><div><strong data-copy="sound">Music</strong><small data-copy="soundSub">Atmospheric soundtrack</small></div><label class="switch"><input id="settingsSoundToggle" type="checkbox" checked><span></span></label></div>
-          <div class="setting-row setting-row--stack"><div><strong data-copy="volume">Volume</strong></div><input id="settingsVolume" class="range" type="range" min="0" max="100" step="1" value="58"></div>
-          <div class="setting-row"><div><strong data-copy="shuffle">Shuffle</strong><small data-copy="shuffleSub">Avoid repeating the same track</small></div><label class="switch"><input id="settingsShuffle" type="checkbox" checked><span></span></label></div>
+          <div class="setting-row"><div><strong data-copy="sound">Music</strong><small data-copy="soundSub">Atmospheric soundtrack</small></div><label class="switch"><input id="settingsSoundToggle" type="checkbox" checked aria-label="Music" data-copy-aria="sound"><span></span></label></div>
+          <div class="setting-row setting-row--stack"><div><strong data-copy="volume">Volume</strong></div><input id="settingsVolume" class="range" type="range" min="0" max="100" step="1" value="58" aria-label="Volume" data-copy-aria="volume"></div>
+          <div class="setting-row"><div><strong data-copy="shuffle">Shuffle</strong><small data-copy="shuffleSub">Avoid repeating the same track</small></div><label class="switch"><input id="settingsShuffle" type="checkbox" checked aria-label="Shuffle" data-copy-aria="shuffle"><span></span></label></div>
         </section>
 
         <section class="settings-group"><h3 data-copy="profile">Personal Profile</h3>
@@ -152,15 +152,15 @@
         </section>
 
         <section class="settings-group support-group"><h3 data-copy="supportProject">Support the Project</h3><p class="support-note" data-copy="supportNote">Support is optional and never affects readings or features.</p>
-          <article class="support-card"><div><span class="support-badge">WORLDWIDE</span><h4 data-copy="internationalSupport">International Supporters</h4><p data-copy="internationalSupportSub">Buy Me a Coffee</p></div><button class="support-button" type="button" disabled data-copy="comingSoon">Coming soon</button></article>
-          <article class="support-card"><div><span class="support-badge">THAILAND</span><h4 data-copy="thaiSupport">Supporters in Thailand</h4><p data-copy="thaiSupportSub">PromptPay · secure QR card coming next</p></div><button class="support-button" type="button" disabled data-copy="qrPending">QR pending</button></article>
+          <article class="support-card"><div><span class="support-badge" data-copy="supportWorldwideBadge">WORLDWIDE</span><h4 data-copy="internationalSupport">International Supporters</h4><p data-copy="internationalSupportSub">Buy Me a Coffee</p></div><button class="support-button" type="button" disabled data-copy="comingSoon">Coming soon</button></article>
+          <article class="support-card"><div><span class="support-badge" data-copy="supportThailandBadge">THAILAND</span><h4 data-copy="thaiSupport">Supporters in Thailand</h4><p data-copy="thaiSupportSub">PromptPay · secure QR card coming next</p></div><button class="support-button" type="button" disabled data-copy="qrPending">QR pending</button></article>
         </section>
 
         <section class="settings-group"><button class="danger-link" id="returnTitleButton" type="button" data-copy="returnTitle">Return to Title</button></section>
-        <p class="build-label">BUILD 0.4.0</p>
+        <p class="build-label">BUILD 0.4.1</p>
       </div>
 
-      <nav class="bottom-nav" aria-label="Primary">
+      <nav class="bottom-nav" aria-label="Primary navigation" data-copy-aria="primaryNavAria">
         <button class="bottom-nav__button is-active" id="homeNavButton" type="button"><span>⌂</span><small data-copy="home">Home</small></button>
         <button class="bottom-nav__button" data-feature="read" type="button"><span>✦</span><small data-copy="read">Read</small></button>
         <button class="bottom-nav__button" data-feature="cards" type="button"><span>▤</span><small data-copy="cards">Cards</small></button>
@@ -169,7 +169,7 @@
       </nav>
     </section>
 
-    <aside class="mini-player mini-player--global" id="miniPlayer" aria-label="Music player" hidden>
+    <aside class="mini-player mini-player--global" id="miniPlayer" aria-label="Music player" data-copy-aria="musicPlayerAria" hidden>
       <div class="mini-player__main"><div class="mini-player__meta"><span class="mini-player__eyebrow" id="playerEyebrow">NOW PLAYING</span><strong class="mini-player__title" id="playerTitle">Golden Lantern at Twilight</strong></div><div class="mini-player__controls"><button class="player-button" id="playerPrevious" type="button" aria-label="Previous track">‹</button><button class="player-button player-button--primary" id="playerPlay" type="button" aria-label="Pause" data-state="pause"><span class="player-icon player-icon--play" aria-hidden="true">▶</span><span class="player-icon player-icon--pause" aria-hidden="true">Ⅱ</span></button><button class="player-button" id="playerNext" type="button" aria-label="Next track">›</button><button class="player-button player-button--more" id="playerMore" type="button" aria-label="Audio options" aria-expanded="false">•••</button></div></div>
       <div class="mini-player__panel" id="playerPanel" hidden><label class="volume-control"><span data-copy="volume">Volume</span><input id="volumeSlider" type="range" min="0" max="100" step="1" value="58"></label><div class="mini-player__panel-actions"><button class="panel-button" id="shuffleToggle" type="button" aria-pressed="true"><span aria-hidden="true">⤨</span><span data-copy="shuffle">Shuffle</span></button><button class="panel-button panel-button--exit" id="exitButton" type="button"><span aria-hidden="true">↶</span><span data-copy="returnTitle">Return to Title</span></button></div></div>
     </aside>
@@ -203,11 +203,11 @@
     <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle" hidden><div class="modal-card"><span class="modal-card__ornament" aria-hidden="true">✦</span><h2 id="exitModalTitle" data-copy="exitTitle">Return to Title?</h2><p data-copy="exitBody">Your preferences will be kept.</p><div class="modal-card__actions"><button class="modal-button" id="exitCancel" type="button" data-copy="cancel">Cancel</button><button class="modal-button modal-button--primary" id="exitConfirm" type="button" data-copy="confirm">Return</button></div></div></div>
     <p class="sr-only" id="liveStatus" aria-live="polite"></p>
   </main>
-  <script src="js/pwa.js?v=0.4.0" defer></script>
-  <script src="js/audio.js?v=0.4.0" defer></script>
-  <script src="js/app.js?v=0.4.0" defer></script>
-  <script src="js/reading-content.js?v=0.4.0" defer></script>
-  <script src="js/reading-engine.js?v=0.4.0" defer></script>
-  <script src="js/reading-ui.js?v=0.4.0" defer></script>
+  <script src="js/pwa.js?v=0.4.1" defer></script>
+  <script src="js/audio.js?v=0.4.1" defer></script>
+  <script src="js/app.js?v=0.4.1" defer></script>
+  <script src="js/reading-content.js?v=0.4.1" defer></script>
+  <script src="js/reading-engine.js?v=0.4.1" defer></script>
+  <script src="js/reading-ui.js?v=0.4.1" defer></script>
 </body>
 </html>

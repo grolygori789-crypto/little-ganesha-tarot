@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const CONTENT_VERSION = 'daily-guidance-v1';
+  const CONTENT_VERSION = 'daily-guidance-v2';
   const CARD_BACK = 'assets/ui/card-back.png';
   const CARDS = [
   {
@@ -19,29 +19,29 @@
     "image": "assets/cards/00_THE_FOOL.png",
     "keywords": {
       "en": [
-        "beginnings",
+        "new beginnings",
         "trust",
         "openness"
       ],
       "th": [
-        "การเริ่มต้น",
-        "ความไว้วางใจ",
+        "การเริ่มต้นใหม่",
+        "ความไว้ใจ",
         "การเปิดรับ"
       ]
     },
     "upright": {
-      "en": "A fresh step is available. Curiosity matters more than having every answer before you begin.",
-      "th": "วันนี้มีพื้นที่ให้เริ่มต้นใหม่ ความอยากรู้อยากลองสำคัญกว่าการต้องรู้คำตอบทุกอย่างก่อนลงมือ"
+      "en": "A new beginning does not require a perfect plan. Stay curious, take one honest step, and let experience show you what comes next.",
+      "th": "การเริ่มต้นใหม่ไม่จำเป็นต้องมีแผนที่สมบูรณ์แบบ ความอยากรู้อยากลองและก้าวเล็กๆ ที่จริงใจอาจพาคุณเห็นทางต่อไปได้ชัดกว่าการคิดอยู่ที่เดิม"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Where could one small step teach you more than more planning?",
-      "th": "มีเรื่องไหนที่ก้าวเล็กๆ หนึ่งก้าวจะสอนคุณได้มากกว่าการวางแผนเพิ่มอีก?"
+      "en": "Where would one small step teach you more than another round of planning?",
+      "th": "เรื่องไหนที่การลองก้าวไปหนึ่งก้าวอาจให้คำตอบมากกว่าการวางแผนเพิ่ม?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "01",
@@ -58,36 +58,36 @@
     "image": "assets/cards/01_THE_MAGICIAN.png",
     "keywords": {
       "en": [
-        "agency",
+        "initiative",
         "skill",
         "focus"
       ],
       "th": [
-        "พลังลงมือ",
+        "การลงมือ",
         "ทักษะ",
-        "สมาธิ"
+        "ความมุ่งมั่น"
       ]
     },
     "upright": {
-      "en": "You already have useful tools within reach. Bring attention, skill, and intention to the same point.",
-      "th": "เครื่องมือที่จำเป็นหลายอย่างอยู่ใกล้มือแล้ว วันนี้คือการรวมความตั้งใจ ทักษะ และสมาธิให้ไปในทิศเดียวกัน"
+      "en": "You already have more to work with than you may realize. Bring your attention, skills, and intention together, then use them deliberately.",
+      "th": "คุณมีสิ่งที่ใช้ต่อยอดได้มากกว่าที่คิด ลองรวมความตั้งใจ ทักษะ และสิ่งที่มีอยู่ให้ไปในทิศเดียวกัน แล้วลงมือกับมันอย่างจริงจัง"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What can you shape today with what you already have?",
-      "th": "วันนี้คุณสร้างอะไรได้บ้างจากสิ่งที่มีอยู่แล้ว?"
+      "en": "What could you move forward today with what you already have?",
+      "th": "วันนี้คุณขยับเรื่องไหนได้ด้วยสิ่งที่มีอยู่แล้ว?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "02",
     "index": 2,
     "title": {
       "en": "The High Priestess",
-      "th": "นักบวชหญิง"
+      "th": "มหาปุโรหิตหญิง"
     },
     "canonicalTitle": "THE HIGH PRIESTESS",
     "arcana": "major",
@@ -99,27 +99,27 @@
       "en": [
         "intuition",
         "stillness",
-        "inner knowing"
+        "inner wisdom"
       ],
       "th": [
         "สัญชาตญาณ",
-        "ความนิ่ง",
-        "การรู้จากภายใน"
+        "ความสงบ",
+        "ปัญญาภายใน"
       ]
     },
     "upright": {
-      "en": "Not everything needs an immediate answer. Quiet observation may reveal what forceful analysis misses.",
-      "th": "ไม่ใช่ทุกเรื่องต้องรีบหาคำตอบ การมองอย่างนิ่งๆ อาจทำให้เห็นสิ่งที่การคิดบีบคั้นมองข้าม"
+      "en": "Not every answer becomes clearer by thinking harder. Give yourself enough quiet to notice what you already sense beneath the noise.",
+      "th": "ไม่ใช่ทุกคำตอบจะชัดขึ้นจากการคิดเพิ่ม บางเรื่องต้องอาศัยความเงียบพอให้คุณได้สังเกตว่าลึกๆ แล้วตัวเองรู้สึกอย่างไร"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What becomes clearer when you stop trying to force clarity?",
-      "th": "อะไรเริ่มชัดขึ้นเมื่อคุณหยุดบังคับให้ตัวเองต้องเข้าใจทันที?"
+      "en": "What do you sense before you start explaining it away?",
+      "th": "ก่อนจะรีบหาเหตุผลมาหักล้าง ลึกๆ แล้วคุณรู้สึกอย่างไรกับเรื่องนี้?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "03",
@@ -138,27 +138,27 @@
       "en": [
         "nurture",
         "abundance",
-        "creation"
+        "creativity"
       ],
       "th": [
-        "การหล่อเลี้ยง",
-        "ความอุดม",
-        "การสร้างสรรค์"
+        "การดูแล",
+        "ความอุดมสมบูรณ์",
+        "ความสร้างสรรค์"
       ]
     },
     "upright": {
-      "en": "Growth responds to care. Give time, warmth, and practical nourishment to what you want to flourish.",
-      "th": "สิ่งที่อยากให้เติบโตต้องการการดูแล ให้เวลา ความอบอุ่น และสิ่งหล่อเลี้ยงที่จับต้องได้กับมัน"
+      "en": "What you care for can grow. Give your time, warmth, and practical attention to the person, idea, or part of life you want to flourish.",
+      "th": "สิ่งที่ได้รับการดูแลมีโอกาสเติบโต วันนี้ลองให้เวลา ความใส่ใจ และการดูแลที่จับต้องได้กับคน งาน หรือเรื่องที่คุณอยากเห็นงอกงาม"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What deserves steady care rather than more pressure?",
-      "th": "อะไรควรได้รับการดูแลอย่างสม่ำเสมอมากกว่าการเร่งกดดัน?"
+      "en": "What needs steady care more than extra pressure?",
+      "th": "ตอนนี้อะไรต้องการการดูแลสม่ำเสมอมากกว่าการเร่งให้เกิดผล?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "04",
@@ -181,23 +181,23 @@
       ],
       "th": [
         "โครงสร้าง",
-        "ภาวะผู้นำ",
+        "ความเป็นผู้นำ",
         "ขอบเขต"
       ]
     },
     "upright": {
-      "en": "Clear structure can be protective rather than restrictive. Decide what needs order, ownership, or a firmer boundary.",
-      "th": "โครงสร้างที่ชัดเจนอาจเป็นสิ่งคุ้มครอง ไม่ใช่ข้อจำกัด ลองมองว่าเรื่องไหนต้องการระเบียบ ความรับผิดชอบ หรือขอบเขตที่ชัดขึ้น"
+      "en": "Clear structure can create safety and freedom. Decide what needs a plan, a firm boundary, or someone willing to take responsibility.",
+      "th": "โครงสร้างที่ชัดไม่ได้มีไว้จำกัดเสมอไป บางครั้งมันช่วยให้รู้ว่าอะไรควรทำ ใครรับผิดชอบ และตรงไหนควรวางขอบเขต"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Where would a clear boundary create more freedom?",
-      "th": "ตรงไหนที่ขอบเขตชัดเจนจะทำให้คุณมีอิสระมากขึ้น?"
+      "en": "Where would a clearer boundary make life easier?",
+      "th": "เรื่องไหนจะง่ายขึ้นถ้าคุณวางขอบเขตให้ชัดกว่านี้?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "05",
@@ -215,28 +215,28 @@
     "keywords": {
       "en": [
         "tradition",
-        "learning",
+        "guidance",
         "shared values"
       ],
       "th": [
         "แบบแผน",
-        "การเรียนรู้",
+        "คำชี้แนะ",
         "คุณค่าร่วม"
       ]
     },
     "upright": {
-      "en": "There may be value in tested wisdom, a trusted teacher, or a shared practice. Learn the form before deciding how to adapt it.",
-      "th": "ภูมิปัญญาที่ผ่านการลองใช้ ครูที่ไว้ใจได้ หรือแบบปฏิบัติร่วมกันอาจมีประโยชน์ เรียนรู้รูปแบบให้เข้าใจก่อนค่อยเลือกว่าจะปรับตรงไหน"
+      "en": "There may be wisdom in a trusted teacher, a proven method, or a tradition that has lasted for a reason. Learn from it before deciding what fits you.",
+      "th": "บางเรื่องไม่จำเป็นต้องเริ่มจากศูนย์ ครูที่ไว้ใจได้ วิธีที่ผ่านการใช้จริง หรือแบบแผนที่มีเหตุผลอาจช่วยให้คุณเห็นทางชัดขึ้น ก่อนจะเลือกว่าจะนำส่วนไหนมาใช้กับตัวเอง"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Which principle is worth learning deeply before you reinvent it?",
-      "th": "หลักอะไรควรเรียนรู้ให้ลึกก่อนที่จะคิดปรับใหม่?"
+      "en": "Whose guidance or experience is worth listening to more closely?",
+      "th": "ตอนนี้ประสบการณ์หรือคำแนะนำจากใครน่าจะช่วยคุณได้มากที่สุด?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "06",
@@ -255,7 +255,7 @@
       "en": [
         "choice",
         "alignment",
-        "relationship"
+        "partnership"
       ],
       "th": [
         "การเลือก",
@@ -264,18 +264,18 @@
       ]
     },
     "upright": {
-      "en": "A meaningful choice asks more than what feels good now. Notice whether your decision aligns with your values and relationships.",
-      "th": "การเลือกที่สำคัญไม่ได้ถามแค่ว่าอะไรทำให้รู้สึกดีตอนนี้ ลองดูว่าการตัดสินใจนั้นสอดคล้องกับคุณค่าและความสัมพันธ์ของคุณหรือไม่"
+      "en": "A meaningful choice asks whether your heart, values, and actions are pointing in the same direction. Connection grows stronger when you choose with honesty.",
+      "th": "การเลือกที่สำคัญไม่ได้มีแค่ว่าอะไรทำให้รู้สึกดี แต่คือสิ่งที่เลือกนั้นตรงกับคุณค่า ความรู้สึก และความสัมพันธ์ที่คุณให้ความสำคัญหรือไม่"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What choice would let your actions match what you say matters?",
-      "th": "การเลือกแบบไหนจะทำให้การกระทำตรงกับสิ่งที่คุณบอกว่าสำคัญ?"
+      "en": "Which choice would bring your actions closer to what truly matters to you?",
+      "th": "ทางเลือกไหนทำให้สิ่งที่คุณทำตรงกับสิ่งที่สำคัญกับคุณมากที่สุด?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "07",
@@ -293,35 +293,35 @@
     "keywords": {
       "en": [
         "direction",
-        "discipline",
+        "determination",
         "momentum"
       ],
       "th": [
         "ทิศทาง",
-        "วินัย",
+        "ความมุ่งมั่น",
         "แรงส่ง"
       ]
     },
     "upright": {
-      "en": "Momentum grows when competing impulses are given one direction. Choose the destination before pushing harder.",
-      "th": "แรงส่งจะเกิดเมื่อพลังที่ดึงคนละทางถูกรวมให้ไปทางเดียวกัน เลือกปลายทางให้ชัดก่อนเร่งแรง"
+      "en": "Progress comes from giving your energy one clear direction. Choose where you are going, then commit instead of pulling yourself several ways at once.",
+      "th": "เมื่อพลังไม่ถูกดึงไปหลายทาง คุณจะเดินหน้าได้เร็วขึ้น เลือกให้ชัดว่ากำลังจะไปไหน แล้วทุ่มแรงกับทิศนั้นแทนการพยายามไปทุกทางพร้อมกัน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What deserves your full direction instead of divided effort?",
-      "th": "เรื่องไหนควรได้รับพลังเต็มที่แทนการแบ่งแรงไปหลายทาง?"
+      "en": "What deserves your full attention right now?",
+      "th": "ตอนนี้เรื่องไหนควรได้ความสนใจจากคุณแบบเต็มที่?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "08",
     "index": 8,
     "title": {
       "en": "Strength",
-      "th": "พลัง"
+      "th": "พละกำลัง"
     },
     "canonicalTitle": "STRENGTH",
     "arcana": "major",
@@ -333,27 +333,27 @@
       "en": [
         "courage",
         "gentleness",
-        "self-command"
+        "self-control"
       ],
       "th": [
         "ความกล้า",
         "ความอ่อนโยน",
-        "การกำกับตนเอง"
+        "การควบคุมตนเอง"
       ]
     },
     "upright": {
-      "en": "Real strength may look quiet today. Meet intensity with patience, steadiness, and enough gentleness to stay in command of yourself.",
-      "th": "พลังที่แท้จริงวันนี้อาจดูเงียบกว่าที่คิด รับมือความเข้มข้นด้วยความอดทน ความมั่นคง และความอ่อนโยนที่ช่วยให้ยังคุมตัวเองได้"
+      "en": "Strength does not have to be forceful. Patience, courage, and staying steady with your reactions may take you further than pushing harder.",
+      "th": "ความเข้มแข็งไม่ได้แปลว่าต้องฝืนหรือแข็งกร้าว วันนี้ความอดทน ความกล้า และการดูแลอารมณ์ตัวเองให้ดีอาจได้ผลมากกว่าการบังคับให้ทุกอย่างเป็นอย่างใจ"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Where would calm courage work better than force?",
-      "th": "ตรงไหนที่ความกล้าอย่างสงบจะได้ผลดีกว่าการฝืนบังคับ?"
+      "en": "Where would calm courage work better than pushing harder?",
+      "th": "เรื่องไหนที่การใจเย็นแต่ไม่ถอยจะได้ผลกว่าการฝืนให้ชนะ?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "09",
@@ -370,29 +370,29 @@
     "image": "assets/cards/09_THE_HERMIT.png",
     "keywords": {
       "en": [
-        "reflection",
+        "introspection",
         "solitude",
-        "discernment"
+        "wisdom"
       ],
       "th": [
         "การทบทวน",
-        "การอยู่ลำพัง",
-        "การพิจารณา"
+        "การอยู่กับตัวเอง",
+        "ปัญญา"
       ]
     },
     "upright": {
-      "en": "A little distance can restore perspective. Step away from noise long enough to hear your own considered judgment.",
-      "th": "ระยะห่างเล็กน้อยอาจทำให้มุมมองกลับมาชัด ลองออกจากเสียงรบกวนพอให้ได้ยินการพิจารณาของตัวเอง"
+      "en": "A little distance can help you hear yourself again. Step away from other people’s noise long enough to notice what your own experience is telling you.",
+      "th": "การถอยออกมาสักระยะอาจช่วยให้มองเห็นเรื่องเดิมชัดขึ้น ลดเสียงจากรอบข้างลงแล้วฟังสิ่งที่ประสบการณ์และความคิดของคุณกำลังบอก"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What do you know when nobody else is speaking?",
-      "th": "เมื่อไม่มีเสียงของคนอื่นเข้ามา คุณรู้อะไรอยู่แล้วในใจ?"
+      "en": "What becomes clearer when you stop looking outside yourself for the answer?",
+      "th": "เมื่อหยุดมองหาคำตอบจากคนอื่น คุณเห็นอะไรชัดขึ้น?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "10",
@@ -416,22 +416,22 @@
       "th": [
         "การเปลี่ยนแปลง",
         "วัฏจักร",
-        "จังหวะเวลา"
+        "จังหวะ"
       ]
     },
     "upright": {
-      "en": "Conditions are moving. You may not control the whole cycle, but you can notice the turn and respond with better timing.",
-      "th": "เงื่อนไขกำลังเปลี่ยน คุณอาจควบคุมทั้งวงจรไม่ได้ แต่สังเกตจังหวะที่กำลังหมุนแล้วตอบสนองให้เหมาะได้"
+      "en": "Things are changing, and timing matters. You may not control the whole cycle, but you can notice what is shifting and respond instead of clinging to what was.",
+      "th": "สถานการณ์กำลังเปลี่ยน และจังหวะมีความสำคัญ คุณอาจควบคุมทุกอย่างไม่ได้ แต่เลือกได้ว่าจะปรับตัวตามสิ่งที่กำลังเกิดขึ้นหรือยึดกับสิ่งเดิมต่อไป"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What change is asking you to adapt rather than resist?",
-      "th": "ความเปลี่ยนแปลงอะไรที่กำลังชวนให้คุณปรับตัวแทนการต้านไว้?"
+      "en": "What change would be easier if you worked with it instead of against it?",
+      "th": "ความเปลี่ยนแปลงอะไรจะรับมือได้ง่ายขึ้นถ้าคุณหยุดต้านมัน?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "11",
@@ -450,34 +450,34 @@
       "en": [
         "truth",
         "accountability",
-        "balance"
+        "fairness"
       ],
       "th": [
         "ความจริง",
         "ความรับผิดชอบ",
-        "ความสมดุล"
+        "ความเป็นธรรม"
       ]
     },
     "upright": {
-      "en": "Look closely at facts, consequences, and your own part in the situation. Fairness begins with seeing clearly.",
-      "th": "มองข้อเท็จจริง ผลที่ตามมา และส่วนที่ตัวเองมีต่อเรื่องนี้ให้ชัด ความเป็นธรรมเริ่มจากการเห็นตามจริง"
+      "en": "Look closely at the facts, the consequences, and your own part in the situation. Fairness begins with being honest about all three.",
+      "th": "มองข้อเท็จจริง ผลที่ตามมา และส่วนที่คุณมีต่อเรื่องนี้ให้ครบ ความเป็นธรรมเริ่มจากการยอมรับสิ่งเหล่านี้ตามที่เป็น"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What would a fair assessment require you to admit?",
-      "th": "การประเมินอย่างเป็นธรรมต้องให้คุณยอมรับอะไรบ้าง?"
+      "en": "What would a fair assessment ask you to admit?",
+      "th": "ถ้าจะมองเรื่องนี้อย่างเป็นธรรมจริงๆ คุณต้องยอมรับอะไรบ้าง?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "12",
     "index": 12,
     "title": {
       "en": "The Hanged Man",
-      "th": "ผู้ถูกแขวน"
+      "th": "ชายผู้ถูกแขวน"
     },
     "canonicalTitle": "THE HANGED MAN",
     "arcana": "major",
@@ -489,27 +489,27 @@
       "en": [
         "pause",
         "perspective",
-        "release"
+        "surrender"
       ],
       "th": [
-        "การหยุด",
+        "การหยุดพัก",
         "มุมมองใหม่",
-        "การปล่อย"
+        "การยอมปล่อย"
       ]
     },
     "upright": {
-      "en": "Progress may come through a pause rather than another push. A different angle can change what the problem appears to be.",
-      "th": "ความคืบหน้าอาจมาจากการหยุด ไม่ใช่การเร่งอีกครั้ง มุมมองใหม่อาจเปลี่ยนแม้กระทั่งสิ่งที่คุณคิดว่าเป็นปัญหา"
+      "en": "Pushing harder may not be the answer. A pause—or a different point of view—can reveal options you could not see while forcing progress.",
+      "th": "การพยายามมากขึ้นอาจไม่ใช่คำตอบของวันนี้ การหยุดหรือมองจากอีกมุมหนึ่งอาจทำให้เห็นทางที่มองไม่เห็นตอนกำลังฝืนให้เรื่องเดินหน้า"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What might look different if you stopped trying to move it today?",
-      "th": "อะไรอาจดูต่างไปถ้าวันนี้คุณหยุดพยายามผลักมันให้เดินต่อ?"
+      "en": "What might change if you stopped trying to make this move today?",
+      "th": "อะไรอาจเปลี่ยนไปถ้าวันนี้คุณหยุดพยายามบังคับให้เรื่องนี้ขยับ?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "13",
@@ -526,8 +526,8 @@
     "image": "assets/cards/13_DEATH.png",
     "keywords": {
       "en": [
-        "ending",
-        "transition",
+        "endings",
+        "transformation",
         "renewal"
       ],
       "th": [
@@ -537,18 +537,18 @@
       ]
     },
     "upright": {
-      "en": "Something may be ready to end in its current form. Letting a completed chapter close creates room for what follows.",
-      "th": "บางสิ่งอาจถึงเวลาจบในรูปแบบเดิม การยอมให้บทที่สิ้นสุดแล้วปิดลงจะเปิดพื้นที่ให้สิ่งต่อไป"
+      "en": "Something may have reached the end of its current form. Closing it honestly creates space for the next part of your life to begin.",
+      "th": "บางสิ่งอาจมาถึงจุดที่ควรจบในรูปแบบเดิม การยอมรับว่าบทหนึ่งสิ้นสุดแล้วทำให้มีพื้นที่สำหรับสิ่งใหม่ที่กำลังจะเริ่ม"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What are you keeping alive after its season has ended?",
-      "th": "คุณกำลังยื้ออะไรไว้ทั้งที่ช่วงเวลาของมันจบลงแล้ว?"
+      "en": "What are you keeping alive even though it has already run its course?",
+      "th": "คุณกำลังยื้ออะไรไว้ ทั้งที่จริงๆ มันมาถึงปลายทางแล้ว?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "14",
@@ -565,29 +565,29 @@
     "image": "assets/cards/14_TEMPERANCE.png",
     "keywords": {
       "en": [
-        "integration",
+        "balance",
         "moderation",
-        "healing"
+        "integration"
       ],
       "th": [
-        "การผสาน",
+        "ความสมดุล",
         "ความพอดี",
-        "การฟื้นสมดุล"
+        "การผสาน"
       ]
     },
     "upright": {
-      "en": "Balance is built through adjustment, not perfection. Blend what works, reduce extremes, and let steady refinement do its work.",
-      "th": "ความสมดุลเกิดจากการปรับ ไม่ใช่ความสมบูรณ์แบบ ผสานสิ่งที่ใช้ได้ ลดความสุดโต่ง แล้วให้การปรับทีละน้อยทำงานของมัน"
+      "en": "Balance comes from small adjustments, not perfect control. Ease the extremes, combine what works, and give the middle ground a chance.",
+      "th": "ความสมดุลเกิดจากการค่อยๆ ปรับ ไม่ใช่การควบคุมทุกอย่างให้พอดีเป๊ะ ลดสิ่งที่มากเกิน เติมสิ่งที่ขาด แล้วดูว่าจุดพอดีอยู่ตรงไหน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What would become easier with a little less of one thing and more of another?",
-      "th": "อะไรจะง่ายขึ้นถ้าลดบางอย่างลงนิดหนึ่งและเพิ่มอีกอย่างขึ้นนิดหนึ่ง?"
+      "en": "What needs a little less of one thing and a little more of another?",
+      "th": "ตอนนี้อะไรควรลดลงสักหน่อย และอะไรควรเพิ่มขึ้นอีกนิด?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "15",
@@ -606,27 +606,27 @@
       "en": [
         "attachment",
         "temptation",
-        "patterns"
+        "freedom"
       ],
       "th": [
         "ความยึดติด",
         "สิ่งล่อลวง",
-        "รูปแบบซ้ำ"
+        "การเป็นอิสระ"
       ]
     },
     "upright": {
-      "en": "Notice what has more control over you than you intended. Naming an attachment clearly is often the first move toward choice.",
-      "th": "สังเกตสิ่งที่มีอำนาจเหนือคุณมากกว่าที่ตั้งใจ การเรียกความยึดติดนั้นให้ชัดมักเป็นก้าวแรกของการกลับมาเลือกได้"
+      "en": "Notice what has more power over you than you want it to have. Once you name the attachment honestly, you have more room to choose differently.",
+      "th": "ลองมองตรงๆ ว่าอะไรมีอำนาจเหนือคุณมากกว่าที่คุณต้องการ พอเห็นความยึดติดหรือรูปแบบเดิมได้ชัด คุณก็มีพื้นที่กลับมาเลือกใหม่"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What pattern becomes weaker once you stop excusing it?",
-      "th": "รูปแบบไหนจะอ่อนแรงลงเมื่อคุณหยุดหาข้ออ้างให้มัน?"
+      "en": "What habit or attachment loses power when you stop making excuses for it?",
+      "th": "นิสัยหรือความยึดติดอะไรจะเบาลงเมื่อคุณหยุดหาข้ออ้างให้มัน?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "16",
@@ -643,29 +643,29 @@
     "image": "assets/cards/16_THE_TOWER.png",
     "keywords": {
       "en": [
-        "disruption",
-        "revelation",
-        "release"
+        "upheaval",
+        "truth revealed",
+        "rebuilding"
       ],
       "th": [
         "ความสั่นคลอน",
-        "การเปิดเผย",
-        "การปลดสิ่งเก่า"
+        "ความจริงที่เปิดเผย",
+        "การสร้างใหม่"
       ]
     },
     "upright": {
-      "en": "A weak structure may be showing its cracks. What feels disruptive can also expose what was never stable enough to rely on.",
-      "th": "โครงสร้างที่ไม่มั่นคงอาจกำลังเผยรอยร้าว สิ่งที่ดูสั่นคลอนอาจกำลังบอกด้วยว่าอะไรไม่เคยแข็งแรงพอให้พึ่งได้"
+      "en": "A shaky structure may be showing you where it was never secure. Disruption is uncomfortable, but it can clear the way for something more honest and stable.",
+      "th": "สิ่งที่ไม่มั่นคงอาจกำลังเผยให้เห็นจุดที่พึ่งพาไม่ได้จริง แม้ความสั่นคลอนจะไม่สบายใจ แต่มันอาจเปิดทางให้คุณสร้างใหม่บนความจริงมากกว่าเดิม"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What truth becomes visible when the old structure stops holding?",
-      "th": "ความจริงอะไรปรากฏขึ้นเมื่อโครงสร้างเดิมเริ่มรับไม่ไหว?"
+      "en": "What truth is becoming impossible to ignore?",
+      "th": "ตอนนี้มีความจริงอะไรที่คุณมองข้ามต่อไปได้ยากแล้ว?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "17",
@@ -683,28 +683,28 @@
     "keywords": {
       "en": [
         "hope",
-        "renewal",
+        "healing",
         "authenticity"
       ],
       "th": [
         "ความหวัง",
-        "การฟื้นตัว",
+        "การเยียวยา",
         "ความเป็นตัวเอง"
       ]
     },
     "upright": {
-      "en": "Hope can be practical when it reconnects you with what is true and worth tending. Restore rather than perform.",
-      "th": "ความหวังมีพลังเมื่อพากลับไปหาสิ่งที่จริงและควรดูแล วันนี้เน้นการฟื้นตัวมากกว่าการทำให้ดูดี"
+      "en": "Hope can return when you reconnect with what feels true and gives you strength. You do not need to impress anyone; focus on what genuinely helps you feel like yourself again.",
+      "th": "ความหวังอาจกลับมาเมื่อคุณกลับไปหาสิ่งที่ตรงกับตัวเองและช่วยเติมแรง วันนี้ไม่ต้องพยายามทำให้ใครประทับใจ แค่ใส่ใจกับสิ่งที่ทำให้คุณรู้สึกเป็นตัวเองอีกครั้ง"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What quietly restores your faith in the next step?",
-      "th": "อะไรค่อยๆ ทำให้คุณกลับมาเชื่อในก้าวถัดไปได้อีกครั้ง?"
+      "en": "What helps you believe in the next step again?",
+      "th": "อะไรช่วยให้คุณกลับมาเชื่อว่าก้าวต่อไปยังมีความหมาย?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "18",
@@ -722,28 +722,28 @@
     "keywords": {
       "en": [
         "uncertainty",
-        "imagination",
-        "subconscious"
+        "intuition",
+        "imagination"
       ],
       "th": [
         "ความไม่แน่นอน",
-        "จินตนาการ",
-        "จิตใต้สำนึก"
+        "สัญชาตญาณ",
+        "จินตนาการ"
       ]
     },
     "upright": {
-      "en": "Not everything you feel is a fact, but feelings still carry information. Move carefully while the picture is incomplete.",
-      "th": "ไม่ใช่ทุกความรู้สึกคือข้อเท็จจริง แต่ความรู้สึกก็มีข้อมูลของมัน เดินอย่างระมัดระวังเมื่อภาพยังไม่ครบ"
+      "en": "The picture is not fully clear yet. Your feelings and intuition may offer clues, but check the facts before fear or wishful thinking fills in what you do not know.",
+      "th": "ภาพของเรื่องนี้ยังไม่ชัดทั้งหมด ความรู้สึกและสัญชาตญาณอาจช่วยบอกบางอย่างได้ แต่ควรเช็กข้อเท็จจริงก่อนปล่อยให้ความกลัวหรือความคาดหวังเติมส่วนที่ยังไม่รู้"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What can you verify before letting fear or fantasy fill the gaps?",
-      "th": "มีอะไรที่ตรวจสอบได้ก่อนปล่อยให้ความกลัวหรือจินตนาการเติมช่องว่าง?"
+      "en": "What can you verify before you decide what this situation means?",
+      "th": "ก่อนตัดสินว่าเรื่องนี้หมายถึงอะไร มีอะไรที่คุณตรวจสอบให้แน่ใจได้บ้าง?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "19",
@@ -760,29 +760,29 @@
     "image": "assets/cards/19_THE_SUN.png",
     "keywords": {
       "en": [
-        "clarity",
+        "joy",
         "vitality",
-        "joy"
+        "clarity"
       ],
       "th": [
-        "ความชัดเจน",
+        "ความสุข",
         "พลังชีวิต",
-        "ความยินดี"
+        "ความชัดเจน"
       ]
     },
     "upright": {
-      "en": "Something benefits from being seen in full light. Let clarity, warmth, and uncomplicated enjoyment have a place today.",
-      "th": "บางเรื่องดีขึ้นเมื่อได้อยู่ในแสงเต็มๆ ให้ความชัดเจน ความอบอุ่น และความสุขแบบไม่ซับซ้อนมีที่ยืนในวันนี้"
+      "en": "Clarity, warmth, and simple joy deserve room today. Let yourself notice what is genuinely going well without immediately looking for the catch.",
+      "th": "วันนี้ให้พื้นที่กับความชัดเจน ความอบอุ่น และความสุขที่ไม่ซับซ้อนบ้าง มองสิ่งดีที่เกิดขึ้นตามที่มันเป็น โดยไม่รีบหาว่าต้องมีอะไรผิดตามมา"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What good thing can you acknowledge without immediately qualifying it?",
-      "th": "มีเรื่องดีอะไรที่คุณยอมรับได้เต็มๆ โดยไม่รีบเติมคำว่า “แต่”?"
+      "en": "What good thing can you enjoy without adding a “but”?",
+      "th": "มีเรื่องดีอะไรที่คุณรับไว้ได้เต็มๆ โดยไม่ต้องเติมคำว่า “แต่”?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "20",
@@ -806,12 +806,12 @@
       "th": [
         "การตื่นรู้",
         "การทบทวน",
-        "เสียงเรียก"
+        "เสียงเรียกภายใน"
       ]
     },
     "upright": {
-      "en": "A larger pattern may be asking for an honest review. Learn from what has been, then answer the part of life that is calling for a different response.",
-      "th": "ภาพใหญ่กำลังชวนให้ทบทวนอย่างตรงไปตรงมา เรียนรู้จากสิ่งที่ผ่านมา แล้วตอบรับส่วนของชีวิตที่ต้องการวิธีใหม่"
+      "en": "A bigger pattern is coming into focus. Look back honestly, take the lesson, and decide what you want to do differently from here.",
+      "th": "เมื่อมองย้อนกลับไป คุณอาจเริ่มเห็นภาพใหญ่ชัดขึ้น รับบทเรียนจากสิ่งที่ผ่านมา แล้วเลือกว่าจากนี้อยากทำอะไรต่างไปจากเดิม"
     },
     "reversed": {
       "en": null,
@@ -821,7 +821,7 @@
       "en": "What lesson is ready to become a decision?",
       "th": "บทเรียนอะไรพร้อมจะเปลี่ยนจากความเข้าใจให้เป็นการตัดสินใจแล้ว?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "21",
@@ -843,24 +843,24 @@
         "wholeness"
       ],
       "th": [
-        "ความสมบูรณ์",
-        "การบูรณาการ",
+        "ความสำเร็จครบวงจร",
+        "การหลอมรวม",
         "ความครบถ้วน"
       ]
     },
     "upright": {
-      "en": "A cycle may be reaching meaningful completion. Notice what has been integrated before rushing into the next beginning.",
-      "th": "วงจรหนึ่งอาจกำลังจบอย่างมีความหมาย มองให้เห็นสิ่งที่คุณได้หลอมรวมไว้แล้วก่อนรีบเริ่มรอบใหม่"
+      "en": "A cycle is coming together. Before rushing into the next beginning, recognize what you have completed, learned, and made part of yourself.",
+      "th": "วงจรหนึ่งกำลังครบถ้วน ก่อนรีบไปเริ่มเรื่องใหม่ ลองมองสิ่งที่คุณทำสำเร็จ สิ่งที่ได้เรียนรู้ และบทเรียนที่ตอนนี้ติดตัวคุณไปแล้ว"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What deserves to be recognized as complete?",
-      "th": "อะไรสมควรได้รับการยอมรับว่าเสร็จสมบูรณ์แล้ว?"
+      "en": "What deserves to be acknowledged as truly complete?",
+      "th": "อะไรควรได้รับการยอมรับว่าเสร็จสมบูรณ์จริงๆ แล้ว?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "22",
@@ -877,29 +877,29 @@
     "image": "assets/cards/22_ACE_OF_WANDS.png",
     "keywords": {
       "en": [
-        "spark",
-        "energy",
-        "action"
+        "inspiration",
+        "potential",
+        "initiative"
       ],
       "th": [
-        "ประกายเริ่มต้น",
-        "พลัง",
-        "การลงมือ"
+        "แรงบันดาลใจ",
+        "ศักยภาพ",
+        "การเริ่มลงมือ"
       ]
     },
     "upright": {
-      "en": "A live spark is present. Give it a concrete first action before enthusiasm fades.",
-      "th": "มีประกายใหม่อยู่ตรงหน้า ให้มันมีการลงมือจริงสักอย่างก่อนความตื่นเต้นจะจาง"
+      "en": "A spark is here. Give the idea one real action while the energy is alive, even if the step is small.",
+      "th": "มีประกายใหม่เกิดขึ้นแล้ว อย่าปล่อยให้มันอยู่แค่ในหัว ลองเปลี่ยนแรงบันดาลใจนั้นให้เป็นการลงมือจริงสักหนึ่งอย่าง แม้จะเล็กก็ตาม"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What idea deserves a first move today?",
-      "th": "ความคิดไหนสมควรได้ก้าวแรกในวันนี้?"
+      "en": "What idea deserves its first real move today?",
+      "th": "ความคิดไหนควรได้ก้าวแรกแบบจริงจังในวันนี้?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "23",
@@ -917,28 +917,28 @@
     "keywords": {
       "en": [
         "planning",
-        "energy",
-        "action"
+        "possibility",
+        "direction"
       ],
       "th": [
         "การวางแผน",
-        "พลัง",
-        "การลงมือ"
+        "ทางเลือก",
+        "ทิศทาง"
       ]
     },
     "upright": {
-      "en": "You can see beyond the current boundary. Compare directions, then choose where your energy is actually going.",
-      "th": "คุณเริ่มเห็นทางที่ไกลกว่าขอบเขตเดิม เปรียบเทียบทิศทางแล้วเลือกให้ชัดว่าจะส่งพลังไปทางไหน"
+      "en": "You can see more than one possible direction. Compare the options, choose the horizon that matters, and stop spending energy on every path at once.",
+      "th": "ตอนนี้คุณมองเห็นทางเลือกมากกว่าหนึ่งทาง เปรียบเทียบให้พอ แล้วเลือกทิศที่สำคัญจริง แทนการแบ่งแรงให้ทุกทางพร้อมกัน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Which option expands your world without scattering your focus?",
-      "th": "ทางเลือกไหนขยายโลกของคุณโดยไม่ทำให้สมาธิกระจาย?"
+      "en": "Which direction expands your possibilities without scattering your focus?",
+      "th": "ทางไหนเปิดโอกาสให้คุณมากขึ้นโดยไม่ทำให้เสียสมาธิ?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "24",
@@ -956,28 +956,28 @@
     "keywords": {
       "en": [
         "expansion",
-        "energy",
-        "action"
+        "foresight",
+        "progress"
       ],
       "th": [
         "การขยายตัว",
-        "พลัง",
-        "การลงมือ"
+        "การมองไกล",
+        "ความก้าวหน้า"
       ]
     },
     "upright": {
-      "en": "Early effort is beginning to open a wider horizon. Keep looking ahead while staying responsive to what returns.",
-      "th": "ความพยายามช่วงแรกกำลังเปิดขอบฟ้าให้กว้างขึ้น มองไปข้างหน้าและพร้อมปรับตามสิ่งที่สะท้อนกลับมา"
+      "en": "The first effort is beginning to show what could come next. Keep looking ahead, stay open to feedback, and build on that early progress.",
+      "th": "สิ่งที่ลงมือไปเริ่มเห็นผลและทำให้มองไกลขึ้นได้แล้ว ใช้ความคืบหน้าช่วงแรกเป็นฐาน มองไปข้างหน้า และพร้อมปรับตามสิ่งที่เกิดขึ้นจริง"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What are you ready to build beyond the first success?",
-      "th": "คุณพร้อมต่อยอดอะไรจากความสำเร็จระยะแรก?"
+      "en": "What are you ready to build beyond the first signs of success?",
+      "th": "จากความคืบหน้าที่มีอยู่ คุณพร้อมต่อยอดอะไรเป็นขั้นถัดไป?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "25",
@@ -995,18 +995,18 @@
     "keywords": {
       "en": [
         "celebration",
-        "energy",
-        "action"
+        "stability",
+        "belonging"
       ],
       "th": [
         "การเฉลิมฉลอง",
-        "พลัง",
-        "การลงมือ"
+        "ความมั่นคง",
+        "ความเป็นส่วนหนึ่ง"
       ]
     },
     "upright": {
-      "en": "A stable moment deserves to be enjoyed. Mark progress, belonging, or a shared milestone before moving on.",
-      "th": "ช่วงเวลาที่มั่นคงสมควรได้รับการชื่นชม ให้พื้นที่กับความคืบหน้า ความเป็นส่วนหนึ่ง หรือหมุดหมายร่วมกัน"
+      "en": "A stable moment is worth celebrating. Let yourself recognize progress, belonging, or a shared milestone before you hurry on.",
+      "th": "ช่วงที่มั่นคงและน่ายินดีควรได้หยุดชื่นชมบ้าง ให้เวลากับความสำเร็จ ความเป็นส่วนหนึ่ง หรือหมุดหมายที่คุณเดินมาถึงร่วมกับคนอื่น ก่อนจะรีบไปต่อ"
     },
     "reversed": {
       "en": null,
@@ -1014,9 +1014,9 @@
     },
     "reflection": {
       "en": "What progress is worth celebrating with others?",
-      "th": "ความคืบหน้าอะไรควรได้ฉลองร่วมกับคนอื่น?"
+      "th": "ความคืบหน้าอะไรที่ควรได้ฉลองหรือแบ่งปันกับคนอื่น?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "26",
@@ -1033,29 +1033,29 @@
     "image": "assets/cards/26_FIVE_OF_WANDS.png",
     "keywords": {
       "en": [
+        "competition",
         "friction",
-        "energy",
-        "action"
+        "growth"
       ],
       "th": [
-        "แรงปะทะ",
-        "พลัง",
-        "การลงมือ"
+        "การแข่งขัน",
+        "ความขัดแย้ง",
+        "การพัฒนา"
       ]
     },
     "upright": {
-      "en": "Competing energy can sharpen ideas if it stays constructive. Separate useful challenge from pointless conflict.",
-      "th": "พลังที่แข่งขันกันอาจทำให้ความคิดคมขึ้นถ้ายังสร้างสรรค์ แยกความท้าทายที่มีประโยชน์ออกจากการปะทะที่เปลืองแรง"
+      "en": "Difference and competition can sharpen good ideas when they stay constructive. Use the friction that helps you grow and step away from conflict that only drains energy.",
+      "th": "ความเห็นต่างหรือการแข่งขันอาจช่วยให้งานคมขึ้นได้ ถ้ามันยังพาไปข้างหน้า แยกให้ได้ว่าแรงปะทะไหนช่วยให้คุณพัฒนา และอันไหนมีแต่ทำให้หมดแรง"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Which disagreement can improve the work, and which one is just noise?",
-      "th": "ความเห็นต่างไหนช่วยให้งานดีขึ้น และอันไหนเป็นเพียงเสียงรบกวน?"
+      "en": "Which disagreement can improve the work, and which one is only draining you?",
+      "th": "ความเห็นต่างไหนช่วยให้งานดีขึ้น และอันไหนมีแต่เปลืองพลัง?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "27",
@@ -1073,28 +1073,28 @@
     "keywords": {
       "en": [
         "recognition",
-        "energy",
-        "action"
+        "confidence",
+        "progress"
       ],
       "th": [
         "การได้รับการยอมรับ",
-        "พลัง",
-        "การลงมือ"
+        "ความมั่นใจ",
+        "ความก้าวหน้า"
       ]
     },
     "upright": {
-      "en": "Progress is visible. Accept recognition without letting applause become the only measure of worth.",
-      "th": "ความคืบหน้ามองเห็นได้ รับการยอมรับอย่างเต็มที่โดยไม่ให้เสียงชมกลายเป็นมาตรวัดคุณค่าทั้งหมด"
+      "en": "Your progress is visible. Accept the recognition you have earned, but do not let applause become the only way you measure your worth.",
+      "th": "ความก้าวหน้าของคุณชัดขึ้นจนคนอื่นมองเห็นได้แล้ว รับคำชมหรือการยอมรับได้เต็มที่ แต่อย่าให้เสียงจากคนอื่นกลายเป็นมาตรวัดคุณค่าของตัวเองทั้งหมด"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What achievement can you own without needing to exaggerate it?",
-      "th": "ความสำเร็จอะไรที่คุณยอมรับได้โดยไม่ต้องขยายให้ใหญ่เกินจริง?"
+      "en": "What achievement can you own without needing to make it bigger than it is?",
+      "th": "ความสำเร็จอะไรที่คุณยอมรับกับตัวเองได้ตรงๆ โดยไม่ต้องทำให้มันใหญ่เกินจริง?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "28",
@@ -1112,28 +1112,28 @@
     "keywords": {
       "en": [
         "conviction",
-        "energy",
-        "action"
+        "resilience",
+        "boundaries"
       ],
       "th": [
         "การยืนหยัด",
-        "พลัง",
-        "การลงมือ"
+        "ความอดทน",
+        "การรักษาจุดยืน"
       ]
     },
     "upright": {
-      "en": "Something worth keeping may require a clear stand. Defend the essential without fighting every challenge.",
-      "th": "สิ่งที่ควรรักษาไว้อาจต้องการจุดยืนที่ชัด ปกป้องแก่นสำคัญโดยไม่จำเป็นต้องสู้กับทุกเรื่อง"
+      "en": "Something important may need you to stand your ground. Protect what matters, but save your energy for the challenges that are truly worth answering.",
+      "th": "บางเรื่องต้องการให้คุณยืนหยัดกับสิ่งที่สำคัญ ปกป้องจุดยืนของตัวเองได้ แต่ไม่จำเป็นต้องตอบโต้ทุกแรงกดดันที่เข้ามา"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What is truly worth holding your ground for?",
-      "th": "เรื่องไหนคุ้มค่าพอให้คุณยืนหยัดจริงๆ?"
+      "en": "What is genuinely worth defending?",
+      "th": "ตอนนี้อะไรสำคัญพอที่คุณควรยืนหยัดปกป้อง?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "29",
@@ -1150,29 +1150,29 @@
     "image": "assets/cards/29_EIGHT_OF_WANDS.png",
     "keywords": {
       "en": [
+        "speed",
         "momentum",
-        "energy",
-        "action"
+        "communication"
       ],
       "th": [
         "ความรวดเร็ว",
-        "พลัง",
-        "การลงมือ"
+        "แรงส่ง",
+        "การสื่อสาร"
       ]
     },
     "upright": {
-      "en": "Movement is accelerating. Keep communication clear and avoid creating delay through unnecessary hesitation.",
-      "th": "สถานการณ์กำลังเดินเร็วขึ้น รักษาการสื่อสารให้ชัดและอย่าสร้างความล่าช้าจากความลังเลที่ไม่จำเป็น"
+      "en": "Things may start moving quickly. Keep your communication clear, respond while the path is open, and do not create delays through second-guessing.",
+      "th": "จังหวะของเรื่องอาจเร็วขึ้นกว่าที่ผ่านมา สื่อสารให้ชัด ตอบสนองตอนที่ทางยังเปิด และอย่าปล่อยให้การลังเลซ้ำๆ สร้างความช้าโดยไม่จำเป็น"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What can move now because the path is already open?",
-      "th": "อะไรเดินหน้าได้เลยเพราะทางเปิดอยู่แล้ว?"
+      "en": "What can move now because the way is already open?",
+      "th": "ตอนนี้เรื่องไหนเดินหน้าได้เลย เพราะทางพร้อมอยู่แล้ว?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "30",
@@ -1190,28 +1190,28 @@
     "keywords": {
       "en": [
         "resilience",
-        "energy",
-        "action"
+        "vigilance",
+        "endurance"
       ],
       "th": [
-        "ความอดทน",
-        "พลัง",
-        "การลงมือ"
+        "ความอึด",
+        "ความระมัดระวัง",
+        "การไปต่อ"
       ]
     },
     "upright": {
-      "en": "You may be tired, not finished. Protect what matters, conserve energy, and avoid treating every shadow as a threat.",
-      "th": "คุณอาจเหนื่อย แต่ยังไม่ถึงจุดจบ รักษาสิ่งสำคัญ ประหยัดแรง และอย่ามองทุกเงาเป็นภัย"
+      "en": "You may be tired, but that is not the same as being finished. Protect your energy, keep the boundaries that help, and do not treat every difficulty as a new threat.",
+      "th": "คุณอาจเหนื่อย แต่ไม่ได้แปลว่าต้องยอมแพ้ รักษาแรงที่เหลือไว้ วางขอบเขตที่ช่วยให้ไปต่อ และไม่ต้องมองทุกสิ่งที่เข้ามาเป็นภัยไปเสียหมด"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What boundary helps you continue without hardening yourself?",
-      "th": "ขอบเขตแบบไหนช่วยให้คุณไปต่อได้โดยไม่ต้องแข็งกระด้าง?"
+      "en": "What boundary would help you keep going without becoming defensive?",
+      "th": "ขอบเขตแบบไหนจะช่วยให้คุณไปต่อได้โดยไม่ต้องตั้งการ์ดกับทุกอย่าง?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "31",
@@ -1228,36 +1228,36 @@
     "image": "assets/cards/31_TEN_OF_WANDS.png",
     "keywords": {
       "en": [
-        "burden",
-        "energy",
-        "action"
+        "responsibility",
+        "overload",
+        "release"
       ],
       "th": [
-        "ภาระ",
-        "พลัง",
-        "การลงมือ"
+        "ความรับผิดชอบ",
+        "ภาระหนัก",
+        "การแบ่งเบา"
       ]
     },
     "upright": {
-      "en": "Responsibility has become heavy. Decide what truly belongs to you and what can be delegated, simplified, or released.",
-      "th": "ความรับผิดชอบเริ่มหนักเกินไป แยกให้ชัดว่าอะไรเป็นหน้าที่ของคุณจริงๆ และอะไรส่งต่อ ลดทอน หรือวางลงได้"
+      "en": "You may be carrying too much. Separate what is truly yours from what can be delegated, simplified, postponed, or put down.",
+      "th": "ภาระอาจมากเกินกว่าที่ควร แยกให้ชัดว่าอะไรเป็นหน้าที่ของคุณจริงๆ และอะไรแบ่งให้คนอื่น ลดความซับซ้อน เลื่อนไปก่อน หรือวางลงได้"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What are you carrying simply because you have carried it this far?",
-      "th": "คุณกำลังถืออะไรต่อเพียงเพราะถือมานานแล้ว?"
+      "en": "What are you still carrying simply because you have carried it for so long?",
+      "th": "คุณยังแบกอะไรอยู่เพียงเพราะแบกมันมานานแล้ว?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "32",
     "index": 32,
     "title": {
       "en": "Page of Wands",
-      "th": "เพจไม้เท้า"
+      "th": "เด็กถือไม้เท้า"
     },
     "canonicalTitle": "PAGE OF WANDS",
     "arcana": "minor",
@@ -1267,19 +1267,19 @@
     "image": "assets/cards/32_PAGE_OF_WANDS.png",
     "keywords": {
       "en": [
+        "curiosity",
         "exploration",
-        "energy",
-        "action"
+        "enthusiasm"
       ],
       "th": [
+        "ความอยากรู้อยากลอง",
         "การสำรวจ",
-        "พลัง",
-        "การลงมือ"
+        "ความกระตือรือร้น"
       ]
     },
     "upright": {
-      "en": "Curiosity wants room to experiment. Treat the next step as a live test rather than a final verdict on your ability.",
-      "th": "ความอยากรู้อยากลองต้องการพื้นที่ ทดลองก้าวถัดไปเหมือนการทดสอบจริง ไม่ใช่คำตัดสินสุดท้ายต่อความสามารถของคุณ"
+      "en": "Curiosity is asking for room to experiment. Treat the next step as something to learn from, not as a final test of whether you are good enough.",
+      "th": "ความอยากรู้อยากลองกำลังชวนให้ทดลอง อย่าให้ก้าวต่อไปกลายเป็นข้อสอบตัดสินว่าคุณเก่งพอหรือไม่ มองมันเป็นโอกาสได้เรียนรู้จากของจริง"
     },
     "reversed": {
       "en": null,
@@ -1287,9 +1287,9 @@
     },
     "reflection": {
       "en": "What would you try if you were allowed to be a beginner?",
-      "th": "ถ้ายอมให้ตัวเองเป็นมือใหม่ได้ คุณอยากลองอะไร?"
+      "th": "ถ้าคุณอนุญาตให้ตัวเองเป็นมือใหม่ได้ คุณอยากลองอะไร?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "33",
@@ -1306,29 +1306,29 @@
     "image": "assets/cards/33_KNIGHT_OF_WANDS.png",
     "keywords": {
       "en": [
-        "pursuit",
-        "energy",
-        "action"
+        "passion",
+        "action",
+        "adventure"
       ],
       "th": [
-        "การพุ่งไปข้างหน้า",
-        "พลัง",
-        "การลงมือ"
+        "ความกล้าลุย",
+        "การลงมือ",
+        "การผจญภัย"
       ]
     },
     "upright": {
-      "en": "Bold energy can create momentum, but speed needs direction. Move decisively without outrunning your judgment.",
-      "th": "พลังที่กล้าลุยสร้างแรงส่งได้ แต่ความเร็วต้องมีทิศทาง เดินหน้าให้ชัดโดยไม่วิ่งเร็วกว่าการพิจารณาของตัวเอง"
+      "en": "There is energy to move boldly, but speed still needs direction. Act with courage without rushing past the part of you that knows when to slow down.",
+      "th": "ตอนนี้มีแรงให้ลุยได้เต็มที่ แต่ความเร็วก็ยังต้องมีทิศทาง กล้าเดินหน้าได้ โดยไม่รีบจนข้ามสัญญาณที่บอกว่าควรชะลอหรือคิดอีกนิด"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Where does courage need a little more steering?",
-      "th": "ตรงไหนที่ความกล้าต้องการการกำกับอีกนิด?"
+      "en": "Where does courage need a little more direction?",
+      "th": "เรื่องไหนที่ความกล้าของคุณต้องมีทิศทางชัดขึ้นอีกหน่อย?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "34",
@@ -1346,28 +1346,28 @@
     "keywords": {
       "en": [
         "confidence",
-        "energy",
-        "action"
+        "warmth",
+        "charisma"
       ],
       "th": [
         "ความมั่นใจ",
-        "พลัง",
-        "การลงมือ"
+        "ความอบอุ่น",
+        "เสน่ห์"
       ]
     },
     "upright": {
-      "en": "Warm confidence draws people in without demanding attention. Lead from self-trust, generosity, and visible competence.",
-      "th": "ความมั่นใจที่อบอุ่นดึงดูดผู้คนได้โดยไม่ต้องเรียกร้องความสนใจ นำด้วยความเชื่อในตัวเอง ความใจกว้าง และความสามารถที่เห็นได้จริง"
+      "en": "Confidence works best when it does not need to prove itself. Let warmth, self-trust, and genuine ability speak for you.",
+      "th": "ความมั่นใจที่แท้ไม่จำเป็นต้องพยายามพิสูจน์ตัวเอง ให้ความอบอุ่น ความเชื่อมั่น และความสามารถจริงของคุณเป็นสิ่งที่คนอื่นสัมผัสได้"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "How can you be fully visible without performing?",
-      "th": "คุณจะปรากฏตัวอย่างเต็มที่โดยไม่ต้องแสดงเกินจริงได้อย่างไร?"
+      "en": "How can you show up fully without trying to impress?",
+      "th": "วันนี้คุณจะเป็นตัวเองอย่างเต็มที่ได้อย่างไร โดยไม่ต้องพยายามทำให้ใครประทับใจ?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "35",
@@ -1385,18 +1385,18 @@
     "keywords": {
       "en": [
         "vision",
-        "energy",
-        "action"
+        "leadership",
+        "initiative"
       ],
       "th": [
         "วิสัยทัศน์",
-        "พลัง",
-        "การลงมือ"
+        "ภาวะผู้นำ",
+        "การริเริ่ม"
       ]
     },
     "upright": {
-      "en": "A larger vision needs mature direction. Set the tone, make the call, and let others see where the energy is going.",
-      "th": "วิสัยทัศน์ที่ใหญ่ขึ้นต้องการการนำที่เป็นผู้ใหญ่ กำหนดทิศ ตัดสินใจ และทำให้คนอื่นเห็นว่าพลังทั้งหมดกำลังไปทางไหน"
+      "en": "A strong vision needs clear leadership. Set the direction, make the necessary decision, and help others understand what you are building toward.",
+      "th": "วิสัยทัศน์ที่ใหญ่ต้องการทิศทางที่ชัด ตัดสินใจในสิ่งที่จำเป็น แล้วทำให้คนที่เกี่ยวข้องเข้าใจว่าคุณกำลังพาเรื่องนี้ไปไหน"
     },
     "reversed": {
       "en": null,
@@ -1404,9 +1404,9 @@
     },
     "reflection": {
       "en": "What would leadership look like if you focused on direction rather than control?",
-      "th": "ภาวะผู้นำจะเป็นอย่างไรถ้าคุณเน้นทิศทางมากกว่าการควบคุม?"
+      "th": "ภาวะผู้นำจะเป็นอย่างไร ถ้าคุณเน้นการชี้ทิศมากกว่าการควบคุม?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "36",
@@ -1423,29 +1423,29 @@
     "image": "assets/cards/36_ACE_OF_CUPS.png",
     "keywords": {
       "en": [
-        "emotional opening",
-        "emotion",
-        "connection"
+        "emotional openness",
+        "compassion",
+        "creativity"
       ],
       "th": [
         "การเปิดใจ",
-        "ความรู้สึก",
-        "ความสัมพันธ์"
+        "ความเมตตา",
+        "ความสร้างสรรค์"
       ]
     },
     "upright": {
-      "en": "An emotional opening is available. Let care, connection, or creativity move before you over-explain it.",
-      "th": "มีช่องว่างใหม่ทางความรู้สึก เปิดให้ความใส่ใจ ความเชื่อมโยง หรือความสร้างสรรค์ได้เคลื่อนไหวก่อนจะอธิบายมันมากเกินไป"
+      "en": "Your heart may be opening to something new. Let care, connection, or creativity have some space before you analyze every feeling.",
+      "th": "ใจอาจกำลังเปิดรับบางอย่างใหม่ๆ ให้ความรู้สึก ความผูกพัน หรือความสร้างสรรค์ได้มีพื้นที่ก่อนที่จะรีบวิเคราะห์ทุกอย่าง"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What feeling deserves room rather than analysis?",
-      "th": "ความรู้สึกไหนต้องการพื้นที่มากกว่าการวิเคราะห์?"
+      "en": "What feeling deserves to be felt before it is explained?",
+      "th": "ความรู้สึกไหนควรได้ถูกสัมผัสตรงๆ ก่อนจะพยายามอธิบายมัน?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "37",
@@ -1463,18 +1463,18 @@
     "keywords": {
       "en": [
         "mutuality",
-        "emotion",
-        "connection"
+        "attraction",
+        "partnership"
       ],
       "th": [
-        "ความสัมพันธ์ที่เท่าเทียม",
-        "ความรู้สึก",
+        "การตอบรับกัน",
+        "ความผูกพัน",
         "ความสัมพันธ์"
       ]
     },
     "upright": {
-      "en": "Connection strengthens through reciprocity. Notice where respect, attraction, or cooperation is genuinely mutual.",
-      "th": "ความสัมพันธ์แข็งแรงขึ้นจากการตอบรับกัน มองให้เห็นว่าตรงไหนมีความเคารพ ความดึงดูด หรือความร่วมมือที่เป็นสองทางจริงๆ"
+      "en": "A connection is strongest when effort flows both ways. Notice where respect, attraction, or cooperation is being returned, not merely hoped for.",
+      "th": "ความสัมพันธ์ที่ดีมีการตอบรับจากทั้งสองฝ่าย ลองมองว่าตรงไหนมีความเคารพ ความสนใจ หรือความร่วมมือที่ส่งกลับมาหาคุณจริงๆ ไม่ใช่มีอยู่แค่ในความหวัง"
     },
     "reversed": {
       "en": null,
@@ -1482,9 +1482,9 @@
     },
     "reflection": {
       "en": "Where is mutual effort already present?",
-      "th": "ตรงไหนมีความพยายามจากทั้งสองฝ่ายอยู่แล้ว?"
+      "th": "ตรงไหนที่คุณเห็นความพยายามจากทั้งสองฝ่ายอยู่แล้ว?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "38",
@@ -1501,29 +1501,29 @@
     "image": "assets/cards/38_THREE_OF_CUPS.png",
     "keywords": {
       "en": [
-        "community",
-        "emotion",
-        "connection"
+        "friendship",
+        "celebration",
+        "community"
       ],
       "th": [
         "มิตรภาพ",
-        "ความรู้สึก",
-        "ความสัมพันธ์"
+        "การเฉลิมฉลอง",
+        "กลุ่มคนที่เกื้อหนุน"
       ]
     },
     "upright": {
-      "en": "Joy can be shared. Friendship, collaboration, and simple togetherness may be part of what restores you.",
-      "th": "ความยินดีแบ่งปันกันได้ มิตรภาพ การร่วมมือ และการได้อยู่ด้วยกันอย่างธรรมดาอาจเป็นส่วนหนึ่งของการเติมพลัง"
+      "en": "Joy grows when it is shared. Friendship, laughter, and supportive company may be exactly what helps you feel more like yourself.",
+      "th": "ความสุขยิ่งมีความหมายเมื่อได้แบ่งปัน มิตรภาพ เสียงหัวเราะ และการได้อยู่กับคนที่สบายใจอาจช่วยให้คุณกลับมาเป็นตัวเองมากขึ้น"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Who helps you remember that life is not meant to be carried alone?",
-      "th": "ใครช่วยเตือนว่าชีวิตไม่จำเป็นต้องแบกคนเดียว?"
+      "en": "Who helps you remember that you do not have to carry everything alone?",
+      "th": "ใครคือคนที่อยู่ด้วยแล้วทำให้คุณรู้ว่าไม่จำเป็นต้องแบกทุกอย่างคนเดียว?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "39",
@@ -1540,29 +1540,29 @@
     "image": "assets/cards/39_FOUR_OF_CUPS.png",
     "keywords": {
       "en": [
-        "disengagement",
-        "emotion",
-        "connection"
+        "apathy",
+        "contemplation",
+        "missed opportunity"
       ],
       "th": [
         "ความเฉยชา",
-        "ความรู้สึก",
-        "ความสัมพันธ์"
+        "การทบทวน",
+        "โอกาสที่มองข้าม"
       ]
     },
     "upright": {
-      "en": "A familiar option may no longer satisfy, but withdrawal can also hide what is being offered. Look again before dismissing everything.",
-      "th": "สิ่งที่คุ้นเคยอาจไม่ตอบโจทย์แล้ว แต่การปิดตัวก็อาจทำให้มองข้ามสิ่งที่ยื่นมา ลองมองอีกครั้งก่อนปฏิเสธทั้งหมด"
+      "en": "You may be tired of the options in front of you, but shutting down can make you miss what is quietly being offered. Look once more before deciding there is nothing here for you.",
+      "th": "คุณอาจเบื่อหรือหมดใจกับสิ่งที่อยู่ตรงหน้า แต่การปิดตัวเองอาจทำให้พลาดบางอย่างที่ยังมีคุณค่า ลองมองอีกครั้งก่อนสรุปว่าไม่มีอะไรเหลือให้เลือก"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What are you overlooking because you are tired of the current situation?",
-      "th": "คุณกำลังมองข้ามอะไรเพราะเหนื่อยกับสถานการณ์เดิม?"
+      "en": "What might you be overlooking because you are tired of the situation?",
+      "th": "ตอนนี้คุณอาจกำลังมองข้ามอะไร เพราะเหนื่อยกับสถานการณ์เดิม?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "40",
@@ -1580,28 +1580,28 @@
     "keywords": {
       "en": [
         "grief",
-        "emotion",
-        "connection"
+        "loss",
+        "acceptance"
       ],
       "th": [
-        "ความสูญเสีย",
-        "ความรู้สึก",
-        "ความสัมพันธ์"
+        "ความเศร้า",
+        "การสูญเสีย",
+        "การยอมรับ"
       ]
     },
     "upright": {
-      "en": "Loss deserves acknowledgment, but it is not the whole landscape. Give grief its place while noticing what remains intact.",
-      "th": "ความสูญเสียควรได้รับการยอมรับ แต่ไม่ใช่ภาพทั้งหมด ให้พื้นที่กับความเศร้าและมองสิ่งที่ยังคงอยู่ด้วย"
+      "en": "Loss deserves to be felt, but it is not the whole story. Make room for the grief while also noticing what has not been lost.",
+      "th": "ความสูญเสียควรได้รับพื้นที่ของมัน แต่ไม่ได้หมายความว่าทุกอย่างหายไปหมด ให้ตัวเองรู้สึกกับสิ่งที่เสียไป พร้อมๆ กับมองสิ่งที่ยังเหลืออยู่"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What remains available even after something important was lost?",
-      "th": "อะไรยังคงอยู่แม้บางสิ่งสำคัญจะสูญเสียไปแล้ว?"
+      "en": "What is still here, even after something important has gone?",
+      "th": "แม้บางสิ่งสำคัญจะหายไป ตอนนี้ยังมีอะไรอยู่กับคุณ?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "41",
@@ -1618,29 +1618,29 @@
     "image": "assets/cards/41_SIX_OF_CUPS.png",
     "keywords": {
       "en": [
-        "memory",
-        "emotion",
-        "connection"
+        "nostalgia",
+        "innocence",
+        "kindness"
       ],
       "th": [
         "ความทรงจำ",
-        "ความรู้สึก",
-        "ความสัมพันธ์"
+        "ความอ่อนโยน",
+        "ความจริงใจ"
       ]
     },
     "upright": {
-      "en": "The past may offer comfort, context, or a useful reminder. Receive its warmth without assuming you must return to it.",
-      "th": "อดีตอาจให้ความอบอุ่น บริบท หรือคำเตือนที่มีประโยชน์ รับสิ่งนั้นไว้โดยไม่ต้องสรุปว่าคุณควรย้อนกลับไปอยู่ที่เดิม"
+      "en": "The past may bring comfort, perspective, or a reminder of what once mattered. Receive the warmth without assuming you need to go back.",
+      "th": "อดีตอาจพาความอบอุ่น ความทรงจำ หรือบทเรียนบางอย่างกลับมา รับสิ่งดีจากมันได้ โดยไม่จำเป็นต้องย้อนกลับไปใช้ชีวิตแบบเดิม"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What can you appreciate from the past without living there?",
-      "th": "คุณชื่นชมอะไรจากอดีตได้โดยไม่ต้องกลับไปใช้ชีวิตอยู่ในนั้น?"
+      "en": "What can you carry forward from the past without returning to it?",
+      "th": "มีอะไรจากอดีตที่คุณเก็บไว้กับตัวได้ โดยไม่ต้องกลับไปอยู่ที่เดิม?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "42",
@@ -1657,29 +1657,29 @@
     "image": "assets/cards/42_SEVEN_OF_CUPS.png",
     "keywords": {
       "en": [
-        "options",
-        "emotion",
-        "connection"
+        "choices",
+        "fantasy",
+        "discernment"
       ],
       "th": [
         "ทางเลือก",
-        "ความรู้สึก",
-        "ความสัมพันธ์"
+        "ภาพฝัน",
+        "การพิจารณา"
       ]
     },
     "upright": {
-      "en": "Many possibilities can blur judgment. Bring imagination down to earth by asking what is real, workable, and aligned.",
-      "th": "ความเป็นไปได้หลายทางอาจทำให้การตัดสินใจพร่า ดึงจินตนาการกลับสู่พื้นด้วยคำถามว่าอะไรจริง ทำได้ และสอดคล้องกับคุณ"
+      "en": "Too many possibilities can make it harder to choose. Bring the options back to reality by asking what is workable, meaningful, and actually available.",
+      "th": "เมื่อมีทางเลือกมากเกินไป ใจก็อาจหลงไปกับภาพที่อยากให้เป็น ลองกลับมาถามว่าอะไรทำได้จริง มีความหมาย และมีอยู่จริงตรงหน้า"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Which option still makes sense after the fantasy is removed?",
-      "th": "ทางเลือกไหนยังสมเหตุสมผลเมื่อเอาภาพฝันออกไป?"
+      "en": "Which option still makes sense once the fantasy is stripped away?",
+      "th": "เมื่อตัดภาพฝันออกไป ทางเลือกไหนยังสมเหตุสมผลที่สุด?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "43",
@@ -1696,29 +1696,29 @@
     "image": "assets/cards/43_EIGHT_OF_CUPS.png",
     "keywords": {
       "en": [
-        "departure",
-        "emotion",
-        "connection"
+        "leaving",
+        "searching",
+        "emotional truth"
       ],
       "th": [
         "การเดินจาก",
-        "ความรู้สึก",
-        "ความสัมพันธ์"
+        "การค้นหา",
+        "ความจริงทางใจ"
       ]
     },
     "upright": {
-      "en": "Something may have given all it can. Walking away can be an act of honesty when staying only preserves emptiness.",
-      "th": "บางสิ่งอาจให้สิ่งที่ให้ได้ครบแล้ว การเดินออกมาอาจเป็นความซื่อตรงเมื่อการอยู่ต่อมีไว้เพียงรักษาความว่างเปล่า"
+      "en": "Something may no longer have enough life in it to keep you there. Walking away can be an honest choice when staying only prolongs emptiness.",
+      "th": "บางสิ่งอาจไม่มีอะไรให้คุณต่ออีกแล้ว การเดินออกมาไม่ได้แปลว่าแพ้เสมอไป บางครั้งมันคือการซื่อตรงกับความจริงว่าอยู่ต่อก็มีแต่ความว่างเปล่า"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What are you ready to leave because it no longer nourishes you?",
-      "th": "คุณพร้อมเดินออกจากอะไรเพราะมันไม่หล่อเลี้ยงคุณอีกแล้ว?"
+      "en": "What are you ready to leave because it no longer gives you what you need?",
+      "th": "คุณพร้อมเดินออกจากอะไร เพราะมันไม่ตอบสิ่งที่คุณต้องการอีกแล้ว?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "44",
@@ -1735,29 +1735,29 @@
     "image": "assets/cards/44_NINE_OF_CUPS.png",
     "keywords": {
       "en": [
-        "satisfaction",
-        "emotion",
-        "connection"
+        "contentment",
+        "pleasure",
+        "gratitude"
       ],
       "th": [
-        "ความพึงพอใจ",
-        "ความรู้สึก",
-        "ความสัมพันธ์"
+        "ความพอใจ",
+        "ความสุข",
+        "ความขอบคุณ"
       ]
     },
     "upright": {
-      "en": "There is value in recognizing enoughness. Enjoy what is working without turning satisfaction into complacency.",
-      "th": "การมองเห็นความพอมีคุณค่า ชื่นชมสิ่งที่กำลังดีโดยไม่ปล่อยให้ความพอใจกลายเป็นความชะล่าใจ"
+      "en": "There is something worth enjoying here. Let satisfaction be enough for a moment without turning it into complacency or immediately wanting more.",
+      "th": "ตอนนี้มีบางอย่างที่ควรได้ชื่นชมและมีความสุขกับมัน ปล่อยให้ความพอใจมีที่อยู่สักพัก โดยไม่รีบอยากได้สิ่งถัดไปหรือปล่อยตัวจนหยุดเติบโต"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What can you enjoy fully without immediately wanting more?",
-      "th": "อะไรที่คุณชื่นชมได้เต็มที่โดยไม่รีบอยากได้มากกว่าเดิม?"
+      "en": "What can you enjoy fully without asking for the next thing yet?",
+      "th": "อะไรที่คุณมีความสุขกับมันได้เต็มที่ โดยยังไม่ต้องรีบมองหาสิ่งต่อไป?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "45",
@@ -1774,36 +1774,36 @@
     "image": "assets/cards/45_TEN_OF_CUPS.png",
     "keywords": {
       "en": [
-        "belonging",
-        "emotion",
-        "connection"
+        "harmony",
+        "family",
+        "belonging"
       ],
       "th": [
         "ความกลมกลืน",
-        "ความรู้สึก",
-        "ความสัมพันธ์"
+        "ครอบครัว",
+        "ความเป็นส่วนหนึ่ง"
       ]
     },
     "upright": {
-      "en": "Emotional richness is often relational. Notice the people, agreements, and shared values that make belonging possible.",
-      "th": "ความอุดมทางใจมักเกิดในความสัมพันธ์ มองผู้คน ข้อตกลง และคุณค่าร่วมที่ทำให้ความรู้สึกเป็นส่วนหนึ่งเกิดขึ้นได้"
+      "en": "A rich emotional life is built with people, trust, and shared values. Notice the relationships that make you feel safe enough to belong.",
+      "th": "ความสุขทางใจไม่ได้เกิดจากเราเพียงคนเดียว มันเติบโตจากคน ความไว้ใจ และคุณค่าที่มีร่วมกัน ลองมองความสัมพันธ์ที่ทำให้คุณรู้สึกว่าได้เป็นส่วนหนึ่งจริงๆ"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What relationship deserves deliberate gratitude today?",
-      "th": "วันนี้ความสัมพันธ์ไหนควรได้รับความขอบคุณอย่างตั้งใจ?"
+      "en": "Which relationship deserves a sincere thank-you today?",
+      "th": "วันนี้มีความสัมพันธ์ไหนที่คุณอยากขอบคุณอย่างจริงใจ?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "46",
     "index": 46,
     "title": {
       "en": "Page of Cups",
-      "th": "เพจถ้วย"
+      "th": "เด็กถือถ้วย"
     },
     "canonicalTitle": "PAGE OF CUPS",
     "arcana": "minor",
@@ -1814,18 +1814,18 @@
     "keywords": {
       "en": [
         "sensitivity",
-        "emotion",
-        "connection"
+        "intuition",
+        "surprise"
       ],
       "th": [
         "ความอ่อนไหว",
-        "ความรู้สึก",
-        "ความสัมพันธ์"
+        "สัญชาตญาณ",
+        "สิ่งใหม่ที่เข้ามา"
       ]
     },
     "upright": {
-      "en": "A subtle feeling, invitation, or creative impulse may be worth taking seriously. Stay open without becoming gullible.",
-      "th": "ความรู้สึกบางๆ คำชวน หรือแรงสร้างสรรค์เล็กๆ อาจควรค่าแก่การรับฟัง เปิดใจโดยไม่ต้องเชื่อทุกอย่างทันที"
+      "en": "A subtle feeling, invitation, or creative idea may be worth taking seriously. Stay open and curious without believing everything at first glance.",
+      "th": "ความรู้สึกเล็กๆ คำชวน หรือไอเดียสร้างสรรค์บางอย่างอาจน่าสนใจกว่าที่ดู เปิดใจสำรวจได้ โดยยังไม่ต้องเชื่อทุกอย่างทันที"
     },
     "reversed": {
       "en": null,
@@ -1833,9 +1833,9 @@
     },
     "reflection": {
       "en": "What quiet signal are you curious enough to explore?",
-      "th": "สัญญาณเบาๆ อะไรที่คุณอยากสำรวจต่อด้วยความอยากรู้?"
+      "th": "มีสัญญาณเล็กๆ อะไรที่คุณอยากลองตามดูต่อ?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "47",
@@ -1852,29 +1852,29 @@
     "image": "assets/cards/47_KNIGHT_OF_CUPS.png",
     "keywords": {
       "en": [
+        "romance",
         "idealism",
-        "emotion",
-        "connection"
+        "sincerity"
       ],
       "th": [
+        "ความโรแมนติก",
         "อุดมคติ",
-        "ความรู้สึก",
-        "ความสัมพันธ์"
+        "ความจริงใจ"
       ]
     },
     "upright": {
-      "en": "Let the heart move, but keep your feet on the ground. A sincere offer becomes stronger when feeling and follow-through agree.",
-      "th": "ให้หัวใจได้เคลื่อนไหวแต่ยังยืนอยู่บนพื้น คำเสนอที่จริงใจจะแข็งแรงขึ้นเมื่อความรู้สึกและการลงมือสอดคล้องกัน"
+      "en": "Let your heart lead, but keep your feet on the ground. A sincere feeling becomes stronger when your actions are willing to follow it.",
+      "th": "ให้หัวใจมีส่วนในการนำทางได้ แต่ยังต้องอยู่กับความจริง ความรู้สึกที่จริงใจจะมีน้ำหนักมากขึ้นเมื่อการกระทำของคุณพร้อมเดินตามไปด้วย"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What promise can you make only if you are willing to follow through?",
-      "th": "คุณให้คำสัญญาอะไรได้เมื่อพร้อมทำให้เกิดขึ้นจริงด้วย?"
+      "en": "What promise is worth making only if you are ready to keep it?",
+      "th": "มีคำสัญญาอะไรที่ควรพูดก็ต่อเมื่อคุณพร้อมทำให้เกิดขึ้นจริง?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "48",
@@ -1892,18 +1892,18 @@
     "keywords": {
       "en": [
         "empathy",
-        "emotion",
-        "connection"
+        "intuition",
+        "emotional boundaries"
       ],
       "th": [
         "ความเข้าอกเข้าใจ",
-        "ความรู้สึก",
-        "ความสัมพันธ์"
+        "สัญชาตญาณ",
+        "ขอบเขตทางอารมณ์"
       ]
     },
     "upright": {
-      "en": "Sensitivity is useful when it remains grounded. Listen deeply without absorbing every emotion as your own responsibility.",
-      "th": "ความอ่อนไหวมีประโยชน์เมื่อยังมีฐานที่มั่นคง ฟังอย่างลึกโดยไม่รับทุกอารมณ์มาเป็นความรับผิดชอบของตัวเอง"
+      "en": "Sensitivity is a strength when it has boundaries. Listen deeply and care fully without making every feeling around you your responsibility.",
+      "th": "ความอ่อนไหวเป็นพลังได้เมื่อมีขอบเขต ฟังและใส่ใจคนอื่นได้เต็มที่ โดยไม่ต้องรับทุกความรู้สึกรอบตัวมาเป็นหน้าที่ของคุณ"
     },
     "reversed": {
       "en": null,
@@ -1911,9 +1911,9 @@
     },
     "reflection": {
       "en": "How can you care without losing your own center?",
-      "th": "คุณดูแลคนอื่นได้อย่างไรโดยไม่เสียศูนย์ของตัวเอง?"
+      "th": "คุณจะใส่ใจคนอื่นโดยยังรักษาศูนย์กลางของตัวเองไว้ได้อย่างไร?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "49",
@@ -1931,28 +1931,28 @@
     "keywords": {
       "en": [
         "emotional maturity",
-        "emotion",
-        "connection"
+        "compassion",
+        "composure"
       ],
       "th": [
         "วุฒิภาวะทางอารมณ์",
-        "ความรู้สึก",
-        "ความสัมพันธ์"
+        "ความเมตตา",
+        "ความสุขุม"
       ]
     },
     "upright": {
-      "en": "Steady feeling is not the absence of emotion. Hold warmth and discernment together, especially when others are reactive.",
-      "th": "ความมั่นคงไม่ได้แปลว่าไม่มีอารมณ์ ถือความอบอุ่นและการพิจารณาไว้พร้อมกัน โดยเฉพาะเมื่อคนรอบตัวกำลังไหวแรง"
+      "en": "Emotional maturity does not mean feeling less. Stay warm, steady, and thoughtful even when the people around you are reacting strongly.",
+      "th": "ความมั่นคงทางอารมณ์ไม่ได้แปลว่าไม่รู้สึก แต่คือการยังคงความอบอุ่น ความสุขุม และการคิดให้รอบคอบ แม้คนรอบตัวจะมีอารมณ์แรง"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What response would be both compassionate and well-governed?",
-      "th": "การตอบสนองแบบไหนทั้งเมตตาและกำกับตัวเองได้ดี?"
+      "en": "What response would be both compassionate and steady?",
+      "th": "คุณจะตอบเรื่องนี้อย่างไรให้ทั้งเมตตาและมั่นคง?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "50",
@@ -1970,28 +1970,28 @@
     "keywords": {
       "en": [
         "clarity",
-        "thought",
+        "breakthrough",
         "truth"
       ],
       "th": [
         "ความชัดเจน",
-        "ความคิด",
+        "การมองทะลุ",
         "ความจริง"
       ]
     },
     "upright": {
-      "en": "A clear idea or truth can cut through confusion. Name the central issue before adding more complexity.",
-      "th": "ความคิดหรือความจริงที่ชัดเจนช่วยตัดความสับสน เรียกประเด็นหลักให้ตรงก่อนเติมความซับซ้อนเข้าไปอีก"
+      "en": "A clear truth can cut through a lot of confusion. Name the real issue first, then decide what deserves your attention.",
+      "th": "ความจริงที่ชัดเพียงข้อเดียวอาจช่วยตัดความสับสนออกไปได้มาก เริ่มจากเรียกปัญหาหลักให้ตรง แล้วค่อยดูว่าควรทำอะไรต่อ"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What is the simplest true sentence about this situation?",
-      "th": "ประโยคจริงที่เรียบง่ายที่สุดเกี่ยวกับเรื่องนี้คืออะไร?"
+      "en": "What is the simplest honest sentence about this situation?",
+      "th": "ถ้าต้องพูดความจริงเกี่ยวกับเรื่องนี้ให้เหลือเพียงประโยคเดียว คุณจะพูดว่าอะไร?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "51",
@@ -2008,29 +2008,29 @@
     "image": "assets/cards/51_TWO_OF_SWORDS.png",
     "keywords": {
       "en": [
-        "stalemate",
-        "thought",
-        "truth"
+        "indecision",
+        "avoidance",
+        "choice"
       ],
       "th": [
-        "ภาวะค้างคา",
-        "ความคิด",
-        "ความจริง"
+        "ความลังเล",
+        "การหลีกเลี่ยง",
+        "การตัดสินใจ"
       ]
     },
     "upright": {
-      "en": "Avoidance can preserve temporary calm while keeping the real decision unresolved. Gather what matters and choose when enough is known.",
-      "th": "การหลีกเลี่ยงอาจรักษาความสงบชั่วคราว แต่ทำให้การตัดสินใจจริงยังค้างอยู่ รวบรวมข้อมูลสำคัญแล้วเลือกเมื่อรู้เพียงพอ"
+      "en": "Avoiding the choice may keep things calm for a little longer, but it also keeps you stuck. Gather what matters, then decide when you know enough—not everything.",
+      "th": "การยังไม่เลือกอาจทำให้ทุกอย่างสงบอยู่ชั่วคราว แต่ก็ทำให้คุณค้างอยู่ที่เดิม รวบรวมข้อมูลที่สำคัญให้พอ แล้วตัดสินใจโดยไม่ต้องรอให้รู้ทุกอย่าง"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What decision are you postponing by calling it “not enough information”?",
-      "th": "การตัดสินใจอะไรถูกเลื่อนออกไปด้วยคำว่า “ข้อมูลยังไม่พอ”?"
+      "en": "What decision are you postponing by saying you need more information?",
+      "th": "การตัดสินใจอะไรที่คุณกำลังเลื่อนด้วยเหตุผลว่า “ยังมีข้อมูลไม่พอ”?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "52",
@@ -2048,28 +2048,28 @@
     "keywords": {
       "en": [
         "heartbreak",
-        "thought",
-        "truth"
+        "truth",
+        "healing"
       ],
       "th": [
         "ความเจ็บปวด",
-        "ความคิด",
-        "ความจริง"
+        "ความจริง",
+        "การเยียวยา"
       ]
     },
     "upright": {
-      "en": "Painful clarity can still be clarity. Let disappointment be named directly so healing does not have to work around denial.",
-      "th": "ความชัดเจนที่เจ็บก็ยังเป็นความชัดเจน เรียกความผิดหวังตรงๆ เพื่อให้การฟื้นตัวไม่ต้องอ้อมผ่านการปฏิเสธ"
+      "en": "Some truths hurt, but naming the hurt clearly makes healing possible. You do not have to minimize the disappointment to move through it.",
+      "th": "ความจริงบางอย่างเจ็บ แต่การยอมรับว่าเจ็บตรงไหนช่วยให้เริ่มเยียวยาได้ คุณไม่จำเป็นต้องทำให้ความผิดหวังดูเล็กลงเพื่อจะก้าวผ่านมัน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What hurts less once you stop arguing with the fact that it hurt?",
-      "th": "อะไรเบาลงเมื่อคุณหยุดเถียงกับความจริงว่ามันทำให้เจ็บ?"
+      "en": "What becomes easier when you stop arguing with the fact that this hurt?",
+      "th": "อะไรเริ่มเบาลงเมื่อคุณยอมรับตรงๆ ว่าเรื่องนี้ทำให้เจ็บ?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "53",
@@ -2087,28 +2087,28 @@
     "keywords": {
       "en": [
         "rest",
-        "thought",
-        "truth"
+        "recovery",
+        "reflection"
       ],
       "th": [
         "การพัก",
-        "ความคิด",
-        "ความจริง"
+        "การฟื้นตัว",
+        "การทบทวน"
       ]
     },
     "upright": {
-      "en": "The mind may need recovery more than another solution. Deliberate rest can be part of responsible action.",
-      "th": "ใจและความคิดอาจต้องการการฟื้นมากกว่าคำตอบเพิ่ม การพักอย่างตั้งใจก็เป็นส่วนหนึ่งของการลงมืออย่างรับผิดชอบ"
+      "en": "Your mind may need rest more than another answer. A deliberate pause can be productive when it gives your clarity time to return.",
+      "th": "ตอนนี้ใจและความคิดอาจต้องการการพักมากกว่าคำตอบใหม่ การหยุดอย่างตั้งใจไม่ใช่เสียเวลา ถ้ามันช่วยให้ความชัดเจนกลับมา"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What can wait long enough for you to recover some clarity?",
-      "th": "อะไรเลื่อนได้พอให้คุณได้ฟื้นความชัดเจนกลับมาบ้าง?"
+      "en": "What can wait while you give yourself enough time to recover?",
+      "th": "มีเรื่องอะไรที่รอได้ เพื่อให้คุณได้พักและกลับมาคิดได้ชัดขึ้น?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "54",
@@ -2125,29 +2125,29 @@
     "image": "assets/cards/54_FIVE_OF_SWORDS.png",
     "keywords": {
       "en": [
-        "conflict cost",
-        "thought",
-        "truth"
+        "conflict",
+        "ego",
+        "consequences"
       ],
       "th": [
-        "ราคาของความขัดแย้ง",
-        "ความคิด",
-        "ความจริง"
+        "ความขัดแย้ง",
+        "อัตตา",
+        "ผลที่ตามมา"
       ]
     },
     "upright": {
-      "en": "Winning the argument may cost more than it returns. Look at the aftermath before deciding what victory means.",
-      "th": "การชนะข้อโต้แย้งอาจมีราคาสูงกว่าสิ่งที่ได้กลับมา มองผลหลังจบก่อนนิยามว่าชัยชนะคืออะไร"
+      "en": "Being right can cost more than it is worth. Before you keep fighting, look at what the conflict is doing to everyone involved.",
+      "th": "การพิสูจน์ว่าตัวเองถูกอาจมีราคาสูงกว่าที่คิด ก่อนจะสู้ต่อ ลองมองว่าความขัดแย้งนี้กำลังทำอะไรกับคุณและคนที่เกี่ยวข้อง"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What would you rather preserve than prove?",
-      "th": "คุณอยากรักษาอะไรมากกว่าพิสูจน์ว่าตัวเองถูก?"
+      "en": "What would you rather protect than prove?",
+      "th": "มีอะไรที่คุณอยากรักษาไว้ มากกว่าการพิสูจน์ว่าตัวเองถูก?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "55",
@@ -2165,28 +2165,28 @@
     "keywords": {
       "en": [
         "transition",
-        "thought",
-        "truth"
+        "recovery",
+        "calmer waters"
       ],
       "th": [
-        "การเคลื่อนผ่าน",
-        "ความคิด",
-        "ความจริง"
+        "การเปลี่ยนผ่าน",
+        "การฟื้นตัว",
+        "ทางที่สงบขึ้น"
       ]
     },
     "upright": {
-      "en": "A difficult stretch can be left gradually rather than dramatically. Choose the direction that brings more clarity and less needless turbulence.",
-      "th": "ช่วงยากอาจถูกทิ้งไว้ข้างหลังอย่างค่อยเป็นค่อยไป เลือกทิศที่พาไปสู่ความชัดและลดความปั่นป่วนที่ไม่จำเป็น"
+      "en": "You can leave a difficult period gradually. Choose the direction that brings more clarity and less unnecessary turmoil, even if it is not comfortable yet.",
+      "th": "ช่วงที่หนักไม่จำเป็นต้องจบแบบพลิกทันที คุณค่อยๆ พาตัวเองออกจากมันได้ เลือกทางที่ชัดและสงบขึ้น แม้ตอนนี้ยังไม่คุ้นเคยหรือสบายใจนัก"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What calmer direction is available even if it is not yet comfortable?",
-      "th": "มีทิศทางที่สงบกว่าอะไรบ้าง แม้ตอนนี้ยังไม่สบายใจนัก?"
+      "en": "What calmer direction is available, even if it still feels unfamiliar?",
+      "th": "มีทางไหนที่สงบกว่านี้ให้คุณเลือก แม้มันยังรู้สึกไม่คุ้น?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "56",
@@ -2204,28 +2204,28 @@
     "keywords": {
       "en": [
         "strategy",
-        "thought",
-        "truth"
+        "discretion",
+        "integrity"
       ],
       "th": [
         "กลยุทธ์",
-        "ความคิด",
-        "ความจริง"
+        "ความรอบคอบ",
+        "ความซื่อตรง"
       ]
     },
     "upright": {
-      "en": "Strategy matters, but so does integrity. Be precise about what needs discretion and what would become avoidance or deception.",
-      "th": "กลยุทธ์สำคัญ แต่ความซื่อตรงก็สำคัญ แยกให้ชัดว่าอะไรต้องใช้ความรอบคอบ และอะไรเริ่มกลายเป็นการหลบหรือปิดบัง"
+      "en": "Strategy can be wise, but it still needs integrity. Know what truly calls for discretion and what would cross the line into avoidance or deception.",
+      "th": "การวางแผนอย่างมีชั้นเชิงไม่ใช่เรื่องผิด แต่ยังต้องอยู่บนความซื่อตรง แยกให้ชัดว่าอะไรควรเก็บเป็นเรื่องส่วนตัว และอะไรเริ่มกลายเป็นการหลบเลี่ยงหรือปิดบัง"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Where does being clever need to stay accountable?",
-      "th": "ตรงไหนที่ความฉลาดต้องเดินคู่กับความรับผิดชอบ?"
+      "en": "Where does being clever still require you to be honest?",
+      "th": "ตรงไหนที่การใช้ไหวพริบยังต้องเดินคู่กับความซื่อตรง?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "57",
@@ -2243,28 +2243,28 @@
     "keywords": {
       "en": [
         "restriction",
-        "thought",
-        "truth"
+        "perspective",
+        "agency"
       ],
       "th": [
         "ข้อจำกัด",
-        "ความคิด",
-        "ความจริง"
+        "มุมมอง",
+        "ทางเลือกที่ยังมี"
       ]
     },
     "upright": {
-      "en": "The situation may be tight, but some limits are stronger in thought than in fact. Test which constraints are truly fixed.",
-      "th": "สถานการณ์อาจคับแคบ แต่ข้อจำกัดบางอย่างแข็งแรงกว่าในความคิดมากกว่าความจริง ลองทดสอบว่าอะไรขยับไม่ได้จริงๆ"
+      "en": "You may have fewer options than you want, but perhaps more than you think. Test which limits are truly fixed and which ones have simply started to feel permanent.",
+      "th": "คุณอาจมีทางเลือกน้อยกว่าที่อยากได้ แต่ก็อาจมากกว่าที่คิด ลองแยกดูว่าข้อจำกัดไหนขยับไม่ได้จริง และข้อไหนเพียงรู้สึกว่าขยับไม่ได้เพราะอยู่กับความคิดนั้นมานาน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Which “I can’t” statement deserves to be checked against reality?",
-      "th": "ประโยค “ฉันทำไม่ได้” ข้อไหนควรถูกตรวจสอบกับความจริงอีกครั้ง?"
+      "en": "Which “I can’t” belief deserves to be tested against reality?",
+      "th": "ความคิดว่า “ฉันทำไม่ได้” ข้อไหนควรลองทดสอบกับความจริงอีกครั้ง?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "58",
@@ -2282,28 +2282,28 @@
     "keywords": {
       "en": [
         "anxiety",
-        "thought",
-        "truth"
+        "rumination",
+        "support"
       ],
       "th": [
         "ความกังวล",
-        "ความคิด",
-        "ความจริง"
+        "ความคิดวน",
+        "การขอความช่วยเหลือ"
       ]
     },
     "upright": {
-      "en": "The mind can magnify pain in the dark. Bring worries into daylight through facts, conversation, rest, or one concrete next step.",
-      "th": "ความคิดอาจขยายความทุกข์เมื่ออยู่ลำพัง พาความกังวลออกสู่แสงด้วยข้อเท็จจริง การพูดคุย การพัก หรือก้าวถัดไปที่จับต้องได้"
+      "en": "Worry grows louder when it stays alone in your head. Bring it into the open with facts, a conversation, some rest, or one practical next step.",
+      "th": "ความกังวลมักดังขึ้นเมื่อวนอยู่ในหัวคนเดียว ลองพามันออกมาอยู่กับข้อเท็จจริง การพูดคุย การพัก หรือการลงมือเล็กๆ ที่ทำได้จริง"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What worry becomes more workable once it is written down plainly?",
-      "th": "ความกังวลไหนจัดการได้มากขึ้นเมื่อเขียนออกมาตรงๆ?"
+      "en": "Which worry becomes easier to handle once you put it into plain words?",
+      "th": "ความกังวลไหนจะจัดการง่ายขึ้น ถ้าคุณเขียนหรือพูดมันออกมาตรงๆ?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "59",
@@ -2321,35 +2321,35 @@
     "keywords": {
       "en": [
         "ending",
-        "thought",
-        "truth"
+        "surrender",
+        "recovery"
       ],
       "th": [
-        "จุดสิ้นสุด",
-        "ความคิด",
-        "ความจริง"
+        "จุดจบ",
+        "การยอมรับ",
+        "การเริ่มฟื้นตัว"
       ]
     },
     "upright": {
-      "en": "Something may be definitively over. The useful question is no longer how to preserve it, but how to stop reliving the ending.",
-      "th": "บางสิ่งอาจจบลงอย่างชัดเจนแล้ว คำถามที่มีประโยชน์ไม่ใช่จะรักษามันอย่างไร แต่จะหยุดกลับไปเจ็บกับตอนจบซ้ำๆ อย่างไร"
+      "en": "Something may truly be over. The next question is not how to save it, but how to stop making yourself relive the ending.",
+      "th": "บางสิ่งอาจจบลงจริงๆ แล้ว คำถามจากนี้ไม่ใช่ว่าจะรักษามันไว้ได้อย่างไร แต่คือจะหยุดพาตัวเองกลับไปเจ็บกับตอนจบเดิมซ้ำๆ ได้อย่างไร"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What becomes possible once you stop negotiating with an ending?",
-      "th": "อะไรเริ่มเป็นไปได้เมื่อคุณหยุดต่อรองกับสิ่งที่จบแล้ว?"
+      "en": "What becomes possible once you accept that this chapter is closed?",
+      "th": "เมื่อยอมรับว่าบทนี้ปิดแล้ว อะไรใหม่จึงเริ่มเป็นไปได้?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "60",
     "index": 60,
     "title": {
       "en": "Page of Swords",
-      "th": "เพจดาบ"
+      "th": "เด็กถือดาบ"
     },
     "canonicalTitle": "PAGE OF SWORDS",
     "arcana": "minor",
@@ -2359,29 +2359,29 @@
     "image": "assets/cards/60_PAGE_OF_SWORDS.png",
     "keywords": {
       "en": [
+        "curiosity",
         "inquiry",
-        "thought",
-        "truth"
+        "vigilance"
       ],
       "th": [
-        "การสืบค้น",
-        "ความคิด",
-        "ความจริง"
+        "ความอยากรู้",
+        "การตั้งคำถาม",
+        "ความระมัดระวัง"
       ]
     },
     "upright": {
-      "en": "Curiosity is sharp today. Ask, verify, learn, and watch the tendency to confuse quick conclusions with insight.",
-      "th": "วันนี้ความอยากรู้คมชัด ถาม ตรวจสอบ เรียนรู้ และระวังการสรุปเร็วแล้วคิดว่าเป็นความเข้าใจลึก"
+      "en": "Curiosity can sharpen your thinking today. Ask better questions, verify what you hear, and do not mistake a fast conclusion for a deep understanding.",
+      "th": "ความอยากรู้อยากเห็นช่วยให้คิดได้คมขึ้น ถามให้ดี ตรวจสอบสิ่งที่ได้ยิน และอย่ารีบคิดว่าคำตอบเร็วๆ คือความเข้าใจที่ลึกแล้ว"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What question would improve the quality of your next decision?",
-      "th": "คำถามอะไรจะทำให้การตัดสินใจครั้งถัดไปมีคุณภาพขึ้น?"
+      "en": "What question would improve your next decision?",
+      "th": "คำถามอะไรจะช่วยให้การตัดสินใจครั้งต่อไปของคุณดีขึ้น?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "61",
@@ -2399,28 +2399,28 @@
     "keywords": {
       "en": [
         "decisiveness",
-        "thought",
-        "truth"
+        "speed",
+        "focus"
       ],
       "th": [
         "ความเด็ดขาด",
-        "ความคิด",
-        "ความจริง"
+        "ความรวดเร็ว",
+        "ความชัดเจน"
       ]
     },
     "upright": {
-      "en": "Fast thinking can cut through delay, but haste can create its own damage. Move quickly only after the target is clear.",
-      "th": "ความคิดที่เร็วช่วยตัดความล่าช้าได้ แต่ความรีบก็สร้างความเสียหายเองได้ เดินเร็วเมื่อเป้าหมายชัดแล้วเท่านั้น"
+      "en": "Speed can break a stalemate, but haste can create new problems. Move decisively once you know what you are aiming at.",
+      "th": "ความรวดเร็วช่วยตัดความค้างคาได้ แต่ความรีบก็สร้างปัญหาใหม่ได้ เดินหน้าให้เด็ดขาดเมื่อรู้แล้วว่ากำลังมุ่งไปที่อะไร"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Where do you need decisiveness, and where do you need one more breath?",
-      "th": "ตรงไหนต้องเด็ดขาด และตรงไหนควรเว้นจังหวะอีกหนึ่งครั้ง?"
+      "en": "Where do you need decisiveness, and where would one more pause help?",
+      "th": "ตรงไหนที่คุณควรตัดสินใจให้ชัด และตรงไหนที่ควรเว้นจังหวะอีกนิด?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "62",
@@ -2438,28 +2438,28 @@
     "keywords": {
       "en": [
         "discernment",
-        "thought",
-        "truth"
+        "honesty",
+        "boundaries"
       ],
       "th": [
-        "การพิจารณาอย่างคมชัด",
-        "ความคิด",
-        "ความจริง"
+        "การพิจารณา",
+        "ความตรงไปตรงมา",
+        "ขอบเขต"
       ]
     },
     "upright": {
-      "en": "Clear boundaries and honest language can be kind when they prevent confusion. Say what is true without unnecessary cruelty.",
-      "th": "ขอบเขตชัดและถ้อยคำตรงไปตรงมาอาจเป็นความเมตตาเมื่อช่วยลดความสับสน พูดความจริงโดยไม่เพิ่มความโหดร้ายที่ไม่จำเป็น"
+      "en": "Clear boundaries and honest words can be kind when they prevent confusion. Say what is true without using the truth as a weapon.",
+      "th": "ขอบเขตที่ชัดและคำพูดตรงไปตรงมาอาจเป็นความเมตตาได้ เมื่อช่วยไม่ให้เรื่องสับสน พูดความจริงให้ชัด โดยไม่ใช้ความจริงเป็นอาวุธทำร้ายกัน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What truth can you say cleanly, without adding punishment?",
-      "th": "ความจริงอะไรที่คุณพูดได้อย่างชัดโดยไม่เติมการลงโทษเข้าไป?"
+      "en": "What truth can you say clearly without making it hurt more than necessary?",
+      "th": "มีความจริงอะไรที่คุณพูดได้ชัดเจน โดยไม่ทำให้เจ็บเกินความจำเป็น?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "63",
@@ -2477,28 +2477,28 @@
     "keywords": {
       "en": [
         "reason",
-        "thought",
-        "truth"
+        "principle",
+        "judgment"
       ],
       "th": [
         "เหตุผล",
-        "ความคิด",
-        "ความจริง"
+        "หลักการ",
+        "การตัดสินใจ"
       ]
     },
     "upright": {
-      "en": "Good judgment asks for principle, evidence, and consistency. Lead with a clear mind while remaining aware of human consequences.",
-      "th": "การตัดสินใจที่ดีต้องมีหลักฐาน หลักการ และความสม่ำเสมอ ใช้ความคิดชัดเจนพร้อมไม่ลืมผลที่เกิดกับคนจริงๆ"
+      "en": "Good judgment needs evidence, principles, and consistency. Think clearly, but remember that your decision still affects real people.",
+      "th": "การตัดสินใจที่ดีต้องมีทั้งเหตุผล หลักฐาน และหลักการที่สม่ำเสมอ คิดให้ชัดได้เต็มที่ แต่ไม่ลืมว่าผลของการตัดสินใจเกิดขึ้นกับคนจริงๆ"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What decision would still look sound if your preferences were removed from it?",
-      "th": "การตัดสินใจไหนยังดูสมเหตุสมผลเมื่อเอาความชอบส่วนตัวออกไป?"
+      "en": "What decision would still make sense if you set your personal preference aside?",
+      "th": "ถ้าพักความชอบส่วนตัวไว้ก่อน การตัดสินใจแบบไหนยังสมเหตุสมผลที่สุด?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "64",
@@ -2516,28 +2516,28 @@
     "keywords": {
       "en": [
         "opportunity",
-        "resources",
-        "grounding"
+        "stability",
+        "tangible growth"
       ],
       "th": [
-        "โอกาสที่จับต้องได้",
-        "ทรัพยากร",
-        "ความมั่นคง"
+        "โอกาส",
+        "ความมั่นคง",
+        "การเติบโตที่จับต้องได้"
       ]
     },
     "upright": {
-      "en": "A practical opening is available. Give it form through one measurable action, resource, or commitment.",
-      "th": "มีโอกาสที่จับต้องได้อยู่ตรงหน้า ทำให้มันเป็นรูปเป็นร่างด้วยการลงมือ ทรัพยากร หรือคำมั่นที่วัดผลได้สักอย่าง"
+      "en": "A practical opportunity is in front of you. Give it a real shape with one concrete action, a clear commitment, or the resources it needs.",
+      "th": "มีโอกาสที่จับต้องได้อยู่ตรงหน้า ลองทำให้มันเป็นรูปเป็นร่างด้วยการลงมือจริง จัดเวลา หรือใส่ทรัพยากรที่จำเป็นลงไปอย่างชัดเจน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What small investment could create real future value?",
-      "th": "การลงทุนเล็กๆ แบบไหนสร้างคุณค่าในอนาคตได้จริง?"
+      "en": "What small investment could create real value later?",
+      "th": "วันนี้คุณลงทุนแรง เวลา หรือทรัพยากรเล็กๆ กับอะไรแล้วอาจเกิดคุณค่าในอนาคต?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "65",
@@ -2554,29 +2554,29 @@
     "image": "assets/cards/65_TWO_OF_PENTACLES.png",
     "keywords": {
       "en": [
-        "adaptation",
-        "resources",
-        "grounding"
+        "adaptability",
+        "priorities",
+        "balance"
       ],
       "th": [
-        "การปรับสมดุล",
-        "ทรัพยากร",
-        "ความมั่นคง"
+        "การปรับตัว",
+        "การจัดลำดับ",
+        "ความสมดุล"
       ]
     },
     "upright": {
-      "en": "Several demands can be managed if you stay flexible about sequence and timing. Balance is active, not static.",
-      "th": "หลายเรื่องไปด้วยกันได้ถ้ายืดหยุ่นเรื่องลำดับและจังหวะ ความสมดุลไม่ใช่การอยู่นิ่ง แต่คือการปรับตลอดเวลา"
+      "en": "You can handle several demands, but not by pretending they all deserve the same priority. Stay flexible with timing and decide what needs attention first.",
+      "th": "คุณจัดการหลายเรื่องพร้อมกันได้ แต่ไม่จำเป็นต้องให้ทุกเรื่องสำคัญเท่ากัน ยืดหยุ่นกับเวลา แล้วเลือกให้ชัดว่าอะไรควรมาก่อน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What can be rescheduled instead of squeezed in?",
-      "th": "อะไรควรเปลี่ยนเวลาแทนการยัดให้ลงในตารางเดิม?"
+      "en": "What could be rescheduled instead of squeezed in?",
+      "th": "มีอะไรที่เลื่อนไปเวลาอื่นได้ แทนการยัดทุกอย่างไว้ในตารางเดียว?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "66",
@@ -2594,28 +2594,28 @@
     "keywords": {
       "en": [
         "craft",
-        "resources",
-        "grounding"
+        "collaboration",
+        "quality"
       ],
       "th": [
-        "ฝีมือและการร่วมมือ",
-        "ทรัพยากร",
-        "ความมั่นคง"
+        "ฝีมือ",
+        "การร่วมมือ",
+        "คุณภาพ"
       ]
     },
     "upright": {
-      "en": "Quality grows through skill, feedback, and collaboration. Let good work be visible enough to be improved together.",
-      "th": "คุณภาพเติบโตจากทักษะ ข้อเสนอแนะ และการร่วมมือ ทำให้งานดีมองเห็นได้พอที่จะช่วยกันพัฒนา"
+      "en": "Good work gets better through skill, feedback, and collaboration. Let other capable people see enough of the process to help improve it.",
+      "th": "งานที่ดีขึ้นได้จากทั้งฝีมือ ข้อเสนอแนะ และการร่วมมือ เปิดพื้นที่ให้คนที่มีความรู้เข้ามาช่วยมอง ช่วยคิด หรือช่วยยกระดับงาน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Whose expertise would make this work better?",
-      "th": "ความเชี่ยวชาญของใครจะช่วยให้งานนี้ดีขึ้น?"
+      "en": "Whose expertise could make this better?",
+      "th": "ความเชี่ยวชาญของใครจะช่วยให้งานนี้ดีขึ้นได้จริง?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "67",
@@ -2633,28 +2633,28 @@
     "keywords": {
       "en": [
         "security",
-        "resources",
-        "grounding"
+        "control",
+        "attachment"
       ],
       "th": [
         "ความมั่นคง",
-        "ทรัพยากร",
-        "ความมั่นคง"
+        "การควบคุม",
+        "ความยึดติด"
       ]
     },
     "upright": {
-      "en": "Protection can become over-control. Check whether holding tightly is preserving something valuable or merely preserving fear.",
-      "th": "การปกป้องอาจกลายเป็นการควบคุมมากเกินไป ลองดูว่าการกอดไว้แน่นกำลังรักษาสิ่งมีค่าหรือแค่รักษาความกลัว"
+      "en": "Wanting security is reasonable, but holding on too tightly can become its own trap. Ask whether you are protecting something valuable or simply protecting yourself from uncertainty.",
+      "th": "ความอยากมั่นคงเป็นเรื่องธรรมดา แต่การกอดทุกอย่างไว้แน่นเกินไปอาจทำให้คุณติดอยู่กับที่ ลองถามว่ากำลังรักษาสิ่งสำคัญจริงๆ หรือแค่กลัวความไม่แน่นอน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What would still be safe if you loosened your grip slightly?",
-      "th": "อะไรยังปลอดภัยได้แม้คุณคลายมือออกเล็กน้อย?"
+      "en": "What could you loosen without losing what truly matters?",
+      "th": "มีอะไรที่คุณคลายมือได้บ้าง โดยไม่เสียสิ่งที่สำคัญจริงๆ?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "68",
@@ -2672,28 +2672,28 @@
     "keywords": {
       "en": [
         "hardship",
-        "resources",
-        "grounding"
+        "support",
+        "resilience"
       ],
       "th": [
-        "ความขาดแคลน",
-        "ทรัพยากร",
-        "ความมั่นคง"
+        "ความยากลำบาก",
+        "ความช่วยเหลือ",
+        "การประคองตัว"
       ]
     },
     "upright": {
-      "en": "Difficulty can narrow attention until support becomes hard to see. Look for concrete help, shared resources, and the next manageable need.",
-      "th": "ความยากลำบากอาจทำให้สายตาแคบจนมองไม่เห็นความช่วยเหลือ มองหาความช่วยเหลือจริง ทรัพยากรร่วม และความต้องการถัดไปที่จัดการได้"
+      "en": "Hardship can make what is missing feel bigger than the help around you. Look for people, practical support, and one need you can deal with today.",
+      "th": "ช่วงที่ลำบากอาจทำให้คุณเห็นแต่สิ่งที่ขาด จนมองไม่เห็นความช่วยเหลือที่อยู่ใกล้ๆ วันนี้ลองมองหาคน ทรัพยากร หรือทางออกเล็กๆ ที่ช่วยให้เรื่องหนักเบาลงได้ก่อน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What support is available if you allow yourself to ask directly?",
-      "th": "มีความช่วยเหลืออะไรอยู่บ้างถ้าคุณยอมขออย่างตรงไปตรงมา?"
+      "en": "What support could you reach for if you asked plainly?",
+      "th": "ตอนนี้มีใครหรืออะไรที่ช่วยคุณได้ แต่คุณยังไม่ได้เอ่ยปากขอ?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "69",
@@ -2710,29 +2710,29 @@
     "image": "assets/cards/69_SIX_OF_PENTACLES.png",
     "keywords": {
       "en": [
+        "generosity",
         "exchange",
-        "resources",
-        "grounding"
+        "fairness"
       ],
       "th": [
         "การให้และรับ",
-        "ทรัพยากร",
-        "ความมั่นคง"
+        "ความเอื้อเฟื้อ",
+        "ความเป็นธรรม"
       ]
     },
     "upright": {
-      "en": "Healthy generosity pays attention to balance, dignity, and power. Give or receive in a way that keeps both sides human.",
-      "th": "การให้ที่ดีใส่ใจความสมดุล ศักดิ์ศรี และอำนาจ ให้หรือรับโดยรักษาความเป็นมนุษย์ของทั้งสองฝ่ายไว้"
+      "en": "Giving and receiving both need balance. Notice whether the exchange feels fair to everyone and can continue without creating resentment or too much dependence.",
+      "th": "การให้และรับที่ดีต้องรักษาทั้งความสมดุลและศักดิ์ศรี ลองดูว่าความช่วยเหลือนี้เป็นธรรมกับทุกฝ่าย และไปต่อได้โดยไม่ทำให้ใครอึดอัดหรือพึ่งพากันมากเกินไป"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Is the exchange fair, sustainable, and respectful for everyone involved?",
-      "th": "การแลกเปลี่ยนนี้เป็นธรรม ยั่งยืน และเคารพทุกฝ่ายหรือไม่?"
+      "en": "Does this exchange feel fair and sustainable for everyone involved?",
+      "th": "การให้และรับครั้งนี้ยุติธรรมและไปต่อได้สำหรับทุกฝ่ายหรือเปล่า?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "70",
@@ -2749,29 +2749,29 @@
     "image": "assets/cards/70_SEVEN_OF_PENTACLES.png",
     "keywords": {
       "en": [
+        "patience",
         "assessment",
-        "resources",
-        "grounding"
+        "long-term growth"
       ],
       "th": [
-        "การประเมินผล",
-        "ทรัพยากร",
-        "ความมั่นคง"
+        "ความอดทน",
+        "การประเมิน",
+        "การเติบโตระยะยาว"
       ]
     },
     "upright": {
-      "en": "Long-term work benefits from a pause to assess return. Patience matters, but so does knowing when the method needs adjustment.",
-      "th": "งานระยะยาวได้ประโยชน์จากการหยุดประเมินผล ความอดทนสำคัญ แต่การรู้ว่าเมื่อไรควรปรับวิธีก็สำคัญเช่นกัน"
+      "en": "Long-term effort deserves a pause for review. Patience matters, but so does noticing whether your current method is actually moving you toward what you hoped for.",
+      "th": "เรื่องที่คุณลงแรงมานานควรมีจังหวะให้หยุดดูผล ความอดทนยังสำคัญ แต่ก็ควรถามว่าวิธีที่ใช้อยู่กำลังพาไปใกล้สิ่งที่ต้องการจริงหรือไม่"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What is growing well, and what only looks busy?",
-      "th": "อะไรเติบโตจริง และอะไรเพียงดูเหมือนกำลังยุ่ง?"
+      "en": "What is genuinely growing, and what only looks busy?",
+      "th": "อะไรเติบโตขึ้นจริงๆ และอะไรแค่ทำให้คุณรู้สึกว่ายุ่งอยู่ตลอด?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "71",
@@ -2788,29 +2788,29 @@
     "image": "assets/cards/71_EIGHT_OF_PENTACLES.png",
     "keywords": {
       "en": [
+        "practice",
         "mastery",
-        "resources",
-        "grounding"
+        "craftsmanship"
       ],
       "th": [
         "การฝึกฝน",
-        "ทรัพยากร",
-        "ความมั่นคง"
+        "ความชำนาญ",
+        "ความประณีต"
       ]
     },
     "upright": {
-      "en": "Skill is built through attentive repetition. Refine the process, not just the outcome, and let small improvements compound.",
-      "th": "ทักษะเกิดจากการทำซ้ำอย่างใส่ใจ พัฒนากระบวนการ ไม่ใช่เพียงผลลัพธ์ แล้วปล่อยให้การปรับเล็กๆ สะสมพลัง"
+      "en": "Skill grows through careful repetition. Pay attention to the process, make one small improvement, and let practice do the rest over time.",
+      "th": "ความชำนาญเกิดจากการฝึกซ้ำอย่างใส่ใจ มองที่กระบวนการ ปรับทีละจุด แล้วปล่อยให้ความสม่ำเสมอค่อยๆ ทำหน้าที่ของมัน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "Which part of the craft deserves another careful repetition?",
-      "th": "ส่วนไหนของฝีมือควรได้ฝึกซ้ำอย่างละเอียดอีกครั้ง?"
+      "en": "Which part of your craft would benefit from another careful round of practice?",
+      "th": "ส่วนไหนของสิ่งที่คุณทำควรได้ฝึกหรือขัดเกลาอีกครั้ง?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "72",
@@ -2827,29 +2827,29 @@
     "image": "assets/cards/72_NINE_OF_PENTACLES.png",
     "keywords": {
       "en": [
-        "self-sufficiency",
-        "resources",
-        "grounding"
+        "independence",
+        "comfort",
+        "self-worth"
       ],
       "th": [
-        "ความมั่นคงด้วยตนเอง",
-        "ทรัพยากร",
-        "ความมั่นคง"
+        "ความเป็นอิสระ",
+        "ความมั่นคง",
+        "การเห็นคุณค่าตัวเอง"
       ]
     },
     "upright": {
-      "en": "Enjoy what disciplined effort has created. Independence is strongest when it includes discernment, not isolation.",
-      "th": "ชื่นชมสิ่งที่ความมีวินัยสร้างขึ้น ความเป็นอิสระแข็งแรงที่สุดเมื่อมีการพิจารณา ไม่ใช่การตัดตัวเองออกจากคนอื่น"
+      "en": "You have earned the right to enjoy what steady effort has built. Independence feels best when it gives you freedom, not distance from everyone else.",
+      "th": "ชื่นชมสิ่งที่ความพยายามสม่ำเสมอของคุณสร้างขึ้นได้เต็มที่ ความเป็นอิสระที่ดีควรทำให้ชีวิตมีอิสระมากขึ้น ไม่ใช่ทำให้ต้องตัดตัวเองออกจากทุกคน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What have you built that you can now genuinely enjoy?",
-      "th": "คุณสร้างอะไรไว้แล้วที่วันนี้ควรได้ชื่นชมอย่างจริงจัง?"
+      "en": "What have you built that you can genuinely enjoy now?",
+      "th": "ตอนนี้มีอะไรที่คุณสร้างมาด้วยตัวเองและควรได้ชื่นชมอย่างเต็มที่?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "73",
@@ -2867,35 +2867,35 @@
     "keywords": {
       "en": [
         "legacy",
-        "resources",
-        "grounding"
+        "family",
+        "long-term security"
       ],
       "th": [
-        "ความมั่นคงระยะยาว",
-        "ทรัพยากร",
+        "รากฐานระยะยาว",
+        "ครอบครัว",
         "ความมั่นคง"
       ]
     },
     "upright": {
-      "en": "Think beyond the immediate win. Systems, family, community, and long-term stewardship may matter more than a quick result.",
-      "th": "มองเลยชัยชนะเฉพาะหน้า ระบบ ครอบครัว ชุมชน และการดูแลระยะยาวอาจสำคัญกว่าผลลัพธ์เร็วๆ"
+      "en": "Think beyond the quick win. Family, community, shared resources, and the systems you build today can have an impact for years.",
+      "th": "มองไกลกว่าผลลัพธ์เฉพาะหน้า รากฐานที่คุณสร้างให้ครอบครัว ชุมชน งาน หรือทรัพยากรในวันนี้อาจมีความหมายไปอีกนาน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What are you building that should still matter years from now?",
-      "th": "คุณกำลังสร้างอะไรที่ควรยังมีความหมายในอีกหลายปีข้างหน้า?"
+      "en": "What are you building that you want to matter years from now?",
+      "th": "คุณกำลังสร้างอะไรที่อยากให้ยังมีคุณค่าในอีกหลายปีข้างหน้า?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "74",
     "index": 74,
     "title": {
       "en": "Page of Pentacles",
-      "th": "เพจเหรียญ"
+      "th": "เด็กถือเหรียญ"
     },
     "canonicalTitle": "PAGE OF PENTACLES",
     "arcana": "minor",
@@ -2906,28 +2906,28 @@
     "keywords": {
       "en": [
         "study",
-        "resources",
-        "grounding"
+        "opportunity",
+        "practical growth"
       ],
       "th": [
-        "การเรียนรู้เชิงปฏิบัติ",
-        "ทรัพยากร",
-        "ความมั่นคง"
+        "การเรียนรู้",
+        "โอกาส",
+        "การเติบโตที่เป็นรูปธรรม"
       ]
     },
     "upright": {
-      "en": "A practical skill or opportunity deserves beginner’s attention. Study the details and make the first real investment of effort.",
-      "th": "ทักษะหรือโอกาสที่จับต้องได้สมควรได้รับความใส่ใจแบบมือใหม่ เรียนรายละเอียดและลงแรงจริงเป็นครั้งแรก"
+      "en": "A practical opportunity may be worth studying seriously. Start small, learn the details, and give it enough real effort to discover what it could become.",
+      "th": "โอกาสหรือทักษะที่จับต้องได้บางอย่างน่าศึกษาให้จริงจัง เริ่มจากพื้นฐาน ทำความเข้าใจรายละเอียด แล้วลงแรงพอให้รู้ว่ามันพัฒนาไปได้ไกลแค่ไหน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What could become valuable if you study it seriously now?",
-      "th": "อะไรอาจมีคุณค่าในอนาคตถ้าคุณเรียนรู้มันอย่างจริงจังตั้งแต่ตอนนี้?"
+      "en": "What could become valuable if you gave it serious attention now?",
+      "th": "อะไรอาจมีคุณค่ามากขึ้น ถ้าคุณเริ่มเรียนรู้มันอย่างจริงจังตั้งแต่ตอนนี้?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "75",
@@ -2945,28 +2945,28 @@
     "keywords": {
       "en": [
         "consistency",
-        "resources",
-        "grounding"
+        "patience",
+        "reliability"
       ],
       "th": [
         "ความสม่ำเสมอ",
-        "ทรัพยากร",
-        "ความมั่นคง"
+        "ความอดทน",
+        "ความน่าเชื่อถือ"
       ]
     },
     "upright": {
-      "en": "Steady work may look unglamorous, but reliability compounds. Keep the pace you can actually sustain.",
-      "th": "งานที่สม่ำเสมออาจไม่หวือหวา แต่ความเชื่อถือได้สะสมผล เลือกจังหวะที่คุณทำต่อเนื่องได้จริง"
+      "en": "Steady progress rarely looks dramatic. Choose a pace you can sustain and let reliability build results over time.",
+      "th": "ความก้าวหน้าที่มั่นคงไม่จำเป็นต้องหวือหวา เลือกจังหวะที่ทำต่อได้จริง แล้วให้ความสม่ำเสมอค่อยๆ สร้างผลลัพธ์ของมัน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What routine would make progress almost boringly reliable?",
-      "th": "กิจวัตรอะไรจะทำให้ความคืบหน้าสม่ำเสมอจนแทบดูธรรมดา?"
+      "en": "What routine would make your progress easier to trust?",
+      "th": "กิจวัตรแบบไหนจะทำให้คุณเชื่อใจความก้าวหน้าของตัวเองได้มากขึ้น?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "76",
@@ -2983,29 +2983,29 @@
     "image": "assets/cards/76_QUEEN_OF_PENTACLES.png",
     "keywords": {
       "en": [
-        "grounded care",
-        "resources",
-        "grounding"
+        "practical care",
+        "abundance",
+        "stability"
       ],
       "th": [
-        "การดูแลที่มีฐานมั่นคง",
-        "ทรัพยากร",
+        "การดูแลที่จับต้องได้",
+        "ความอุดมสมบูรณ์",
         "ความมั่นคง"
       ]
     },
     "upright": {
-      "en": "Care becomes powerful when it is practical. Tend to body, home, money, work, and people in ways that can be sustained.",
-      "th": "การดูแลมีพลังเมื่อจับต้องได้ ใส่ใจกาย บ้าน เงิน งาน และผู้คนด้วยวิธีที่ทำต่อเนื่องได้"
+      "en": "Care is most powerful when it becomes practical. Look after your body, home, money, work, and people in ways you can sustain.",
+      "th": "การดูแลที่มีพลังคือการดูแลที่เกิดขึ้นจริง ใส่ใจกาย บ้าน เงิน งาน หรือคนที่สำคัญด้วยวิธีที่ทำต่อเนื่องได้ ไม่ใช่แค่ตั้งใจไว้"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What practical act of care would improve the day immediately?",
-      "th": "การดูแลแบบลงมือจริงอะไรจะทำให้วันนี้ดีขึ้นทันที?"
+      "en": "What practical act of care would make today noticeably better?",
+      "th": "วันนี้คุณลงมือดูแลอะไรสักอย่างแล้วจะทำให้ชีวิตดีขึ้นอย่างเห็นได้ชัด?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   },
   {
     "id": "77",
@@ -3023,28 +3023,28 @@
     "keywords": {
       "en": [
         "stewardship",
-        "resources",
-        "grounding"
+        "prosperity",
+        "responsibility"
       ],
       "th": [
-        "การบริหารทรัพยากร",
-        "ทรัพยากร",
-        "ความมั่นคง"
+        "การบริหารจัดการ",
+        "ความมั่งคั่ง",
+        "ความรับผิดชอบ"
       ]
     },
     "upright": {
-      "en": "Resources are most useful when managed with patience, competence, and long-term responsibility. Build for durability rather than display.",
-      "th": "ทรัพยากรมีประโยชน์ที่สุดเมื่อบริหารด้วยความอดทน ความสามารถ และความรับผิดชอบระยะยาว สร้างให้ทน ไม่ใช่สร้างเพื่อโชว์"
+      "en": "Resources become meaningful when they are managed well. Think in terms of patience, competence, and long-term responsibility rather than appearance or status.",
+      "th": "ทรัพยากรจะมีคุณค่ามากขึ้นเมื่อถูกดูแลอย่างดี ใช้ความอดทน ความสามารถ และความรับผิดชอบระยะยาวเป็นหลัก มากกว่าการพยายามให้คนอื่นเห็นว่าคุณมีมากแค่ไหน"
     },
     "reversed": {
       "en": null,
       "th": null
     },
     "reflection": {
-      "en": "What would responsible abundance look like in practice?",
-      "th": "ความมั่งคั่งที่รับผิดชอบจะมีหน้าตาอย่างไรในชีวิตจริง?"
+      "en": "What would prosperity look like if it were built to last?",
+      "th": "ความมั่งคั่งที่ยั่งยืนและไม่ต้องมีไว้เพื่อโชว์ จะมีหน้าตาอย่างไรสำหรับคุณ?"
     },
-    "contentVersion": "daily-guidance-v1"
+    "contentVersion": "daily-guidance-v2"
   }
 ];
 

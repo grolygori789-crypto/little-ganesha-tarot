@@ -38,7 +38,7 @@ const ranks = ['ACE','TWO','THREE','FOUR','FIVE','SIX','SEVEN','EIGHT','NINE','T
 const expectedNames = [...majorNames];
 for (const suit of suits) for (const rank of ranks) expectedNames.push(`${rank} OF ${suit}`);
 
-assert(content.version === 'daily-guidance-v1', 'Unexpected reading content version.');
+assert(content.version === 'daily-guidance-v2', 'Unexpected reading content version.');
 assert(content.cards.length === 78, 'Expected 78 cards.');
 assert(new Set(content.cards.map(card => card.id)).size === 78, 'Card IDs must be unique.');
 assert(content.cards.every((card, index) => card.id === String(index).padStart(2,'0')), 'Card IDs must remain 00-77.');
@@ -76,7 +76,21 @@ content.cards.forEach((card, index) => {
 for (const lang of ['en','th']) {
   assert(new Set(content.cards.map(card => card.upright[lang])).size === 78, `Duplicate ${lang} upright meanings detected.`);
   assert(new Set(content.cards.map(card => card.reflection[lang])).size === 78, `Duplicate ${lang} reflection prompts detected.`);
+  content.cards.forEach((card) => {
+    assert(new Set(card.keywords[lang].map((value) => value.toLowerCase())).size === card.keywords[lang].length, `Duplicate ${lang} keywords within ${card.id}.`);
+  });
 }
+
+const awkwardThai = [
+  'พลังลงมือ', 'การรู้จากภายใน', 'ความต้องการถัดไปที่จัดการได้', 'ทำให้งานดีมองเห็นได้',
+  'กำลังรักษาสิ่งมีค่าหรือแค่รักษาความกลัว', 'ความเป็นอิสระแข็งแรงที่สุด', 'ความเชื่อถือได้สะสมผล',
+  'กำลังไหวแรง', 'การตอบสนองแบบไหนทั้งเมตตาและกำกับตัวเองได้ดี'
+];
+const allThai = content.cards.map(card => `${card.upright.th} ${card.reflection.th} ${card.keywords.th.join(' ')}`).join('\n');
+awkwardThai.forEach((phrase) => assert(!allThai.includes(phrase), `Known translated/awkward Thai phrase remains: ${phrase}`));
+
+assert(content.getCard('68').upright.th.includes('ช่วงที่ลำบาก'), 'Five of Pentacles Thai rewrite missing.');
+assert(content.getCard('68').reflection.th.includes('ยังไม่ได้เอ่ยปากขอ'), 'Five of Pentacles reflection rewrite missing.');
 
 const unsafeClaims = /guarantee(?:d|s)?|certainly\s+will|definitely\s+will|winning\s+lottery|medical\s+diagnosis|you\s+will\s+die|คุณจะชนะ|ถูกรางวัลแน่นอน|รับประกัน|วินิจฉัยโรค/i;
 content.cards.forEach((card) => {
@@ -122,6 +136,15 @@ const saved = engine.saveTodaySelection(session, new Date(2026, 7, 21, 10, 30));
 assert(saved.record.localDate === '2026-08-21', 'Daily record must use local date.');
 assert(saved.persisted === true, 'Daily record should persist in localStorage mock.');
 assert(saved.record.cards[0].orientation === 'upright', 'Persisted orientation must be explicit.');
+
+// V0.4.1 language/content v2 must preserve a user's same-day V0.4.0 card selection.
+const legacyRecord = JSON.parse(JSON.stringify(saved.record));
+legacyRecord.contentVersion = 'daily-guidance-v1';
+localStorage.setItem('lgt.reading.daily.v1', JSON.stringify(legacyRecord));
+const migrated = engine.getTodayRecord(new Date(2026, 7, 21, 18, 0));
+assert(migrated?.cards[0]?.cardId === selected.id, 'Legacy v1 daily card must be preserved during content migration.');
+assert(migrated?.contentVersion === 'daily-guidance-v2', 'Legacy daily record must migrate to content v2.');
+assert(JSON.parse(localStorage.getItem('lgt.reading.daily.v1')).contentVersion === 'daily-guidance-v2', 'Migrated daily record should be written back as v2.');
 
 const sameDay = engine.createOrRestoreDaily(new Date(2026, 7, 21, 23, 59));
 assert(sameDay.restored === true, 'Same local day must restore existing Daily Guidance.');
