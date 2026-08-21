@@ -1,6 +1,6 @@
 'use strict';
 
-const BUILD = '0.3.6';
+const BUILD = '0.4.0';
 const CACHE_PREFIX = 'little-ganesha-tarot-';
 const SHELL_CACHE = `${CACHE_PREFIX}shell-${BUILD}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${BUILD}`;
@@ -11,13 +11,18 @@ const url = (path) => new URL(path, scopeURL).href;
 const APP_SHELL = [
   url('./'),
   url('index.html'),
-  url('manifest.webmanifest?v=0.3.6'),
-  url('css/app.css?v=0.3.6'),
-  url('js/pwa.js?v=0.3.6'),
-  url('js/audio.js?v=0.3.6'),
-  url('js/app.js?v=0.3.6'),
+  url('manifest.webmanifest?v=0.4.0'),
+  url('css/app.css?v=0.4.0'),
+  url('css/reading.css?v=0.4.0'),
+  url('js/pwa.js?v=0.4.0'),
+  url('js/audio.js?v=0.4.0'),
+  url('js/app.js?v=0.4.0'),
+  url('js/reading-content.js?v=0.4.0'),
+  url('js/reading-engine.js?v=0.4.0'),
+  url('js/reading-ui.js?v=0.4.0'),
   url('data/AUDIO_MANIFEST_V1.json'),
   url('assets/ui/title-hero.png'),
+  url('assets/ui/card-back.png'),
   url('assets/icons/icon-192x192.png'),
   url('assets/icons/icon-512x512.png'),
   url('assets/icons/icon-maskable-512x512.png'),

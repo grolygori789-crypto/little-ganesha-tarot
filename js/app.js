@@ -234,5 +234,5 @@
     updateSettingsUI();
   });
   const todayISO = localDateISO(); birthDateInput.max = todayISO; profileBirthDateInput.max = todayISO; birthDateInput.min = '1900-01-01'; profileBirthDateInput.min = '1900-01-01';
-  setLanguage(language); applyMotionMode(); syncAudioUI(); updateSettingsUI(); window.LGT_BUILD = '0.3.6'; setTimeout(revealTitle, isReducedMotion() ? 1200 : 2600);
+  setLanguage(language); applyMotionMode(); syncAudioUI(); updateSettingsUI(); window.LGT_BUILD = '0.4.0'; setTimeout(revealTitle, isReducedMotion() ? 1200 : 2600);
 })();
