@@ -1,56 +1,24 @@
-# Little Ganesha Tarot — App Foundation V0.3.4
+# Little Ganesha Tarot — App Foundation V0.3.5
 
-**Milestone:** Premium Sacred Home Motif System  
-**Base:** V0.3.2 PWA Installability & App Icon Wiring  
-**Master Plan:** V3.4
+**Project:** Little Ganesha Tarot — The Golden Path  
+**Studio:** Benedict Interactive  
+**Master Plan:** V3.5
 
-## V0.3.4 refines
-- A reusable **Premium Minimal Sacred UI** motif language for the Home/Menu.
-- Lightweight SVG motifs for each current Home feature instead of repeating full Little Ganesha portraits.
-- Distinct symbolic fingerprints for Daily Guidance, Ask Ganesha, Three-Card Reading, The Golden Path, Remove the Obstacle, Lucky Numbers, Card Library, and Journal.
-- Typography-safe decorative layering: copy and controls remain above all motif artwork.
-- Very slow full-motion motif breathing plus a static Reduced Motion fallback.
-- Restrained focus/hover/touch polish without changing navigation behavior.
-- Service-worker shell caching for the new motif assets.
-- Build/cache version 0.3.4.
-- Master Plan V3.4 with the visual-language decision locked canonically.
+## Purpose
+V0.3.5 rebuilds the Home visual system from the stable V0.3.2 application/PWA baseline after V0.3.3 and V0.3.4 failed real-device visual QA.
 
-## Protected behavior
-This patch deliberately does **not** redesign or refactor:
-- Benedict Interactive splash
-- Title/Living Title
-- TH/EN switching
-- Personal Profile / Date of Birth
-- Home information architecture
-- Settings / Immersive Mode
-- audio engine / global Mini Player
-- background/foreground audio lifecycle
-- Support placeholders
-- PWA manifest/icon wiring
-- reading logic placeholders
+## Key changes
+- Removes duplicate foreground symbols from Primary/Signature cards.
+- Introduces one clean anchored sacred motif per major Home path.
+- Uses a single compact icon system for Explore cards.
+- Re-establishes deterministic Thai/English typography hierarchy.
+- Makes the Home header visually opaque enough that scrolled content cannot bleed through it.
+- Stops automatic Fullscreen API requests on `TAP TO BEGIN`.
+- Browser full screen is now explicitly user-triggered from Settings only.
+- Installed PWA behavior remains `display: standalone` through the manifest.
+- Preserves audio, onboarding/profile, settings, PWA, support placeholders, and navigation foundations.
 
-## Deployment
-Overlay this package on the repository root and commit/push normally.
+## Important QA boundary
+Static and structural validation is comprehensive, but final visual acceptance still requires P'Benz to inspect the deployed build on a real mobile display after GitHub Pages deployment.
 
-Suggested commit:
-
-`Add premium sacred home motifs`
-
-## Real-device acceptance focus
-After GitHub Pages deploys:
-1. Confirm all Home cards remain easy to read in Thai and English.
-2. Confirm each feature has a distinct but quiet motif.
-3. Confirm motifs feel present within 2–3 seconds without becoming decorative clutter.
-4. Confirm cards remain tappable and navigation behavior is unchanged.
-5. Confirm Reduced Motion keeps the motifs visible but static.
-6. Confirm the Mini Player and bottom navigation remain visually above/clear of the Home content.
-7. Re-check PWA install/icon behavior from V0.3.2.
-
-See `HOME_MOTIF_RELEASE_NOTES_V0_3_4.md` and `QA_V0_3_4.md` for implementation and validation details.
-
-
-## V0.3.4 design correction
-
-- Replaces the first motif pass with cleaner anchored sacred motifs.
-- Fixes home-header spacing regression on narrow mobile screens.
-- Increases motif visibility while keeping typography clear.
+See `QA_V0_3_5.md` and `RELEASE_NOTES_V0_3_5.md`.

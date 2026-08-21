@@ -7,17 +7,18 @@
     birthDate: 'lgt.birthDate',
     onboardingDone: 'lgt.onboardingDone',
     motion: 'lgt.motion',
-    immersive: 'lgt.immersive'
+    immersive: 'lgt.immersive',
+    immersiveManualMigration: 'lgt.immersiveManualV1'
   };
 
   const COPY = {
     en: {
       begin: 'TAP TO BEGIN', soundOn: 'Sound on', soundOff: 'Sound off', ready: 'The Golden Path is ready.', nowPlaying: 'NOW PLAYING', play: 'Play', pause: 'Pause', previous: 'Previous track', next: 'Next track', more: 'Audio options', volume: 'Volume', shuffle: 'Shuffle', returnTitle: 'Return to Title', exitTitle: 'Return to Title?', exitBody: 'Your preferences will be kept.', cancel: 'Cancel', confirm: 'Return',
-      welcomeEyebrow: 'WELCOME TO THE GOLDEN PATH', nameQuestion: 'What would you like Ganesha to call you?', nameHint: 'A first name or nickname is perfect. Both fields are optional and can be changed later.', nameLabel: 'Display name', birthDate: 'Date of birth', birthDateHint: 'Optional · used for future symbolic personalization', localOnly: 'Your personal profile stays on this device.', skip: 'Skip', continue: 'Continue', homeWelcome: 'Take a moment. Hold your question gently, and choose your path.', daily: 'Daily Guidance', dailySub: 'One card for the energy of today', ask: 'Ask Ganesha', askSub: 'Bring one clear question', three: 'Three-Card Reading', threeSub: 'Past, present and what unfolds next', signature: 'Signature Paths', golden: 'The Golden Path', goldenSub: 'Where you stand · what blocks you · the way forward', obstacle: 'Remove the Obstacle', obstacleSub: 'The obstacle · what feeds it · what releases it', explore: 'Explore', lucky: 'Lucky Numbers', cards: 'Cards', journal: 'Journal', settings: 'Settings', home: 'Home', read: 'Read', preferences: 'PREFERENCES', experience: 'Experience', language: 'Language', languageSub: 'Choose English or Thai', motion: 'Motion', motionSub: 'System keeps accessibility preferences', immersive: 'Immersive Mode', immersiveSub: 'Use the most app-like view your device supports', audio: 'Audio', sound: 'Music', soundSub: 'Atmospheric soundtrack', shuffleSub: 'Avoid repeating the same track', profile: 'Personal Profile', displayName: 'Display Name', profilePrivacy: 'Optional profile data is stored only on this device.', editProfile: 'Personal Profile', profileModalHint: 'Both fields are optional. Your information stays on this device.', clearProfile: 'Clear personal profile', save: 'Save', supportProject: 'Support the Project', supportNote: 'Support is optional and never affects readings or features.', internationalSupport: 'International Supporters', internationalSupportSub: 'Buy Me a Coffee', thaiSupport: 'Supporters in Thailand', thaiSupportSub: 'PromptPay · secure QR card coming next', comingSoon: 'Coming soon', qrPending: 'QR pending', notSet: 'Not set', featureSoon: 'This path is ready for the reading-engine build.', hello: 'Welcome', motionSystem: 'System', motionFull: 'Full', motionReduced: 'Reduced'
+      welcomeEyebrow: 'WELCOME TO THE GOLDEN PATH', nameQuestion: 'What would you like Ganesha to call you?', nameHint: 'A first name or nickname is perfect. Both fields are optional and can be changed later.', nameLabel: 'Display name', birthDate: 'Date of birth', birthDateHint: 'Optional · used for future symbolic personalization', localOnly: 'Your personal profile stays on this device.', skip: 'Skip', continue: 'Continue', homeWelcome: 'Take a moment. Hold your question gently, and choose your path.', daily: 'Daily Guidance', dailySub: 'One card for the energy of today', ask: 'Ask Ganesha', askSub: 'Bring one clear question', three: 'Three-Card Reading', threeSub: 'Past, present and what unfolds next', signature: 'Signature Paths', golden: 'The Golden Path', goldenSub: 'Where you stand · what blocks you · the way forward', obstacle: 'Remove the Obstacle', obstacleSub: 'The obstacle · what feeds it · what releases it', explore: 'Explore', lucky: 'Lucky Numbers', cards: 'Cards', journal: 'Journal', settings: 'Settings', home: 'Home', read: 'Read', preferences: 'PREFERENCES', experience: 'Experience', language: 'Language', languageSub: 'Choose English or Thai', motion: 'Motion', motionSub: 'System keeps accessibility preferences', immersive: 'Browser Full Screen', immersiveSub: 'Optional · installed app already opens in app-like mode', audio: 'Audio', sound: 'Music', soundSub: 'Atmospheric soundtrack', shuffleSub: 'Avoid repeating the same track', profile: 'Personal Profile', displayName: 'Display Name', profilePrivacy: 'Optional profile data is stored only on this device.', editProfile: 'Personal Profile', profileModalHint: 'Both fields are optional. Your information stays on this device.', clearProfile: 'Clear personal profile', save: 'Save', supportProject: 'Support the Project', supportNote: 'Support is optional and never affects readings or features.', internationalSupport: 'International Supporters', internationalSupportSub: 'Buy Me a Coffee', thaiSupport: 'Supporters in Thailand', thaiSupportSub: 'PromptPay · secure QR card coming next', comingSoon: 'Coming soon', qrPending: 'QR pending', notSet: 'Not set', featureSoon: 'This path is ready for the reading-engine build.', hello: 'Welcome', motionSystem: 'System', motionFull: 'Full', motionReduced: 'Reduced', fullscreenUnavailable: 'Full screen is not available in this browser.'
     },
     th: {
       begin: 'แตะเพื่อเริ่ม', soundOn: 'เปิดเสียง', soundOff: 'ปิดเสียง', ready: 'เส้นทางสีทองพร้อมเปิดออกแล้ว', nowPlaying: 'กำลังเล่น', play: 'เล่น', pause: 'หยุดชั่วคราว', previous: 'เพลงก่อนหน้า', next: 'เพลงถัดไป', more: 'ตัวเลือกเสียง', volume: 'ระดับเสียง', shuffle: 'สุ่มเพลง', returnTitle: 'กลับหน้าไตเติล', exitTitle: 'กลับหน้าไตเติล?', exitBody: 'การตั้งค่าของคุณจะยังคงอยู่', cancel: 'ยกเลิก', confirm: 'กลับ',
-      welcomeEyebrow: 'ยินดีต้อนรับสู่เส้นทางสีทอง', nameQuestion: 'อยากให้พระพิฆเนศน้อยเรียกคุณว่าอะไร?', nameHint: 'ใช้ชื่อเล่นหรือชื่อที่คุณสบายใจก็ได้ ทั้งสองช่องเป็นทางเลือกและแก้ไขภายหลังได้', nameLabel: 'ชื่อที่ใช้แสดง', birthDate: 'วันเดือนปีเกิด', birthDateHint: 'ไม่บังคับ · ใช้สำหรับการปรับคำแนะนำเชิงสัญลักษณ์ในอนาคต', localOnly: 'ข้อมูลโปรไฟล์ส่วนตัวจะเก็บไว้ในอุปกรณ์นี้เท่านั้น', skip: 'ข้าม', continue: 'ดำเนินการต่อ', homeWelcome: 'ใช้เวลาสักครู่ วางคำถามไว้ในใจอย่างเบาๆ แล้วเลือกเส้นทางของคุณ', daily: 'คำแนะนำประจำวัน', dailySub: 'หนึ่งใบเพื่อมองพลังของวันนี้', ask: 'ถามพระพิฆเนศน้อย', askSub: 'นำคำถามหนึ่งเรื่องที่ชัดเจนมาวางไว้ตรงหน้า', three: 'เปิดไพ่สามใบ', threeSub: 'อดีต ปัจจุบัน และสิ่งที่กำลังคลี่คลาย', signature: 'เส้นทางพิเศษ', golden: 'เส้นทางสีทอง', goldenSub: 'จุดที่ยืนอยู่ · สิ่งที่ขวางทาง · หนทางข้างหน้า', obstacle: 'คลายสิ่งกีดขวาง', obstacleSub: 'อุปสรรค · สิ่งที่หล่อเลี้ยงมัน · สิ่งที่ช่วยปล่อยวาง', explore: 'สำรวจ', lucky: 'เลขมงคล', cards: 'ไพ่', journal: 'บันทึก', settings: 'ตั้งค่า', home: 'หน้าหลัก', read: 'เปิดไพ่', preferences: 'การตั้งค่า', experience: 'ประสบการณ์ใช้งาน', language: 'ภาษา', languageSub: 'เลือกภาษาอังกฤษหรือไทย', motion: 'เอฟเฟกต์การเคลื่อนไหว', motionSub: 'โหมดระบบจะเคารพการตั้งค่าการช่วยการเข้าถึงของอุปกรณ์', immersive: 'โหมดเต็มพื้นที่', immersiveSub: 'ใช้มุมมองแบบแอพมากที่สุดเท่าที่อุปกรณ์รองรับ', audio: 'เสียง', sound: 'เพลง', soundSub: 'เพลงบรรยากาศภายในแอพ', shuffleSub: 'ช่วยไม่ให้เพลงเดิมเล่นซ้ำติดกัน', profile: 'โปรไฟล์ส่วนตัว', displayName: 'ชื่อที่ใช้แสดง', profilePrivacy: 'ข้อมูลโปรไฟล์เป็นทางเลือกและเก็บไว้ในอุปกรณ์นี้เท่านั้น', editProfile: 'โปรไฟล์ส่วนตัว', profileModalHint: 'ทั้งสองช่องเป็นทางเลือก ข้อมูลของคุณจะเก็บไว้ในอุปกรณ์นี้เท่านั้น', clearProfile: 'ล้างข้อมูลโปรไฟล์ส่วนตัว', save: 'บันทึก', supportProject: 'สนับสนุนโปรเจกต์', supportNote: 'การสนับสนุนเป็นทางเลือกและไม่มีผลต่อการเปิดไพ่หรือฟีเจอร์ใดๆ', internationalSupport: 'ผู้สนับสนุนนอกประเทศไทย', internationalSupportSub: 'Buy Me a Coffee', thaiSupport: 'ผู้สนับสนุนในประเทศไทย', thaiSupportSub: 'PromptPay · กำลังเตรียมการ์ด QR ที่ปลอดภัย', comingSoon: 'เร็วๆ นี้', qrPending: 'กำลังเตรียม QR', notSet: 'ยังไม่ได้ตั้ง', featureSoon: 'เส้นทางนี้เตรียมไว้สำหรับ Reading Engine ใน build ถัดไป', hello: 'ยินดีต้อนรับ', motionSystem: 'ตามระบบ', motionFull: 'เต็ม', motionReduced: 'ลดการเคลื่อนไหว'
+      welcomeEyebrow: 'ยินดีต้อนรับสู่เส้นทางสีทอง', nameQuestion: 'อยากให้พระพิฆเนศน้อยเรียกคุณว่าอะไร?', nameHint: 'ใช้ชื่อเล่นหรือชื่อที่คุณสบายใจก็ได้ ทั้งสองช่องเป็นทางเลือกและแก้ไขภายหลังได้', nameLabel: 'ชื่อที่ใช้แสดง', birthDate: 'วันเดือนปีเกิด', birthDateHint: 'ไม่บังคับ · ใช้สำหรับการปรับคำแนะนำเชิงสัญลักษณ์ในอนาคต', localOnly: 'ข้อมูลโปรไฟล์ส่วนตัวจะเก็บไว้ในอุปกรณ์นี้เท่านั้น', skip: 'ข้าม', continue: 'ดำเนินการต่อ', homeWelcome: 'ใช้เวลาสักครู่ วางคำถามไว้ในใจอย่างเบาๆ แล้วเลือกเส้นทางของคุณ', daily: 'คำแนะนำประจำวัน', dailySub: 'หนึ่งใบเพื่อมองพลังของวันนี้', ask: 'ถามพระพิฆเนศน้อย', askSub: 'นำคำถามหนึ่งเรื่องที่ชัดเจนมาวางไว้ตรงหน้า', three: 'เปิดไพ่สามใบ', threeSub: 'อดีต ปัจจุบัน และสิ่งที่กำลังคลี่คลาย', signature: 'เส้นทางพิเศษ', golden: 'เส้นทางสีทอง', goldenSub: 'จุดที่ยืนอยู่ · สิ่งที่ขวางทาง · หนทางข้างหน้า', obstacle: 'คลายสิ่งกีดขวาง', obstacleSub: 'อุปสรรค · สิ่งที่หล่อเลี้ยงมัน · สิ่งที่ช่วยปล่อยวาง', explore: 'สำรวจ', lucky: 'เลขมงคล', cards: 'ไพ่', journal: 'บันทึก', settings: 'ตั้งค่า', home: 'หน้าหลัก', read: 'เปิดไพ่', preferences: 'การตั้งค่า', experience: 'ประสบการณ์ใช้งาน', language: 'ภาษา', languageSub: 'เลือกภาษาอังกฤษหรือไทย', motion: 'เอฟเฟกต์การเคลื่อนไหว', motionSub: 'โหมดระบบจะเคารพการตั้งค่าการช่วยการเข้าถึงของอุปกรณ์', immersive: 'เต็มหน้าจอในเบราว์เซอร์', immersiveSub: 'ไม่บังคับ · เมื่อติดตั้งแอพแล้วจะเปิดแบบแอพโดยอัตโนมัติ', audio: 'เสียง', sound: 'เพลง', soundSub: 'เพลงบรรยากาศภายในแอพ', shuffleSub: 'ช่วยไม่ให้เพลงเดิมเล่นซ้ำติดกัน', profile: 'โปรไฟล์ส่วนตัว', displayName: 'ชื่อที่ใช้แสดง', profilePrivacy: 'ข้อมูลโปรไฟล์เป็นทางเลือกและเก็บไว้ในอุปกรณ์นี้เท่านั้น', editProfile: 'โปรไฟล์ส่วนตัว', profileModalHint: 'ทั้งสองช่องเป็นทางเลือก ข้อมูลของคุณจะเก็บไว้ในอุปกรณ์นี้เท่านั้น', clearProfile: 'ล้างข้อมูลโปรไฟล์ส่วนตัว', save: 'บันทึก', supportProject: 'สนับสนุนโปรเจกต์', supportNote: 'การสนับสนุนเป็นทางเลือกและไม่มีผลต่อการเปิดไพ่หรือฟีเจอร์ใดๆ', internationalSupport: 'ผู้สนับสนุนนอกประเทศไทย', internationalSupportSub: 'Buy Me a Coffee', thaiSupport: 'ผู้สนับสนุนในประเทศไทย', thaiSupportSub: 'PromptPay · กำลังเตรียมการ์ด QR ที่ปลอดภัย', comingSoon: 'เร็วๆ นี้', qrPending: 'กำลังเตรียม QR', notSet: 'ยังไม่ได้ตั้ง', featureSoon: 'เส้นทางนี้เตรียมไว้สำหรับ Reading Engine ใน build ถัดไป', hello: 'ยินดีต้อนรับ', motionSystem: 'ตามระบบ', motionFull: 'เต็ม', motionReduced: 'ลดการเคลื่อนไหว', fullscreenUnavailable: 'เบราว์เซอร์นี้ไม่รองรับโหมดเต็มหน้าจอ'
     }
   };
 
@@ -64,22 +65,30 @@
 
   function showToast(message) { if (toastTimer) clearTimeout(toastTimer); toast.textContent = message; toast.hidden = false; requestAnimationFrame(() => toast.classList.add('is-visible')); toastTimer = setTimeout(() => { toast.classList.remove('is-visible'); setTimeout(() => { toast.hidden = true; }, 220); }, 2400); }
 
+  function isStandaloneMode() {
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  }
+
   async function requestImmersive() {
-    if (localStorage.getItem(STORAGE.immersive) === 'off') return;
-    const standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-    if (standalone || document.fullscreenElement || !document.documentElement.requestFullscreen) return;
-    try { await document.documentElement.requestFullscreen({ navigationUI: 'hide' }); } catch (_) { /* graceful fallback */ }
+    if (isStandaloneMode() || document.fullscreenElement) return true;
+    if (!document.documentElement.requestFullscreen) return false;
+    try {
+      await document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+      return Boolean(document.fullscreenElement);
+    } catch (_) {
+      return false;
+    }
   }
 
   function goToHome() {
-    onboarding.hidden = true; title.hidden = true; mainApp.hidden = false; homeView.hidden = false; settingsView.hidden = true; document.body.classList.add('journey-active');
+    onboarding.hidden = true; title.hidden = true; mainApp.hidden = false; homeView.hidden = false; settingsView.hidden = true; homeView.scrollTop = 0; document.body.classList.add('journey-active');
     miniPlayer.hidden = false; requestAnimationFrame(() => miniPlayer.classList.add('is-visible'));
     updateProfileUI();
   }
 
   async function beginJourney() {
     if (journeyStarted) return; journeyStarted = true; beginButton.disabled = true; liveStatus.textContent = copy('ready');
-    await requestImmersive(); await audio.unlockAndStart(); syncAudioUI();
+    await audio.unlockAndStart(); syncAudioUI();
     title.classList.add('is-beginning');
     setTimeout(() => {
       const done = localStorage.getItem(STORAGE.onboardingDone) === 'yes';
@@ -167,7 +176,7 @@
     closeProfileModal();
   }
 
-  function showSettings() { homeView.hidden = true; settingsView.hidden = false; mainApp.classList.add('settings-open'); $('homeNavButton').classList.remove('is-active'); $('settingsNavButton').classList.add('is-active'); updateSettingsUI(); }
+  function showSettings() { homeView.hidden = true; settingsView.hidden = false; settingsView.scrollTop = 0; mainApp.classList.add('settings-open'); $('homeNavButton').classList.remove('is-active'); $('settingsNavButton').classList.add('is-active'); updateSettingsUI(); }
   function showHome() { settingsView.hidden = true; homeView.hidden = false; mainApp.classList.remove('settings-open'); $('settingsNavButton').classList.remove('is-active'); $('homeNavButton').classList.add('is-active'); }
 
   function syncAudioUI() {
@@ -179,7 +188,14 @@
     settingsSoundToggle.checked = state.enabled; settingsVolume.value = String(Math.round(state.volume * 100)); settingsShuffle.checked = state.shuffle;
   }
 
-  function updateSettingsUI() { syncAudioUI(); motionSelect.value = currentMotionMode(); immersiveToggle.checked = localStorage.getItem(STORAGE.immersive) !== 'off'; updateProfileUI(); }
+  function updateSettingsUI() {
+    syncAudioUI();
+    motionSelect.value = currentMotionMode();
+    const standalone = isStandaloneMode();
+    immersiveToggle.disabled = standalone;
+    immersiveToggle.checked = standalone || document.fullscreenElement || localStorage.getItem(STORAGE.immersive) === 'on';
+    updateProfileUI();
+  }
   function togglePlayerPanel() { const expanded = playerMore.getAttribute('aria-expanded') === 'true'; playerMore.setAttribute('aria-expanded', String(!expanded)); playerPanel.hidden = expanded; miniPlayer.classList.toggle('is-expanded', !expanded); }
   function requestExitToTitle() { exitModal.hidden = false; requestAnimationFrame(() => exitModal.classList.add('is-visible')); exitCancel.focus({ preventScroll: true }); }
   function closeExitModal() { exitModal.classList.remove('is-visible'); setTimeout(() => { exitModal.hidden = true; }, 220); }
@@ -192,14 +208,31 @@
   document.querySelectorAll('[data-feature]').forEach((button) => button.addEventListener('click', () => showToast(copy('featureSoon'))));
   $('editProfileButton').addEventListener('click', openProfileModal); $('editBirthDateButton').addEventListener('click', openProfileModal); profileCancel.addEventListener('click', closeProfileModal); profileSave.addEventListener('click', saveProfileModal); clearProfileButton.addEventListener('click', clearProfile); profileModal.addEventListener('pointerdown', (event) => { if (event.target === profileModal) closeProfileModal(); });
   motionSelect.addEventListener('change', () => { localStorage.setItem(STORAGE.motion, motionSelect.value); applyMotionMode(); });
-  immersiveToggle.addEventListener('change', async () => { localStorage.setItem(STORAGE.immersive, immersiveToggle.checked ? 'on' : 'off'); if (immersiveToggle.checked) await requestImmersive(); else if (document.fullscreenElement && document.exitFullscreen) { try { await document.exitFullscreen(); } catch (_) {} } });
+  immersiveToggle.addEventListener('change', async () => {
+    if (isStandaloneMode()) { updateSettingsUI(); return; }
+    if (immersiveToggle.checked) {
+      const entered = await requestImmersive();
+      localStorage.setItem(STORAGE.immersive, entered ? 'on' : 'off');
+      if (!entered) { immersiveToggle.checked = false; showToast(copy('fullscreenUnavailable')); }
+    } else {
+      localStorage.setItem(STORAGE.immersive, 'off');
+      if (document.fullscreenElement && document.exitFullscreen) { try { await document.exitFullscreen(); } catch (_) {} }
+    }
+  });
   settingsSoundToggle.addEventListener('change', () => audio.setEnabled(settingsSoundToggle.checked)); settingsVolume.addEventListener('input', () => audio.setVolume(Number(settingsVolume.value) / 100)); settingsShuffle.addEventListener('change', () => audio.setShuffle(settingsShuffle.checked));
   playerPlay.addEventListener('click', () => audio.togglePlay()); playerPrevious.addEventListener('click', () => audio.previous()); playerNext.addEventListener('click', () => audio.next({ crossfade: true, durationMs: 700 })); playerMore.addEventListener('click', togglePlayerPanel); volumeSlider.addEventListener('input', () => audio.setVolume(Number(volumeSlider.value) / 100)); shuffleToggle.addEventListener('click', () => audio.setShuffle(!audio.getState().shuffle)); $('exitButton').addEventListener('click', requestExitToTitle); $('returnTitleButton').addEventListener('click', requestExitToTitle);
   exitCancel.addEventListener('click', closeExitModal); exitConfirm.addEventListener('click', exitToTitle); exitModal.addEventListener('pointerdown', (event) => { if (event.target === exitModal) closeExitModal(); }); window.addEventListener('keydown', (event) => { if (event.key !== 'Escape') return; if (!profileModal.hidden) closeProfileModal(); else if (!exitModal.hidden) closeExitModal(); });
   audio.addEventListener('statechange', syncAudioUI); audio.addEventListener('trackchange', syncAudioUI); audio.addEventListener('volumechange', syncAudioUI); systemReduced.addEventListener?.('change', () => { if (currentMotionMode() === 'system') applyMotionMode(); });
   window.addEventListener('lgt:request-exit-to-title', requestExitToTitle);
 
-  if (!localStorage.getItem(STORAGE.immersive)) localStorage.setItem(STORAGE.immersive, 'on');
+  if (!localStorage.getItem(STORAGE.immersiveManualMigration)) {
+    localStorage.setItem(STORAGE.immersive, 'off');
+    localStorage.setItem(STORAGE.immersiveManualMigration, 'yes');
+  }
+  document.addEventListener('fullscreenchange', () => {
+    if (!isStandaloneMode() && !document.fullscreenElement) localStorage.setItem(STORAGE.immersive, 'off');
+    updateSettingsUI();
+  });
   const todayISO = localDateISO(); birthDateInput.max = todayISO; profileBirthDateInput.max = todayISO; birthDateInput.min = '1900-01-01'; profileBirthDateInput.min = '1900-01-01';
-  setLanguage(language); applyMotionMode(); syncAudioUI(); updateSettingsUI(); window.LGT_BUILD = '0.3.4'; setTimeout(revealTitle, isReducedMotion() ? 1200 : 2600);
+  setLanguage(language); applyMotionMode(); syncAudioUI(); updateSettingsUI(); window.LGT_BUILD = '0.3.5'; setTimeout(revealTitle, isReducedMotion() ? 1200 : 2600);
 })();

@@ -1,9 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-  <g stroke="#F3D791" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="150" y="164" width="150" height="206" rx="18" transform="rotate(-7 150 164)" opacity=".18" stroke-width="1.8"/>
-    <rect x="232" y="138" width="150" height="206" rx="18" transform="rotate(6 232 138)" opacity=".18" stroke-width="1.8"/>
-    <rect x="190" y="145" width="150" height="206" rx="18" opacity=".58" stroke-width="2.1"/>
-    <path d="M265 197l8 18 18 8-18 8-8 18-8-18-18-8 18-8 8-18Z" opacity=".48" stroke-width="1.9"/>
-    <path d="M225 300h80" opacity=".16" stroke-width="1.5"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+<g stroke="#F4D793" stroke-linecap="round" stroke-linejoin="round">
+<rect x="13" y="17" width="27" height="36" rx="4" transform="rotate(-6 13 17)" stroke-width="1.35" opacity=".48"/>
+<rect x="25" y="12" width="27" height="36" rx="4" transform="rotate(6 25 12)" stroke-width="1.35" opacity=".48"/>
+<rect x="19" y="14" width="27" height="36" rx="4" stroke-width="1.6" opacity=".92"/>
+<path d="M32.5 23l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5 2.5-6Z" stroke-width="1.2" opacity=".8"/>
+</g></svg>

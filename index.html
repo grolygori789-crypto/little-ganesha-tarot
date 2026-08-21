@@ -11,10 +11,10 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="dark">
   <meta name="description" content="Little Ganesha Tarot — The Golden Path by Benedict Interactive">
-  <meta name="application-version" content="0.3.4">
+  <meta name="application-version" content="0.3.5">
   <title>Little Ganesha Tarot — The Golden Path</title>
 
-  <link rel="manifest" href="manifest.webmanifest?v=0.3.4">
+  <link rel="manifest" href="manifest.webmanifest?v=0.3.5">
   <link rel="icon" href="assets/icons/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
@@ -23,9 +23,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600&family=Noto+Serif+Thai:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/app.css?v=0.3.4">
+  <link rel="stylesheet" href="css/app.css?v=0.3.5">
 </head>
-<body data-build="0.3.4">
+<body data-build="0.3.5">
   <main class="app-shell" id="app">
     <section class="studio-splash" id="studioSplash" aria-label="Benedict Interactive">
       <div class="studio-splash__glow" aria-hidden="true"></div>
@@ -109,23 +109,23 @@
           <p class="home-kicker" id="homeWelcome" data-copy="homeWelcome">Take a moment. Hold your question gently, and choose your path.</p>
         </section>
         <section class="primary-grid" aria-label="Primary readings">
-          <button class="feature-card feature-card--hero" data-feature="daily"><span class="feature-icon">✦</span><strong data-copy="daily">Daily Guidance</strong><small data-copy="dailySub">One card for the energy of today</small></button>
-          <button class="feature-card" data-feature="ask"><span class="feature-icon">◌</span><strong data-copy="ask">Ask Ganesha</strong><small data-copy="askSub">Bring one clear question</small></button>
-          <button class="feature-card" data-feature="three"><span class="feature-icon">Ⅲ</span><strong data-copy="three">Three-Card Reading</strong><small data-copy="threeSub">Past, present and what unfolds next</small></button>
+          <button class="feature-card feature-card--hero motif-card motif-card--daily" data-feature="daily" type="button"><span class="card-copy"><strong data-copy="daily">Daily Guidance</strong><small data-copy="dailySub">One card for the energy of today</small></span></button>
+          <button class="feature-card motif-card motif-card--ask" data-feature="ask" type="button"><span class="card-copy"><strong data-copy="ask">Ask Ganesha</strong><small data-copy="askSub">Bring one clear question</small></span></button>
+          <button class="feature-card motif-card motif-card--three" data-feature="three" type="button"><span class="card-copy"><strong data-copy="three">Three-Card Reading</strong><small data-copy="threeSub">Past, present and what unfolds next</small></span></button>
         </section>
         <section class="section-block">
           <div class="section-heading"><span data-copy="signature">Signature Paths</span></div>
           <div class="compact-grid">
-            <button class="compact-card" data-feature="golden"><strong data-copy="golden">The Golden Path</strong><small data-copy="goldenSub">Where you stand · what blocks you · the way forward</small></button>
-            <button class="compact-card" data-feature="obstacle"><strong data-copy="obstacle">Remove the Obstacle</strong><small data-copy="obstacleSub">The obstacle · what feeds it · what releases it</small></button>
+            <button class="compact-card motif-card motif-card--golden" data-feature="golden" type="button"><span class="card-copy"><strong data-copy="golden">The Golden Path</strong><small data-copy="goldenSub">Where you stand · what blocks you · the way forward</small></span></button>
+            <button class="compact-card motif-card motif-card--obstacle" data-feature="obstacle" type="button"><span class="card-copy"><strong data-copy="obstacle">Remove the Obstacle</strong><small data-copy="obstacleSub">The obstacle · what feeds it · what releases it</small></span></button>
           </div>
         </section>
         <section class="section-block">
           <div class="section-heading"><span data-copy="explore">Explore</span></div>
           <div class="quick-row">
-            <button class="quick-card" data-feature="lucky"><span>⑧</span><strong data-copy="lucky">Lucky Numbers</strong></button>
-            <button class="quick-card" data-feature="cards"><span>▤</span><strong data-copy="cards">Card Library</strong></button>
-            <button class="quick-card" data-feature="journal"><span>✎</span><strong data-copy="journal">Journal</strong></button>
+            <button class="quick-card" data-feature="lucky" type="button"><span class="quick-icon quick-icon--lucky" aria-hidden="true"></span><strong data-copy="lucky">Lucky Numbers</strong></button>
+            <button class="quick-card" data-feature="cards" type="button"><span class="quick-icon quick-icon--cards" aria-hidden="true"></span><strong data-copy="cards">Card Library</strong></button>
+            <button class="quick-card" data-feature="journal" type="button"><span class="quick-icon quick-icon--journal" aria-hidden="true"></span><strong data-copy="journal">Journal</strong></button>
           </div>
         </section>
       </div>
@@ -135,7 +135,7 @@
         <section class="settings-group"><h3 data-copy="experience">Experience</h3>
           <div class="setting-row"><div><strong data-copy="language">Language</strong><small data-copy="languageSub">Choose English or Thai</small></div><div class="segmented"><button data-language="en" type="button">EN</button><button data-language="th" type="button">ไทย</button></div></div>
           <div class="setting-row"><div><strong data-copy="motion">Motion</strong><small data-copy="motionSub">System keeps accessibility preferences</small></div><select id="motionSelect"><option value="system" data-copy-option="motionSystem">System</option><option value="full" data-copy-option="motionFull">Full</option><option value="reduced" data-copy-option="motionReduced">Reduced</option></select></div>
-          <div class="setting-row"><div><strong data-copy="immersive">Immersive Mode</strong><small data-copy="immersiveSub">Use the most app-like view your device supports</small></div><label class="switch"><input id="immersiveToggle" type="checkbox" checked><span></span></label></div>
+          <div class="setting-row" id="browserFullscreenRow"><div><strong data-copy="immersive">Browser Full Screen</strong><small data-copy="immersiveSub">Optional · installed app already opens in app-like mode</small></div><label class="switch"><input id="immersiveToggle" type="checkbox"><span></span></label></div>
         </section>
 
         <section class="settings-group"><h3 data-copy="audio">Audio</h3>
@@ -156,7 +156,7 @@
         </section>
 
         <section class="settings-group"><button class="danger-link" id="returnTitleButton" type="button" data-copy="returnTitle">Return to Title</button></section>
-        <p class="build-label">BUILD 0.3.4</p>
+        <p class="build-label">BUILD 0.3.5</p>
       </div>
 
       <nav class="bottom-nav" aria-label="Primary">
@@ -202,8 +202,8 @@
     <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle" hidden><div class="modal-card"><span class="modal-card__ornament" aria-hidden="true">✦</span><h2 id="exitModalTitle" data-copy="exitTitle">Return to Title?</h2><p data-copy="exitBody">Your preferences will be kept.</p><div class="modal-card__actions"><button class="modal-button" id="exitCancel" type="button" data-copy="cancel">Cancel</button><button class="modal-button modal-button--primary" id="exitConfirm" type="button" data-copy="confirm">Return</button></div></div></div>
     <p class="sr-only" id="liveStatus" aria-live="polite"></p>
   </main>
-  <script src="js/pwa.js?v=0.3.4" defer></script>
-  <script src="js/audio.js?v=0.3.4" defer></script>
-  <script src="js/app.js?v=0.3.4" defer></script>
+  <script src="js/pwa.js?v=0.3.5" defer></script>
+  <script src="js/audio.js?v=0.3.5" defer></script>
+  <script src="js/app.js?v=0.3.5" defer></script>
 </body>
 </html>

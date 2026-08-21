@@ -1047,15 +1047,15 @@
   .secondary-button { color: rgba(255,248,233,.68); background: rgba(255,255,255,.025); }
 
   .main-app { z-index: 7; overflow: hidden; }
-  .app-header { position: absolute; z-index: 4; top: 0; left: 0; right: 0; min-height: calc(6.2rem + env(safe-area-inset-top)); padding: max(1.15rem, env(safe-area-inset-top)) max(1.15rem, env(safe-area-inset-right)) 1rem max(1.15rem, env(safe-area-inset-left)); display: flex; align-items: flex-end; justify-content: space-between; background: linear-gradient(180deg, rgba(5,25,26,.97), rgba(5,25,26,.76) 62%, rgba(5,25,26,.16) 92%, transparent); pointer-events: none; }
+  .app-header { position: absolute; z-index: 4; top: 0; left: 0; right: 0; min-height: calc(5.5rem + env(safe-area-inset-top)); padding: max(1.05rem, env(safe-area-inset-top)) max(1.15rem, env(safe-area-inset-right)) .8rem max(1.15rem, env(safe-area-inset-left)); display: flex; align-items: flex-end; justify-content: space-between; background: linear-gradient(180deg, rgba(5,25,26,.96), rgba(5,25,26,.72) 64%, transparent); pointer-events: none; }
   .app-header > * { pointer-events: auto; }
   .app-header h2 { margin: .16rem 0 0; font-family: "Cormorant Garamond", "Noto Serif Thai", serif; font-size: clamp(1.55rem, 7vw, 2.25rem); font-weight: 600; color: var(--gold-bright); }
   .icon-button { display: grid; place-items: center; width: 2.65rem; height: 2.65rem; border-radius: 50%; border: 1px solid rgba(247,217,147,.17); background: rgba(6,32,33,.55); color: rgba(255,248,233,.8); backdrop-filter: blur(10px); }
 
-  .app-content { position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: calc(7.75rem + env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) calc(11.6rem + env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left)); scrollbar-width: none; }
+  .app-content { position: absolute; inset: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: calc(6rem + env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) calc(11.6rem + env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left)); scrollbar-width: none; }
   .app-content::-webkit-scrollbar { display: none; }
-  .home-intro { max-width: 36rem; margin: .15rem auto 1rem; padding-right: 1.25rem; }
-  .home-kicker { margin: 0; font-family: "Cormorant Garamond", "Noto Serif Thai", serif; font-size: clamp(1.05rem, 4.7vw, 1.32rem); line-height: 1.5; color: rgba(255,248,233,.76); max-width: 30rem; }
+  .home-intro { max-width: 36rem; margin: 0 auto 1rem; }
+  .home-kicker { margin: 0; font-family: "Cormorant Garamond", "Noto Serif Thai", serif; font-size: clamp(1.1rem, 4.8vw, 1.4rem); line-height: 1.42; color: rgba(255,248,233,.77); }
   .primary-grid, .compact-grid, .quick-row { width: min(100%, 36rem); margin-inline: auto; display: grid; gap: .8rem; }
   .primary-grid { grid-template-columns: 1fr 1fr; }
   .feature-card, .compact-card, .quick-card { position: relative; overflow: hidden; border: 1px solid rgba(247,217,147,.14); background: linear-gradient(155deg, rgba(20,62,61,.72), rgba(7,33,34,.72)); box-shadow: 0 14px 34px rgba(0,0,0,.17), inset 0 1px rgba(255,245,218,.04); text-align: left; }
@@ -1077,118 +1077,6 @@
   .quick-card > span { color: rgba(247,217,147,.72); font-family: Georgia, serif; }
   .quick-card strong { font-size: .88rem; }
 
-  /* V0.3.4 — Refined Sacred Motif System
-     Anchored decorative motifs replace full-character artwork on Home cards.
-     The visual goal is premium, legible, and recognizably sacred without noise. */
-  .feature-card, .compact-card, .quick-card {
-    isolation: isolate;
-    transition: transform .24s ease, border-color .24s ease, box-shadow .24s ease, background-color .24s ease;
-  }
-  .feature-card > *, .compact-card > *, .quick-card > * { position: relative; z-index: 2; }
-  .feature-card::before, .compact-card::before, .quick-card::before {
-    content: "";
-    position: absolute;
-    z-index: 0;
-    width: var(--motif-size, 7.25rem);
-    aspect-ratio: 1;
-    top: var(--motif-top, auto);
-    right: var(--motif-right, .7rem);
-    bottom: var(--motif-bottom, .7rem);
-    left: var(--motif-left, auto);
-    background-image: var(--motif-image, none);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    opacity: var(--motif-opacity, .16);
-    filter: drop-shadow(0 0 10px rgba(229,189,112,.06));
-    transform: rotate(var(--motif-rotate, 0deg));
-    transform-origin: center;
-    pointer-events: none;
-    animation: sacred-motif-drift 16s ease-in-out infinite alternate;
-  }
-  .feature-card::after, .compact-card::after { z-index: 0; }
-  .feature-card:focus-visible, .compact-card:focus-visible, .quick-card:focus-visible {
-    outline: none;
-    border-color: rgba(247,217,147,.44);
-    box-shadow: 0 16px 42px rgba(0,0,0,.22), 0 0 0 2px rgba(229,189,112,.08), inset 0 1px rgba(255,245,218,.07);
-  }
-  @media (hover: hover) and (pointer: fine) {
-    .feature-card:hover, .compact-card:hover, .quick-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(247,217,147,.26);
-      box-shadow: 0 18px 42px rgba(0,0,0,.22), inset 0 1px rgba(255,245,218,.06);
-    }
-    .feature-card:hover::before, .compact-card:hover::before, .quick-card:hover::before { opacity: calc(var(--motif-opacity, .16) + .02); }
-  }
-  .feature-card:active, .compact-card:active, .quick-card:active { transform: scale(.992); }
-
-  .feature-card[data-feature="daily"] {
-    --motif-image: url("../assets/motifs/daily-halo.svg");
-    --motif-size: 10rem;
-    --motif-opacity: .18;
-    --motif-top: 50%;
-    --motif-right: .35rem;
-    --motif-bottom: auto;
-    --motif-translate-y: -50%;
-  }
-  .feature-card[data-feature="daily"]::before { transform: translateY(-50%) rotate(var(--motif-rotate, 0deg)); }
-
-  .feature-card[data-feature="ask"] {
-    --motif-image: url("../assets/motifs/ask-ganesha.svg");
-    --motif-size: 8.8rem;
-    --motif-opacity: .16;
-    --motif-top: .35rem;
-    --motif-right: -.2rem;
-    --motif-bottom: auto;
-  }
-  .feature-card[data-feature="three"] {
-    --motif-image: url("../assets/motifs/three-cards.svg");
-    --motif-size: 8rem;
-    --motif-opacity: .165;
-    --motif-top: .3rem;
-    --motif-right: .3rem;
-    --motif-bottom: auto;
-  }
-  .compact-card[data-feature="golden"] {
-    --motif-image: url("../assets/motifs/golden-path.svg");
-    --motif-size: 8.2rem;
-    --motif-opacity: .16;
-    --motif-top: auto;
-    --motif-bottom: .2rem;
-    --motif-right: .1rem;
-  }
-  .compact-card[data-feature="obstacle"] {
-    --motif-image: url("../assets/motifs/release-knot.svg");
-    --motif-size: 7.7rem;
-    --motif-opacity: .155;
-    --motif-top: auto;
-    --motif-bottom: .45rem;
-    --motif-right: .3rem;
-  }
-  .quick-card[data-feature="lucky"] {
-    --motif-image: url("../assets/motifs/lucky-numbers.svg");
-    --motif-size: 4.3rem;
-    --motif-opacity: .18;
-    --motif-top: .35rem;
-    --motif-right: .4rem;
-    --motif-bottom: auto;
-  }
-  .quick-card[data-feature="cards"] {
-    --motif-image: url("../assets/motifs/card-library.svg");
-    --motif-size: 4.2rem;
-    --motif-opacity: .18;
-    --motif-top: .35rem;
-    --motif-right: .4rem;
-    --motif-bottom: auto;
-  }
-  .quick-card[data-feature="journal"] {
-    --motif-image: url("../assets/motifs/journal-lotus.svg");
-    --motif-size: 4.2rem;
-    --motif-opacity: .18;
-    --motif-top: .35rem;
-    --motif-right: .4rem;
-    --motif-bottom: auto;
-  }
   .bottom-nav { position: absolute; z-index: 8; left: 50%; bottom: max(.65rem, env(safe-area-inset-bottom)); transform: translateX(-50%); width: min(calc(100% - 1rem), 36rem); min-height: 4.2rem; padding: .35rem .25rem; display: grid; grid-template-columns: repeat(5, 1fr); border: 1px solid rgba(247,217,147,.15); border-radius: 1.25rem; background: rgba(4,26,27,.87); box-shadow: 0 14px 48px rgba(0,0,0,.3); backdrop-filter: blur(18px) saturate(1.1); -webkit-backdrop-filter: blur(18px) saturate(1.1); }
   .bottom-nav__button { display: grid; place-items: center; align-content: center; gap: .18rem; min-width: 0; border-radius: .9rem; color: rgba(255,248,233,.48); }
   .bottom-nav__button > span { font-size: 1rem; }
@@ -1244,18 +1132,13 @@
   }
   @media (orientation: landscape) and (max-height: 540px) {
     .app-header { min-height: calc(4rem + env(safe-area-inset-top)); }
-    .app-content { padding-top: calc(5rem + env(safe-area-inset-top)); }
+    .app-content { padding-top: calc(4.4rem + env(safe-area-inset-top)); }
     .bottom-nav { min-height: 3.45rem; }
     .mini-player--global { bottom: max(4.45rem, calc(env(safe-area-inset-bottom) + 4rem)); }
   }
 }
 
 @layer utilities {
-  @keyframes sacred-motif-drift {
-    0% { transform: translate3d(0, 1px, 0) rotate(var(--motif-rotate, 0deg)); filter: drop-shadow(0 0 10px rgba(229,189,112,.055)); }
-    100% { transform: translate3d(-1px, -2px, 0) rotate(var(--motif-rotate, 0deg)); filter: drop-shadow(0 0 12px rgba(229,189,112,.075)); }
-  }
-
   @keyframes living-art-v03 { 0% { transform: scale(1.012) translate3d(0,0,0); } 45% { transform: scale(1.034) translate3d(.28%,-.22%,0); } 100% { transform: scale(1.022) translate3d(-.2%,.08%,0); } }
   @keyframes sky-light-v03 { from { transform: translate3d(-6%,0,0) scale(1.03); opacity: .48; } to { transform: translate3d(7%,1.6%,0) scale(1.1); opacity: .82; } }
   @keyframes water-v03 { from { transform: skewY(-1deg) translate3d(-5%,0,0); opacity: .22; } 50% { opacity: .48; } to { transform: skewY(-1deg) translate3d(6%,1px,0); opacity: .3; } }
@@ -1380,12 +1263,264 @@
   }
 }
 
-/* V0.3.4 — motif accessibility / narrow-screen tuning */
-@layer utilities {
-  @media (prefers-reduced-motion: reduce) {
-    .feature-card::before, .compact-card::before, .quick-card::before {
-      animation: none !important;
-      transform: rotate(var(--motif-rotate, 0deg)) scale(1) !important;
+
+/* V0.3.5 — Home Visual System Rebuild
+   Rebuilt from the stable V0.3.2 application baseline after V0.3.3/0.3.4
+   failed real-device visual QA. These rules are deliberately scoped to Home. */
+@layer screens {
+  .app-header {
+    min-height: calc(6.45rem + env(safe-area-inset-top));
+    padding: max(1.05rem, env(safe-area-inset-top)) max(1.15rem, env(safe-area-inset-right)) .95rem max(1.15rem, env(safe-area-inset-left));
+    align-items: flex-end;
+    background: linear-gradient(180deg, rgba(4,25,26,.995) 0%, rgba(4,27,28,.985) 78%, rgba(4,27,28,.96) 100%);
+    border-bottom: 1px solid rgba(247,217,147,.055);
+    box-shadow: 0 12px 28px rgba(0,0,0,.12);
+    -webkit-backdrop-filter: blur(16px) saturate(1.04);
+    backdrop-filter: blur(16px) saturate(1.04);
+  }
+  .app-header > div:first-child { min-width: 0; flex: 1 1 auto; }
+  .app-header h2 {
+    margin-top: .22rem;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: clamp(1.72rem, 7.2vw, 2.18rem);
+    line-height: 1.18;
+    letter-spacing: -.015em;
+  }
+  html[lang="th"] .app-header h2 {
+    font-family: "Noto Serif Thai", serif;
+    font-size: clamp(1.76rem, 7vw, 2.12rem);
+    line-height: 1.3;
+    letter-spacing: 0;
+  }
+  .app-header .eyebrow { opacity: .92; }
+  .icon-button { flex: 0 0 auto; margin-left: .85rem; }
+
+  #homeView.app-content {
+    padding-top: calc(7.45rem + env(safe-area-inset-top));
+  }
+  .home-intro {
+    max-width: 36rem;
+    margin: 0 auto 1.18rem;
+    padding: .25rem .05rem 0;
+  }
+  .home-kicker {
+    max-width: 31rem;
+    margin: 0;
+    font-size: clamp(1.02rem, 4.6vw, 1.26rem);
+    line-height: 1.58;
+    color: rgba(255,248,233,.73);
+  }
+  html[lang="th"] .home-kicker {
+    font-family: "Noto Serif Thai", serif;
+    font-size: clamp(1.02rem, 4.55vw, 1.24rem);
+    line-height: 1.66;
+  }
+
+  .primary-grid, .compact-grid, .quick-row { gap: .78rem; }
+  .feature-card, .compact-card, .quick-card {
+    border-color: rgba(247,217,147,.145);
+    background: linear-gradient(150deg, rgba(19,62,60,.78), rgba(7,34,35,.82));
+    box-shadow: 0 12px 31px rgba(0,0,0,.16), inset 0 1px rgba(255,245,218,.045);
+  }
+
+  .feature-card {
+    min-height: 9.15rem;
+    padding: 1.08rem 1.05rem 1rem;
+    justify-content: flex-end;
+  }
+  .feature-card--hero {
+    min-height: 10.1rem;
+    background:
+      radial-gradient(circle at 85% 48%, rgba(229,189,112,.115), transparent 8.5rem),
+      linear-gradient(145deg, rgba(25,77,73,.84), rgba(7,35,35,.84));
+  }
+  .feature-card::after, .compact-card::after { opacity: .7; }
+
+  .card-copy {
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    max-width: 78%;
+  }
+  .feature-card:not(.feature-card--hero) .card-copy { max-width: 88%; }
+  .feature-card .card-copy strong,
+  .compact-card .card-copy strong {
+    display: flex;
+    align-items: flex-end;
+    margin: 0;
+    color: var(--gold-bright);
+  }
+  .feature-card:not(.feature-card--hero) .card-copy strong {
+    min-height: 2.72em;
+    font-size: clamp(1.08rem, 4.8vw, 1.22rem);
+    line-height: 1.36;
+  }
+  html[lang="th"] .feature-card:not(.feature-card--hero) .card-copy strong {
+    min-height: 2.95em;
+    font-family: "Noto Serif Thai", serif;
+    font-size: clamp(1.04rem, 4.65vw, 1.18rem);
+    line-height: 1.48;
+  }
+  .feature-card--hero .card-copy strong {
+    min-height: 0;
+    font-size: clamp(1.22rem, 5.2vw, 1.36rem);
+    line-height: 1.35;
+  }
+  html[lang="th"] .feature-card--hero .card-copy strong {
+    font-family: "Noto Serif Thai", serif;
+    font-size: clamp(1.18rem, 5vw, 1.34rem);
+    line-height: 1.48;
+  }
+  .feature-card .card-copy small,
+  .compact-card .card-copy small {
+    display: block;
+    margin-top: .42rem;
+    color: rgba(255,248,233,.60);
+    font-size: clamp(.77rem, 3.25vw, .88rem);
+    line-height: 1.5;
+  }
+  html[lang="th"] .feature-card .card-copy small,
+  html[lang="th"] .compact-card .card-copy small {
+    font-size: clamp(.78rem, 3.3vw, .88rem);
+    line-height: 1.58;
+  }
+
+  /* One symbolic system only: no foreground ✦ / ◌ / III duplicates. */
+  .motif-card::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    opacity: var(--motif-opacity, .17);
+    filter: drop-shadow(0 0 9px rgba(229,189,112,.055));
+  }
+  .motif-card--daily::before {
+    width: 10.3rem; height: 10.3rem;
+    right: .08rem; top: 50%; transform: translateY(-50%);
+    opacity: .19;
+    background-image: url("../assets/motifs/daily-halo.svg");
+  }
+  .motif-card--ask::before {
+    width: 8.9rem; height: 8.9rem;
+    right: -.5rem; top: .15rem;
+    opacity: .17;
+    background-image: url("../assets/motifs/ask-ganesha.svg");
+  }
+  .motif-card--three::before {
+    width: 8rem; height: 8rem;
+    right: .2rem; top: .38rem;
+    opacity: .18;
+    background-image: url("../assets/motifs/three-cards.svg");
+  }
+
+  .section-block { margin-top: 1.55rem; }
+  .section-heading {
+    margin-bottom: .68rem;
+    font-size: .66rem;
+    letter-spacing: .16em;
+    color: rgba(247,217,147,.58);
+  }
+  html[lang="th"] .section-heading {
+    font-family: "Noto Sans Thai", sans-serif;
+    font-size: .72rem;
+    letter-spacing: .02em;
+  }
+
+  .compact-card {
+    min-height: 7.65rem;
+    padding: 1rem;
+  }
+  .compact-card .card-copy { max-width: 86%; }
+  .compact-card .card-copy strong {
+    min-height: 2.45em;
+    font-size: clamp(.98rem, 4.15vw, 1.08rem);
+    line-height: 1.35;
+  }
+  html[lang="th"] .compact-card .card-copy strong {
+    min-height: 2.55em;
+    font-family: "Noto Serif Thai", serif;
+    font-size: clamp(.98rem, 4.1vw, 1.06rem);
+    line-height: 1.48;
+  }
+  .motif-card--golden::before {
+    width: 7.7rem; height: 7.7rem;
+    right: -.12rem; bottom: -.1rem;
+    opacity: .145;
+    background-image: url("../assets/motifs/golden-path.svg");
+  }
+  .motif-card--obstacle::before {
+    width: 7.2rem; height: 7.2rem;
+    right: .05rem; bottom: .15rem;
+    opacity: .14;
+    background-image: url("../assets/motifs/release-knot.svg");
+  }
+
+  /* Explore uses one compact icon only — no second background motif. */
+  .quick-card {
+    min-height: 5.55rem;
+    padding: .75rem .45rem .7rem;
+    gap: .42rem;
+  }
+  .quick-icon {
+    display: block;
+    width: 1.75rem;
+    height: 1.75rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: .78;
+  }
+  .quick-icon--lucky { background-image: url("../assets/motifs/lucky-numbers.svg"); }
+  .quick-icon--cards { background-image: url("../assets/motifs/card-library.svg"); }
+  .quick-icon--journal { background-image: url("../assets/motifs/journal-lotus.svg"); }
+  .quick-card strong {
+    min-height: 1.45em;
+    font-size: clamp(.76rem, 3.4vw, .88rem);
+    line-height: 1.3;
+  }
+  html[lang="th"] .quick-card strong {
+    font-family: "Noto Serif Thai", serif;
+    font-size: clamp(.78rem, 3.35vw, .88rem);
+    line-height: 1.38;
+  }
+
+  .feature-card:focus-visible, .compact-card:focus-visible, .quick-card:focus-visible {
+    outline: none;
+    border-color: rgba(247,217,147,.45);
+    box-shadow: 0 14px 36px rgba(0,0,0,.2), 0 0 0 2px rgba(229,189,112,.075), inset 0 1px rgba(255,245,218,.06);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .feature-card:hover, .compact-card:hover, .quick-card:hover {
+      transform: translateY(-1px);
+      border-color: rgba(247,217,147,.25);
     }
   }
+
+  #browserFullscreenRow .switch input:disabled + span { opacity: .48; }
+
+  @media (max-width: 360px) {
+    #homeView.app-content { padding-top: calc(7.7rem + env(safe-area-inset-top)); }
+    .home-kicker { font-size: 1rem; }
+    .feature-card:not(.feature-card--hero) .card-copy { max-width: 92%; }
+    .motif-card--ask::before { opacity: .14; right: -.85rem; }
+    .motif-card--three::before { opacity: .15; right: -.1rem; }
+    .compact-card .card-copy { max-width: 90%; }
+  }
+
+  @media (orientation: landscape) and (max-height: 540px) {
+    .app-header { min-height: calc(4rem + env(safe-area-inset-top)); }
+    #homeView.app-content { padding-top: calc(4.65rem + env(safe-area-inset-top)); }
+  }
+}
+
+@layer utilities {
+  html[data-motion="reduced"] .motif-card::before,
+  html[data-motion="reduced"] .quick-icon { animation: none !important; }
 }

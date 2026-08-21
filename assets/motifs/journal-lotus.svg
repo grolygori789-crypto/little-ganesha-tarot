@@ -1,9 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-  <g stroke="#F3D791" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M154 152h154c28 0 50 22 50 50v160H204c-28 0-50-22-50-50V152Z" opacity=".28" stroke-width="2"/>
-    <path d="M204 362c0-28 22-50 50-50h104" opacity=".16" stroke-width="1.6"/>
-    <path d="M190 214h110M190 246h92M190 278h72" opacity=".14" stroke-width="1.5"/>
-    <path d="M322 184c16 15 25 31 25 45 0 16-11 27-25 27s-25-11-25-27c0-14 9-30 25-45Z" opacity=".46" stroke-width="1.9"/>
-    <path d="M297 250c8 14 16 22 25 28M347 250c-8 14-16 22-25 28" opacity=".22" stroke-width="1.6"/>
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+<g stroke="#F4D793" stroke-linecap="round" stroke-linejoin="round">
+<path d="M13 13h26c6 0 11 5 11 11v28H24c-6 0-11-5-11-11V13Z" stroke-width="1.5" opacity=".78"/>
+<path d="M24 52c0-6 5-11 11-11h15" stroke-width="1.25" opacity=".42"/>
+<path d="M39 21c4 4 6 7 6 11 0 4-3 7-6 7s-6-3-6-7c0-4 2-7 6-11Z" stroke-width="1.35" opacity=".92"/>
+<path d="M33 38c2 3 4 5 6 6M45 38c-2 3-4 5-6 6" stroke-width="1.1" opacity=".48"/>
+</g></svg>

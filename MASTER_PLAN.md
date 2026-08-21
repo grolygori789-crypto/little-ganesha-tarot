@@ -1,8 +1,8 @@
-# LITTLE GANESHA TAROT — MASTER PLAN & ZERO-QUESTION DEVELOPMENT HANDOFF V3.4
+# LITTLE GANESHA TAROT — MASTER PLAN & ZERO-QUESTION DEVELOPMENT HANDOFF V3.5
 
 **Project:** Little Ganesha Tarot — The Golden Path  
 **Studio / Publisher:** Benedict Interactive  
-**Canonical document version:** 3.4  
+**Canonical document version:** 3.5  
 **Last updated:** 21 August 2026  
 **Status:** ACTIVE — CANONICAL SOURCE OF TRUTH  
 **Document type:** Master Plan + Product Specification + Engineering Governance + Zero-Question Room Migration Handoff
@@ -13,9 +13,9 @@
 
 This document is the canonical, self-contained development authority for **Little Ganesha Tarot — The Golden Path**.
 
-Version 3.4 consolidates the approved deck canon, visual identity, product direction, app architecture, UX rules, engineering governance, QA standards, worldwide mobile requirements, audio/motion behavior, personal profile rules, support/donation architecture, release discipline, and current implementation status.
+Version 3.5 consolidates the approved deck canon, visual identity, product direction, app architecture, UX rules, engineering governance, QA standards, worldwide mobile requirements, audio/motion behavior, personal profile rules, support/donation architecture, release discipline, and current implementation status.
 
-**V3.4 supersedes earlier Master Plans, migration prompts, development summaries, drafts, experiments, and implementation notes wherever they conflict.** Earlier materials may be consulted only for historical context when they do not contradict this document or a newer explicit instruction from P’Benz.
+**V3.5 supersedes earlier Master Plans, migration prompts, development summaries, drafts, experiments, and implementation notes wherever they conflict.** Earlier materials may be consulted only for historical context when they do not contradict this document or a newer explicit instruction from P’Benz.
 
 The project must continue without asking P’Benz to repeat locked decisions already recorded here. A new room, developer, assistant instance, or future handoff should be able to resume work from this document plus the current repository and approved assets.
 
@@ -24,7 +24,7 @@ The project must continue without asking P’Benz to repeat locked decisions alr
 When instructions conflict, apply this order strictly:
 
 1. **P’Benz’s latest explicit instruction in the current conversation / development turn.**
-2. **This Master Plan & Zero-Question Development Handoff V3.4.**
+2. **This Master Plan & Zero-Question Development Handoff V3.5.**
 3. **Approved canonical production assets** supplied or approved by P’Benz, including the 78-card deck, master card back, title hero, and later approved replacements.
 4. **Current verified implementation in the GitHub repository** after a successful push/deployment, provided it does not conflict with items 1–3.
 5. Prior plans, manifests, prompts, summaries, prototypes, experiments, and obsolete builds.
@@ -1880,55 +1880,48 @@ Static QA **cannot** prove that a specific browser/OS will surface a particular 
 
 The final Little Ganesha icon system uploaded under Master Plan V3.2 remains canonical and is now the required PWA/Home Screen identity. V0.3.2 performs the runtime wiring; it does not redesign the icon.
 
-## 29.6 V0.3.3 Premium Sacred Home Motif candidate
+## 29.6 V0.3.3 / V0.3.4 visual QA outcome and V0.3.5 rebuild
 
-V0.3.3 is the prepared visual-language patch that preserves the V0.3.2 PWA foundation and V0.3.1 application behavior while adding a reusable symbolic motif layer to Home/Menu feature cards.
+V0.3.3 and V0.3.4 were deployed Home visual-language candidates. Real-device screenshots exposed visual regressions: symbolic motifs were too faint or visually awkward, foreground symbols duplicated motif meaning, some symbol/title alignment became inconsistent, and translucent header behavior allowed scrolled content to visually interfere with the greeting area.
 
-The patch:
+**Those implementations are rejected.** Their Git history may remain for traceability, but their Home CSS/markup behavior is not canonical and must not be resurrected.
 
-- adds lightweight SVG motifs under `assets/motifs/`,
-- maps each current Home feature to a distinct symbolic visual fingerprint,
-- keeps text/content above decorative motif layers,
-- maintains touch/focus behavior and adds restrained premium focus/hover feedback,
-- keeps motifs visible but static under Reduced Motion,
-- updates service-worker shell caching for the new motif assets,
-- bumps application/cache version to 0.3.3,
-- does not add repeated full Little Ganesha portraits to every card,
-- does not modify tarot canon, audio behavior, profile data, Support placeholders, or reading logic.
+The approved concept remains **Premium Minimal Sacred UI**. V0.3.5 rebuilds only the Home visual system from the stable V0.3.2 application/PWA baseline, then reintroduces the concept with stricter rules:
 
-Runtime appearance still requires deployed device QA; static validation can only confirm linkage, syntax, asset presence, and regression boundaries.
+- one symbolic motif only on each Primary / Signature card,
+- no duplicate foreground `✦`, `◌`, `III`, or equivalent symbol on the same card,
+- Explore cards use one compact line icon and no background motif,
+- motifs are static, clean, geometric, and visually subordinate to typography,
+- Thai/English title areas use deterministic line-height and paired-card spacing,
+- the Home header is visually opaque enough to prevent scrolling content from bleeding through,
+- `TAP TO BEGIN` does not automatically request Fullscreen API,
+- installed PWA remains app-like through manifest `display: standalone`,
+- browser fullscreen is explicit and user-triggered from Settings only.
+
+V0.3.5 preserves the established audio, profile, PWA/icon, language, Support placeholder, navigation, Mini Player, and Return-to-Title foundations.
 
 # 30. Immediate Development Milestones
 
-## Milestone A — V0.3.2/V0.3.3 foundation stabilization
+## Milestone A — V0.3.5 Home/PWA stabilization
 
 Goal:
 
-Confirm that the already-working V0.3.1 product foundation remains stable while V0.3.2 PWA installation identity and V0.3.3 Premium Sacred Home motifs are verified on deployed real devices.
+Confirm that V0.3.5 corrects the Home visual regressions while preserving the already-working V0.3.1/V0.3.2 application and PWA foundations.
 
 Acceptance focus:
 
-- no regression to Benedict / Title / Home / Settings / profile / audio
-- Home motifs remain subtle, readable, and visibly differentiated by feature
-- no motif obscures Thai or English copy at narrow mobile widths
-- Reduced Motion preserves static motif identity without animation
-- manifest loads from the deployed GitHub Pages project path
-- canonical icon appears in install/Home Screen UI
-- Android Chromium offers app installation when its criteria are satisfied
-- installed Android launch uses standalone/app-like presentation
-- iPhone/iPad Add to Home Screen uses the Apple touch icon
-- service worker registers without blocking normal online operation
-- reload after deployment does not resurrect incompatible stale JS/CSS
-- offline shell fallback works after at least one successful online load
-- Mini Player global behavior
-- background pause/resume
-- Settings
-- profile edit/clear
-- Immersive fallback
-- Support placeholders
-- Return to Title
+- Benedict / Title / onboarding / Home / Settings remain navigable,
+- Thai and English Home typography has stable hierarchy and no symbol/title collision,
+- Home header prevents content bleed during scroll,
+- each Primary / Signature card has exactly one clearly intentional motif,
+- Explore cards use one line icon without duplicated motif decoration,
+- motif visibility is perceptible on a normal mobile screen without overpowering copy,
+- `TAP TO BEGIN` starts audio/session flow without requesting browser fullscreen,
+- browser fullscreen occurs only from an explicit Settings action where supported,
+- manifest, canonical launcher icon, service worker, cache/versioning, and standalone PWA behavior remain intact,
+- Mini Player, background audio pause/resume, profile edit/clear, Support placeholders, and Return to Title remain stable.
 
-Do not begin deep reading-engine work if V0.3.1 contains a serious navigation/audio/state regression.
+Do not begin deep Reading Engine work if V0.3.5 introduces a serious navigation, audio, state, PWA, or Home-layout regression.
 
 ## Milestone B — Reading Engine foundation
 
@@ -2317,15 +2310,32 @@ V3.4 additions / status corrections:
 
 ---
 
-# 45. Canonical Closing Rule
+# 45. V3.5 Change Log
+
+V3.5 records the Founder-approved correction after V0.3.3 and V0.3.4 failed deployed real-device Home visual QA.
+
+V3.5 additions / corrections:
+
+- explicitly rejects V0.3.3 and V0.3.4 Home visual implementations while preserving their history,
+- preserves **Premium Minimal Sacred UI** as the approved design direction,
+- defines V0.3.5 as a clean Home visual rebuild from the stable V0.3.2 application/PWA baseline,
+- locks one-motif-only behavior for Primary / Signature Home cards,
+- prohibits duplicated foreground symbols on motif cards,
+- locks one compact line-icon system for Explore cards,
+- establishes deterministic Thai/English Home typography hierarchy and paired-card spacing,
+- requires an opaque/non-bleeding Home header during scroll,
+- makes sacred card motifs static by default to protect geometry integrity and calm presentation,
+- removes automatic Fullscreen API invocation from `TAP TO BEGIN`,
+- keeps installed PWA app-like presentation through manifest `display: standalone`,
+- moves browser fullscreen to explicit user action in Settings only,
+- protects stable audio, profile, PWA/icon, Support, language, Mini Player, navigation, and Return-to-Title behavior.
+
+---
+
+# 46. Canonical Closing Rule
 
 **When uncertain, choose the solution that best protects tarot correctness, Little Ganesha identity, user trust, worldwide usability, stable working behavior, premium presentation, and long-term maintainability.**
 
 P’Benz retains final explicit authority. Within that boundary, Biu is expected to act proactively and decisively as the product’s fully authorized development lead.
 
-**End of Master Plan & Zero-Question Development Handoff V3.4**
-
-
-## V0.3.4 — Refined Sacred Motif correction
-
-V0.3.4 supersedes the first V0.3.3 motif execution for Home/Menu cards. The project keeps the Premium Minimal Sacred UI direction, but corrects the implementation so motifs are anchored, visibly intentional, and non-regressive on narrow mobile layouts.
+**End of Master Plan & Zero-Question Development Handoff V3.5**
