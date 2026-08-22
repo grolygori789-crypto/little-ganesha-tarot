@@ -1,0 +1,106 @@
+{
+  "release": "V0.5.0",
+  "title": "Three-Card Reading + Premium Deck Ritual",
+  "baseline_runtime": "V0.4.9",
+  "baseline_head": "4e7fc783b61c651f8827272f387f5d822ad2ff49",
+  "risk": "MEDIUM",
+  "reading_engine": "1.1.0",
+  "three_narrative": "three-narrative-v1",
+  "three_export": "three-export-v1",
+  "features": [
+    "Three-card Past/Present/What May Unfold Next",
+    "full 78-card pre-shuffled user selection",
+    "three overlapping rows of 26 cards",
+    "Quick ritual for Daily Guidance",
+    "Focus ritual for Ask Ganesha",
+    "Full ritual for Three-Card Reading",
+    "non-overlapping mobile touch strips with overlapping card visuals",
+    "keyboard roving focus and directional navigation",
+    "professional native-authored Thai/English combined narrative",
+    "spread trajectory/pattern analysis",
+    "Save Image",
+    "Share",
+    "Read Again",
+    "Back to Home"
+  ],
+  "privacy": "local-only; no AI/API/backend; no new persistent personal data",
+  "release_status": "VERIFIED FOR UPLOAD — automated QA/checksum/archive re-extraction PASS; real-device QA pending",
+  "target_runtime_build": "0.5.0",
+  "baseline_runtime_build": "0.4.9",
+  "baseline_repository_head": "4e7fc783b61c651f8827272f387f5d822ad2ff49",
+  "release_type": "new playable reading mode + shared card-selection UX upgrade",
+  "orientation_policy": "upright-only",
+  "narrative_model": {
+    "card_profiles": 78,
+    "languages": [
+      "th",
+      "en"
+    ],
+    "positions": [
+      "past",
+      "present",
+      "next"
+    ],
+    "layers": [
+      "position meanings",
+      "combined story",
+      "turning point",
+      "spread pattern",
+      "practical guidance",
+      "reflection"
+    ],
+    "patterns": [
+      "trajectory",
+      "major arcana weight",
+      "repeated suit",
+      "court-card density"
+    ]
+  },
+  "automated_qa": {
+    "status": "PASS",
+    "three_card_bilingual_samples": 1456,
+    "ask_semantic_regressions": 1404,
+    "ask_context_regressions": 1404,
+    "question_analyzer_cases": "344+",
+    "reading_engine_regression": "PASS",
+    "save_share_regression": "PASS",
+    "home_profile_regression": "PASS",
+    "global_copy_regression": "PASS",
+    "deck_ritual": "PASS — 78 positions / 26×3 / exact strip selection / order tracking / keyboard navigation"
+  },
+  "archive_reextract": "PASS",
+  "deployed_real_device": "PENDING",
+  "deck_ritual": {
+    "version": "1.0.0",
+    "deck_size": 78,
+    "rows": 3,
+    "cards_per_row": [
+      26,
+      26,
+      26
+    ],
+    "pre_shuffle": "Web Crypto via Reading Engine before user choice",
+    "mapping": "fixed hidden card per facedown position before tap",
+    "daily_variant": "quick",
+    "ask_variant": "focus",
+    "three_variant": "full",
+    "touch_model": "non-overlapping exposed-strip targets; overlapping visual shells",
+    "keyboard": "roving tabindex + arrows + Home/End"
+  },
+  "language_standard": {
+    "languages": [
+      "th",
+      "en"
+    ],
+    "authored_separately": true,
+    "target": "experienced professional tarot reader voice",
+    "readability": "clear on first read; practical; minimal jargon",
+    "avoid": [
+      "literal translation",
+      "card-dictionary stitching",
+      "vague mystical filler",
+      "forced positivity",
+      "deterministic fate claims"
+    ]
+  }
+}

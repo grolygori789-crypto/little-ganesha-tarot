@@ -137,9 +137,9 @@ assert(draw.every(id => !excluded.includes(id)), 'Excluded card appeared in draw
 
 let session = engine.createSession('daily');
 assert(session.state === 'idle', 'New session must start idle.');
-const candidates = session.prepareChoice(3);
+const candidates = session.prepareChoice(78);
 assert(session.state === 'shuffling', 'prepareChoice should end in shuffling state.');
-assert(candidates.length === 3 && new Set(candidates).size === 3, 'Daily choice candidates must be unique.');
+assert(candidates.length === 78 && new Set(candidates).size === 78, 'Daily choice must expose all 78 shuffled positions without duplicates.');
 session.markChoosing();
 assert(session.state === 'choosing', 'Session must enter choosing.');
 const selected = session.selectCandidate(1);
@@ -165,6 +165,27 @@ const sameDay = engine.createOrRestoreDaily(new Date(2026, 7, 21, 23, 59));
 assert(sameDay.restored === true, 'Same local day must restore existing Daily Guidance.');
 assert(sameDay.card.id === selected.id, 'Same-day restore must preserve exact card.');
 assert(sameDay.session.state === 'selected', 'Restored session must be reveal-ready selected state.');
+
+// Full-deck + Three-card multi-selection regression (V0.5.0)
+let threeSession = engine.createSession('three');
+const threeCandidates = threeSession.prepareChoice(78);
+assert(threeCandidates.length === 78 && new Set(threeCandidates).size === 78, 'Three-card choice must expose one securely shuffled position for every canonical card.');
+threeSession.markChoosing();
+const pickedIndices = [0, 25, 77];
+const expectedPickedIds = pickedIndices.map(index => threeCandidates[index]);
+const threeSelected = threeSession.selectCandidates(pickedIndices);
+assert(threeSelected.map(card => card.id).join('|') === expectedPickedIds.join('|'), 'Chosen facedown positions must resolve to the cards fixed there before the tap.');
+assert(threeSession.state === 'selected', 'Three-card multi-selection must enter selected state.');
+assert(threeSelected.length === 3 && new Set(threeSelected.map(card => card.id)).size === 3, 'Three-card selection must return three unique cards.');
+assert(threeSession.getSelectedCards().map(entry => entry.positionId).join('|') === 'past|present|next', 'Three-card selection must preserve spread position order.');
+assert(threeSession.getSelectedCards().every(entry => entry.orientation === 'upright'), 'Three-card selection must remain upright-only.');
+let multiDuplicateCaught = false;
+try {
+  const duplicate = engine.createSession('three');
+  duplicate.prepareChoice(78); duplicate.markChoosing(); duplicate.selectCandidates([0, 0, 1]);
+} catch (_) { multiDuplicateCaught = true; }
+assert(multiDuplicateCaught, 'Three-card multi-selection must reject duplicate choice indices.');
+assert(window.LGTReadingEngineVersion === '1.1.0', 'Reading Engine version must expose multi-card API as 1.1.0.');
 
 const nextDay = engine.createOrRestoreDaily(new Date(2026, 7, 22, 0, 1));
 assert(nextDay.restored === false, 'New local day must allow a new Daily Guidance.');

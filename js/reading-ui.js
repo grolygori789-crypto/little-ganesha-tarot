@@ -4,18 +4,19 @@
   const ENGINE = window.LGTReadingEngine;
   const CONTENT = window.LGTReadingContent;
   const READING_EXPORT = window.LGTReadingExport;
-  if (!ENGINE || !CONTENT || !READING_EXPORT) throw new Error('Daily Guidance UI requires Reading Engine, content, and shared Reading Export.');
+  const DECK_RITUAL = window.LGTDeckRitual;
+  if (!ENGINE || !CONTENT || !READING_EXPORT || !DECK_RITUAL) throw new Error('Daily Guidance UI requires Reading Engine, content, Deck Ritual, and shared Reading Export.');
 
   const COPY = {
     en: {
       eyebrow: 'DAILY GUIDANCE',
       title: 'A card for today',
-      intro: 'Take a moment, settle in, and choose the card you feel drawn to.',
+      intro: 'Take a quiet moment, then choose the card you feel drawn to. The deck is already shuffled; the choice is yours.',
       restoredIntro: 'Today’s card is already set. You can return to the same card whenever you like.',
       begin: 'Begin',
       shuffling: 'Shuffling the deck',
       choose: 'Choose one card',
-      chooseHint: 'There is no right or wrong choice. Pick the card you feel drawn to.',
+      chooseHint: 'Move through the deck at your own pace and choose the card that catches you. There is no right or wrong choice.',
       selected: 'Your card is chosen',
       selectedHint: 'This is your Daily Guidance card for today on this device.',
       reveal: 'Reveal the card',
@@ -52,12 +53,12 @@
     th: {
       eyebrow: 'คำแนะนำประจำวัน',
       title: 'ไพ่หนึ่งใบสำหรับวันนี้',
-      intro: 'ใช้เวลาสักครู่ ผ่อนใจให้สบาย แล้วเลือกไพ่ใบที่รู้สึกดึงดูดใจคุณที่สุด',
+      intro: 'ใช้เวลาสักครู่ แล้วเลือกไพ่ใบที่สะดุดใจที่สุด สำรับถูกสับไว้แล้ว เลือกจากความรู้สึกของคุณได้เลย',
       restoredIntro: 'ไพ่ประจำวันนี้ถูกเลือกไว้แล้ว คุณกลับมาอ่านใบเดิมได้ทุกเมื่อ',
       begin: 'เริ่ม',
       shuffling: 'กำลังสับไพ่',
       choose: 'เลือกไพ่หนึ่งใบ',
-      chooseHint: 'ไม่ต้องคิดมากว่าใบไหนถูกหรือผิด เลือกใบที่คุณรู้สึกอยากหยิบมากที่สุด',
+      chooseHint: 'ค่อยๆ เลื่อนไปตามสำรับ แล้วเลือกใบที่สะดุดใจ ไม่ต้องคิดว่าใบไหนถูกหรือผิด',
       selected: 'เลือกไพ่แล้ว',
       selectedHint: 'ไพ่ใบนี้จะเป็นไพ่ประจำวันนี้ของคุณบนอุปกรณ์เครื่องนี้',
       reveal: 'เปิดไพ่',
@@ -243,6 +244,7 @@
   let preloadedFront = null;
   let lifecycleToken = 0;
   let exportBusy = false;
+  let deckRitual = null;
 
   const LENS_KEYS = Object.freeze([
     'workGoals',
@@ -313,9 +315,7 @@
     shareButton.setAttribute('aria-label', t('shareImage'));
     storageNote.textContent = t('storageFail');
     choice.setAttribute('aria-label', t('choose'));
-    choice.querySelectorAll('[data-choice-index]').forEach((button) => {
-      button.setAttribute('aria-label', `${t('choose')} ${Number(button.dataset.choiceIndex) + 1}`);
-    });
+    deckRitual?.setAriaLabelBuilder((index) => `${t('choose')} ${index + 1}`);
 
     if (currentView === 'intro') {
       intro.textContent = t('intro');
@@ -402,6 +402,8 @@
     deck.classList.remove('is-shuffling');
     deck.hidden = false;
     choice.hidden = true;
+    deckRitual?.destroy();
+    deckRitual = null;
     choice.replaceChildren();
     selected.hidden = true;
     selectedCard.classList.remove('is-revealed');
@@ -445,16 +447,17 @@
   }
 
   function buildChoices(candidateIds) {
-    choice.replaceChildren();
-    candidateIds.forEach((cardId, index) => {
-      const button = document.createElement('button');
-      button.className = 'reading-card reading-card--choice';
-      button.type = 'button';
-      button.dataset.choiceIndex = String(index);
-      button.setAttribute('aria-label', `${t('choose')} ${index + 1}`);
-      button.innerHTML = `<img src="${CONTENT.cardBack}" alt="" decoding="async">`;
-      button.addEventListener('click', () => chooseCard(index, button), { once: true });
-      choice.appendChild(button);
+    deckRitual?.destroy();
+    deckRitual = DECK_RITUAL.create({
+      container: choice,
+      cardBack: CONTENT.cardBack,
+      count: candidateIds.length,
+      selectionLimit: 1,
+      rowCount: 3,
+      variant: 'quick',
+      groupLabel: t('choose'),
+      ariaLabelBuilder: (index) => `${t('choose')} ${index + 1}`,
+      onSelect: ({ index }) => chooseCard(index)
     });
   }
 
@@ -465,7 +468,7 @@
     currentView = 'shuffling';
     updateStaticCopy();
 
-    const candidates = session.prepareChoice(3);
+    const candidates = session.prepareChoice(78);
     emitInteraction('shuffle-start');
     deck.classList.add('is-shuffling');
 
@@ -478,19 +481,17 @@
       currentView = 'choosing';
       updateStaticCopy();
       emitInteraction('choose-ready');
-      choice.querySelector('button')?.focus({ preventScroll: true });
+      deckRitual?.focusFirst();
     });
   }
 
-  function chooseCard(index, button) {
+  function chooseCard(index) {
     if (!session || session.state !== 'choosing') return;
-    choice.querySelectorAll('button').forEach((node) => { node.disabled = true; });
-    button.classList.add('is-chosen');
     selectedData = session.selectCandidate(index);
     const { persisted } = ENGINE.saveTodaySelection(session);
     if (!persisted) storageNote.hidden = false;
-    emitInteraction('card-select', { cardId: selectedData.id });
-    after(260, () => renderSelectedBack(false));
+    emitInteraction('card-select', { cardId: selectedData.id, deckIndex: index });
+    after(300, () => renderSelectedBack(false));
   }
 
   async function revealCard() {

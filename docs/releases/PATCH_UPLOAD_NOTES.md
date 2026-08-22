@@ -1,14 +1,11 @@
-# Patch Upload Notes — V0.4.9
+# Upload Notes — V0.5.0
 
-Overlay this archive onto current `main` at V0.4.8.
+Overlay this package on `main` at baseline `4e7fc783b61c651f8827272f387f5d822ad2ff49`.
 
-Baseline HEAD: `8796c6f9b6cf4b019df8062da047b361d9a00004` (`Add premium age zodiac V0.4.8`).
+This final V0.5.0 package supersedes the earlier pre-upload V0.5.0 Three-Card archive. Do not upload both packages; use this archive only.
 
-Primary changes:
-- `css/profile-home.css` — English readability polish; Thai size preserved.
-- `js/profile-details.js` — zodiac glyph map and `zodiacSymbol`.
-- `js/app.js` — renders `(glyph + zodiac name)`.
-- runtime/cache markers move together to V0.4.9.
+Recommended commit message (≤50 chars):
 
-Suggested commit:
-`Polish zodiac profile V0.4.9`
+`Add Three Card Ritual V0.5.0`
+
+After deployment, fully restart the installed PWA if it is still displaying an older build. Confirm `BUILD 0.5.0` in Settings before real-device QA.

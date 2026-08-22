@@ -1,0 +1,11 @@
+'use strict';
+const fs=require('fs'); const assert=(x,m)=>{if(!x)throw new Error(m);};
+const index=fs.readFileSync('index.html','utf8'),sw=fs.readFileSync('sw.js','utf8'),ui=fs.readFileSync('js/three-ui.js','utf8'),css=fs.readFileSync('css/reading.css','utf8'),engine=fs.readFileSync('js/reading-engine.js','utf8');
+for(const file of ['js/three-narrative.js','js/three-export.js','js/three-ui.js'])assert(fs.existsSync(file),`Missing ${file}`);
+assert(index.includes('three-narrative.js?v=0.5.0')&&index.includes('three-export.js?v=0.5.0')&&index.includes('three-ui.js?v=0.5.0'),'Three-card modules are not wired in index.');
+assert(sw.includes("const BUILD = '0.5.0'")&&sw.includes("three-ui.js?v=0.5.0"),'Three-card PWA shell wiring missing.');
+assert(ui.includes("[data-feature=\"three\"]")&&ui.includes('selectCandidates(selectedIndices)'),'Three-card feature route/multi-selection missing.');
+assert(ui.includes("runExport('save')")&&ui.includes("runExport('share')"),'Three-card Save/Share standard missing.');
+assert(css.includes('V0.5.0 — Three-Card Reading'),'Three-card premium CSS missing.');
+assert(engine.includes('selectCandidates(indices)')&&engine.includes("LGTReadingEngineVersion = '1.1.0'"),'Reading Engine multi-card API missing.');
+console.log('Three-card package/wiring tests: PASS');

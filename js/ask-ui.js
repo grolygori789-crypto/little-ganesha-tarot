@@ -12,9 +12,10 @@
   const ASK_SEMANTIC = window.LGTAskSemantic;
   const READING_EXPORT = window.LGTReadingExport;
   const ASK_EXPORT = window.LGTAskExport;
+  const DECK_RITUAL = window.LGTDeckRitual;
 
-  if (!ENGINE || !CONTENT || !GUARD || !ASK_CONTENT || !ASK_STORAGE || !ANALYZER || !ASK_CONTEXT || !QUESTION_CONTRACT || !ASK_SEMANTIC || !READING_EXPORT || !ASK_EXPORT) {
-    throw new Error('Ask Ganesha requires Reading Engine, tarot content, Question Guard, Ask content, Ask storage, Question Analyzer, Question Contract, Ask Context, Semantic Ask, and shared reading export.');
+  if (!ENGINE || !CONTENT || !GUARD || !ASK_CONTENT || !ASK_STORAGE || !ANALYZER || !ASK_CONTEXT || !QUESTION_CONTRACT || !ASK_SEMANTIC || !READING_EXPORT || !ASK_EXPORT || !DECK_RITUAL) {
+    throw new Error('Ask Ganesha requires Reading Engine, tarot content, Question Guard, Ask content, Ask storage, Question Analyzer, Question Contract, Ask Context, Semantic Ask, Deck Ritual, and shared reading export.');
   }
 
   const ORIENTATION = 'upright';
@@ -33,7 +34,7 @@
       sealing: 'Holding your question',
       shuffling: 'Shuffling the deck',
       choose: 'Choose one card',
-      chooseHint: 'Choose the card you feel drawn to. There is no right or wrong choice.',
+      chooseHint: 'Keep your question in mind, move through the shuffled deck, and choose the card that draws you in.',
       selected: 'Your card is chosen',
       selectedHint: 'Take a moment with your question, then reveal the card when you are ready.',
       restored: 'SAME QUESTION · SAME CARD',
@@ -92,7 +93,7 @@
       sealing: 'กำลังวางคำถามไว้กับไพ่',
       shuffling: 'กำลังสับไพ่',
       choose: 'เลือกไพ่หนึ่งใบ',
-      chooseHint: 'เลือกใบที่รู้สึกดึงดูดใจคุณที่สุด ไม่ต้องคิดว่าใบไหนถูกหรือผิด',
+      chooseHint: 'นึกถึงคำถามของคุณไว้ แล้วค่อยๆ เลื่อนไปตามสำรับที่สับไว้ เลือกใบที่สะดุดใจที่สุด',
       selected: 'เลือกไพ่แล้ว',
       selectedHint: 'อยู่กับคำถามของคุณสักครู่ แล้วค่อยเปิดไพ่เมื่อพร้อม',
       restored: 'คำถามเดิม · ไพ่ใบเดิม',
@@ -367,6 +368,7 @@
   let activeTimer = null;
   let lifecycleToken = 0;
   let exportBusy = false;
+  let deckRitual = null;
 
   function language() {
     return document.documentElement.lang === 'th' ? 'th' : 'en';
@@ -473,9 +475,7 @@
     else if (currentView === 'revealed') { status.textContent = ''; primary.textContent = t('askAnother'); }
     else status.textContent = '';
 
-    choice.querySelectorAll('[data-choice-index]').forEach((button) => {
-      button.setAttribute('aria-label', `${t('choose')} ${Number(button.dataset.choiceIndex) + 1}`);
-    });
+    deckRitual?.setAriaLabelBuilder((index) => `${t('choose')} ${index + 1}`);
 
     if (!shell.hidden) validateQuestion();
     if (currentView === 'focus' && activeAnalysis?.candidates) showFocusResolver(activeAnalysis);
@@ -526,6 +526,8 @@
     deck.hidden = false;
     deck.classList.remove('is-shuffling');
     choice.hidden = true;
+    deckRitual?.destroy();
+    deckRitual = null;
     choice.replaceChildren();
     selected.hidden = true;
     selectedCard.classList.remove('is-revealed');
@@ -558,16 +560,17 @@
   }
 
   function buildChoices(candidateIds) {
-    choice.replaceChildren();
-    candidateIds.forEach((cardId, index) => {
-      const button = document.createElement('button');
-      button.className = 'reading-card reading-card--choice';
-      button.type = 'button';
-      button.dataset.choiceIndex = String(index);
-      button.setAttribute('aria-label', `${t('choose')} ${index + 1}`);
-      button.innerHTML = `<img src="${CONTENT.cardBack}" alt="" decoding="async">`;
-      button.addEventListener('click', () => chooseCard(index, button), { once: true });
-      choice.appendChild(button);
+    deckRitual?.destroy();
+    deckRitual = DECK_RITUAL.create({
+      container: choice,
+      cardBack: CONTENT.cardBack,
+      count: candidateIds.length,
+      selectionLimit: 1,
+      rowCount: 3,
+      variant: 'focus',
+      groupLabel: t('choose'),
+      ariaLabelBuilder: (index) => `${t('choose')} ${index + 1}`,
+      onSelect: ({ index }) => chooseCard(index)
     });
   }
 
@@ -577,7 +580,7 @@
     stage.hidden = false;
     actions.hidden = true;
     updateStaticCopy();
-    const candidates = session.prepareChoice(3);
+    const candidates = session.prepareChoice(78);
     emitInteraction('shuffle-start');
     deck.classList.add('is-shuffling');
 
@@ -590,19 +593,17 @@
       currentView = 'choosing';
       updateStaticCopy();
       emitInteraction('choose-ready');
-      choice.querySelector('button')?.focus({ preventScroll: true });
+      deckRitual?.focusFirst();
     });
   }
 
-  function chooseCard(index, button) {
+  function chooseCard(index) {
     if (!session || session.state !== 'choosing') return;
-    choice.querySelectorAll('button').forEach((node) => { node.disabled = true; });
-    button.classList.add('is-chosen');
     selectedData = session.selectCandidate(index);
     const persisted = ASK_STORAGE.save({ fingerprint: activeFingerprint, cardId: selectedData.id, sessionId: session.sessionId, analysis: activeAnalysis });
     if (!persisted) storageNote.hidden = false;
-    emitInteraction('card-select', { cardId: selectedData.id });
-    after(260, () => renderSelectedBack(false));
+    emitInteraction('card-select', { cardId: selectedData.id, deckIndex: index });
+    after(300, () => renderSelectedBack(false));
   }
 
   function renderSelectedBack(restored = false) {

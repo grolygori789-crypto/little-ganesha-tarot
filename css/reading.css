@@ -1299,3 +1299,262 @@
     transition: none !important;
   }
 }
+
+
+/* V0.5.0 — Three-Card Reading */
+@layer reading {
+  .three-shell .reading-scroll { padding-bottom: max(8rem, calc(env(safe-area-inset-bottom) + 7rem)); }
+  .three-selected-rail { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.55rem; width:min(100%,31rem); margin:.25rem auto 1rem; }
+  .three-slot { min-width:0; text-align:center; opacity:.56; transition:opacity .25s ease, transform .25s var(--ease-luxe); }
+  .three-slot.is-filled { opacity:1; transform:translateY(-2px); }
+  .three-slot__label { display:block; min-height:2.5em; margin-bottom:.4rem; font-family:"Noto Sans Thai",sans-serif; font-size:.62rem; line-height:1.3; letter-spacing:.04em; color:rgba(229,189,112,.72); }
+  html[lang="en"] .three-slot__label { font-family:"Cormorant Garamond",Georgia,serif; font-size:.66rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+  .three-slot__card { position:relative; width:min(100%,5.8rem); aspect-ratio:941/1672; margin-inline:auto; overflow:hidden; border:1px solid rgba(247,217,147,.17); border-radius:.48rem; background:rgba(4,25,26,.65); box-shadow:0 8px 20px rgba(0,0,0,.16); }
+  .three-slot__card img { width:100%; height:100%; object-fit:cover; }
+  .three-slot__card span { position:absolute; inset:50% auto auto 50%; transform:translate(-50%,-50%); display:grid; place-items:center; width:1.5rem; height:1.5rem; border:1px solid rgba(247,217,147,.32); border-radius:50%; background:rgba(4,25,26,.72); color:var(--gold-bright); font-family:"Cormorant Garamond",serif; font-size:.78rem; }
+  .three-slot strong { display:block; min-height:2.5em; margin-top:.42rem; font-family:"Noto Serif Thai","Cormorant Garamond",serif; font-size:.72rem; line-height:1.3; font-weight:500; color:rgba(255,248,233,.74); }
+  .three-stage { min-height:9.5rem; }
+  .three-choice { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.65rem; width:min(100%,22rem); margin-inline:auto; perspective:900px; }
+  .three-choice-card { width:100%; min-width:0; aspect-ratio:941/1672; border-radius:.62rem; transition:transform .2s ease, opacity .2s ease, filter .2s ease; }
+  .three-choice-card img { width:100%; height:100%; object-fit:cover; border-radius:inherit; }
+  .three-choice-card.is-chosen { opacity:.28; filter:saturate(.45); transform:translateY(5px) scale(.96); }
+  .three-choice-card:not(:disabled):active { transform:translateY(2px) scale(.97); }
+  .three-interpretation { display:grid; gap:1rem; }
+  .three-revealed-cards { display:grid; gap:.85rem; }
+  .three-result-card { display:grid; grid-template-columns:6.4rem minmax(0,1fr); grid-template-areas:"pos pos" "art copy"; gap:.55rem 1rem; margin:0; padding:1rem; border:1px solid rgba(247,217,147,.12); border-radius:1rem; background:linear-gradient(150deg,rgba(18,58,57,.5),rgba(5,30,31,.58)); box-shadow:0 10px 28px rgba(0,0,0,.12); }
+  .three-result-card__position { grid-area:pos; font-family:"Noto Sans Thai",sans-serif; font-size:.65rem; font-weight:600; letter-spacing:.04em; color:rgba(229,189,112,.76); }
+  html[lang="en"] .three-result-card__position { font-family:"Cormorant Garamond",serif; letter-spacing:.12em; text-transform:uppercase; }
+  .three-result-card__art { grid-area:art; overflow:hidden; align-self:start; border:1px solid rgba(247,217,147,.19); border-radius:.55rem; box-shadow:0 10px 24px rgba(0,0,0,.18); }
+  .three-result-card__art img { width:100%; aspect-ratio:941/1672; object-fit:cover; }
+  .three-result-card figcaption { grid-area:copy; min-width:0; align-self:center; }
+  .three-result-card figcaption strong { display:block; font-family:"Noto Serif Thai","Cormorant Garamond",serif; font-size:1.08rem; font-weight:600; color:var(--gold-bright); }
+  .three-result-card figcaption small { display:block; margin-top:.08rem; font-family:"Cormorant Garamond",serif; font-size:.74rem; color:rgba(255,248,233,.42); }
+  .three-result-card figcaption p { margin:.55rem 0 0; font-family:"Noto Serif Thai","Cormorant Garamond",serif; font-size:.88rem; line-height:1.66; color:rgba(255,248,233,.78); }
+  .three-story { padding:1rem 1rem 1.05rem; border:1px solid rgba(247,217,147,.10); border-radius:1rem; background:rgba(255,255,255,.018); }
+  .three-reading-block--hero { border-color:rgba(229,189,112,.2); background:linear-gradient(145deg,rgba(229,189,112,.065),rgba(255,255,255,.015)); box-shadow:inset 0 1px rgba(255,245,218,.035); }
+  .three-story > span { display:block; margin-bottom:.55rem; font-family:"Noto Sans Thai",sans-serif; font-size:.67rem; font-weight:600; letter-spacing:.035em; color:rgba(229,189,112,.78); }
+  html[lang="en"] .three-story > span { font-family:"Cormorant Garamond",serif; letter-spacing:.11em; text-transform:uppercase; }
+  .three-story > p { margin:0; font-family:"Noto Serif Thai","Cormorant Garamond",serif; font-size:.92rem; line-height:1.78; color:rgba(255,248,233,.82); }
+  .three-shell .ask-home-action { margin-top:.15rem; }
+  @media (min-width:600px) { .three-revealed-cards { grid-template-columns:repeat(3,1fr); } .three-result-card { display:flex; flex-direction:column; } .three-result-card__art { width:100%; } }
+  @media (max-width:370px) { .three-choice{gap:.45rem}.three-result-card{grid-template-columns:5.7rem minmax(0,1fr);padding:.85rem;gap:.5rem .8rem}.three-story>p{font-size:.88rem}.three-slot__label{font-size:.58rem} }
+  html[data-motion="reduced"] .three-slot,.three-choice-card { transition:none!important; }
+}
+
+/* V0.5.0 — Shared 78-card premium selection ritual */
+@layer reading {
+  .reading-choice.deck-ritual-host,
+  .three-choice.deck-ritual-host {
+    display: block;
+    width: min(100%, 36rem);
+    min-width: 0;
+    max-width: 100%;
+    animation: none;
+  }
+
+  .deck-ritual {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    opacity: 0;
+    transform: translateY(.45rem);
+    transition: opacity .34s var(--ease-luxe), transform .34s var(--ease-luxe);
+  }
+
+  .deck-ritual.is-ready {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .deck-ritual__viewport {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    contain: inline-size;
+    overflow-y: visible;
+    padding: 1.15rem max(1.05rem, env(safe-area-inset-right)) 1.45rem max(1.05rem, env(safe-area-inset-left));
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  .deck-ritual__viewport::-webkit-scrollbar { display: none; }
+
+  .deck-ritual__spread {
+    width: max-content;
+    min-width: 0;
+    padding-inline: .2rem 1.8rem;
+    filter: drop-shadow(0 16px 28px rgba(0,0,0,.24));
+  }
+
+  .deck-ritual__row {
+    --deck-card-width: 4.05rem;
+    --deck-card-height: 7.20rem;
+    --deck-step: 1.72rem;
+    display: flex;
+    align-items: flex-end;
+    width: max-content;
+    min-width: 0;
+    padding-right: 1rem;
+    isolation: isolate;
+  }
+
+  .deck-ritual__row + .deck-ritual__row { margin-top: -1.72rem; }
+  .deck-ritual__row:nth-child(2) { transform: translateX(.72rem); }
+  .deck-ritual__row:nth-child(3) { transform: translateX(.22rem); }
+
+  .deck-ritual--full .deck-ritual__row {
+    --deck-card-width: 4.35rem;
+    --deck-card-height: 7.73rem;
+    --deck-step: 1.92rem;
+  }
+
+  .deck-ritual--full .deck-ritual__row + .deck-ritual__row { margin-top: -1.48rem; }
+  .deck-ritual--focus .deck-ritual__row { --deck-card-width: 4.12rem; --deck-card-height: 7.32rem; --deck-step: 1.78rem; }
+
+  .deck-ritual__card {
+    position: relative;
+    z-index: calc(var(--deck-i) + 1);
+    flex: 0 0 var(--deck-step);
+    width: var(--deck-step);
+    height: var(--deck-card-height);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: .52rem;
+    background: transparent;
+    transform-origin: 50% 82%;
+    transition: transform .20s var(--ease-luxe), filter .20s ease, opacity .18s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .deck-ritual__card:last-child { flex-basis: var(--deck-card-width); width: var(--deck-card-width); }
+
+  .deck-ritual__card-shell {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--deck-card-width);
+    height: 100%;
+    display: block;
+    overflow: visible;
+    border-radius: inherit;
+  }
+
+  .deck-ritual__card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid rgba(247,217,147,.18);
+    border-radius: inherit;
+    background: rgba(5,29,30,.92);
+    box-shadow:
+      0 8px 17px rgba(0,0,0,.28),
+      inset 0 0 0 1px rgba(255,246,218,.035);
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+  }
+
+  .deck-ritual__card:not(:disabled):hover,
+  .deck-ritual__card:not(:disabled):focus-visible {
+    z-index: 120;
+    transform: translateY(-.54rem) scale(1.025);
+    filter: drop-shadow(0 14px 20px rgba(0,0,0,.34));
+    outline: none;
+  }
+
+  .deck-ritual__card:focus-visible img {
+    border-color: rgba(247,217,147,.72);
+    box-shadow:
+      0 10px 22px rgba(0,0,0,.34),
+      0 0 0 2px rgba(229,189,112,.12),
+      0 0 22px rgba(229,189,112,.13);
+  }
+
+  .deck-ritual__card.is-selected {
+    z-index: 160;
+    transform: translateY(-.92rem) scale(1.035);
+    filter: drop-shadow(0 0 18px rgba(229,189,112,.26)) drop-shadow(0 17px 23px rgba(0,0,0,.37));
+    opacity: 1;
+  }
+
+  .deck-ritual__card.is-selected img {
+    border-color: rgba(247,217,147,.76);
+    box-shadow:
+      0 12px 24px rgba(0,0,0,.36),
+      0 0 0 2px rgba(229,189,112,.13),
+      inset 0 0 22px rgba(255,235,185,.035);
+  }
+
+  .deck-ritual__card:disabled:not(.is-selected) { opacity: .58; }
+
+  .deck-ritual__pick-order {
+    position: absolute;
+    z-index: 3;
+    top: -.42rem;
+    right: -.42rem;
+    display: grid;
+    place-items: center;
+    width: 1.42rem;
+    height: 1.42rem;
+    border: 1px solid rgba(255,235,185,.72);
+    border-radius: 50%;
+    background: linear-gradient(145deg, #d9b56c, #9d6e2b);
+    box-shadow: 0 5px 14px rgba(0,0,0,.32), 0 0 16px rgba(229,189,112,.20);
+    color: #0b292a;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: .76rem;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0;
+    transform: scale(.72);
+    transition: opacity .18s ease, transform .18s var(--ease-luxe);
+    pointer-events: none;
+  }
+
+  .deck-ritual__card.is-selected .deck-ritual__pick-order {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .deck-ritual[data-selection-limit="1"] .deck-ritual__pick-order { display: none; }
+
+  .deck-ritual--focus .deck-ritual__viewport {
+    background: radial-gradient(ellipse at 50% 48%, rgba(229,189,112,.045), transparent 62%);
+  }
+
+  .deck-ritual--full .deck-ritual__viewport {
+    padding-top: 1.25rem;
+    padding-bottom: 1.65rem;
+  }
+
+  .three-stage { min-height: clamp(21rem, 57vh, 28rem); }
+
+  @media (max-width: 370px) {
+    .deck-ritual__row { --deck-card-width: 3.72rem; --deck-card-height: 6.61rem; --deck-step: 1.60rem; }
+    .deck-ritual--focus .deck-ritual__row { --deck-card-width: 3.78rem; --deck-card-height: 6.72rem; --deck-step: 1.64rem; }
+    .deck-ritual--full .deck-ritual__row { --deck-card-width: 3.98rem; --deck-card-height: 7.08rem; --deck-step: 1.76rem; }
+    .deck-ritual__row + .deck-ritual__row { margin-top: -1.58rem; }
+    .deck-ritual--full .deck-ritual__row + .deck-ritual__row { margin-top: -1.36rem; }
+  }
+
+  @media (orientation: landscape) and (max-height: 540px) {
+    .deck-ritual__row { --deck-card-width: 3.45rem; --deck-card-height: 6.13rem; --deck-step: 1.52rem; }
+    .deck-ritual--full .deck-ritual__row { --deck-card-width: 3.62rem; --deck-card-height: 6.44rem; --deck-step: 1.68rem; }
+    .deck-ritual__row + .deck-ritual__row { margin-top: -1.62rem; }
+    .deck-ritual__viewport { padding-block: .7rem 1rem; }
+    .three-stage { min-height: 14rem; }
+  }
+}
+
+@layer utilities {
+  html[data-motion="reduced"] .deck-ritual,
+  html[data-motion="reduced"] .deck-ritual__card,
+  html[data-motion="reduced"] .deck-ritual__pick-order { transition: none !important; }
+}

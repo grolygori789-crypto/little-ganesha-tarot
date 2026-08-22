@@ -200,7 +200,7 @@
 
     prepareChoice(candidateCount = 5) {
       if (this.state !== 'idle') throw new Error('Choice preparation can begin only from idle.');
-      const count = Math.max(this.spread.cardCount, Math.min(12, Number(candidateCount) || this.spread.cardCount));
+      const count = Math.max(this.spread.cardCount, Math.min(CONTENT.cards.length, Number(candidateCount) || this.spread.cardCount));
       this.transition('preparing');
       const ids = CONTENT.cards.map((card) => card.id);
       this.candidates = secureShuffle(ids).slice(0, count);
@@ -223,6 +223,26 @@
       }];
       this.transition('selected', { cardId });
       return CONTENT.getCard(cardId);
+    }
+
+
+    selectCandidates(indices) {
+      if (this.state !== 'choosing') throw new Error('Cards can be selected only while choosing.');
+      if (!Array.isArray(indices) || indices.length !== this.spread.cardCount) {
+        throw new RangeError(`This spread requires exactly ${this.spread.cardCount} selected cards.`);
+      }
+      const unique = new Set(indices);
+      if (unique.size !== indices.length) throw new Error('A reading cannot use the same choice twice.');
+      indices.forEach((index) => {
+        if (!Number.isInteger(index) || index < 0 || index >= this.candidates.length) throw new RangeError('Invalid candidate index.');
+      });
+      this.selection = indices.map((index, positionIndex) => ({
+        positionId: this.spread.positions[positionIndex].id,
+        cardId: this.candidates[index],
+        orientation: ORIENTATION_UPRIGHT
+      }));
+      this.transition('selected', { cardIds: this.selection.map((entry) => entry.cardId) });
+      return this.getSelectedCards().map((entry) => entry.card);
     }
 
     restoreSelection(record) {
@@ -311,5 +331,5 @@
   }
 
   window.LGTReadingEngine = new ReadingEngine();
-  window.LGTReadingEngineVersion = '1.0.2';
+  window.LGTReadingEngineVersion = '1.1.0';
 })();
