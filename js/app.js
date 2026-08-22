@@ -162,7 +162,7 @@
         age.textContent = summary.ageText;
         const zodiac = document.createElement('span');
         zodiac.className = 'home-profile-meta__zodiac';
-        zodiac.textContent = `(${summary.zodiacLabel})`;
+        zodiac.textContent = `(${summary.zodiacSymbol} ${summary.zodiacLabel})`;
         homeProfileMeta.append(age, zodiac);
         homeProfileMeta.hidden = false;
         homeProfileMeta.setAttribute('aria-label', `${summary.ageText} ${summary.zodiacLabel}`);
@@ -271,5 +271,5 @@
     updateSettingsUI();
   });
   const todayISO = localDateISO(); birthDateInput.max = todayISO; profileBirthDateInput.max = todayISO; birthDateInput.min = '1900-01-01'; profileBirthDateInput.min = '1900-01-01';
-  setLanguage(language); applyMotionMode(); syncAudioUI(); updateSettingsUI(); scheduleProfileRollover(); window.LGT_BUILD = '0.4.8'; setTimeout(revealTitle, isReducedMotion() ? 1200 : 2600);
+  setLanguage(language); applyMotionMode(); syncAudioUI(); updateSettingsUI(); scheduleProfileRollover(); window.LGT_BUILD = '0.4.9'; setTimeout(revealTitle, isReducedMotion() ? 1200 : 2600);
 })();

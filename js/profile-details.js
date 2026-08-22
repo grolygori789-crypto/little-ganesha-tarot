@@ -2,18 +2,18 @@
   'use strict';
 
   const ZODIAC = Object.freeze({
-    capricorn: { en: 'Capricorn', th: 'ราศีมังกร' },
-    aquarius: { en: 'Aquarius', th: 'ราศีกุมภ์' },
-    pisces: { en: 'Pisces', th: 'ราศีมีน' },
-    aries: { en: 'Aries', th: 'ราศีเมษ' },
-    taurus: { en: 'Taurus', th: 'ราศีพฤษภ' },
-    gemini: { en: 'Gemini', th: 'ราศีเมถุน' },
-    cancer: { en: 'Cancer', th: 'ราศีกรกฎ' },
-    leo: { en: 'Leo', th: 'ราศีสิงห์' },
-    virgo: { en: 'Virgo', th: 'ราศีกันย์' },
-    libra: { en: 'Libra', th: 'ราศีตุล' },
-    scorpio: { en: 'Scorpio', th: 'ราศีพิจิก' },
-    sagittarius: { en: 'Sagittarius', th: 'ราศีธนู' }
+    capricorn: { symbol: '♑', en: 'Capricorn', th: 'ราศีมังกร' },
+    aquarius: { symbol: '♒', en: 'Aquarius', th: 'ราศีกุมภ์' },
+    pisces: { symbol: '♓', en: 'Pisces', th: 'ราศีมีน' },
+    aries: { symbol: '♈', en: 'Aries', th: 'ราศีเมษ' },
+    taurus: { symbol: '♉', en: 'Taurus', th: 'ราศีพฤษภ' },
+    gemini: { symbol: '♊', en: 'Gemini', th: 'ราศีเมถุน' },
+    cancer: { symbol: '♋', en: 'Cancer', th: 'ราศีกรกฎ' },
+    leo: { symbol: '♌', en: 'Leo', th: 'ราศีสิงห์' },
+    virgo: { symbol: '♍', en: 'Virgo', th: 'ราศีกันย์' },
+    libra: { symbol: '♎', en: 'Libra', th: 'ราศีตุล' },
+    scorpio: { symbol: '♏', en: 'Scorpio', th: 'ราศีพิจิก' },
+    sagittarius: { symbol: '♐', en: 'Sagittarius', th: 'ราศีธนู' }
   });
 
   function localDateISO(date = new Date()) {
@@ -107,12 +107,13 @@
       age,
       ageText: formatAge(age, language),
       zodiacKey: key,
+      zodiacSymbol: ZODIAC[key].symbol,
       zodiacLabel: ZODIAC[key][language]
     });
   }
 
   window.LGTProfileDetails = Object.freeze({
-    version: 'profile-details-v1',
+    version: 'profile-details-v2',
     localDateISO,
     calculateAge,
     zodiacKey,

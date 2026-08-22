@@ -1,24 +1,14 @@
-# Patch Upload Notes — V0.4.8
+# Patch Upload Notes — V0.4.9
 
-Baseline: `1471669aa858139565d687d85b563190ac672cc8` (`Standardize reading Save Share V0.4.7`).
+Overlay this archive onto current `main` at V0.4.8.
 
-Overlay this package onto repository `main` without deleting unrelated files.
+Baseline HEAD: `8796c6f9b6cf4b019df8062da047b361d9a00004` (`Add premium age zodiac V0.4.8`).
 
-New files:
-- `js/profile-details.js`
-- `css/profile-home.css`
-- `docs/releases/RELEASE_NOTES_V0_4_8.md`
-- `docs/qa/QA_V0_4_8.md`
-- `docs/tests/test-profile-details.js`
-- `docs/tests/test-home-profile-package.js`
-- `docs/tests/test-version-coherence-v048.js`
-- `PATCH_MANIFEST_V0_4_8.json`
-- `docs/checksums/CHECKSUMS_V0_4_8.sha256`
+Primary changes:
+- `css/profile-home.css` — English readability polish; Thai size preserved.
+- `js/profile-details.js` — zodiac glyph map and `zodiacSymbol`.
+- `js/app.js` — renders `(glyph + zodiac name)`.
+- runtime/cache markers move together to V0.4.9.
 
-Replace:
-- `README.md`
-- `index.html`
-- `js/app.js`
-- `sw.js`
-
-Suggested commit: `Add premium age zodiac V0.4.8`
+Suggested commit:
+`Polish zodiac profile V0.4.9`

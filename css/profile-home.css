@@ -1,4 +1,4 @@
-/* V0.4.8 — premium local profile detail under the Home greeting. */
+/* V0.4.9 — premium zodiac-glyph and English legibility polish. */
 @layer screens {
   .home-profile-meta {
     display: flex;
@@ -9,27 +9,31 @@
     margin: .2rem 0 0;
     max-width: min(78vw, 28rem);
     font-family: "Cormorant Garamond", "Noto Sans Thai", system-ui, sans-serif;
-    font-size: clamp(.72rem, 3.05vw, .86rem);
-    font-weight: 500;
+    font-size: clamp(.82rem, 3.35vw, .96rem);
+    font-weight: 600;
     line-height: 1.38;
     letter-spacing: .018em;
-    color: rgba(255, 248, 233, .68);
+    color: rgba(255, 248, 233, .78);
     text-wrap: pretty;
   }
 
   html[lang="th"] .home-profile-meta {
     font-family: "Noto Sans Thai", system-ui, sans-serif;
+    font-size: clamp(.72rem, 3.05vw, .86rem);
+    font-weight: 500;
     letter-spacing: .005em;
-  }
-
-  .home-profile-meta__age {
     color: rgba(255, 248, 233, .7);
   }
 
+  .home-profile-meta__age {
+    color: rgba(255, 248, 233, .82);
+  }
+
   .home-profile-meta__zodiac {
-    color: rgba(247, 217, 147, .82);
-    font-weight: 500;
+    color: rgba(247, 217, 147, .9);
+    font-weight: 600;
     white-space: nowrap;
+    font-variant-numeric: lining-nums;
   }
 
   .main-app.has-profile-meta .app-header {
@@ -43,8 +47,11 @@
 
   @media (max-width: 360px) {
     .home-profile-meta {
-      max-width: 79vw;
+      max-width: 80vw;
       column-gap: .38rem;
+      font-size: .78rem;
+    }
+    html[lang="th"] .home-profile-meta {
       font-size: .7rem;
     }
   }
