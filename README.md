@@ -1,102 +1,86 @@
-# Little Ganesha Tarot — V0.4.7 Reading Actions Standard
+# Little Ganesha Tarot — V0.4.8 Premium Home Profile
 
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.4.7  
-**Baseline runtime:** V0.4.6  
-**Baseline GitHub HEAD:** `470300f2d6fe46349c27241d223b892045409363` — `Upgrade Ask Ganesha semantics V0.4.6`  
-**Risk:** MEDIUM  
+**Target runtime:** V0.4.8  
+**Baseline runtime:** V0.4.7  
+**Baseline GitHub HEAD:** `1471669aa858139565d687d85b563190ac672cc8` — `Standardize reading Save Share V0.4.7`  
+**Risk:** LOW  
 **Architecture:** local-first PWA · no AI/API/backend added
 
 ## Purpose
 
-V0.4.7 establishes **Save Image + Share as the standard result utilities for every tarot reading mode**. The currently implemented Daily Guidance and Ask Ganesha both use the same shared export transport and fallback behavior. Future reading spreads must adopt the same standard rather than inventing one-off save/share flows.
+V0.4.8 adds a premium personal profile detail directly beneath the existing Home greeting. When a valid date of birth is stored, the Home header shows the user’s exact calendar age and automatically derived Western/Tropical zodiac sign in the current UI language.
 
-This release does not change card selection, Reading Engine logic, Semantic Ask interpretation, the nine Ask context families, or same-question/same-day behavior.
+Example Thai presentation:
 
-## Reading Result Action Standard
+`สวัสดี Benz`  
+`อายุ 43 ปี · 3 เดือน · 12 วัน (ราศีสิงห์)`
 
-Every completed reading mode must provide:
+Example English presentation:
 
-- **Save Image** — creates a curated reading image locally on the device.
-- **Share** — uses the native file share sheet when supported; otherwise saves the generated image as a graceful fallback.
-- No server upload is required for export.
-- Reading chrome/navigation/music controls are never baked into the exported image.
-- Each reading mode owns a curated renderer for its own content, while transport/fallback behavior is shared through `js/reading-export.js`.
+`Hello, Benz`  
+`Age 43 years · 3 months · 12 days (Leo)`
 
-This keeps the implementation reusable without forcing every spread into the same visual layout.
+The greeting remains the dominant line. The age is deliberately smaller and quieter, while the zodiac receives a restrained warm-gold emphasis.
 
-## Ask Ganesha Save & Share
+## Calculation Rules
 
-Ask Ganesha now exports a purpose-built reading card containing the selected tarot card, reading focus, direct semantic answer, card rationale, conditions, Little Ganesha reflection, carry-forward question, date, and a concise reflection disclaimer.
+- Age is calculated as calendar **years → months → days**, not total days divided by 365.
+- Month length and leap years are handled.
+- End-of-month birthdays are clamped safely when the equivalent calendar day does not exist in an intermediate month.
+- The display refreshes after profile edits, language changes, app focus/visibility changes, and at the next local midnight.
+- No calculated age or zodiac is persisted; both are derived locally from the existing date-of-birth value.
 
-Privacy behavior is deliberate:
+## Zodiac Standard
 
-- **Save Image** always saves the complete private reading, including the user’s exact question.
-- **Share** hides the exact question by default.
-- The user may explicitly enable **Include my question in the shared image** before sharing.
-- The toggle is off by default and is not persisted.
-- Hiding the exact question does not claim to anonymize the reading; the interpretation itself may still reveal the topic.
-- Raw Ask question text is still not stored in same-question local persistence.
+This release uses the common Western/Tropical zodiac date boundaries:
 
-When the exact question is hidden, the exported heading changes from “Answer to Your Question” to the neutral “Insight from This Reading” / “ข้อความจากการอ่านครั้งนี้”.
+- Capricorn: Dec 22–Jan 19
+- Aquarius: Jan 20–Feb 18
+- Pisces: Feb 19–Mar 20
+- Aries: Mar 21–Apr 19
+- Taurus: Apr 20–May 20
+- Gemini: May 21–Jun 20
+- Cancer: Jun 21–Jul 22
+- Leo: Jul 23–Aug 22
+- Virgo: Aug 23–Sep 22
+- Libra: Sep 23–Oct 22
+- Scorpio: Oct 23–Nov 21
+- Sagittarius: Nov 22–Dec 21
 
-## Ask Navigation
+Thai zodiac labels are authored directly in Thai (`ราศีสิงห์`, `ราศีกันย์`, etc.); English labels use native English zodiac names.
 
-The existing **Ask Another Question / ถามเรื่องอื่น** primary button remains in its current position directly below the card flow. It is not moved.
+## Premium Home Presentation
 
-A lower-emphasis **Back to Home / กลับหน้าหลัก** action is added directly beneath it only after the reading is revealed. It closes Ask Ganesha through the existing navigation lifecycle rather than reloading the application.
+`css/profile-home.css` is intentionally isolated from the existing Home visual system. It adds:
 
-## Shared Export Architecture
+- a compact second line beneath the Home greeting;
+- responsive typography for narrow phones;
+- a restrained ivory age line and warm-gold zodiac label;
+- graceful wrapping without splitting the zodiac label;
+- extra Home header/content clearance only when profile detail is actually present.
 
-`js/reading-export.js` is a small reusable browser module responsible for:
-
-- file creation handoff;
-- native file sharing;
-- save fallback when direct sharing is unavailable;
-- common canvas text/layout helpers;
-- localized date formatting;
-- deterministic status callbacks for each reading UI.
-
-Daily Guidance keeps its already-tested curated renderer and now routes delivery through the shared module. Ask Ganesha uses `js/ask-export.js` as its own renderer and the same shared delivery module.
-
-This separation keeps complexity in the easy-to-medium range: shared transport, isolated renderers, no backend, no framework migration, and no Reading Engine refactor.
+If no valid birth date is stored, the second line is completely hidden and the existing Home layout remains unchanged.
 
 ## Protected Behavior
 
-V0.4.7 intentionally preserves:
+V0.4.8 does not alter:
 
-- Reading Engine `1.0.2`;
-- Daily Guidance card selection and persistence;
-- Daily Guidance six lenses;
-- the Daily curated export content/layout;
-- Question Guard;
-- Question Analyzer v3;
-- Question Contract v1;
-- Ask Context v2 including Spiritual & Unseen;
-- Semantic Ask v1 no-drift behavior;
-- Ask same-question/same-day same-card rule;
-- no raw Ask question persistence;
-- audio lifecycle and canonical tarot assets.
+- Reading Engine 1.0.2;
+- Daily Guidance;
+- Semantic Ask / Question Contract;
+- Spiritual & Unseen;
+- Ask same-question/same-day behavior;
+- Save/Share standard;
+- audio lifecycle;
+- card assets or tarot content.
 
-## Languages
+## Privacy
 
-All newly visible copy is authored separately for English and Thai. English is written as native product copy rather than translated Thai; Thai is written as natural Thai UI language rather than literal English translation.
+The feature uses the already-local date-of-birth profile field. Age and zodiac are calculated in the browser and are not uploaded or added to new persistence keys.
 
 ## Validation
 
-The release package runs the full inherited semantic/reading regression suite plus dedicated reading-action tests covering:
+Automated validation covers exact calendar age, leap-day behavior, end-of-month behavior, zodiac boundary dates, Thai/English copy, Home DOM wiring, PWA cache wiring, version coherence, and inherited reading/Ask regression suites.
 
-- shared export module wiring and dependency order;
-- Daily migration to shared delivery without replacing its renderer;
-- Ask Save/Share controls;
-- Ask complete-save vs privacy-aware-share behavior;
-- default-off question inclusion;
-- Ask Another position preservation;
-- Back to Home secondary action;
-- TH/EN copy completeness;
-- fallback from unavailable native sharing to local save;
-- Reading Engine / Semantic Ask regression;
-- version coherence and repository structure;
-- archive checksum and clean re-extraction.
-
-Real-device Save/Share validation remains required after V0.4.7 is deployed.
+Real-device visual QA remains the final release check after deployment.

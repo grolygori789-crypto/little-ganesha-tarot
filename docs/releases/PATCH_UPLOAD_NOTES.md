@@ -1,18 +1,24 @@
-# PATCH UPLOAD NOTES — V0.4.7
+# Patch Upload Notes — V0.4.8
 
-**Package:** Little Ganesha Tarot V0.4.7 — Reading Actions Standard  
-**Baseline:** V0.4.6 at `470300f2d6fe46349c27241d223b892045409363`
+Baseline: `1471669aa858139565d687d85b563190ac672cc8` (`Standardize reading Save Share V0.4.7`).
 
-## Upload
+Overlay this package onto repository `main` without deleting unrelated files.
 
-Overlay the package at repository root on `main` without changing folder structure. Do not delete unrelated assets or application files.
+New files:
+- `js/profile-details.js`
+- `css/profile-home.css`
+- `docs/releases/RELEASE_NOTES_V0_4_8.md`
+- `docs/qa/QA_V0_4_8.md`
+- `docs/tests/test-profile-details.js`
+- `docs/tests/test-home-profile-package.js`
+- `docs/tests/test-version-coherence-v048.js`
+- `PATCH_MANIFEST_V0_4_8.json`
+- `docs/checksums/CHECKSUMS_V0_4_8.sha256`
 
-Recommended commit message:
+Replace:
+- `README.md`
+- `index.html`
+- `js/app.js`
+- `sw.js`
 
-`Standardize reading Save Share V0.4.7`
-
-## After Push
-
-Re-read deployed `main`, confirm all live build/cache markers are `0.4.7`, allow service-worker propagation, then run the real-device checklist in `docs/qa/QA_V0_4_7.md`.
-
-Important regression checks: Daily Guidance must still Save/Share as before; Ask Ganesha must Save a full reading, Share with the exact question hidden by default, optionally include the question, keep Ask Another in its existing position, and expose Back to Home beneath it.
+Suggested commit: `Add premium age zodiac V0.4.8`

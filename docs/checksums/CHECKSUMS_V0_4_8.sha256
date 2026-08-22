@@ -1,0 +1,13 @@
+72b1139c6a696c07627721879a8f4b0f3157d6a30b396d1094ffa16c9296a9fc  ./PATCH_MANIFEST_V0_4_8.json
+8ca981447e9790f783aa18028233de8318da86cf88b69a25f3d7b948e46432cb  ./README.md
+5bb442b307b0173924f18e2647098ce3e0321cd67ab7471200db4daf08df52c4  ./css/profile-home.css
+6a0bb96b83eb749739d9d0c3568540bcdab4879eac7035ecb1bd268c25f901c0  ./docs/qa/QA_V0_4_8.md
+fc76cd8edefc1207338168e30811b11f7f53ecf7f1908f405f1452c347b104ea  ./docs/releases/PATCH_UPLOAD_NOTES.md
+7daa4cf9e4fe734a39b2636630fe4a397c73e02fca6647942af7feafd10d5c04  ./docs/releases/RELEASE_NOTES_V0_4_8.md
+f6238df9e7e588cb3cfb7a5220e9a6d8e42671ac1d76bd99a015aa81d0044300  ./docs/tests/test-home-profile-package.js
+1c5b18dbc49eedc82db9ab903de79657c65bf6854c6ee8a01e8e7a5adf7cc539  ./docs/tests/test-profile-details.js
+f30f5cab92c4dbd2003d0b2cc48ce95998eca89ee2d831d4f6138b9fe000a6ef  ./docs/tests/test-version-coherence-v048.js
+4693e6a11afda1ad8a028f13a815bfe1811bdd24de4b6af7e84b44b7c813ab7d  ./index.html
+21ddad0f2d85db102c8ce33f550b9f4939ad3b3e52d7144c8f505b8bb01bde22  ./js/app.js
+b340a343727b46c8a4ec7d012bba2eb940e6da15a71b7c4522c076e8b34d40f2  ./js/profile-details.js
+3e1e70dff1600c8dfff664329d62e8dbcd480f42d422655f29db97b87eddb440  ./sw.js
