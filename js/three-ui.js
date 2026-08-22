@@ -14,7 +14,7 @@
       eyebrow:'THREE-CARD READING', title:'Three cards, one story',
       intro:'Take a moment with the full deck. You will choose three cards in order: what shaped this path, where you are now, and what may unfold next.',
       begin:'Begin', shuffling:'Shuffling the deck', choose:'Choose a card',
-      choosePast:'Move through the shuffled deck and choose the first card that draws you in — this one reflects what shaped the path.', choosePresent:'Now choose a second card for where the situation stands today.', chooseNext:'Choose one final card for the direction that may unfold next.',
+      choosePast:'Let your eyes move across the shuffled deck and choose the first card that draws you in — this one reflects what shaped the path.', choosePresent:'Now choose a second card for where the situation stands today.', chooseNext:'Choose one final card for the direction that may unfold next.',
       past:'Past', present:'Present', next:'What May Unfold Next', chosen:'Chosen', selected:'Your three cards are ready', reveal:'Reveal the Reading', loading:'Preparing your three-card reading',
       story:'THE STORY THESE CARDS TELL', turning:'THE TURNING POINT', pattern:'WHAT TIES THE CARDS TOGETHER', guidance:'WHAT TO TAKE WITH YOU', reflection:'A QUESTION TO CARRY FORWARD',
       saveShareTitle:'SAVE OR SHARE', saveShareHint:'Create a clean image of the full three-card reading to keep or share.', saveImage:'Save Image', shareImage:'Share',
@@ -26,7 +26,7 @@
       eyebrow:'เปิดไพ่สามใบ', title:'สามใบ หนึ่งเรื่องราว',
       intro:'ใช้เวลาสักครู่กับไพ่ทั้งสำรับ คุณจะเลือกไพ่สามใบตามลำดับ เพื่อดูสิ่งที่พามาถึงตรงนี้ สิ่งที่กำลังเกิดขึ้น และแนวโน้มต่อจากนี้',
       begin:'เริ่มเปิดไพ่', shuffling:'กำลังสับไพ่', choose:'เลือกไพ่',
-      choosePast:'ค่อยๆ เลื่อนไปตามสำรับที่สับไว้ แล้วเลือกใบแรกที่สะดุดใจ ใบนี้แทนสิ่งที่พาคุณมาถึงจุดนี้', choosePresent:'ต่อไปเลือกใบที่สองสำหรับสถานการณ์ของคุณในตอนนี้', chooseNext:'เลือกใบสุดท้ายสำหรับแนวโน้มที่อาจคลี่ต่อจากนี้',
+      choosePast:'มองไปตามสำรับที่สับไว้ แล้วเลือกใบแรกที่สะดุดใจ ใบนี้แทนสิ่งที่พาคุณมาถึงจุดนี้', choosePresent:'ต่อไปเลือกใบที่สองสำหรับสถานการณ์ของคุณในตอนนี้', chooseNext:'เลือกใบสุดท้ายสำหรับแนวโน้มที่อาจคลี่ต่อจากนี้',
       past:'อดีต', present:'ปัจจุบัน', next:'แนวโน้มต่อจากนี้', chosen:'เลือกแล้ว', selected:'ไพ่ทั้งสามพร้อมแล้ว', reveal:'เปิดไพ่ทั้งสาม', loading:'กำลังเตรียมคำอ่านไพ่สามใบ',
       story:'เรื่องราวที่ไพ่ทั้งสามกำลังเล่า', turning:'จุดหักเหของเรื่อง', pattern:'สิ่งที่เชื่อมไพ่ทั้งสามเข้าด้วยกัน', guidance:'สิ่งที่ควรนำไปใช้ต่อ', reflection:'คำถามชวนทบทวนต่อ',
       saveShareTitle:'บันทึกหรือแชร์', saveShareHint:'สร้างภาพผลการอ่านไพ่สามใบแบบสะอาดตาเพื่อเก็บไว้หรือส่งต่อได้ทันที', saveImage:'บันทึกภาพ', shareImage:'แชร์',
@@ -80,7 +80,7 @@
     else if(view==='revealed'){intro.textContent='';status.textContent='';primary.textContent=t('readAgain');}
     if(selectedCards.length===3&&reading)renderText();
   }
-  function reset(){if(timer)clearTimeout(timer);lifecycle++;session=null;candidates=[];selectedIndices=[];selectedCards=[];reading=null;view='intro';deck.hidden=false;deck.classList.remove('is-shuffling');stage.hidden=false;choice.hidden=true;deckRitual?.destroy();deckRitual=null;choice.replaceChildren();interpretation.hidden=true;revealed.replaceChildren();actions.hidden=false;primary.disabled=false;home.hidden=true;saveShare.hidden=true;shareStatus.textContent='';exportBusy=false;saveButton.disabled=false;shareButton.disabled=false;rail.querySelectorAll('.three-slot').forEach((slot,i)=>{slot.classList.remove('is-filled');const img=slot.querySelector('img');img.src=CONTENT.cardBack;img.alt='';slot.querySelector('.three-slot__card span').hidden=false;$('threeSlotName'+i).textContent='';});scroll.scrollTop=0;updateCopy();}
+  function reset(){if(timer)clearTimeout(timer);lifecycle++;session=null;candidates=[];selectedIndices=[];selectedCards=[];reading=null;view='intro';deck.hidden=false;deck.classList.remove('is-shuffling');stage.hidden=false;intro.hidden=false;choice.hidden=true;deckRitual?.destroy();deckRitual=null;choice.replaceChildren();stage.classList.remove('is-compact-deck');interpretation.hidden=true;revealed.replaceChildren();actions.hidden=false;primary.disabled=false;home.hidden=true;saveShare.hidden=true;shareStatus.textContent='';exportBusy=false;saveButton.disabled=false;shareButton.disabled=false;rail.querySelectorAll('.three-slot').forEach((slot,i)=>{slot.classList.remove('is-filled');const img=slot.querySelector('img');img.src=CONTENT.cardBack;img.alt='';slot.querySelector('.three-slot__card span').hidden=false;$('threeSlotName'+i).textContent='';});scroll.scrollTop=0;updateCopy();}
   function buildChoices(){
     deckRitual?.destroy();
     deckRitual=DECK_RITUAL.create({
@@ -88,15 +88,15 @@
       cardBack:CONTENT.cardBack,
       count:candidates.length,
       selectionLimit:3,
-      rowCount:3,
+      rowCount:6,
       variant:'full',
       groupLabel:t('choose'),
       ariaLabelBuilder:(index)=>`${t('choose')} ${index+1}`,
       onSelect:({index,button})=>pick(index,button)
     });
   }
-  function start(){if(!session||session.state!=='idle')return;view='shuffling';primary.disabled=true;actions.hidden=true;updateCopy();candidates=session.prepareChoice(78);deck.classList.add('is-shuffling');emit('shuffle-start');after(900,()=>{deck.classList.remove('is-shuffling');deck.hidden=true;buildChoices();choice.hidden=false;session.markChoosing();view='choosing';updateCopy();deckRitual?.focusFirst();});}
-  function pick(index,button){if(view!=='choosing'||selectedIndices.includes(index)||selectedIndices.length>=3)return;selectedIndices.push(index);const card=CONTENT.getCard(candidates[index]);const slotIndex=selectedIndices.length-1;const slot=rail.querySelectorAll('.three-slot')[slotIndex];slot.classList.add('is-filled');slot.querySelector('.three-slot__card span').hidden=true;$('threeSlotName'+slotIndex).textContent=t('chosen');emit('card-select',{position:slotIndex,cardId:card.id,deckIndex:index});if(selectedIndices.length<3){updateCopy();return;}selectedCards=session.selectCandidates(selectedIndices);view='selected';after(360,()=>{choice.hidden=true;actions.hidden=false;primary.disabled=false;updateCopy();primary.focus({preventScroll:true});});}
+  function start(){if(!session||session.state!=='idle')return;view='shuffling';primary.disabled=true;actions.hidden=true;updateCopy();candidates=session.prepareChoice(78);deck.classList.add('is-shuffling');emit('shuffle-start');after(900,()=>{deck.classList.remove('is-shuffling');deck.hidden=true;buildChoices();stage.classList.add('is-compact-deck');choice.hidden=false;session.markChoosing();view='choosing';updateCopy();deckRitual?.focusFirst();});}
+  function pick(index,button){if(view!=='choosing'||selectedIndices.includes(index)||selectedIndices.length>=3)return;selectedIndices.push(index);const card=CONTENT.getCard(candidates[index]);const slotIndex=selectedIndices.length-1;const slot=rail.querySelectorAll('.three-slot')[slotIndex];slot.classList.add('is-filled');slot.querySelector('.three-slot__card span').hidden=true;$('threeSlotName'+slotIndex).textContent=t('chosen');emit('card-select',{position:slotIndex,cardId:card.id,deckIndex:index});if(selectedIndices.length<3){updateCopy();return;}selectedCards=session.selectCandidates(selectedIndices);view='selected';after(300,()=>{choice.hidden=true;intro.hidden=true;deckRitual?.destroy();deckRitual=null;stage.classList.remove('is-compact-deck');stage.hidden=true;actions.hidden=false;primary.disabled=false;updateCopy();requestAnimationFrame(()=>{rail.scrollIntoView({behavior:reduced()?'auto':'smooth',block:'start'});});after(180,()=>primary.focus({preventScroll:true}));});}
   function renderText(){if(!reading)return;$('threeStory').textContent=reading.story;$('threeTurning').textContent=reading.turningPoint;$('threePattern').textContent=reading.pattern;$('threeGuidance').textContent=reading.guidance;$('threeReflection').textContent=reading.reflection;}
   async function revealReading(){if(!session||session.state!=='selected'||selectedCards.length!==3)return;const token=lifecycle;primary.disabled=true;status.textContent=t('loading');session.beginReveal();reading=NARRATIVE.compose(selectedCards,lang());renderText();revealed.replaceChildren();selectedCards.forEach((card,index)=>{const figure=document.createElement('figure');figure.className='three-result-card';figure.innerHTML=`<span class="three-result-card__position">${reading.positions[index].label}</span><div class="three-result-card__art"><img src="${card.image}" alt="${t('cardAlt')}${card.title[lang()]}" decoding="async"></div><figcaption><strong>${card.title[lang()]}</strong>${lang()==='th'?`<small>${card.title.en}</small>`:''}<p>${reading.positions[index].text}</p></figcaption>`;revealed.appendChild(figure);});
     try{await Promise.all([...revealed.querySelectorAll('img')].map(img=>img.complete?Promise.resolve():img.decode().catch(()=>{})));}catch(_){}

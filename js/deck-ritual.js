@@ -28,7 +28,7 @@
 
     const count = clampInt(options.count, 1, 78, 78);
     const selectionLimit = clampInt(options.selectionLimit, 1, count, 1);
-    const rowCount = clampInt(options.rowCount, 1, 4, 3);
+    const rowCount = clampInt(options.rowCount, 1, 8, 6);
     const variant = ['quick', 'focus', 'full'].includes(options.variant) ? options.variant : 'quick';
     const cardBack = String(options.cardBack || '');
     const onSelect = typeof options.onSelect === 'function' ? options.onSelect : () => {};
@@ -176,5 +176,5 @@
     });
   }
 
-  window.LGTDeckRitual = Object.freeze({ version: '1.0.0', create });
+  window.LGTDeckRitual = Object.freeze({ version: '1.1.0', create });
 })();

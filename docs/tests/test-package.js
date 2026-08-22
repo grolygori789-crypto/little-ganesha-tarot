@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('fs'); const assert=(c,m)=>{if(!c)throw new Error(m)}; const read=p=>fs.readFileSync(p,'utf8');
-const TARGET='0.5.0';
+const TARGET='0.5.1';
 const index=read('index.html'), app=read('js/app.js'), sw=read('sw.js'), dailyUi=read('js/reading-ui.js'), askUi=read('js/ask-ui.js'), threeUi=read('js/three-ui.js');
 const guard=read('js/question-guard.js'), askContent=read('js/ask-content.js'), storage=read('js/ask-storage.js'), analyzer=read('js/question-analyzer.js');
 const contract=read('js/question-contract.js'), context=read('js/ask-context.js'), semantic=read('js/ask-semantic.js'), engine=read('js/reading-engine.js'), content=read('js/reading-content.js'), css=read('css/reading.css');
@@ -24,4 +24,4 @@ const staticIds=[...index.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]); assert(new 
 const allTemplates=[dailyUi,askUi,threeUi].flatMap(text=>[...text.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1])); assert(new Set(allTemplates).size===allTemplates.length,'Duplicate reading-template IDs.');
 const order=['js/app.js','js/reading-content.js','js/reading-engine.js','js/reading-export.js','js/three-narrative.js','js/question-guard.js','js/ask-content.js','js/question-analyzer.js','js/question-contract.js','js/ask-context.js','js/ask-semantic.js','js/ask-storage.js','js/reading-ui.js','js/ask-export.js','js/ask-ui.js','js/three-export.js','js/three-ui.js'].map(p=>index.indexOf(`${p}?v=${TARGET}`)); assert(order.every(v=>v>=0)&&order.every((v,i)=>i===0||v>order[i-1]),'Runtime script dependency order invalid.');
 const stripped=css.replace(/\/\*[\s\S]*?\*\//g,'').replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g,''); let depth=0; for(const ch of stripped){if(ch==='{')depth++;if(ch==='}')depth--;assert(depth>=0,'CSS closes before it opens.');} assert(depth===0,'CSS brace balance mismatch.');
-console.log('V0.5.0 package + Three-Card wiring checks: PASS');
+console.log('V0.5.1 package + Three-Card wiring checks: PASS');

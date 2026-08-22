@@ -1558,3 +1558,118 @@
   html[data-motion="reduced"] .deck-ritual__card,
   html[data-motion="reduced"] .deck-ritual__pick-order { transition: none !important; }
 }
+
+
+/* V0.5.1 — Compact full-deck viewport + reveal-stage collapse */
+@layer reading {
+  .reading-choice.deck-ritual-host,
+  .three-choice.deck-ritual-host {
+    width: min(100%, 34rem);
+  }
+
+  .reading-stage.is-compact-deck,
+  .ask-stage.is-compact-deck,
+  .three-stage.is-compact-deck {
+    min-height: clamp(14.8rem, 35vh, 17.2rem);
+  }
+
+  .deck-ritual__viewport {
+    overflow: hidden;
+    contain: layout paint;
+    padding: .72rem .42rem .88rem;
+    touch-action: pan-y;
+    overscroll-behavior-x: none;
+  }
+
+  .deck-ritual__spread {
+    width: 100%;
+    min-width: 0;
+    padding: 0 .18rem;
+  }
+
+  .deck-ritual__row,
+  .deck-ritual--focus .deck-ritual__row,
+  .deck-ritual--full .deck-ritual__row {
+    --deck-card-width: clamp(3.02rem, 13.4vw, 3.55rem);
+    --deck-card-height: clamp(5.37rem, 23.82vw, 6.31rem);
+    --deck-step: calc((100% - var(--deck-card-width)) / (var(--cards-in-row) - 1));
+    width: calc(100% - .42rem);
+    margin-inline: auto;
+    padding-right: 0;
+  }
+
+  .deck-ritual__row + .deck-ritual__row,
+  .deck-ritual--full .deck-ritual__row + .deck-ritual__row {
+    margin-top: -4rem;
+  }
+
+  .deck-ritual__row:nth-child(2) { transform: translateX(.16rem); }
+  .deck-ritual__row:nth-child(3) { transform: translateX(-.08rem); }
+  .deck-ritual__row:nth-child(4) { transform: translateX(.12rem); }
+  .deck-ritual__row:nth-child(5) { transform: translateX(-.14rem); }
+  .deck-ritual__row:nth-child(6) { transform: translateX(.07rem); }
+
+  .deck-ritual__card {
+    border-radius: .42rem;
+  }
+
+  .deck-ritual__card:not(:disabled):hover,
+  .deck-ritual__card:not(:disabled):focus-visible {
+    transform: translateY(-.34rem) scale(1.018);
+  }
+
+  .deck-ritual__card.is-selected {
+    transform: translateY(-.58rem) scale(1.026);
+  }
+
+  .deck-ritual--full .deck-ritual__viewport,
+  .deck-ritual--focus .deck-ritual__viewport {
+    padding-top: .78rem;
+    padding-bottom: .94rem;
+  }
+
+  .three-selected-rail {
+    scroll-margin-top: calc(6.5rem + env(safe-area-inset-top));
+  }
+
+  @media (max-width: 380px) {
+    .reading-stage.is-compact-deck,
+    .ask-stage.is-compact-deck,
+    .three-stage.is-compact-deck {
+      min-height: 14.35rem;
+    }
+
+    .deck-ritual__row,
+    .deck-ritual--focus .deck-ritual__row,
+    .deck-ritual--full .deck-ritual__row {
+      --deck-card-width: clamp(2.82rem, 13.1vw, 3.18rem);
+      --deck-card-height: clamp(5.01rem, 23.29vw, 5.65rem);
+      width: calc(100% - .26rem);
+    }
+
+    .deck-ritual__row + .deck-ritual__row,
+    .deck-ritual--full .deck-ritual__row + .deck-ritual__row {
+      margin-top: -3.62rem;
+    }
+  }
+
+  @media (orientation: landscape) and (max-height: 540px) {
+    .reading-stage.is-compact-deck,
+    .ask-stage.is-compact-deck,
+    .three-stage.is-compact-deck {
+      min-height: 10.5rem;
+    }
+
+    .deck-ritual__row,
+    .deck-ritual--focus .deck-ritual__row,
+    .deck-ritual--full .deck-ritual__row {
+      --deck-card-width: 2.55rem;
+      --deck-card-height: 4.54rem;
+    }
+
+    .deck-ritual__row + .deck-ritual__row,
+    .deck-ritual--full .deck-ritual__row + .deck-ritual__row {
+      margin-top: -3.22rem;
+    }
+  }
+}

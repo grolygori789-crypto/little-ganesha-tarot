@@ -529,6 +529,7 @@
     deckRitual?.destroy();
     deckRitual = null;
     choice.replaceChildren();
+    stage.classList.remove('is-compact-deck');
     selected.hidden = true;
     selectedCard.classList.remove('is-revealed');
     cardFront.removeAttribute('src');
@@ -566,7 +567,7 @@
       cardBack: CONTENT.cardBack,
       count: candidateIds.length,
       selectionLimit: 1,
-      rowCount: 3,
+      rowCount: 6,
       variant: 'focus',
       groupLabel: t('choose'),
       ariaLabelBuilder: (index) => `${t('choose')} ${index + 1}`,
@@ -588,6 +589,7 @@
       deck.classList.remove('is-shuffling');
       deck.hidden = true;
       buildChoices(candidates);
+      stage.classList.add('is-compact-deck');
       choice.hidden = false;
       session.markChoosing();
       currentView = 'choosing';
@@ -610,6 +612,7 @@
     stage.hidden = false;
     deck.hidden = true;
     choice.hidden = true;
+    stage.classList.remove('is-compact-deck');
     selected.hidden = false;
     orientation.hidden = true;
     interpretation.hidden = true;
