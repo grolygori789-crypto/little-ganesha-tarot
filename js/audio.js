@@ -39,8 +39,10 @@
       this.started = false;
       this.crossfading = false;
       this.wasPlayingBeforeHide = false;
+      this.backgroundPaused = false;
       this.monitorTimer = null;
       this.fadeFrame = null;
+      this.crossfadeGeneration = 0;
 
       this.#loadInto(this.channels[0], this.currentIndex);
       this.#bindVisibility();
@@ -68,22 +70,64 @@
       this.dispatchEvent(new CustomEvent(type, { detail: { ...detail, state: this.getState() } }));
     }
 
-    #bindVisibility() {
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-          this.wasPlayingBeforeHide = this.isPlaying();
-          if (this.wasPlayingBeforeHide) this.pause({ fadeMs: 220, preserveIntent: true });
-        } else if (this.wasPlayingBeforeHide && this.enabled && this.started) {
-          this.resume({ fadeMs: 650 }).catch(() => {});
-          this.wasPlayingBeforeHide = false;
-        }
+    #pauseForBackground() {
+      if (this.backgroundPaused) return;
+
+      const anyChannelPlaying = this.channels.some((channel) => !channel.paused);
+      this.wasPlayingBeforeHide = Boolean(this.started && this.enabled && anyChannelPlaying);
+      this.backgroundPaused = true;
+
+      // Mobile browsers may suspend requestAnimationFrame immediately after the
+      // document becomes hidden. Do not fade here: pause synchronously first.
+      this.crossfadeGeneration += 1;
+      this.#cancelFade();
+      this.crossfading = false;
+
+      this.channels.forEach((channel, index) => {
+        if (!channel.paused) channel.pause();
+        channel.volume = index === this.activeChannel ? this.volume : 0;
       });
+
+      this.#emit('statechange', { lifecycle: 'background-paused' });
+    }
+
+    #resumeFromBackground() {
+      if (!this.backgroundPaused) return;
+
+      const shouldResume = this.wasPlayingBeforeHide && this.enabled && this.started;
+      this.backgroundPaused = false;
+      this.wasPlayingBeforeHide = false;
+
+      if (shouldResume) {
+        this.resume({ fadeMs: 650 }).catch(() => {});
+      } else {
+        this.#emit('statechange', { lifecycle: 'foreground-idle' });
+      }
+    }
+
+    #bindVisibility() {
+      const hide = () => this.#pauseForBackground();
+      const show = () => {
+        if (!document.hidden) this.#resumeFromBackground();
+      };
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) hide();
+        else show();
+      });
+
+      // Android Chrome/PWA and bfcache can surface different lifecycle events.
+      // These are intentionally idempotent through backgroundPaused.
+      window.addEventListener('pagehide', hide, { capture: true });
+      window.addEventListener('pageshow', show, { capture: true });
+      document.addEventListener('freeze', hide);
+      document.addEventListener('resume', show);
     }
 
     #startMonitor() {
       if (this.monitorTimer) return;
       this.monitorTimer = window.setInterval(() => {
-        if (!this.started || !this.enabled || this.crossfading) return;
+        if (!this.started || !this.enabled || this.crossfading || this.backgroundPaused) return;
         const active = this.channels[this.activeChannel];
         if (!Number.isFinite(active.duration) || active.duration <= 0 || active.paused) return;
 
@@ -156,7 +200,7 @@
     }
 
     async playIndex(index, { fadeIn = true, crossfade = false, durationMs = 900 } = {}) {
-      if (!this.unlocked || !this.enabled || !this.tracks[index]) return;
+      if (!this.unlocked || !this.enabled || !this.tracks[index] || this.backgroundPaused) return;
 
       const fromChannel = this.channels[this.activeChannel];
       const targetChannelIndex = crossfade ? 1 - this.activeChannel : this.activeChannel;
@@ -168,6 +212,7 @@
       this.#cancelFade();
 
       if (crossfade) {
+        const generation = ++this.crossfadeGeneration;
         this.#loadInto(targetChannel, index);
         targetChannel.currentTime = 0;
         targetChannel.volume = 0;
@@ -184,21 +229,31 @@
         const fromStart = fromChannel.volume;
         const toTarget = this.volume;
 
-        await new Promise((resolve) => {
+        const completed = await new Promise((resolve) => {
           const tick = (now) => {
+            if (generation !== this.crossfadeGeneration || this.backgroundPaused) {
+              resolve(false);
+              return;
+            }
+
             const t = clamp((now - start) / durationMs, 0, 1);
             const eased = t * t * (3 - (2 * t));
             fromChannel.volume = clamp(fromStart * (1 - eased), 0, 1);
             targetChannel.volume = clamp(toTarget * eased, 0, 1);
 
             if (t >= 1) {
-              resolve();
+              resolve(true);
               return;
             }
             requestAnimationFrame(tick);
           };
           requestAnimationFrame(tick);
         });
+
+        if (!completed || generation !== this.crossfadeGeneration || this.backgroundPaused) {
+          this.crossfading = false;
+          return;
+        }
 
         fromChannel.pause();
         fromChannel.currentTime = 0;
@@ -228,13 +283,13 @@
     }
 
     async next({ crossfade = false, durationMs = 950 } = {}) {
-      if (this.crossfading) return;
+      if (this.crossfading || this.backgroundPaused) return;
       const nextIndex = this.#chooseNextIndex();
       await this.playIndex(nextIndex, { fadeIn: !crossfade, crossfade, durationMs });
     }
 
     async previous() {
-      if (this.crossfading) return;
+      if (this.crossfading || this.backgroundPaused) return;
       const active = this.channels[this.activeChannel];
       if (active.currentTime > 4) {
         active.currentTime = 0;
@@ -256,7 +311,7 @@
     }
 
     async resume({ fadeMs = 500 } = {}) {
-      if (!this.unlocked || !this.enabled) return;
+      if (!this.unlocked || !this.enabled || this.backgroundPaused || document.hidden) return;
       const active = this.channels[this.activeChannel];
       active.volume = 0;
       try {
@@ -269,7 +324,7 @@
     }
 
     async togglePlay() {
-      if (!this.started) return;
+      if (!this.started || this.backgroundPaused) return;
       if (this.isPlaying()) await this.pause();
       else await this.resume();
     }
@@ -279,8 +334,9 @@
       localStorage.setItem(STORAGE.enabled, this.enabled ? 'on' : 'off');
 
       if (!this.enabled) {
+        this.wasPlayingBeforeHide = false;
         await this.pause({ fadeMs: 260 });
-      } else if (this.started && this.unlocked) {
+      } else if (this.started && this.unlocked && !this.backgroundPaused && !document.hidden) {
         await this.resume({ fadeMs: 500 });
       }
       this.#emit('statechange');
@@ -301,6 +357,7 @@
     }
 
     async stop({ resetTrack = false } = {}) {
+      this.crossfadeGeneration += 1;
       this.#cancelFade();
       for (const channel of this.channels) {
         channel.pause();
@@ -308,6 +365,8 @@
         channel.volume = 0;
       }
       this.crossfading = false;
+      this.backgroundPaused = false;
+      this.wasPlayingBeforeHide = false;
       this.started = false;
       this.#stopMonitor();
       if (resetTrack) {
@@ -320,7 +379,7 @@
 
     isPlaying() {
       const active = this.channels[this.activeChannel];
-      return this.started && this.enabled && !active.paused;
+      return this.started && this.enabled && !this.backgroundPaused && !active.paused;
     }
 
     getCurrentTrack() {
