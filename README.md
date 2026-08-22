@@ -1,49 +1,105 @@
-# Little Ganesha Tarot — V0.4.4 Ask Ganesha
+# Little Ganesha Tarot — V0.4.5 Contextual Ask Ganesha
 
 **Project:** Little Ganesha Tarot — The Golden Path  
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.4.4  
-**Master Plan in force:** V4.0  
-**Baseline repository HEAD:** `565bc738a0dcb9387dc220135a1999dcd93553f6` — `Upgrade Master Plan to V4.0`
+**Target runtime:** V0.4.5  
+**Master Plan in force:** V4.0 + newest approved current-room product decision  
+**Baseline repository HEAD:** `fd494bfbb4edf1271cd0060a7c5a066c4c35b310` — `Add Ask Ganesha reading V0.4.4`
 
 ## Release purpose
 
-V0.4.4 activates **Ask Ganesha / ถามพระพิฆเนศน้อย** as the second real tarot reading mode while preserving the existing Daily Guidance and shared Reading Engine.
+V0.4.5 upgrades **Ask Ganesha / ถามพระพิฆเนศน้อย** from a generic card-meaning response into a local contextual interpretation system that tries to answer the user's actual question more directly without AI, API calls, or a backend.
 
-The mode is intentionally premium in presentation but moderate in implementation complexity. It uses the existing one-card `ask` spread and adds isolated UI/content/persistence modules rather than rebuilding the Reading Engine.
+The Reading Engine remains protected and unchanged. The upgrade sits above the existing `ask` spread as isolated question-analysis and interpretation modules.
 
-## Ask Ganesha flow
+## Contextual Ask architecture
 
-`One question → local validation → question seal → shuffle → choose one card → reveal → reflective interpretation → ask another question`
+`Question Guard → Question Analyzer → optional Focus Resolver → existing Ask draw → Context Matrix → Answer Composer → contextual result`
 
-Core behavior:
+The Question Analyzer extracts:
 
-- one question per reading,
-- one card per question,
-- same normalized question + same local day restores the same card,
-- a new local day may draw a new card for the same question,
-- raw question text is not persisted for the repeat-question rule,
-- no AI/API/backend is required,
-- no deterministic yes/no verdict,
-- native English and Thai UI/content,
-- card-specific Little Ganesha reflection for all 78 cards.
+- Domain
+- Facet
+- Perspective
+- Question Type
+- Timeframe
+- Confidence
 
-## Local Question Content Guard
+Primary context families:
 
-The question field includes a lightweight local-only guard that checks for:
+1. Self-image & attractiveness
+2. Social perception
+3. Love & relationships
+4. Work & direction
+5. Money & resources
+6. Choice & action
+7. Outlook & opportunity
+8. Inner state & growth
+9. Spiritual & Unseen / ศรัทธา จิตวิญญาณ และสิ่งเร้นลับ
 
-- strong profanity/abusive wording,
-- explicit pornographic phrasing,
-- a narrow set of severe hateful slurs,
-- direct violent intent,
-- direct first-person crisis/self-harm wording,
-- obvious spam/gibberish,
-- multiple-question punctuation,
-- simple obfuscation of blocked terms.
+When two domains score too closely, the app asks the user which area should be the focus instead of pretending certainty.
 
-When a question is blocked, the app shows an inline red message and does not start the reading until the wording is changed.
+## Context Matrix strategy
 
-The guard is intentionally not presented as comprehensive AI moderation. It runs entirely on the device and is designed for the limited one-question Ask Ganesha input.
+The release reuses the already curated bilingual tarot content wherever it is strongest:
+
+- Work → Work & Goals lens
+- Money → Money & Resources lens
+- Love → Love & Relationships lens
+- Choice → Guidance for Today lens
+- Outlook → Opportunities & Watch-outs lens
+- Inner state → Inner State & Balance lens
+
+Self-image and social-perception readings use a dedicated card-presentation profile derived from each canonical card's archetype, suit/rank language, and keywords.
+
+The ninth family, **Spiritual & Unseen**, adds a dedicated curated bilingual context entry for every one of the 78 cards. It covers divine protection, spiritual path, signs/synchronicity, dreams, spiritual gifts, karma/destiny, past-life questions, and unseen-influence questions.
+
+This keeps the canonical tarot model intact while producing a 9-context interpretation surface for all 78 cards in English and Thai.
+
+## Answer Composer
+
+Ask results now prioritize:
+
+1. **Answer to Your Question / คำตอบต่อคำถามของคุณ**
+2. **Why This Card Points There / ทำไมไพ่ใบนี้จึงสะท้อนแบบนั้น**
+3. Little Ganesha's Reflection
+4. Contextual reflection question
+
+The generic upright meaning is no longer the primary answer block in Ask Ganesha.
+
+Question type changes how the answer is framed. Evaluation, perception, feelings, decision, guidance, outlook, cause, and timing questions are not all answered with the same sentence structure.
+
+## Safety and uncertainty boundaries
+
+The existing local Question Content Guard remains in place.
+
+V0.4.5 also adds local reframe boundaries for questions that ask tarot to determine:
+
+- medical diagnosis/pregnancy/recovery,
+- court verdict/legal outcome,
+- lottery/gambling result,
+- specific investment price/guaranteed return,
+- time of death.
+
+The app asks the user to reframe those questions toward reflection, preparation, choices, or care rather than presenting tarot as factual diagnosis or prediction.
+
+Questions asking about another person's feelings are answered with explicit uncertainty rather than claiming access to private thoughts.
+
+### Spiritual & Unseen boundary
+
+Spiritual questions are **accepted rather than blocked**, but the Answer Composer distinguishes symbolic tarot reflection from literal verification. The app can explore the symbolism of sacred protection, spiritual paths, dreams, synchronicities, intuitive sensitivity, karma/destiny, past-life themes, and unseen influences without claiming that tarot has proved a deity, spirit, curse, supernatural attack, psychic power, past-life identity, or fixed cosmic verdict.
+
+For example, a question such as “Which sacred being protects me?” may receive a card-specific spiritual archetype and reflective interpretation, but the app will not invent a named protector as a verified fact. A question such as “Is an evil spirit following me?” is reframed through the card's symbolism while explicitly stating that fear or ambiguity is not evidence of a supernatural threat.
+
+## Same-question behavior
+
+The existing rule remains:
+
+**same normalized question + same local day = same card**
+
+V0.4.5 additionally stores the resolved context key with the local fingerprint/card record. Raw question text is still not persisted for repeat-question matching.
+
+Existing V0.4.4 same-day records without context metadata remain readable and are enriched non-destructively when reused.
 
 ## Protected behavior
 
@@ -55,22 +111,37 @@ This release does **not** modify:
 - Daily Guidance content/lenses,
 - Daily Save/Share behavior,
 - audio lifecycle,
-- PWA strategy,
+- PWA strategy beyond routine build/cache version coherence,
 - profile behavior,
 - canonical tarot/card assets.
 
-Runtime version/cache markers advance coherently to `0.4.4` because user-facing runtime behavior changes.
-
 ## QA status before upload
 
-Static/structural and unit validation are completed in the development environment. Real-device Android/iOS validation remains required after deployment before V0.4.4 is promoted to the canonical runtime baseline.
+Static/unit/package validation covers:
+
+- 78-card Reading Engine regression,
+- Question Guard,
+- Question Analyzer intent/facet/type/perspective detection,
+- ambiguity resolver contract,
+- high-stakes reframe boundaries,
+- contextual interpretation across 78 cards × 9 contexts × 2 languages,
+- dedicated 78-card bilingual Spiritual & Unseen context matrix,
+- spiritual epistemic boundaries that preserve symbolic depth without presenting unverifiable supernatural claims as facts,
+- same-question/card persistence and V0.4.4 record compatibility,
+- TH/EN copy,
+- script dependency order,
+- runtime version coherence,
+- repository structure,
+- checksum/archive re-extraction.
+
+Real-device validation of V0.4.5 remains required after deployment.
 
 See:
 
-- `docs/qa/QA_V0_4_4.md`
-- `docs/releases/RELEASE_NOTES_V0_4_4.md`
+- `docs/qa/QA_V0_4_5.md`
+- `docs/releases/RELEASE_NOTES_V0_4_5.md`
 - `docs/releases/PATCH_UPLOAD_NOTES.md`
 
 ## Canonical promotion note
 
-Master Plan V4.0 correctly continues to identify V0.4.3 as the **current canonical runtime** until V0.4.4 is pushed and passes the appropriate real-device gate. After successful promotion, the Master Plan/current-status documentation should be advanced in a documentation-only governance update rather than pre-declaring an untested candidate as canonical.
+V0.4.4 is the verified deployed GitHub baseline used to build this patch. Master Plan V4.0 still contains the earlier canonical-runtime status and should not be silently rewritten inside this runtime package. After V0.4.5 is pushed and passes the appropriate real-device gate, governance/current-status documentation should be updated deliberately.

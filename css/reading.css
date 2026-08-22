@@ -974,6 +974,84 @@
     cursor: default;
   }
 
+  .ask-focus-card {
+    position: relative;
+    width: min(100%, 30rem);
+    margin: .8rem auto .35rem;
+    padding: 1.2rem 1rem 1.05rem;
+    border: 1px solid rgba(247,217,147,.16);
+    border-radius: 1.08rem;
+    background:
+      radial-gradient(circle at 50% -20%, rgba(229,189,112,.09), transparent 45%),
+      linear-gradient(180deg, rgba(255,255,255,.026), rgba(255,255,255,.012));
+    box-shadow: 0 18px 38px rgba(0,0,0,.15);
+    text-align: center;
+  }
+
+  .ask-focus-kicker,
+  .ask-reading-focus > span {
+    display: block;
+    font-family: "Cormorant Garamond", "Noto Serif Thai", Georgia, serif;
+    font-size: .6rem;
+    font-weight: 600;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: rgba(229,189,112,.7);
+  }
+
+  html[lang="th"] .ask-focus-kicker,
+  html[lang="th"] .ask-reading-focus > span {
+    font-family: "Noto Serif Thai", serif;
+    letter-spacing: .04em;
+    text-transform: none;
+  }
+
+  .ask-focus-card h3 {
+    margin: .32rem 0 0;
+    font-family: "Noto Serif Thai", "Cormorant Garamond", serif;
+    font-size: clamp(1.02rem, 4.1vw, 1.22rem);
+    font-weight: 500;
+    color: rgba(255,248,233,.91);
+  }
+
+  .ask-focus-card p {
+    margin: .45rem auto 0;
+    max-width: 25rem;
+    font-family: "Noto Serif Thai", "Cormorant Garamond", serif;
+    font-size: .72rem;
+    line-height: 1.62;
+    color: rgba(255,248,233,.5);
+  }
+
+  .ask-focus-options {
+    display: grid;
+    gap: .58rem;
+    margin-top: .88rem;
+  }
+
+  .ask-focus-option {
+    min-height: 3.15rem;
+    padding: .7rem .85rem;
+    border: 1px solid rgba(247,217,147,.18);
+    border-radius: .82rem;
+    background: rgba(4,24,25,.38);
+    color: rgba(255,248,233,.88);
+    font-family: "Noto Serif Thai", "Cormorant Garamond", serif;
+    font-size: .84rem;
+    line-height: 1.45;
+    cursor: pointer;
+    transition: border-color .18s ease, background .18s ease, transform .18s ease;
+  }
+
+  .ask-focus-option:hover,
+  .ask-focus-option:focus-visible {
+    border-color: rgba(247,217,147,.42);
+    background: rgba(229,189,112,.07);
+    outline: none;
+  }
+
+  .ask-focus-option:active { transform: scale(.985); }
+
   .ask-question-seal {
     position: relative;
     width: min(100%, 30rem);
@@ -1069,6 +1147,42 @@
     color: rgba(255,248,233,.77);
   }
 
+  .ask-reading-focus {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: .7rem;
+    margin-top: .95rem;
+    padding: .62rem .72rem;
+    border: 1px solid rgba(247,217,147,.1);
+    border-radius: .72rem;
+    background: rgba(229,189,112,.022);
+  }
+
+  .ask-reading-focus strong {
+    font-family: "Noto Serif Thai", "Cormorant Garamond", serif;
+    font-size: .72rem;
+    font-weight: 500;
+    color: rgba(255,248,233,.72);
+    text-align: right;
+  }
+
+  .ask-reading-block--direct {
+    margin-top: .92rem;
+    padding: 1rem .92rem .95rem;
+    border: 1px solid rgba(247,217,147,.18);
+    border-radius: .94rem;
+    background:
+      radial-gradient(circle at 12% 0%, rgba(229,189,112,.08), transparent 44%),
+      rgba(229,189,112,.026);
+  }
+
+  .ask-reading-block--direct p {
+    color: rgba(255,248,233,.9);
+    font-size: clamp(.94rem, 3.8vw, 1.06rem);
+    line-height: 1.82;
+  }
+
   .ask-reading-block--ganesha {
     position: relative;
     padding: 1.05rem .92rem .92rem;
@@ -1111,7 +1225,8 @@
 
 @layer utilities {
   html[data-motion="reduced"] .ask-question-seal,
-  html[data-motion="reduced"] .ask-question-field {
+  html[data-motion="reduced"] .ask-question-field,
+  html[data-motion="reduced"] .ask-focus-option {
     transition: none !important;
   }
 }

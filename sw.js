@@ -1,6 +1,6 @@
 'use strict';
 
-const BUILD = '0.4.4';
+const BUILD = '0.4.5';
 const CACHE_PREFIX = 'little-ganesha-tarot-';
 const SHELL_CACHE = `${CACHE_PREFIX}shell-${BUILD}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${BUILD}`;
@@ -11,19 +11,21 @@ const url = (path) => new URL(path, scopeURL).href;
 const APP_SHELL = [
   url('./'),
   url('index.html'),
-  url('manifest.webmanifest?v=0.4.4'),
-  url('css/app.css?v=0.4.4'),
-  url('css/reading.css?v=0.4.4'),
-  url('js/pwa.js?v=0.4.4'),
-  url('js/audio.js?v=0.4.4'),
-  url('js/app.js?v=0.4.4'),
-  url('js/reading-content.js?v=0.4.4'),
-  url('js/reading-engine.js?v=0.4.4'),
-  url('js/question-guard.js?v=0.4.4'),
-  url('js/ask-content.js?v=0.4.4'),
-  url('js/ask-storage.js?v=0.4.4'),
-  url('js/reading-ui.js?v=0.4.4'),
-  url('js/ask-ui.js?v=0.4.4'),
+  url('manifest.webmanifest?v=0.4.5'),
+  url('css/app.css?v=0.4.5'),
+  url('css/reading.css?v=0.4.5'),
+  url('js/pwa.js?v=0.4.5'),
+  url('js/audio.js?v=0.4.5'),
+  url('js/app.js?v=0.4.5'),
+  url('js/reading-content.js?v=0.4.5'),
+  url('js/reading-engine.js?v=0.4.5'),
+  url('js/question-guard.js?v=0.4.5'),
+  url('js/ask-content.js?v=0.4.5'),
+  url('js/question-analyzer.js?v=0.4.5'),
+  url('js/ask-context.js?v=0.4.5'),
+  url('js/ask-storage.js?v=0.4.5'),
+  url('js/reading-ui.js?v=0.4.5'),
+  url('js/ask-ui.js?v=0.4.5'),
   url('data/AUDIO_MANIFEST_V1.json'),
   url('assets/ui/title-hero.png'),
   url('assets/ui/card-back.png'),

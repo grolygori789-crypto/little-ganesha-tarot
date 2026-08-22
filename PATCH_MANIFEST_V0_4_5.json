@@ -1,0 +1,264 @@
+{
+  "project": "Little Ganesha Tarot — The Golden Path",
+  "studio": "Benedict Interactive",
+  "target_runtime_build": "0.4.5",
+  "baseline_runtime_build": "0.4.4",
+  "master_plan_in_force": "V4.0 + newest approved current-room product decision",
+  "release_type": "Contextual Ask Ganesha — 9-context local Question Analyzer + Spiritual & Unseen matrix + Answer Composer",
+  "risk_classification": "MEDIUM",
+  "risk_reason": "New isolated question-analysis/context-composition modules, including a dedicated Spiritual & Unseen context family and epistemic-boundary logic, plus routine build/service-worker cache version update. Shared Reading Engine and Daily Guidance implementation remain unchanged.",
+  "baseline_repository": "grolygori789-crypto/little-ganesha-tarot",
+  "baseline_branch": "main",
+  "baseline_repository_head": "fd494bfbb4edf1271cd0060a7c5a066c4c35b310",
+  "baseline_repository_head_message": "Add Ask Ganesha reading V0.4.4",
+  "release_status": "VERIFIED FOR UPLOAD — QA-S/unit/package/version/language/structure/checksum/archive re-extraction PASS; deployed V0.4.5 real-device QA pending.",
+  "feature_summary": {
+    "question_analyzer": "domain + facet + perspective + question type + timeframe + confidence",
+    "context_families": 9,
+    "ambiguity_resolver": "asks user to choose between two close context candidates instead of guessing",
+    "answer_composer": "direct answer → tarot rationale → Little Ganesha reflection → contextual reflection",
+    "same_question_same_day": "same normalized question restores same card; resolved context is persisted when available",
+    "raw_question_persistence": "none in repeat-question storage",
+    "question_guard": "V0.4.4 local-only guard preserved",
+    "factual_boundaries": [
+      "medical diagnosis",
+      "legal verdict",
+      "lottery/gambling outcome",
+      "specific investment price/guaranteed return",
+      "time of death"
+    ],
+    "question_analyzer_version": "question-analyzer-v2",
+    "ask_context_version": "ask-context-v2",
+    "ask_content_version": "ask-ganesha-v1 unchanged",
+    "reading_engine_version": "1.0.2 unchanged",
+    "daily_content_version": "daily-guidance-v3 unchanged",
+    "languages": [
+      "en",
+      "th"
+    ],
+    "backend_ai_api": "none",
+    "spiritual_unseen": "dedicated 78-card bilingual context matrix covering divine protection, spiritual path, signs/synchronicity, dreams, spiritual gifts, karma/destiny, past-life themes, and unseen influence",
+    "spiritual_epistemic_boundary": "symbolic-only by default; unseen-threat questions explicitly avoid treating fear/ambiguity as evidence of spirits, curses, black magic, or attack"
+  },
+  "protected_reincluded_unchanged": [
+    "js/reading-content.js",
+    "js/reading-engine.js",
+    "js/question-guard.js",
+    "js/ask-content.js",
+    "js/reading-ui.js",
+    "docs/governance/REPOSITORY_STRUCTURE_POLICY_V1.md",
+    "docs/tests/test-ask-content.js",
+    "docs/tests/test-global-copy.js",
+    "docs/tests/test-question-guard.js",
+    "docs/tests/test-reading-engine.js"
+  ],
+  "protected_runtime_not_modified": [
+    "js/reading-engine.js",
+    "js/reading-content.js",
+    "js/reading-ui.js",
+    "Daily Guidance Save/Share",
+    "canonical card assets",
+    "audio lifecycle"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "action": "replace",
+      "size": 6642,
+      "sha256": "3b82b803d038c0339f39ab87b4bc9704829c26c251161ac233cbd308d9de1d81"
+    },
+    {
+      "path": "index.html",
+      "action": "replace",
+      "size": 18891,
+      "sha256": "9240085b0ed0409cf02eb462a2e410532982004f3a912eb02361e4b460d6649c"
+    },
+    {
+      "path": "sw.js",
+      "action": "replace",
+      "size": 4337,
+      "sha256": "65307f06d8b193a8c88868be64071faa070750125069644e31aa4ec966d2b411"
+    },
+    {
+      "path": "css/reading.css",
+      "action": "replace",
+      "size": 33731,
+      "sha256": "26dcb95c5b2cf2d438f7b34333985ce40839c2ec97557279a9ef8caf7bd0f1e6"
+    },
+    {
+      "path": "js/app.js",
+      "action": "replace",
+      "size": 27311,
+      "sha256": "720e7bd73ebe4c52380027467602155d991c470d0ec7ad4aeb030de06f6fbfbb"
+    },
+    {
+      "path": "js/reading-content.js",
+      "action": "replace",
+      "size": 314407,
+      "sha256": "a865421e87429eed8fa8a411ec376b8644c12298612d033c70222a1632efffe3",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/reading-engine.js",
+      "action": "replace",
+      "size": 11641,
+      "sha256": "63ea7607f31d4df616c2d083cbeb1aefd33e8e9cd13fdf6ee1d47ad2b1c5f966",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/question-guard.js",
+      "action": "replace",
+      "size": 5646,
+      "sha256": "bec840ef54ed876733f32adfe4ba18ab297e462da1cbef7fd31ba41720c9af0a",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/ask-content.js",
+      "action": "replace",
+      "size": 44422,
+      "sha256": "1df5572fe3966734c494beda5759c4b083a78ddb94b32c8ed11c8057fa8b502f",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/question-analyzer.js",
+      "action": "add",
+      "size": 23942,
+      "sha256": "18e41c098617d7172dc527a33ab5c18178589a46de2957dc19f4c21521caa9d1"
+    },
+    {
+      "path": "js/ask-context.js",
+      "action": "add",
+      "size": 88594,
+      "sha256": "af581777d4058ad89978cfe0e7b8c2689ac8118288ea8c57336f3722c7424b6e"
+    },
+    {
+      "path": "js/ask-storage.js",
+      "action": "replace",
+      "size": 3303,
+      "sha256": "a287c7bb63045724c7b108bae998792525246b3bfb8dcf48689641359e52ca27"
+    },
+    {
+      "path": "js/reading-ui.js",
+      "action": "replace",
+      "size": 38442,
+      "sha256": "adf95ff5ede7a2ab7de23d78d93fe2a1eb80fb95445ff578c3b501567811aaab",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/ask-ui.js",
+      "action": "replace",
+      "size": 36274,
+      "sha256": "c60eb5a71b597087ab06d9525dd3f413560c39cf737b565d816c6d2672754e42"
+    },
+    {
+      "path": "docs/governance/REPOSITORY_STRUCTURE_POLICY_V1.md",
+      "action": "replace",
+      "size": 4928,
+      "sha256": "8cf0bf3901d9f4285111ad0373a5fc0f442115e6aa7098acafee284f457b94af",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/releases/PATCH_UPLOAD_NOTES.md",
+      "action": "replace",
+      "size": 1643,
+      "sha256": "5e96d0471358da05d1dcf89a134e69f2bd208f9d6bd926280cdcb802276b64f2"
+    },
+    {
+      "path": "docs/releases/RELEASE_NOTES_V0_4_5.md",
+      "action": "add",
+      "size": 3939,
+      "sha256": "e59cadad821f459ed0623e6b694eff2bff6745a4af9bfb6927947dced39c0545"
+    },
+    {
+      "path": "docs/qa/QA_V0_4_5.md",
+      "action": "add",
+      "size": 3143,
+      "sha256": "5ec65de0b76947dcee978d01e7564cca1179f7c6b395a46fc6a0e786126fffcf"
+    },
+    {
+      "path": "docs/tests/test-ask-content.js",
+      "action": "replace",
+      "size": 1515,
+      "sha256": "ca0676c9fd16d019d717875839e28cf163dea78e4ab1607f00524ebfea39ffd3",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/tests/test-ask-context.js",
+      "action": "add",
+      "size": 5550,
+      "sha256": "dba002a67d717b32e128a17bf10a7c85dde5003fc264b12d436179ea6ef2ae72"
+    },
+    {
+      "path": "docs/tests/test-ask-storage.js",
+      "action": "replace",
+      "size": 3842,
+      "sha256": "27f8ebae4704b41ea386d5e228f10b4f2361842d88930dc46885142f5fc7e94c"
+    },
+    {
+      "path": "docs/tests/test-global-copy.js",
+      "action": "replace",
+      "size": 4588,
+      "sha256": "e2e91c13093863309645d3933406ca4b9d94fbfb700daaec58a68a115a9492ad",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/tests/test-package.js",
+      "action": "replace",
+      "size": 7611,
+      "sha256": "65db2512d195b013146487c7d0b0e24bb26e988d753b8b269d5b5a09099cb615"
+    },
+    {
+      "path": "docs/tests/test-question-analyzer.js",
+      "action": "add",
+      "size": 6076,
+      "sha256": "0a7c792e567127fc11263092e93cb53d61dabbcfa1e1ecd7822450b7b9d0897b"
+    },
+    {
+      "path": "docs/tests/test-question-guard.js",
+      "action": "replace",
+      "size": 2550,
+      "sha256": "5d5b0038bb769475120200292b745d019a6a9ab99f9b2b59004a338f4942a4ce",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/tests/test-reading-engine.js",
+      "action": "replace",
+      "size": 12938,
+      "sha256": "90fb72cad85d00b1636d6475b51b016f37cb65acd20804e21291a3464cbec2b8",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/tests/test-repo-structure.js",
+      "action": "replace",
+      "size": 3137,
+      "sha256": "74e239e60774a4250f66b6a18d6904646bd5edd9fe7b744880b1d348ab7b8fa6"
+    },
+    {
+      "path": "docs/tests/test-version-coherence.js",
+      "action": "replace",
+      "size": 2703,
+      "sha256": "48482f524b808dee69398d55941bace0283bd6eca18f3cfbd78b4a3b8d4c7881"
+    }
+  ],
+  "qa": {
+    "js_syntax": "PASS",
+    "reading_engine_regression": "PASS",
+    "question_guard": "PASS",
+    "question_analyzer": "PASS",
+    "appearance_public_perception_regression": "PASS",
+    "ambiguity_resolver_contract": "PASS",
+    "same_question_context_persistence": "PASS",
+    "v0_4_4_record_compatibility": "PASS",
+    "global_ui_copy_localization": "PASS",
+    "package_wiring": "PASS",
+    "version_coherence": "PASS",
+    "repository_structure": "PASS",
+    "archive_reextract": "PASS",
+    "context_78x9x2": "PASS",
+    "spiritual_matrix_78x2": "PASS",
+    "spiritual_question_classification": "PASS",
+    "spiritual_epistemic_boundaries": "PASS",
+    "unseen_threat_regression": "PASS",
+    "deployed_real_device": "PENDING"
+  }
+}

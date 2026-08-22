@@ -12,44 +12,50 @@ const askUi = read('js/ask-ui.js');
 const guard = read('js/question-guard.js');
 const askContent = read('js/ask-content.js');
 const askStorage = read('js/ask-storage.js');
+const analyzer = read('js/question-analyzer.js');
+const askContext = read('js/ask-context.js');
 const engine = read('js/reading-engine.js');
 const content = read('js/reading-content.js');
 const css = read('css/reading.css');
 
 const liveMarkers = [
-  'meta name="application-version" content="0.4.4"',
-  'body data-build="0.4.4"',
-  'manifest.webmanifest?v=0.4.4',
-  'css/app.css?v=0.4.4',
-  'css/reading.css?v=0.4.4',
-  'js/pwa.js?v=0.4.4',
-  'js/audio.js?v=0.4.4',
-  'js/app.js?v=0.4.4',
-  'js/reading-content.js?v=0.4.4',
-  'js/reading-engine.js?v=0.4.4',
-  'js/question-guard.js?v=0.4.4',
-  'js/ask-content.js?v=0.4.4',
-  'js/ask-storage.js?v=0.4.4',
-  'js/reading-ui.js?v=0.4.4',
-  'js/ask-ui.js?v=0.4.4',
-  'BUILD 0.4.4'
+  'meta name="application-version" content="0.4.5"',
+  'body data-build="0.4.5"',
+  'manifest.webmanifest?v=0.4.5',
+  'css/app.css?v=0.4.5',
+  'css/reading.css?v=0.4.5',
+  'js/pwa.js?v=0.4.5',
+  'js/audio.js?v=0.4.5',
+  'js/app.js?v=0.4.5',
+  'js/reading-content.js?v=0.4.5',
+  'js/reading-engine.js?v=0.4.5',
+  'js/question-guard.js?v=0.4.5',
+  'js/ask-content.js?v=0.4.5',
+  'js/question-analyzer.js?v=0.4.5',
+  'js/ask-context.js?v=0.4.5',
+  'js/ask-storage.js?v=0.4.5',
+  'js/reading-ui.js?v=0.4.5',
+  'js/ask-ui.js?v=0.4.5',
+  'BUILD 0.4.5'
 ];
 for (const marker of liveMarkers) assert(index.includes(marker), `Missing index build marker/resource: ${marker}`);
 assert(!index.includes('0.4.3'), 'Stale 0.4.3 marker remains in live index.html.');
-assert(app.includes("window.LGT_BUILD = '0.4.4'"), 'app.js build marker mismatch.');
+assert(app.includes("window.LGT_BUILD = '0.4.5'"), 'app.js build marker mismatch.');
 assert(!app.includes("window.LGT_BUILD = '0.4.3'"), 'Stale app.js runtime marker remains.');
-assert(sw.includes("const BUILD = '0.4.4';"), 'Service Worker build marker mismatch.');
+assert(sw.includes("const BUILD = '0.4.5';"), 'Service Worker build marker mismatch.');
 assert(!sw.includes("const BUILD = '0.4.3';"), 'Stale Service Worker build marker remains.');
 
 for (const path of [
-  'css/reading.css?v=0.4.4',
-  'js/reading-content.js?v=0.4.4',
-  'js/reading-engine.js?v=0.4.4',
-  'js/question-guard.js?v=0.4.4',
-  'js/ask-content.js?v=0.4.4',
-  'js/ask-storage.js?v=0.4.4',
-  'js/reading-ui.js?v=0.4.4',
-  'js/ask-ui.js?v=0.4.4',
+  'css/reading.css?v=0.4.5',
+  'js/reading-content.js?v=0.4.5',
+  'js/reading-engine.js?v=0.4.5',
+  'js/question-guard.js?v=0.4.5',
+  'js/ask-content.js?v=0.4.5',
+  'js/question-analyzer.js?v=0.4.5',
+  'js/ask-context.js?v=0.4.5',
+  'js/ask-storage.js?v=0.4.5',
+  'js/reading-ui.js?v=0.4.5',
+  'js/ask-ui.js?v=0.4.5',
   'assets/ui/card-back.png'
 ]) assert(sw.includes(path), `Service Worker shell missing ${path}.`);
 assert(!sw.includes('assets/cards/00_THE_FOOL.png'), 'Full deck must not be pre-cached in the application shell.');
@@ -63,7 +69,7 @@ assert(css.includes('body.is-reading-open #miniPlayer'), 'Protected reading-cont
 assert(content.includes('"dailyLenses"') && content.includes("const CONTENT_VERSION = 'daily-guidance-v3'"), 'Protected Daily content model missing.');
 assert(engine.includes("window.LGTReadingEngineVersion = '1.0.2'"), 'Reading Engine internal version unexpectedly changed.');
 
-// Ask Ganesha V0.4.4 architecture.
+// Ask Ganesha V0.4.5 contextual architecture.
 for (const token of [
   "document.querySelectorAll('[data-feature=\"ask\"]')",
   'event.stopImmediatePropagation()',
@@ -82,6 +88,16 @@ assert(!askStorage.includes('question:'), 'Ask storage must not persist raw ques
 assert(askContent.includes("const VERSION = 'ask-ganesha-v1'"), 'Ask content version missing.');
 assert(css.includes('.ask-question-error') && css.includes('color: #ff8e8e;'), 'Inline red Question Guard warning style missing.');
 assert(css.includes('.ask-question-seal') && css.includes('.ask-reading-block--ganesha'), 'Premium Ask Ganesha presentation styles missing.');
+assert(analyzer.includes("const VERSION = 'question-analyzer-v2'"), 'Question Analyzer version missing.');
+assert(analyzer.includes('ambiguous') && analyzer.includes('candidates'), 'Question Analyzer ambiguity resolver contract missing.');
+assert(askContext.includes("const VERSION = 'ask-context-v2'"), 'Ask Context version missing.');
+assert(analyzer.includes("'spiritual_unseen'"), 'Spiritual & Unseen domain missing from analyzer.');
+assert(askContext.includes('SPIRITUAL_CONTEXT'), 'Curated spiritual context matrix missing.');
+assert(askContext.includes('DOMAIN_LENS') && askContext.includes('directFromContext'), 'Context Matrix / Answer Composer missing.');
+assert(askUi.includes('ANALYZER.analyze(activeQuestion)'), 'Ask UI does not analyze questions.');
+assert(askUi.includes('showFocusResolver') && askUi.includes('resolveFocus'), 'Ambiguity focus resolver missing.');
+assert(askUi.includes('ASK_CONTEXT.interpret'), 'Ask UI does not use contextual interpretation.');
+assert(css.includes('.ask-focus-card') && css.includes('.ask-reading-block--direct'), 'Contextual Ask premium UI styles missing.');
 
 // CSS structural sanity.
 const strippedCss = css.replace(/\/\*[\s\S]*?\*\//g,'').replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g,'');
@@ -107,15 +123,17 @@ assert(askIds.every((id) => !dailyIds.includes(id)), 'Ask template ID collides w
 
 // Script dependency order.
 const scriptOrder = [
-  'js/app.js?v=0.4.4',
-  'js/reading-content.js?v=0.4.4',
-  'js/reading-engine.js?v=0.4.4',
-  'js/question-guard.js?v=0.4.4',
-  'js/ask-content.js?v=0.4.4',
-  'js/ask-storage.js?v=0.4.4',
-  'js/reading-ui.js?v=0.4.4',
-  'js/ask-ui.js?v=0.4.4'
+  'js/app.js?v=0.4.5',
+  'js/reading-content.js?v=0.4.5',
+  'js/reading-engine.js?v=0.4.5',
+  'js/question-guard.js?v=0.4.5',
+  'js/ask-content.js?v=0.4.5',
+  'js/question-analyzer.js?v=0.4.5',
+  'js/ask-context.js?v=0.4.5',
+  'js/ask-storage.js?v=0.4.5',
+  'js/reading-ui.js?v=0.4.5',
+  'js/ask-ui.js?v=0.4.5'
 ].map((token) => index.indexOf(token));
 assert(scriptOrder.every((value) => value >= 0) && scriptOrder.every((value, i) => i === 0 || value > scriptOrder[i - 1]), 'Reading/Ask script dependency order is invalid.');
 
-console.log('V0.4.4 package/version/Ask Ganesha checks: PASS');
+console.log('V0.4.5 package/version/Ask Ganesha checks: PASS');

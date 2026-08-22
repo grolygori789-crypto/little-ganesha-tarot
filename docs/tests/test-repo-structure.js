@@ -32,13 +32,13 @@ for (const file of topFiles) {
 }
 
 assert(topFiles.includes('README.md'), 'README.md must remain at repository root.');
-assert(topFiles.includes('PATCH_MANIFEST_V0_4_4.json'), 'Current V0.4.4 patch manifest must be at repository root.');
+assert(topFiles.includes('PATCH_MANIFEST_V0_4_5.json'), 'Current V0.4.5 patch manifest must be at repository root.');
 assert(topFiles.includes('index.html'), 'index.html missing from upload package.');
 assert(topFiles.includes('sw.js'), 'sw.js missing from upload package.');
 
-// V0.4.3 manifest may remain temporarily as immediate rollback provenance in an overlay workflow.
+// Older patch manifests may remain in the repository as historical rollback provenance in an overlay workflow.
 const patchManifests = topFiles.filter((name) => /^PATCH_MANIFEST_V0_4_\d+\.json$/i.test(name));
-assert(patchManifests.includes('PATCH_MANIFEST_V0_4_4.json'), 'V0.4.4 patch manifest not found among root manifests.');
+assert(patchManifests.includes('PATCH_MANIFEST_V0_4_5.json'), 'V0.4.5 patch manifest not found among root manifests.');
 
 const tests = fs.readdirSync(path.join(root, 'docs', 'tests'));
 for (const required of [
@@ -49,13 +49,15 @@ for (const required of [
   'test-version-coherence.js',
   'test-question-guard.js',
   'test-ask-content.js',
-  'test-ask-storage.js'
+  'test-ask-storage.js',
+  'test-question-analyzer.js',
+  'test-ask-context.js'
 ]) assert(tests.includes(required), `Validation script missing from docs/tests/: ${required}`);
 
 assert(fs.existsSync(path.join(root, 'docs', 'governance', 'REPOSITORY_STRUCTURE_POLICY_V1.md')), 'Canonical repository structure policy missing.');
-assert(fs.existsSync(path.join(root, 'docs', 'qa', 'QA_V0_4_4.md')), 'Current QA report missing from docs/qa/.');
-assert(fs.existsSync(path.join(root, 'docs', 'releases', 'RELEASE_NOTES_V0_4_4.md')), 'Current release notes missing from docs/releases/.');
+assert(fs.existsSync(path.join(root, 'docs', 'qa', 'QA_V0_4_5.md')), 'Current QA report missing from docs/qa/.');
+assert(fs.existsSync(path.join(root, 'docs', 'releases', 'RELEASE_NOTES_V0_4_5.md')), 'Current release notes missing from docs/releases/.');
 assert(fs.existsSync(path.join(root, 'docs', 'releases', 'PATCH_UPLOAD_NOTES.md')), 'Current upload notes missing from docs/releases/.');
-assert(fs.existsSync(path.join(root, 'docs', 'checksums', 'CHECKSUMS_V0_4_4.sha256')), 'Current checksums missing from docs/checksums/.');
+assert(fs.existsSync(path.join(root, 'docs', 'checksums', 'CHECKSUMS_V0_4_5.sha256')), 'Current checksums missing from docs/checksums/.');
 
 console.log('Repository structure policy checks: PASS');

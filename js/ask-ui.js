@@ -6,9 +6,11 @@
   const GUARD = window.LGTQuestionGuard;
   const ASK_CONTENT = window.LGTAskContent;
   const ASK_STORAGE = window.LGTAskStorage;
+  const ANALYZER = window.LGTQuestionAnalyzer;
+  const ASK_CONTEXT = window.LGTAskContext;
 
-  if (!ENGINE || !CONTENT || !GUARD || !ASK_CONTENT || !ASK_STORAGE) {
-    throw new Error('Ask Ganesha requires Reading Engine, tarot content, Question Guard, Ask content, and Ask storage.');
+  if (!ENGINE || !CONTENT || !GUARD || !ASK_CONTENT || !ASK_STORAGE || !ANALYZER || !ASK_CONTEXT) {
+    throw new Error('Ask Ganesha requires Reading Engine, tarot content, Question Guard, Ask content, Ask storage, Question Analyzer, and Ask Context.');
   }
 
   const ORIENTATION = 'upright';
@@ -36,7 +38,11 @@
       loading: 'Preparing your reading',
       upright: 'UPRIGHT',
       questionRecap: 'YOUR QUESTION',
-      cardReflects: 'WHAT THIS CARD REFLECTS',
+      focusPrompt: 'What should the cards focus on?',
+      focusHint: 'Your question touches more than one area. Choose the one that matters most for this reading.',
+      focusLabel: 'READING FOCUS',
+      directAnswer: 'ANSWER TO YOUR QUESTION',
+      whyThisCard: 'WHY THIS CARD POINTS THERE',
       ganeshaReflection: "LITTLE GANESHA'S REFLECTION",
       carryForward: 'A QUESTION TO CARRY FORWARD',
       keywords: 'KEYWORDS',
@@ -49,7 +55,12 @@
       multipleQuestions: 'Please focus on one question at a time.',
       spam: 'Please write a clear question using ordinary words.',
       inappropriate: 'Please rephrase your question using respectful and appropriate language before continuing.',
-      safetyCrisis: 'This sounds like an immediate safety concern rather than a tarot question. Please reach out to someone you trust or local emergency support if you may be in danger.'
+      safetyCrisis: 'This sounds like an immediate safety concern rather than a tarot question. Please reach out to someone you trust or local emergency support if you may be in danger.',
+      boundaryMedical: 'Tarot cannot diagnose illness, pregnancy, or recovery. Please reframe this as a question about how to care for yourself or what to consider next.',
+      boundaryLegal: 'Tarot cannot determine a court verdict or legal outcome. Please reframe this around what you can prepare, understand, or decide.',
+      boundaryGambling: 'Tarot is not used here to predict lottery or gambling outcomes. Please ask about your choices, priorities, or relationship with money instead.',
+      boundaryFinancial: 'Tarot cannot reliably predict a specific investment price or guaranteed return. Please reframe this around your risk, priorities, or decision process.',
+      boundaryDeath: 'Tarot cannot determine when someone will die. Please reframe this around the feelings, choices, or care involved in the situation.'
     },
     th: {
       eyebrow: 'ถามพระพิฆเนศน้อย',
@@ -73,7 +84,11 @@
       loading: 'กำลังเตรียมผลการอ่าน',
       upright: 'ไพ่ตั้งตรง',
       questionRecap: 'คำถามของคุณ',
-      cardReflects: 'สิ่งที่ไพ่ใบนี้สะท้อน',
+      focusPrompt: 'อยากให้ไพ่โฟกัสเรื่องไหนมากกว่า?',
+      focusHint: 'คำถามนี้แตะมากกว่าหนึ่งเรื่อง เลือกหนึ่งด้านที่สำคัญที่สุดสำหรับการอ่านครั้งนี้',
+      focusLabel: 'จุดโฟกัสของการอ่าน',
+      directAnswer: 'คำตอบต่อคำถามของคุณ',
+      whyThisCard: 'ทำไมไพ่ใบนี้จึงสะท้อนแบบนั้น',
       ganeshaReflection: 'มุมมองจากพระพิฆเนศน้อย',
       carryForward: 'คำถามชวนทบทวนต่อ',
       keywords: 'คำสำคัญ',
@@ -86,7 +101,12 @@
       multipleQuestions: 'กรุณาถามทีละหนึ่งเรื่อง เพื่อให้การอ่านไพ่มีจุดโฟกัสที่ชัดเจน',
       spam: 'กรุณาเขียนคำถามให้ชัดเจนด้วยข้อความตามปกติ',
       inappropriate: 'กรุณาปรับถ้อยคำของคำถามให้สุภาพและเหมาะสมก่อนเริ่มการอ่านไพ่',
-      safetyCrisis: 'ข้อความนี้ดูเป็นเรื่องความปลอดภัยเร่งด่วนมากกว่าคำถามสำหรับไพ่ หากคุณอาจอยู่ในอันตราย กรุณาติดต่อคนที่ไว้ใจหรือหน่วยช่วยเหลือฉุกเฉินในพื้นที่ของคุณ'
+      safetyCrisis: 'ข้อความนี้ดูเป็นเรื่องความปลอดภัยเร่งด่วนมากกว่าคำถามสำหรับไพ่ หากคุณอาจอยู่ในอันตราย กรุณาติดต่อคนที่ไว้ใจหรือหน่วยช่วยเหลือฉุกเฉินในพื้นที่ของคุณ',
+      boundaryMedical: 'ไพ่ทาโรต์ไม่สามารถวินิจฉัยโรค การตั้งครรภ์ หรือผลการรักษาได้ ลองปรับคำถามเป็นเรื่องการดูแลตัวเองหรือสิ่งที่ควรพิจารณาต่อ',
+      boundaryLegal: 'ไพ่ทาโรต์ไม่สามารถตัดสินผลคดีหรือคำพิพากษาได้ ลองปรับคำถามเป็นสิ่งที่คุณเตรียมตัว ทำความเข้าใจ หรือตัดสินใจได้',
+      boundaryGambling: 'ที่นี่ไม่ใช้ไพ่ทาโรต์ทำนายผลหวยหรือการพนัน ลองถามเรื่องการตัดสินใจ ลำดับความสำคัญ หรือความสัมพันธ์ของคุณกับเงินแทน',
+      boundaryFinancial: 'ไพ่ทาโรต์ไม่สามารถทำนายราคาการลงทุนหรือรับประกันผลตอบแทนได้ ลองปรับคำถามไปที่ความเสี่ยง ลำดับความสำคัญ หรือกระบวนการตัดสินใจของคุณแทน',
+      boundaryDeath: 'ไพ่ทาโรต์ไม่สามารถระบุว่าใครจะเสียชีวิตเมื่อใด ลองปรับคำถามไปที่ความรู้สึก การตัดสินใจ หรือการดูแลที่เกี่ยวข้องกับสถานการณ์นี้'
     }
   };
 
@@ -127,6 +147,14 @@
         <p class="ask-question-hint" id="askQuestionHint"></p>
         <p class="ask-question-error" id="askQuestionError" role="alert" aria-live="polite"></p>
         <button class="reading-primary ask-submit" id="askQuestionSubmit" type="button" disabled></button>
+      </section>
+
+      <section class="ask-focus-card" id="askFocusCard" hidden aria-labelledby="askFocusTitle">
+        <div class="ask-question-card__ornament" aria-hidden="true">✦</div>
+        <span class="ask-focus-kicker" id="askFocusKicker"></span>
+        <h3 id="askFocusTitle"></h3>
+        <p id="askFocusHint"></p>
+        <div class="ask-focus-options" id="askFocusOptions"></div>
       </section>
 
       <section class="ask-question-seal" id="askQuestionSeal" hidden aria-live="polite">
@@ -178,9 +206,17 @@
           <span id="askKeywordsLabel"></span>
           <div id="askKeywords"></div>
         </div>
+        <section class="ask-reading-focus" id="askReadingFocus">
+          <span id="askFocusResultLabel"></span>
+          <strong id="askFocusResult"></strong>
+        </section>
+        <section class="ask-reading-block ask-reading-block--direct">
+          <span id="askDirectLabel"></span>
+          <p id="askDirectAnswer"></p>
+        </section>
         <section class="ask-reading-block">
-          <span id="askReflectsLabel"></span>
-          <p id="askMeaning"></p>
+          <span id="askWhyLabel"></span>
+          <p id="askWhyText"></p>
         </section>
         <section class="ask-reading-block ask-reading-block--ganesha">
           <span id="askGaneshaLabel"></span>
@@ -213,6 +249,11 @@
   const questionHint = $('askQuestionHint');
   const questionError = $('askQuestionError');
   const questionSubmit = $('askQuestionSubmit');
+  const focusCard = $('askFocusCard');
+  const focusKicker = $('askFocusKicker');
+  const focusTitle = $('askFocusTitle');
+  const focusHint = $('askFocusHint');
+  const focusOptions = $('askFocusOptions');
   const questionSeal = $('askQuestionSeal');
   const sealLabel = $('askSealLabel');
   const sealText = $('askSealText');
@@ -235,8 +276,12 @@
   const canonicalTitle = $('askCanonicalTitle');
   const keywordsLabel = $('askKeywordsLabel');
   const keywords = $('askKeywords');
-  const reflectsLabel = $('askReflectsLabel');
-  const meaning = $('askMeaning');
+  const focusResultLabel = $('askFocusResultLabel');
+  const focusResult = $('askFocusResult');
+  const directLabel = $('askDirectLabel');
+  const directAnswer = $('askDirectAnswer');
+  const whyLabel = $('askWhyLabel');
+  const whyText = $('askWhyText');
   const ganeshaLabel = $('askGaneshaLabel');
   const ganeshaText = $('askGaneshaText');
   const carryLabel = $('askCarryLabel');
@@ -249,6 +294,8 @@
   let selectedData = null;
   let activeQuestion = '';
   let activeFingerprint = '';
+  let activeAnalysis = null;
+  let pendingStored = null;
   let currentView = 'question';
   let previousFocus = null;
   let activeTimer = null;
@@ -328,7 +375,12 @@
     orientation.textContent = t('upright');
     resultQuestionLabel.textContent = t('questionRecap');
     keywordsLabel.textContent = t('keywords');
-    reflectsLabel.textContent = t('cardReflects');
+    focusKicker.textContent = t('focusLabel');
+    focusTitle.textContent = t('focusPrompt');
+    focusHint.textContent = t('focusHint');
+    focusResultLabel.textContent = t('focusLabel');
+    directLabel.textContent = t('directAnswer');
+    whyLabel.textContent = t('whyThisCard');
     ganeshaLabel.textContent = t('ganeshaReflection');
     carryLabel.textContent = t('carryForward');
     disclaimer.textContent = t('disclaimer');
@@ -348,16 +400,20 @@
     });
 
     if (!shell.hidden) validateQuestion();
+    if (currentView === 'focus' && activeAnalysis?.candidates) showFocusResolver(activeAnalysis);
     if (selectedData) renderCardText(selectedData);
   }
 
   function renderCardText(card) {
     const lang = language();
+    const reading = ASK_CONTEXT.interpret(card, activeAnalysis, lang);
     cardTitle.textContent = card.title[lang];
     canonicalTitle.textContent = lang === 'th' ? card.title.en : '';
-    meaning.textContent = card.upright[lang];
+    focusResult.textContent = reading?.contextLabel || ANALYZER.label(activeAnalysis?.domain || 'general', lang);
+    directAnswer.textContent = reading?.direct || card.upright[lang];
+    whyText.textContent = reading?.rationale || card.upright[lang];
     ganeshaText.textContent = ASK_CONTENT.get(card.id, lang);
-    reflection.textContent = card.reflection[lang];
+    reflection.textContent = reading?.reflection || card.reflection[lang];
     resultQuestion.textContent = activeQuestion;
     keywords.replaceChildren(...card.keywords[lang].map((word) => {
       const span = document.createElement('span');
@@ -374,9 +430,13 @@
     session = null;
     selectedData = null;
     activeFingerprint = '';
+    activeAnalysis = null;
+    pendingStored = null;
     currentView = 'question';
     shell.classList.remove('is-revealed');
     questionCard.hidden = false;
+    focusCard.hidden = true;
+    focusOptions.replaceChildren();
     questionSeal.hidden = true;
     questionSeal.classList.remove('is-sealed');
     sealText.textContent = '';
@@ -450,7 +510,7 @@
     choice.querySelectorAll('button').forEach((node) => { node.disabled = true; });
     button.classList.add('is-chosen');
     selectedData = session.selectCandidate(index);
-    const persisted = ASK_STORAGE.save({ fingerprint: activeFingerprint, cardId: selectedData.id, sessionId: session.sessionId });
+    const persisted = ASK_STORAGE.save({ fingerprint: activeFingerprint, cardId: selectedData.id, sessionId: session.sessionId, analysis: activeAnalysis });
     if (!persisted) storageNote.hidden = false;
     emitInteraction('card-select', { cardId: selectedData.id });
     after(260, () => renderSelectedBack(false));
@@ -514,6 +574,66 @@
     });
   }
 
+  function boundaryMessage(boundary) {
+    if (boundary === 'medical') return t('boundaryMedical');
+    if (boundary === 'legal') return t('boundaryLegal');
+    if (boundary === 'gambling') return t('boundaryGambling');
+    if (boundary === 'financial') return t('boundaryFinancial');
+    if (boundary === 'death') return t('boundaryDeath');
+    return '';
+  }
+
+  function showFocusResolver(analysis) {
+    currentView = 'focus';
+    questionCard.hidden = true;
+    questionSeal.hidden = true;
+    focusCard.hidden = false;
+    focusOptions.replaceChildren();
+    analysis.candidates.slice(0, 2).forEach((domain) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'ask-focus-option';
+      button.textContent = ANALYZER.label(domain, language());
+      button.addEventListener('click', () => resolveFocus(domain), { once: true });
+      focusOptions.appendChild(button);
+    });
+    emitInteraction('focus-needed', { candidates: [...analysis.candidates] });
+    focusOptions.querySelector('button')?.focus({ preventScroll: true });
+  }
+
+  function beginSealedReading(stored = pendingStored) {
+    currentView = 'sealing';
+    focusCard.hidden = true;
+    questionCard.hidden = true;
+    questionSeal.hidden = false;
+    sealText.textContent = activeQuestion;
+    requestAnimationFrame(() => questionSeal.classList.add('is-sealed'));
+    updateStaticCopy();
+    emitInteraction('question-accepted', { context: activeAnalysis?.domain || 'general' });
+
+    session = ENGINE.createSession('ask');
+    if (stored) {
+      selectedData = CONTENT.getCard(stored.cardId);
+      session.restoreSelection({
+        sessionId: stored.sessionId,
+        cards: [{ positionId: 'answer', cardId: stored.cardId, orientation: ORIENTATION }]
+      });
+      // Enrich a V0.4.4 record with the resolved context without changing its card.
+      ASK_STORAGE.save({ fingerprint: activeFingerprint, cardId: stored.cardId, sessionId: stored.sessionId, analysis: activeAnalysis });
+      emitInteraction('question-restored', { cardId: stored.cardId, context: activeAnalysis?.domain || 'general' });
+      after(360, () => renderSelectedBack(true));
+      return;
+    }
+    after(430, startShuffle);
+  }
+
+  function resolveFocus(domain) {
+    if (!activeAnalysis) return;
+    activeAnalysis = ANALYZER.withDomain(activeAnalysis, domain);
+    emitInteraction('focus-selected', { context: domain });
+    beginSealedReading();
+  }
+
   async function submitQuestion() {
     const validation = validateQuestion({ showRequired: true });
     if (!validation.ok) {
@@ -524,32 +644,31 @@
     questionSubmit.disabled = true;
     activeQuestion = validation.text;
     questionInput.value = activeQuestion;
-    currentView = 'sealing';
-    questionCard.hidden = true;
-    questionSeal.hidden = false;
-    sealText.textContent = activeQuestion;
-    requestAnimationFrame(() => questionSeal.classList.add('is-sealed'));
-    updateStaticCopy();
-    emitInteraction('question-accepted');
+    activeAnalysis = ANALYZER.analyze(activeQuestion);
+
+    if (activeAnalysis.boundary) {
+      questionError.textContent = boundaryMessage(activeAnalysis.boundary);
+      questionField.classList.add('is-invalid');
+      questionSubmit.disabled = false;
+      questionInput.focus({ preventScroll: true });
+      emitInteraction('question-boundary', { boundary: activeAnalysis.boundary });
+      return;
+    }
 
     const token = ++lifecycleToken;
     activeFingerprint = await GUARD.fingerprint(activeQuestion);
     if (token !== lifecycleToken || shell.hidden) return;
+    pendingStored = ASK_STORAGE.get(activeFingerprint);
 
-    session = ENGINE.createSession('ask');
-    const stored = ASK_STORAGE.get(activeFingerprint);
-    if (stored) {
-      selectedData = CONTENT.getCard(stored.cardId);
-      session.restoreSelection({
-        sessionId: stored.sessionId,
-        cards: [{ positionId: 'answer', cardId: stored.cardId, orientation: ORIENTATION }]
-      });
-      emitInteraction('question-restored', { cardId: stored.cardId });
-      after(360, () => renderSelectedBack(true));
+    // A previously resolved same-day question keeps the same focus as well as the same card.
+    if (pendingStored?.contextKey) activeAnalysis = ANALYZER.withDomain(activeAnalysis, pendingStored.contextKey);
+
+    if (activeAnalysis.ambiguous && !pendingStored?.contextKey) {
+      showFocusResolver(activeAnalysis);
       return;
     }
 
-    after(430, startShuffle);
+    beginSealedReading(pendingStored);
   }
 
   function askAnother() {

@@ -1,50 +1,38 @@
-# V0.4.4 — Upload Notes
+# PATCH UPLOAD NOTES — V0.4.5
 
-## Upload
+## Target
 
-1. Extract `Little_Ganesha_Tarot_V0_4_4_ASK_GANESHA_UPLOAD.zip`.
-2. Overlay its repository-relative files/folders onto the local repository root.
-3. Review Changes in GitHub Desktop.
-4. Confirm only the intended V0.4.4 files are changed/added.
-5. Commit and Push.
-6. Wait for GitHub Pages deployment/cache propagation.
-7. Close/reopen or refresh the installed PWA as appropriate.
-8. Test Ask Ganesha on the real device before canonical promotion.
+Little Ganesha Tarot V0.4.5 — Contextual Ask Ganesha
 
-No manual sorting of package files is required.
+## Baseline
 
-## Suggested commit message
+GitHub `main` verified before development:
 
-`Add Ask Ganesha reading V0.4.4`
+`fd494bfbb4edf1271cd0060a7c5a066c4c35b310` — `Add Ask Ganesha reading V0.4.4`
 
-## Expected runtime identity
+## Upload method
 
-After deployment:
+Extract the supplied ZIP and overlay its repository-relative contents onto the local repository root. Review GitHub Desktop Changes, then commit and push.
 
-- visible Settings build: `0.4.4`
-- HTML application version/body build: `0.4.4`
-- `window.LGT_BUILD`: `0.4.4`
-- Service Worker build/cache: `0.4.4`
+Recommended commit message:
 
-## Primary smoke test
+`Upgrade Ask Ganesha context V0.4.5`
 
-1. Open **Ask Ganesha / ถามพระพิฆเนศน้อย** from Home.
-2. Enter a normal one-question prompt.
-3. Confirm **Ask the Cards / ถามไพ่** becomes enabled.
-4. Confirm the question seal appears, then shuffle/three-card choice appears.
-5. Select and reveal one card.
-6. Confirm question recap + card meaning + Little Ganesha reflection + reflection question appear.
-7. Tap **Ask Another Question / ถามเรื่องอื่น** and confirm the input resets.
-8. Ask the exact same question again on the same day and confirm the same card is restored.
-9. Test capitalization/spacing/punctuation variation and confirm the same card still restores where normalization makes the questions equivalent.
-10. Enter a blocked profanity example and confirm the inline red warning appears and reading cannot start.
-11. Switch TH/EN before the test and confirm the selected language reads naturally.
-12. Smoke-test Daily Guidance and Save/Share to ensure no regression.
+## Expected functional change
 
-## Rollback target
+Ask Ganesha gains local question analysis, contextual answer composition, ambiguous-focus clarification, and factual-boundary reframing while preserving the existing one-question/one-card flow and same-question/same-day card rule.
 
-If a serious regression appears, stop forward work and revert the isolated V0.4.4 commit to baseline:
+## Protected behavior
 
-`565bc738a0dcb9387dc220135a1999dcd93553f6`
+Do not manually alter Reading Engine, Daily Guidance, Daily Save/Share, audio, profile, or canonical card assets during this upload.
 
-This is a MEDIUM-risk release; no separate restore archive is required because the change is isolated and Git revert is the preferred rollback path.
+## After push
+
+Re-read deployed `main`, confirm runtime/build markers are 0.4.5, allow GitHub Pages/service-worker propagation, then perform the real-device checklist in `docs/qa/QA_V0_4_5.md`.
+
+Older versioned patch manifests/docs may remain in Git history or as historical tracked files. Overlay extraction does not delete them automatically.
+
+
+## Final V0.4.5 scope note
+
+This regenerated V0.4.5 package includes the approved ninth **Spiritual & Unseen / ศรัทธา จิตวิญญาณ และสิ่งเร้นลับ** context family, its 78-card bilingual matrix, analyzer facets, and symbolic-only / unseen-threat epistemic boundaries. It supersedes any earlier local V0.4.5 ZIP generated before this addition.

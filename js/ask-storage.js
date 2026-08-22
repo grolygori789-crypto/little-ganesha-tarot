@@ -4,7 +4,8 @@
   const CONTENT = window.LGTReadingContent;
   const ENGINE = window.LGTReadingEngine;
   const ASK_CONTENT = window.LGTAskContent;
-  if (!CONTENT || !ENGINE || !ASK_CONTENT) throw new Error('Ask storage requires reading content, engine, and Ask content.');
+  const CONTEXT = window.LGTAskContext;
+  if (!CONTENT || !ENGINE || !ASK_CONTENT || !CONTEXT) throw new Error('Ask storage requires reading content, engine, Ask content, and Ask context.');
 
   const STORAGE_KEY = 'lgt.reading.ask.v1';
   const SCHEMA_VERSION = 1;
@@ -17,6 +18,7 @@
       localDate,
       cardContentVersion: CONTENT.version,
       askContentVersion: ASK_CONTENT.version,
+      askContextVersion: CONTEXT.version,
       readings: {}
     };
   }
@@ -52,7 +54,7 @@
     return Object.fromEntries(entries.slice(entries.length - MAX_ENTRIES_PER_DAY));
   }
 
-  function save({ fingerprint, cardId, sessionId = '', localDate = ENGINE.localDateISO() }) {
+  function save({ fingerprint, cardId, sessionId = '', analysis = null, localDate = ENGINE.localDateISO() }) {
     const card = CONTENT.getCard(cardId);
     if (!fingerprint || !card) return false;
     try {
@@ -61,11 +63,18 @@
       store.localDate = localDate;
       store.cardContentVersion = CONTENT.version;
       store.askContentVersion = ASK_CONTENT.version;
+      store.askContextVersion = CONTEXT.version;
+      const previous = store.readings[fingerprint] || {};
       store.readings[fingerprint] = {
         cardId: card.id,
         orientation: ORIENTATION,
         sessionId,
-        createdAt: new Date().toISOString()
+        createdAt: previous.createdAt || new Date().toISOString(),
+        contextKey: analysis?.domain || previous.contextKey || null,
+        facet: analysis?.facet || previous.facet || null,
+        questionType: analysis?.questionType || previous.questionType || null,
+        perspective: analysis?.perspective || previous.perspective || null,
+        timeframe: analysis?.timeframe || previous.timeframe || null
       };
       store.readings = trim(store.readings);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
