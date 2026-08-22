@@ -74,6 +74,9 @@
         facet: analysis?.facet || previous.facet || null,
         questionType: analysis?.questionType || previous.questionType || null,
         perspective: analysis?.perspective || previous.perspective || null,
+        target: analysis?.target || previous.target || null,
+        metric: analysis?.metric || previous.metric || null,
+        polarity: analysis?.polarity || previous.polarity || null,
         timeframe: analysis?.timeframe || previous.timeframe || null
       };
       store.readings = trim(store.readings);

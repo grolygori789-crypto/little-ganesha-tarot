@@ -32,7 +32,9 @@ const analysis = analyzer.analyze('ผมหน้าตาดีแค่ไห
 assert(store.save({ fingerprint: fp, cardId: '69', sessionId: 'session-a', analysis, localDate: date }) === true, 'Ask record did not save.');
 const restored = store.get(fp, date);
 assert(restored?.cardId === '69' && restored.orientation === 'upright', 'Same-day Ask record did not restore the same card.');
-assert(restored.contextKey === 'self_image' && restored.facet === 'appearance' && restored.questionType === 'evaluation', 'Resolved context metadata did not persist.');
+assert(restored.contextKey === 'self_image' && restored.facet === 'appearance' && restored.questionType === 'degree', 'Resolved context metadata did not persist.');
+assert(restored.target === 'public' && restored.perspective === 'public_view' && restored.metric === 'appearance_quality', 'Semantic target/perspective/metric metadata did not persist.');
+assert(restored.polarity === 'open', 'Semantic polarity metadata did not persist.');
 assert(store.get(fp, '2026-08-23') === null, 'Ask record must not carry into a new local day.');
 
 const raw = localStorage.getItem(store.key);

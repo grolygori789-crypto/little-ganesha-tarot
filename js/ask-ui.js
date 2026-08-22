@@ -8,9 +8,11 @@
   const ASK_STORAGE = window.LGTAskStorage;
   const ANALYZER = window.LGTQuestionAnalyzer;
   const ASK_CONTEXT = window.LGTAskContext;
+  const QUESTION_CONTRACT = window.LGTQuestionContract;
+  const ASK_SEMANTIC = window.LGTAskSemantic;
 
-  if (!ENGINE || !CONTENT || !GUARD || !ASK_CONTENT || !ASK_STORAGE || !ANALYZER || !ASK_CONTEXT) {
-    throw new Error('Ask Ganesha requires Reading Engine, tarot content, Question Guard, Ask content, Ask storage, Question Analyzer, and Ask Context.');
+  if (!ENGINE || !CONTENT || !GUARD || !ASK_CONTENT || !ASK_STORAGE || !ANALYZER || !ASK_CONTEXT || !QUESTION_CONTRACT || !ASK_SEMANTIC) {
+    throw new Error('Ask Ganesha requires Reading Engine, tarot content, Question Guard, Ask content, Ask storage, Question Analyzer, Question Contract, Ask Context, and Semantic Ask.');
   }
 
   const ORIENTATION = 'upright';
@@ -43,6 +45,7 @@
       focusLabel: 'READING FOCUS',
       directAnswer: 'ANSWER TO YOUR QUESTION',
       whyThisCard: 'WHY THIS CARD POINTS THERE',
+      conditionsTitle: 'WHAT TO KEEP IN VIEW',
       ganeshaReflection: "LITTLE GANESHA'S REFLECTION",
       carryForward: 'A QUESTION TO CARRY FORWARD',
       keywords: 'KEYWORDS',
@@ -89,6 +92,7 @@
       focusLabel: 'จุดโฟกัสของการอ่าน',
       directAnswer: 'คำตอบต่อคำถามของคุณ',
       whyThisCard: 'ทำไมไพ่ใบนี้จึงสะท้อนแบบนั้น',
+      conditionsTitle: 'สิ่งที่ควรคำนึงประกอบ',
       ganeshaReflection: 'มุมมองจากพระพิฆเนศน้อย',
       carryForward: 'คำถามชวนทบทวนต่อ',
       keywords: 'คำสำคัญ',
@@ -218,6 +222,10 @@
           <span id="askWhyLabel"></span>
           <p id="askWhyText"></p>
         </section>
+        <section class="ask-reading-block ask-reading-block--conditions">
+          <span id="askConditionLabel"></span>
+          <p id="askConditionText"></p>
+        </section>
         <section class="ask-reading-block ask-reading-block--ganesha">
           <span id="askGaneshaLabel"></span>
           <p id="askGaneshaText"></p>
@@ -282,6 +290,8 @@
   const directAnswer = $('askDirectAnswer');
   const whyLabel = $('askWhyLabel');
   const whyText = $('askWhyText');
+  const conditionLabel = $('askConditionLabel');
+  const conditionText = $('askConditionText');
   const ganeshaLabel = $('askGaneshaLabel');
   const ganeshaText = $('askGaneshaText');
   const carryLabel = $('askCarryLabel');
@@ -381,6 +391,7 @@
     focusResultLabel.textContent = t('focusLabel');
     directLabel.textContent = t('directAnswer');
     whyLabel.textContent = t('whyThisCard');
+    conditionLabel.textContent = t('conditionsTitle');
     ganeshaLabel.textContent = t('ganeshaReflection');
     carryLabel.textContent = t('carryForward');
     disclaimer.textContent = t('disclaimer');
@@ -406,14 +417,16 @@
 
   function renderCardText(card) {
     const lang = language();
-    const reading = ASK_CONTEXT.interpret(card, activeAnalysis, lang);
+    const reading = ASK_SEMANTIC.compose(card, activeAnalysis, lang);
     cardTitle.textContent = card.title[lang];
     canonicalTitle.textContent = lang === 'th' ? card.title.en : '';
     focusResult.textContent = reading?.contextLabel || ANALYZER.label(activeAnalysis?.domain || 'general', lang);
     directAnswer.textContent = reading?.direct || card.upright[lang];
     whyText.textContent = reading?.rationale || card.upright[lang];
-    ganeshaText.textContent = ASK_CONTENT.get(card.id, lang);
+    conditionText.textContent = reading?.condition || '';
+    ganeshaText.textContent = reading?.ganesha || ASK_CONTENT.get(card.id, lang);
     reflection.textContent = reading?.reflection || card.reflection[lang];
+    if (reading?.fallbackUsed) emitInteraction('semantic-fallback', { cardId: card.id, missing: reading.validation?.missing || [] });
     resultQuestion.textContent = activeQuestion;
     keywords.replaceChildren(...card.keywords[lang].map((word) => {
       const span = document.createElement('span');
@@ -646,6 +659,15 @@
     questionInput.value = activeQuestion;
     activeAnalysis = ANALYZER.analyze(activeQuestion);
 
+    if (activeAnalysis.multiQuestion) {
+      questionError.textContent = t('multipleQuestions');
+      questionField.classList.add('is-invalid');
+      questionSubmit.disabled = false;
+      questionInput.focus({ preventScroll: true });
+      emitInteraction('question-multiple');
+      return;
+    }
+
     if (activeAnalysis.boundary) {
       questionError.textContent = boundaryMessage(activeAnalysis.boundary);
       questionField.classList.add('is-invalid');
@@ -661,7 +683,7 @@
     pendingStored = ASK_STORAGE.get(activeFingerprint);
 
     // A previously resolved same-day question keeps the same focus as well as the same card.
-    if (pendingStored?.contextKey) activeAnalysis = ANALYZER.withDomain(activeAnalysis, pendingStored.contextKey);
+    if (pendingStored?.contextKey) activeAnalysis = ANALYZER.withStoredResolution(activeAnalysis, pendingStored);
 
     if (activeAnalysis.ambiguous && !pendingStored?.contextKey) {
       showFocusResolver(activeAnalysis);

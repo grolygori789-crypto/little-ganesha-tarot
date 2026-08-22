@@ -1,14 +1,14 @@
-# PATCH UPLOAD NOTES — V0.4.5
+# PATCH UPLOAD NOTES — V0.4.6
 
 ## Target
 
-Little Ganesha Tarot V0.4.5 — Contextual Ask Ganesha
+Little Ganesha Tarot V0.4.6 — Semantic Ask Ganesha
 
 ## Baseline
 
 GitHub `main` verified before development:
 
-`fd494bfbb4edf1271cd0060a7c5a066c4c35b310` — `Add Ask Ganesha reading V0.4.4`
+`0b35a8ec749644abc66c300e3b197e29365951da` — `Add Spiritual Ask context V0.4.5`
 
 ## Upload method
 
@@ -16,23 +16,18 @@ Extract the supplied ZIP and overlay its repository-relative contents onto the l
 
 Recommended commit message:
 
-`Upgrade Ask Ganesha context V0.4.5`
+`Upgrade Ask Ganesha semantics V0.4.6`
 
 ## Expected functional change
 
-Ask Ganesha gains local question analysis, contextual answer composition, ambiguous-focus clarification, and factual-boundary reframing while preserving the existing one-question/one-card flow and same-question/same-day card rule.
+Ask Ganesha gains a Semantic Slot Parser, micro-facets, Question Contract, card-context profile, Semantic Bridge, contract-driven Answer Composer, and Answer Validator. The primary answer must stay on the exact subject, perspective, metric, and explicit timeframe of the user's question.
 
 ## Protected behavior
 
-Do not manually alter Reading Engine, Daily Guidance, Daily Save/Share, audio, profile, or canonical card assets during this upload.
+Do not manually alter Reading Engine, Daily Guidance, Daily Save/Share, audio, profile, or canonical card assets during upload.
 
 ## After push
 
-Re-read deployed `main`, confirm runtime/build markers are 0.4.5, allow GitHub Pages/service-worker propagation, then perform the real-device checklist in `docs/qa/QA_V0_4_5.md`.
+Re-read deployed `main`, confirm all runtime/build/cache markers are 0.4.6, allow GitHub Pages/service-worker propagation, then perform the real-device checklist in `docs/qa/QA_V0_4_6.md`.
 
-Older versioned patch manifests/docs may remain in Git history or as historical tracked files. Overlay extraction does not delete them automatically.
-
-
-## Final V0.4.5 scope note
-
-This regenerated V0.4.5 package includes the approved ninth **Spiritual & Unseen / ศรัทธา จิตวิญญาณ และสิ่งเร้นลับ** context family, its 78-card bilingual matrix, analyzer facets, and symbolic-only / unseen-threat epistemic boundaries. It supersedes any earlier local V0.4.5 ZIP generated before this addition.
+Older versioned patch manifests and release documents may remain as historical rollback provenance. Overlay extraction does not delete tracked historical files automatically.

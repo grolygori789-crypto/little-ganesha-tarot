@@ -1,31 +1,42 @@
-# Little Ganesha Tarot — V0.4.5 Contextual Ask Ganesha
+# Little Ganesha Tarot — V0.4.6 Semantic Ask Ganesha
 
 **Project:** Little Ganesha Tarot — The Golden Path  
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.4.5  
+**Target runtime:** V0.4.6  
 **Master Plan in force:** V4.0 + newest approved current-room product decision  
-**Baseline repository HEAD:** `fd494bfbb4edf1271cd0060a7c5a066c4c35b310` — `Add Ask Ganesha reading V0.4.4`
+**Baseline repository HEAD:** `0b35a8ec749644abc66c300e3b197e29365951da` — `Add Spiritual Ask context V0.4.5`
 
 ## Release purpose
 
-V0.4.5 upgrades **Ask Ganesha / ถามพระพิฆเนศน้อย** from a generic card-meaning response into a local contextual interpretation system that tries to answer the user's actual question more directly without AI, API calls, or a backend.
+V0.4.6 fixes the most important product-quality weakness found during real-device Ask Ganesha testing: a reading could identify the broad question category yet still produce prose that did not answer the exact thing the user asked.
 
-The Reading Engine remains protected and unchanged. The upgrade sits above the existing `ask` spread as isolated question-analysis and interpretation modules.
+The release therefore makes **semantic question fidelity** a hard runtime requirement. The question determines the subject that must be answered; the card determines what the reading says about that subject. A card is no longer allowed to pull the primary answer into an unrelated generic meaning.
 
-## Contextual Ask architecture
+Everything remains local to the browser. No AI, API, backend, remote inference, or account service is introduced.
 
-`Question Guard → Question Analyzer → optional Focus Resolver → existing Ask draw → Context Matrix → Answer Composer → contextual result`
+## Semantic Ask architecture
 
-The Question Analyzer extracts:
+`Question Guard → Semantic Slot Parser → Micro-Facet Resolver → Confidence/Ambiguity → Question Contract → existing Ask draw/restore → Card Context Profile → Semantic Bridge → Contract-driven Answer Composer → Answer Validator → Result`
 
-- Domain
-- Facet
-- Perspective
-- Question Type
-- Timeframe
-- Confidence
+The shared Reading Engine remains protected and unchanged.
 
-Primary context families:
+### Semantic slots
+
+The local Question Analyzer v3 extracts, when present:
+
+- domain,
+- facet / micro-facet,
+- target,
+- perspective,
+- question type,
+- metric,
+- timeframe,
+- comparison / conditional structure,
+- polarity / certainty request,
+- confidence / ambiguity,
+- factual or epistemic boundary.
+
+The nine top-level context families remain:
 
 1. Self-image & attractiveness
 2. Social perception
@@ -37,111 +48,135 @@ Primary context families:
 8. Inner state & growth
 9. Spiritual & Unseen / ศรัทธา จิตวิญญาณ และสิ่งเร้นลับ
 
-When two domains score too closely, the app asks the user which area should be the focus instead of pretending certainty.
+Beneath them, the parser distinguishes dozens of micro-facets such as appearance, attractiveness, first impression, feelings, reconciliation, commitment, career direction, promotion, income, wealth, debt, financial stability, continue-or-stop, timing, success, burnout, healing, divine protection, dreams, signs/synchronicity, karma/destiny, past life, and unseen influence.
 
-## Context Matrix strategy
+## Question Contract / No Drift Rule
 
-The release reuses the already curated bilingual tarot content wherever it is strongest:
+Every accepted question is converted into a compact contract before a reading is composed.
 
-- Work → Work & Goals lens
-- Money → Money & Resources lens
-- Love → Love & Relationships lens
-- Choice → Guidance for Today lens
-- Outlook → Opportunities & Watch-outs lens
-- Inner state → Inner State & Balance lens
+The contract records what the answer **must cover**, such as:
 
-Self-image and social-perception readings use a dedicated card-presentation profile derived from each canonical card's archetype, suit/rank language, and keywords.
+- the exact topic/micro-facet,
+- directional tendency where appropriate,
+- the card rationale,
+- a practical condition/caveat,
+- an explicit timeframe when the user supplied one,
+- the relevant target/perspective,
+- uncertainty boundaries for another person's private feelings,
+- symbolic-only boundaries for unverifiable spiritual claims.
 
-The ninth family, **Spiritual & Unseen**, adds a dedicated curated bilingual context entry for every one of the 78 cards. It covers divine protection, spiritual path, signs/synchronicity, dreams, spiritual gifts, karma/destiny, past-life questions, and unseen-influence questions.
+It also records what the answer **must avoid**, including domain drift, unsupported certainty, mind-reading claims, supernatural fact claims, fear confirmation, and exact-date claims where tarot cannot establish them.
 
-This keeps the canonical tarot model intact while producing a 9-context interpretation surface for all 78 cards in English and Thai.
+**No Drift Rule:** the primary subject of the answer must remain the primary subject of the user's question.
 
-## Answer Composer
+## Hard timeframe preservation
 
-Ask results now prioritize:
+An explicit timeframe is now a semantic requirement rather than optional context.
+
+For example:
+
+`ผมจะรวยมั้ยในอีก 1 ปีข้างหน้า`
+
+is parsed as a money/wealth outlook with an explicit one-year horizon. The final direct answer must mention that one-year period and remain about financial position/wealth. A generic message about “today”, happiness, or warmth cannot pass the Answer Validator for that question.
+
+Numeric Thai/English day, week, month, and year periods are supported alongside common named periods such as today, this week, next month, next year, by year-end, short term, and long term.
+
+## Card Context Profile + Semantic Bridge
+
+Each drawn card is converted into a small structured profile for the resolved context:
+
+- direction: strong positive / moderate positive / mixed / moderate challenging / strong challenging,
+- strength,
+- canonical keywords,
+- relevant context text,
+- topic anchor.
+
+The Semantic Bridge joins that card profile to the Question Contract before prose is generated. Logic therefore comes before presentation: the app first establishes what the card implies **about the asked subject**, then writes the bilingual answer.
+
+## Result hierarchy
+
+Ask Ganesha now prioritizes:
 
 1. **Answer to Your Question / คำตอบต่อคำถามของคุณ**
 2. **Why This Card Points There / ทำไมไพ่ใบนี้จึงสะท้อนแบบนั้น**
-3. Little Ganesha's Reflection
-4. Contextual reflection question
+3. **What to Keep in View / สิ่งที่ควรคำนึงประกอบ**
+4. **Little Ganesha's Reflection / มุมมองจากพระพิฆเนศน้อย**
+5. **A Question to Carry Forward / คำถามชวนทบทวนต่อ**
 
-The generic upright meaning is no longer the primary answer block in Ask Ganesha.
+The generic card meaning is not allowed to replace the direct answer.
 
-Question type changes how the answer is framed. Evaluation, perception, feelings, decision, guidance, outlook, cause, and timing questions are not all answered with the same sentence structure.
+## Ambiguity and multi-question behavior
 
-## Safety and uncertainty boundaries
+If two legitimate subjects score too closely, the existing premium focus chooser asks the user which subject matters most instead of silently guessing.
 
-The existing local Question Content Guard remains in place.
+A genuine conditional single question remains accepted, for example:
 
-V0.4.5 also adds local reframe boundaries for questions that ask tarot to determine:
+`ถ้าผมย้ายงาน รายได้จะดีขึ้นไหม`
 
-- medical diagnosis/pregnancy/recovery,
-- court verdict/legal outcome,
-- lottery/gambling result,
-- specific investment price/guaranteed return,
-- time of death.
+Two independent questions in one input remain rejected so one card is not forced to answer unrelated issues.
 
-The app asks the user to reframe those questions toward reflection, preparation, choices, or care rather than presenting tarot as factual diagnosis or prediction.
+## Bilingual writing standard
 
-Questions asking about another person's feelings are answered with explicit uncertainty rather than claiming access to private thoughts.
+Thai and English copy are authored as separate native-language surfaces rather than literal word-for-word translations. The semantic contract is language-neutral; presentation phrases, topic wording, caveats, time phrasing, and Little Ganesha reflection are rendered natively for each language.
 
-### Spiritual & Unseen boundary
+## Safety and epistemic boundaries
 
-Spiritual questions are **accepted rather than blocked**, but the Answer Composer distinguishes symbolic tarot reflection from literal verification. The app can explore the symbolism of sacred protection, spiritual paths, dreams, synchronicities, intuitive sensitivity, karma/destiny, past-life themes, and unseen influences without claiming that tarot has proved a deity, spirit, curse, supernatural attack, psychic power, past-life identity, or fixed cosmic verdict.
+The existing local Question Content Guard remains in place. Medical diagnosis, legal verdict, lottery/gambling outcome, specific investment-price/guaranteed-return, and time-of-death requests continue to require reframing.
 
-For example, a question such as “Which sacred being protects me?” may receive a card-specific spiritual archetype and reflective interpretation, but the app will not invent a named protector as a verified fact. A question such as “Is an evil spirit following me?” is reframed through the card's symbolism while explicitly stating that fear or ambiguity is not evidence of a supernatural threat.
+Questions about another person's private feelings do not claim mind reading. Spiritual & Unseen questions remain welcome, but symbolic tarot reflection is kept distinct from factual verification of deities, spirits, curses, psychic powers, past-life identity, or supernatural attack.
 
-## Same-question behavior
+## Same-question behavior and privacy
 
 The existing rule remains:
 
 **same normalized question + same local day = same card**
 
-V0.4.5 additionally stores the resolved context key with the local fingerprint/card record. Raw question text is still not persisted for repeat-question matching.
-
-Existing V0.4.4 same-day records without context metadata remain readable and are enriched non-destructively when reused.
+Resolved semantic metadata may be stored with the local fingerprint/card record to restore the same reading focus. Raw question text is not persisted for repeat-question matching. Existing V0.4.4/V0.4.5 compatible records remain readable.
 
 ## Protected behavior
 
-This release does **not** modify:
+V0.4.6 does **not** functionally rewrite:
 
 - `js/reading-engine.js`,
 - `js/reading-content.js`,
 - `js/reading-ui.js`,
 - Daily Guidance content/lenses,
-- Daily Save/Share behavior,
-- audio lifecycle,
-- PWA strategy beyond routine build/cache version coherence,
-- profile behavior,
-- canonical tarot/card assets.
+- Daily Save/Share,
+- canonical card assets,
+- audio lifecycle.
+
+The Service Worker/build cache receives only the required runtime version/resource-list update for the two new semantic modules.
 
 ## QA status before upload
 
-Static/unit/package validation covers:
+Static/unit/package validation includes:
 
-- 78-card Reading Engine regression,
-- Question Guard,
-- Question Analyzer intent/facet/type/perspective detection,
-- ambiguity resolver contract,
-- high-stakes reframe boundaries,
-- contextual interpretation across 78 cards × 9 contexts × 2 languages,
-- dedicated 78-card bilingual Spiritual & Unseen context matrix,
-- spiritual epistemic boundaries that preserve symbolic depth without presenting unverifiable supernatural claims as facts,
-- same-question/card persistence and V0.4.4 record compatibility,
-- TH/EN copy,
-- script dependency order,
-- runtime version coherence,
+- Reading Engine regression,
+- Question Guard regression,
+- semantic-slot parsing in Thai and English,
+- explicit timeframe preservation,
+- conditional vs multi-question distinction,
+- ambiguity resolution,
+- Question Contract requirements,
+- money/wealth + one-year + The Sun regression,
+- appearance/public-perception + Six of Pentacles regression,
+- third-party-feelings uncertainty,
+- Spiritual & Unseen epistemic boundaries,
+- 78 cards × 9 contexts × 2 languages = **1,404 contract-validated Semantic Ask compositions** with no fallback,
+- same-question semantic metadata persistence,
+- package/script dependency order,
+- hard runtime version coherence,
 - repository structure,
-- checksum/archive re-extraction.
+- checksum and final archive re-extraction.
 
-Real-device validation of V0.4.5 remains required after deployment.
+Real-device validation of V0.4.6 remains required after deployment.
 
 See:
 
-- `docs/qa/QA_V0_4_5.md`
-- `docs/releases/RELEASE_NOTES_V0_4_5.md`
+- `docs/qa/QA_V0_4_6.md`
+- `docs/releases/RELEASE_NOTES_V0_4_6.md`
 - `docs/releases/PATCH_UPLOAD_NOTES.md`
 
 ## Canonical promotion note
 
-V0.4.4 is the verified deployed GitHub baseline used to build this patch. Master Plan V4.0 still contains the earlier canonical-runtime status and should not be silently rewritten inside this runtime package. After V0.4.5 is pushed and passes the appropriate real-device gate, governance/current-status documentation should be updated deliberately.
+V0.4.5 at GitHub HEAD `0b35a8ec749644abc66c300e3b197e29365951da` is the deployed baseline used to build this patch. V0.4.6 is a candidate until it is pushed and passes the appropriate real-device gate. Governance/current-status documentation should be promoted deliberately afterward rather than pre-declaring the candidate canonical.

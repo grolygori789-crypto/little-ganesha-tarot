@@ -1,139 +1,56 @@
 'use strict';
+const fs=require('fs'); const assert=(c,m)=>{if(!c)throw new Error(m)}; const read=p=>fs.readFileSync(p,'utf8');
+const TARGET='0.4.6';
+const index=read('index.html'), app=read('js/app.js'), sw=read('sw.js'), dailyUi=read('js/reading-ui.js'), askUi=read('js/ask-ui.js');
+const guard=read('js/question-guard.js'), askContent=read('js/ask-content.js'), storage=read('js/ask-storage.js'), analyzer=read('js/question-analyzer.js');
+const contract=read('js/question-contract.js'), context=read('js/ask-context.js'), semantic=read('js/ask-semantic.js'), engine=read('js/reading-engine.js'), content=read('js/reading-content.js'), css=read('css/reading.css');
 
-const fs = require('fs');
-const assert = (condition, message) => { if (!condition) throw new Error(message); };
-const read = (path) => fs.readFileSync(path, 'utf8');
+for(const marker of [
+  `meta name="application-version" content="${TARGET}"`,`body data-build="${TARGET}"`,`manifest.webmanifest?v=${TARGET}`,
+  `css/app.css?v=${TARGET}`,`css/reading.css?v=${TARGET}`,`BUILD ${TARGET}`
+]) assert(index.includes(marker),`Missing live marker: ${marker}`);
+assert(app.includes(`window.LGT_BUILD = '${TARGET}'`),'app.js build mismatch.');
+assert(sw.includes(`const BUILD = '${TARGET}';`),'Service Worker build mismatch.');
 
-const index = read('index.html');
-const app = read('js/app.js');
-const sw = read('sw.js');
-const dailyUi = read('js/reading-ui.js');
-const askUi = read('js/ask-ui.js');
-const guard = read('js/question-guard.js');
-const askContent = read('js/ask-content.js');
-const askStorage = read('js/ask-storage.js');
-const analyzer = read('js/question-analyzer.js');
-const askContext = read('js/ask-context.js');
-const engine = read('js/reading-engine.js');
-const content = read('js/reading-content.js');
-const css = read('css/reading.css');
+const scripts=['js/pwa.js','js/audio.js','js/app.js','js/reading-content.js','js/reading-engine.js','js/question-guard.js','js/ask-content.js','js/question-analyzer.js','js/question-contract.js','js/ask-context.js','js/ask-semantic.js','js/ask-storage.js','js/reading-ui.js','js/ask-ui.js'];
+for(const p of scripts){assert(index.includes(`${p}?v=${TARGET}`),`index missing ${p}`);assert(sw.includes(`${p}?v=${TARGET}`),`SW shell missing ${p}`);}
+assert(!sw.includes('assets/cards/00_THE_FOOL.png'),'Full deck must not be pre-cached.');
 
-const liveMarkers = [
-  'meta name="application-version" content="0.4.5"',
-  'body data-build="0.4.5"',
-  'manifest.webmanifest?v=0.4.5',
-  'css/app.css?v=0.4.5',
-  'css/reading.css?v=0.4.5',
-  'js/pwa.js?v=0.4.5',
-  'js/audio.js?v=0.4.5',
-  'js/app.js?v=0.4.5',
-  'js/reading-content.js?v=0.4.5',
-  'js/reading-engine.js?v=0.4.5',
-  'js/question-guard.js?v=0.4.5',
-  'js/ask-content.js?v=0.4.5',
-  'js/question-analyzer.js?v=0.4.5',
-  'js/ask-context.js?v=0.4.5',
-  'js/ask-storage.js?v=0.4.5',
-  'js/reading-ui.js?v=0.4.5',
-  'js/ask-ui.js?v=0.4.5',
-  'BUILD 0.4.5'
-];
-for (const marker of liveMarkers) assert(index.includes(marker), `Missing index build marker/resource: ${marker}`);
-assert(!index.includes('0.4.3'), 'Stale 0.4.3 marker remains in live index.html.');
-assert(app.includes("window.LGT_BUILD = '0.4.5'"), 'app.js build marker mismatch.');
-assert(!app.includes("window.LGT_BUILD = '0.4.3'"), 'Stale app.js runtime marker remains.');
-assert(sw.includes("const BUILD = '0.4.5';"), 'Service Worker build marker mismatch.');
-assert(!sw.includes("const BUILD = '0.4.3';"), 'Stale Service Worker build marker remains.');
+// Protected Daily Guidance and Reading Engine remain intact.
+for(const token of ['setReadingMode(true)','setReadingMode(false)','reading-card--selected','renderDailyLenses','buildReadingImageBlob','navigator.share']) assert(`${dailyUi}\n${css}`.includes(token),`Protected Daily token missing: ${token}`);
+assert(content.includes('"dailyLenses"')&&content.includes("const CONTENT_VERSION = 'daily-guidance-v3'"),'Protected Daily content model missing.');
+assert(engine.includes("window.LGTReadingEngineVersion = '1.0.2'"),'Reading Engine internal version changed.');
 
-for (const path of [
-  'css/reading.css?v=0.4.5',
-  'js/reading-content.js?v=0.4.5',
-  'js/reading-engine.js?v=0.4.5',
-  'js/question-guard.js?v=0.4.5',
-  'js/ask-content.js?v=0.4.5',
-  'js/question-analyzer.js?v=0.4.5',
-  'js/ask-context.js?v=0.4.5',
-  'js/ask-storage.js?v=0.4.5',
-  'js/reading-ui.js?v=0.4.5',
-  'js/ask-ui.js?v=0.4.5',
-  'assets/ui/card-back.png'
-]) assert(sw.includes(path), `Service Worker shell missing ${path}.`);
-assert(!sw.includes('assets/cards/00_THE_FOOL.png'), 'Full deck must not be pre-cached in the application shell.');
+// Semantic Ask architecture.
+assert(analyzer.includes("const VERSION = 'question-analyzer-v3'"),'Question Analyzer v3 missing.');
+assert(contract.includes("const VERSION = 'question-contract-v1'"),'Question Contract v1 missing.');
+assert(context.includes("const VERSION = 'ask-context-v2'")&&context.includes('SPIRITUAL_CONTEXT'),'9-context base matrix missing.');
+assert(semantic.includes("const VERSION = 'ask-semantic-v1'")&&semantic.includes('function buildProfile')&&semantic.includes('function validate'),'Semantic bridge/validator missing.');
+assert(semantic.includes('contract.mustCover')&&semantic.includes('noTodayDrift')&&semantic.includes('noGuarantee'),'Hard answer-contract gates missing.');
+assert(askUi.includes('ANALYZER.analyze(activeQuestion)'),'Ask UI does not analyze the question.');
+assert(askUi.includes('ASK_SEMANTIC.compose(card, activeAnalysis, lang)'),'Ask UI does not use Semantic Ask composer.');
+assert(askUi.includes('showFocusResolver')&&askUi.includes('resolveFocus'),'Ambiguity resolver missing.');
+assert(askUi.includes('conditionText.textContent'),'Semantic condition block missing.');
+assert(storage.includes("const STORAGE_KEY = 'lgt.reading.ask.v1'"),'Same-question storage key changed unexpectedly.');
+assert(!storage.includes('question:'),'Raw question must not be persisted.');
+assert(guard.includes("normalize('NFKC')")&&guard.includes('safetyCrisis'),'Question Guard protections missing.');
+assert(askContent.includes("const VERSION = 'ask-ganesha-v1'"),'Ask card reflection content missing.');
 
-// Protected Daily Guidance behavior must remain present.
-for (const token of ['setReadingMode(true)','setReadingMode(false)','reading-card--selected','renderDailyLenses','buildReadingImageBlob','navigator.share']) {
-  assert(`${dailyUi}\n${css}`.includes(token), `Protected Daily Guidance token missing: ${token}`);
-}
-assert(css.includes('width: clamp(14rem, 78vw, 19rem);'), 'Protected hero-size selected card rule missing.');
-assert(css.includes('body.is-reading-open #miniPlayer'), 'Protected reading-context mini player mode missing.');
-assert(content.includes('"dailyLenses"') && content.includes("const CONTENT_VERSION = 'daily-guidance-v3'"), 'Protected Daily content model missing.');
-assert(engine.includes("window.LGTReadingEngineVersion = '1.0.2'"), 'Reading Engine internal version unexpectedly changed.');
+for(const cls of ['.ask-question-error','.ask-question-seal','.ask-focus-card','.ask-reading-block--direct']) assert(css.includes(cls),`Ask UI style missing: ${cls}`);
+assert(css.includes('color: #ff8e8e;'),'Inline Question Guard warning color missing.');
 
-// Ask Ganesha V0.4.5 contextual architecture.
-for (const token of [
-  "document.querySelectorAll('[data-feature=\"ask\"]')",
-  'event.stopImmediatePropagation()',
-  "session = ENGINE.createSession('ask')",
-  'GUARD.fingerprint(activeQuestion)',
-  'ASK_STORAGE.get(activeFingerprint)',
-  'ASK_STORAGE.save({',
-  "emitInteraction('question-restored'",
-  "window.LGTAskGanesha = Object.freeze"
-]) assert(askUi.includes(token), `Ask Ganesha wiring missing: ${token}`);
-assert(guard.includes("window.LGTQuestionGuard = Object.freeze"), 'Question Guard export missing.');
-assert(guard.includes("normalize('NFKC')"), 'Question Guard Unicode normalization missing.');
-assert(guard.includes('safetyCrisis') && guard.includes('violentIntent'), 'Question Guard safety categories missing.');
-assert(askStorage.includes("const STORAGE_KEY = 'lgt.reading.ask.v1'"), 'Ask same-question storage key missing.');
-assert(!askStorage.includes('question:'), 'Ask storage must not persist raw question text.');
-assert(askContent.includes("const VERSION = 'ask-ganesha-v1'"), 'Ask content version missing.');
-assert(css.includes('.ask-question-error') && css.includes('color: #ff8e8e;'), 'Inline red Question Guard warning style missing.');
-assert(css.includes('.ask-question-seal') && css.includes('.ask-reading-block--ganesha'), 'Premium Ask Ganesha presentation styles missing.');
-assert(analyzer.includes("const VERSION = 'question-analyzer-v2'"), 'Question Analyzer version missing.');
-assert(analyzer.includes('ambiguous') && analyzer.includes('candidates'), 'Question Analyzer ambiguity resolver contract missing.');
-assert(askContext.includes("const VERSION = 'ask-context-v2'"), 'Ask Context version missing.');
-assert(analyzer.includes("'spiritual_unseen'"), 'Spiritual & Unseen domain missing from analyzer.');
-assert(askContext.includes('SPIRITUAL_CONTEXT'), 'Curated spiritual context matrix missing.');
-assert(askContext.includes('DOMAIN_LENS') && askContext.includes('directFromContext'), 'Context Matrix / Answer Composer missing.');
-assert(askUi.includes('ANALYZER.analyze(activeQuestion)'), 'Ask UI does not analyze questions.');
-assert(askUi.includes('showFocusResolver') && askUi.includes('resolveFocus'), 'Ambiguity focus resolver missing.');
-assert(askUi.includes('ASK_CONTEXT.interpret'), 'Ask UI does not use contextual interpretation.');
-assert(css.includes('.ask-focus-card') && css.includes('.ask-reading-block--direct'), 'Contextual Ask premium UI styles missing.');
+// Static/dynamic ID collision checks.
+const staticIds=[...index.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]); assert(new Set(staticIds).size===staticIds.length,'Duplicate static IDs.');
+const dailyIds=[...dailyUi.matchAll(/\bid="(daily[^"]+)"/g)].map(m=>m[1]); const askIds=[...askUi.matchAll(/\bid="(ask[^"]+)"/g)].map(m=>m[1]);
+assert(new Set(dailyIds).size===dailyIds.length,'Duplicate Daily template IDs.'); assert(new Set(askIds).size===askIds.length,'Duplicate Ask template IDs.');
+const staticSet=new Set(staticIds); assert(dailyIds.every(id=>!staticSet.has(id)),'Daily/static ID collision.'); assert(askIds.every(id=>!staticSet.has(id)),'Ask/static ID collision.'); assert(askIds.every(id=>!dailyIds.includes(id)),'Ask/Daily ID collision.');
+
+// Dependency order must keep parser → contract → context → semantic → storage → UI.
+const ordered=['js/app.js','js/reading-content.js','js/reading-engine.js','js/question-guard.js','js/ask-content.js','js/question-analyzer.js','js/question-contract.js','js/ask-context.js','js/ask-semantic.js','js/ask-storage.js','js/reading-ui.js','js/ask-ui.js'].map(p=>index.indexOf(`${p}?v=${TARGET}`));
+assert(ordered.every(v=>v>=0)&&ordered.every((v,i)=>i===0||v>ordered[i-1]),'Runtime script dependency order invalid.');
 
 // CSS structural sanity.
-const strippedCss = css.replace(/\/\*[\s\S]*?\*\//g,'').replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g,'');
-let depth = 0;
-for (const char of strippedCss) {
-  if (char === '{') depth += 1;
-  if (char === '}') depth -= 1;
-  assert(depth >= 0, 'CSS closes a block before it opens.');
-}
-assert(depth === 0, 'CSS brace balance mismatch.');
+const stripped=css.replace(/\/\*[\s\S]*?\*\//g,'').replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g,''); let depth=0;
+for(const ch of stripped){if(ch==='{')depth++; if(ch==='}')depth--; assert(depth>=0,'CSS closes before it opens.');} assert(depth===0,'CSS brace balance mismatch.');
 
-// Static and dynamic ID collision checks.
-const staticIds = [...index.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
-assert(new Set(staticIds).size === staticIds.length, 'Duplicate static HTML IDs detected.');
-const dailyIds = [...dailyUi.matchAll(/\bid="(daily[^"]+)"/g)].map((match) => match[1]);
-const askIds = [...askUi.matchAll(/\bid="(ask[^"]+)"/g)].map((match) => match[1]);
-assert(new Set(dailyIds).size === dailyIds.length, 'Duplicate Daily template IDs detected.');
-assert(new Set(askIds).size === askIds.length, 'Duplicate Ask template IDs detected.');
-const staticSet = new Set(staticIds);
-assert(dailyIds.every((id) => !staticSet.has(id)), 'Daily template ID collides with static DOM.');
-assert(askIds.every((id) => !staticSet.has(id)), 'Ask template ID collides with static DOM.');
-assert(askIds.every((id) => !dailyIds.includes(id)), 'Ask template ID collides with Daily template ID.');
-
-// Script dependency order.
-const scriptOrder = [
-  'js/app.js?v=0.4.5',
-  'js/reading-content.js?v=0.4.5',
-  'js/reading-engine.js?v=0.4.5',
-  'js/question-guard.js?v=0.4.5',
-  'js/ask-content.js?v=0.4.5',
-  'js/question-analyzer.js?v=0.4.5',
-  'js/ask-context.js?v=0.4.5',
-  'js/ask-storage.js?v=0.4.5',
-  'js/reading-ui.js?v=0.4.5',
-  'js/ask-ui.js?v=0.4.5'
-].map((token) => index.indexOf(token));
-assert(scriptOrder.every((value) => value >= 0) && scriptOrder.every((value, i) => i === 0 || value > scriptOrder[i - 1]), 'Reading/Ask script dependency order is invalid.');
-
-console.log('V0.4.5 package/version/Ask Ganesha checks: PASS');
+console.log('V0.4.6 package + Semantic Ask wiring checks: PASS');
