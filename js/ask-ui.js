@@ -1,0 +1,631 @@
+(() => {
+  'use strict';
+
+  const ENGINE = window.LGTReadingEngine;
+  const CONTENT = window.LGTReadingContent;
+  const GUARD = window.LGTQuestionGuard;
+  const ASK_CONTENT = window.LGTAskContent;
+  const ASK_STORAGE = window.LGTAskStorage;
+
+  if (!ENGINE || !CONTENT || !GUARD || !ASK_CONTENT || !ASK_STORAGE) {
+    throw new Error('Ask Ganesha requires Reading Engine, tarot content, Question Guard, Ask content, and Ask storage.');
+  }
+
+  const ORIENTATION = 'upright';
+
+  const COPY = {
+    en: {
+      eyebrow: 'ASK GANESHA',
+      title: 'Bring one question',
+      intro: 'Hold one thing in mind that you would like to see more clearly.',
+      questionLabel: 'What would you like to ask?',
+      placeholder: 'Write one clear question…',
+      questionHint: 'Focus on one question at a time for a clearer reading. Your question stays on this device.',
+      askCards: 'Ask the Cards',
+      back: 'Back to Home',
+      sealedLabel: 'YOUR QUESTION',
+      sealing: 'Holding your question',
+      shuffling: 'Shuffling the deck',
+      choose: 'Choose one card',
+      chooseHint: 'Choose the card you feel drawn to. There is no right or wrong choice.',
+      selected: 'Your card is chosen',
+      selectedHint: 'Take a moment with your question, then reveal the card when you are ready.',
+      restored: 'SAME QUESTION · SAME CARD',
+      restoredHint: 'You have asked this same question today, so the same card is waiting for you.',
+      reveal: 'Reveal the Card',
+      loading: 'Preparing your reading',
+      upright: 'UPRIGHT',
+      questionRecap: 'YOUR QUESTION',
+      cardReflects: 'WHAT THIS CARD REFLECTS',
+      ganeshaReflection: "LITTLE GANESHA'S REFLECTION",
+      carryForward: 'A QUESTION TO CARRY FORWARD',
+      keywords: 'KEYWORDS',
+      askAnother: 'Ask Another Question',
+      disclaimer: 'Use tarot as a tool for reflection, not a fixed prediction. Keep what feels useful and make important decisions with real-world information as well.',
+      storageFail: 'This device could not remember this question. If you ask it again today, a different card may appear.',
+      cardAlt: 'Tarot card for your question: ',
+      required: 'Write one question before continuing.',
+      tooLong: 'Please shorten your question before continuing.',
+      multipleQuestions: 'Please focus on one question at a time.',
+      spam: 'Please write a clear question using ordinary words.',
+      inappropriate: 'Please rephrase your question using respectful and appropriate language before continuing.',
+      safetyCrisis: 'This sounds like an immediate safety concern rather than a tarot question. Please reach out to someone you trust or local emergency support if you may be in danger.'
+    },
+    th: {
+      eyebrow: 'ถามพระพิฆเนศน้อย',
+      title: 'หนึ่งคำถามที่อยู่ในใจ',
+      intro: 'นึกถึงหนึ่งเรื่องที่คุณอยากมองให้ชัดขึ้น แล้วค่อยๆ เขียนคำถามออกมา',
+      questionLabel: 'คุณอยากถามเรื่องอะไร?',
+      placeholder: 'เขียนคำถามหนึ่งเรื่องที่ชัดเจน…',
+      questionHint: 'ถามทีละหนึ่งเรื่อง เพื่อให้การอ่านไพ่มีจุดโฟกัสที่ชัดเจน คำถามจะอยู่บนอุปกรณ์นี้เท่านั้น',
+      askCards: 'ถามไพ่',
+      back: 'กลับหน้าหลัก',
+      sealedLabel: 'คำถามของคุณ',
+      sealing: 'กำลังวางคำถามไว้กับไพ่',
+      shuffling: 'กำลังสับไพ่',
+      choose: 'เลือกไพ่หนึ่งใบ',
+      chooseHint: 'เลือกใบที่รู้สึกดึงดูดใจคุณที่สุด ไม่ต้องคิดว่าใบไหนถูกหรือผิด',
+      selected: 'เลือกไพ่แล้ว',
+      selectedHint: 'อยู่กับคำถามของคุณสักครู่ แล้วค่อยเปิดไพ่เมื่อพร้อม',
+      restored: 'คำถามเดิม · ไพ่ใบเดิม',
+      restoredHint: 'วันนี้คุณเคยถามคำถามเดียวกันแล้ว ไพ่ใบเดิมจึงรออยู่ตรงนี้',
+      reveal: 'เปิดไพ่',
+      loading: 'กำลังเตรียมผลการอ่าน',
+      upright: 'ไพ่ตั้งตรง',
+      questionRecap: 'คำถามของคุณ',
+      cardReflects: 'สิ่งที่ไพ่ใบนี้สะท้อน',
+      ganeshaReflection: 'มุมมองจากพระพิฆเนศน้อย',
+      carryForward: 'คำถามชวนทบทวนต่อ',
+      keywords: 'คำสำคัญ',
+      askAnother: 'ถามเรื่องอื่น',
+      disclaimer: 'ใช้ไพ่ทาโรต์เป็นเครื่องมือช่วยทบทวนตัวเอง ไม่ใช่คำทำนายที่ตายตัว เลือกรับเฉพาะสิ่งที่เป็นประโยชน์ และใช้ข้อมูลในโลกจริงประกอบการตัดสินใจเรื่องสำคัญเสมอ',
+      storageFail: 'อุปกรณ์นี้จำคำถามนี้ไว้ไม่ได้ หากถามซ้ำอีกครั้งในวันนี้ ไพ่จึงอาจเปลี่ยนไป',
+      cardAlt: 'ไพ่ทาโรต์สำหรับคำถามของคุณ: ',
+      required: 'กรุณาเขียนคำถามหนึ่งเรื่องก่อนเริ่มการอ่านไพ่',
+      tooLong: 'กรุณาย่อคำถามให้สั้นลงก่อนเริ่มการอ่านไพ่',
+      multipleQuestions: 'กรุณาถามทีละหนึ่งเรื่อง เพื่อให้การอ่านไพ่มีจุดโฟกัสที่ชัดเจน',
+      spam: 'กรุณาเขียนคำถามให้ชัดเจนด้วยข้อความตามปกติ',
+      inappropriate: 'กรุณาปรับถ้อยคำของคำถามให้สุภาพและเหมาะสมก่อนเริ่มการอ่านไพ่',
+      safetyCrisis: 'ข้อความนี้ดูเป็นเรื่องความปลอดภัยเร่งด่วนมากกว่าคำถามสำหรับไพ่ หากคุณอาจอยู่ในอันตราย กรุณาติดต่อคนที่ไว้ใจหรือหน่วยช่วยเหลือฉุกเฉินในพื้นที่ของคุณ'
+    }
+  };
+
+  const motionIsReduced = () => document.documentElement.dataset.motion === 'reduced'
+    || window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const shell = document.createElement('section');
+  shell.className = 'reading-shell ask-shell';
+  shell.id = 'askReadingView';
+  shell.hidden = true;
+  shell.setAttribute('role', 'region');
+  shell.setAttribute('aria-labelledby', 'askReadingTitle');
+  shell.innerHTML = `
+    <div class="reading-ambient" aria-hidden="true">
+      <span class="reading-orb reading-orb--one"></span>
+      <span class="reading-orb reading-orb--two"></span>
+      <span class="ask-sacred-mark"></span>
+    </div>
+    <header class="reading-header">
+      <button class="reading-back" id="askReadingBack" type="button" aria-label="Back to Home"><span aria-hidden="true">‹</span></button>
+      <div class="reading-header__copy">
+        <span class="reading-eyebrow" id="askReadingEyebrow"></span>
+        <h2 id="askReadingTitle"></h2>
+      </div>
+      <span class="reading-header__balance" aria-hidden="true"></span>
+    </header>
+
+    <div class="reading-scroll" id="askReadingScroll">
+      <div class="reading-intro" id="askReadingIntro"></div>
+
+      <section class="ask-question-card" id="askQuestionCard" aria-labelledby="askQuestionLabel">
+        <div class="ask-question-card__ornament" aria-hidden="true">✦</div>
+        <label class="ask-question-label" id="askQuestionLabel" for="askQuestionInput"></label>
+        <div class="ask-question-field" id="askQuestionField">
+          <textarea id="askQuestionInput" rows="4" maxlength="${GUARD.maxLength}" autocomplete="off" spellcheck="true"></textarea>
+          <span class="ask-question-count" id="askQuestionCount" aria-hidden="true">0/${GUARD.maxLength}</span>
+        </div>
+        <p class="ask-question-hint" id="askQuestionHint"></p>
+        <p class="ask-question-error" id="askQuestionError" role="alert" aria-live="polite"></p>
+        <button class="reading-primary ask-submit" id="askQuestionSubmit" type="button" disabled></button>
+      </section>
+
+      <section class="ask-question-seal" id="askQuestionSeal" hidden aria-live="polite">
+        <span id="askSealLabel"></span>
+        <blockquote id="askSealText"></blockquote>
+        <span class="ask-question-seal__glyph" aria-hidden="true">✦</span>
+      </section>
+
+      <div class="reading-stage ask-stage" id="askReadingStage" hidden>
+        <div class="reading-deck" id="askDeck" aria-hidden="true">
+          <img src="${CONTENT.cardBack}" alt="" decoding="async">
+          <img src="${CONTENT.cardBack}" alt="" decoding="async">
+          <img src="${CONTENT.cardBack}" alt="" decoding="async">
+        </div>
+
+        <div class="reading-choice" id="askChoice" hidden aria-label="Choose one card"></div>
+
+        <div class="reading-selected" id="askSelected" hidden>
+          <button class="reading-card reading-card--selected" id="askSelectedCard" type="button">
+            <span class="reading-card__inner">
+              <span class="reading-card__face reading-card__back"><img src="${CONTENT.cardBack}" alt="" decoding="async"></span>
+              <span class="reading-card__face reading-card__front">
+                <img id="askCardFront" src="" alt="" decoding="async">
+                <span class="reading-card__fallback" id="askCardFallback" hidden aria-hidden="true">
+                  <span aria-hidden="true">✦</span><strong id="askCardFallbackTitle"></strong>
+                </span>
+              </span>
+            </span>
+          </button>
+          <span class="reading-orientation" id="askOrientation"></span>
+        </div>
+      </div>
+
+      <div class="reading-status" id="askReadingStatus" role="status" aria-live="polite"></div>
+      <div class="reading-actions" id="askReadingActions" hidden>
+        <button class="reading-primary" id="askReadingPrimary" type="button"></button>
+      </div>
+
+      <article class="reading-interpretation ask-interpretation" id="askInterpretation" hidden>
+        <section class="ask-result-question">
+          <span id="askResultQuestionLabel"></span>
+          <p id="askResultQuestion"></p>
+        </section>
+        <div class="reading-card-title">
+          <h3 id="askCardTitle"></h3>
+          <p id="askCanonicalTitle"></p>
+        </div>
+        <div class="reading-keywords">
+          <span id="askKeywordsLabel"></span>
+          <div id="askKeywords"></div>
+        </div>
+        <section class="ask-reading-block">
+          <span id="askReflectsLabel"></span>
+          <p id="askMeaning"></p>
+        </section>
+        <section class="ask-reading-block ask-reading-block--ganesha">
+          <span id="askGaneshaLabel"></span>
+          <p id="askGaneshaText"></p>
+        </section>
+        <section class="reading-reflection ask-reading-block ask-reading-block--reflection">
+          <span id="askCarryLabel"></span>
+          <p id="askReflection"></p>
+        </section>
+        <p class="reading-disclaimer" id="askDisclaimer"></p>
+      </article>
+
+      <p class="reading-storage-note" id="askStorageNote" hidden></p>
+    </div>
+  `;
+
+  document.getElementById('app')?.appendChild(shell);
+
+  const $ = (id) => document.getElementById(id);
+  const mainApp = $('mainApp');
+  const backButton = $('askReadingBack');
+  const eyebrow = $('askReadingEyebrow');
+  const title = $('askReadingTitle');
+  const intro = $('askReadingIntro');
+  const questionCard = $('askQuestionCard');
+  const questionLabel = $('askQuestionLabel');
+  const questionField = $('askQuestionField');
+  const questionInput = $('askQuestionInput');
+  const questionCount = $('askQuestionCount');
+  const questionHint = $('askQuestionHint');
+  const questionError = $('askQuestionError');
+  const questionSubmit = $('askQuestionSubmit');
+  const questionSeal = $('askQuestionSeal');
+  const sealLabel = $('askSealLabel');
+  const sealText = $('askSealText');
+  const stage = $('askReadingStage');
+  const deck = $('askDeck');
+  const choice = $('askChoice');
+  const selected = $('askSelected');
+  const selectedCard = $('askSelectedCard');
+  const cardFront = $('askCardFront');
+  const cardFallback = $('askCardFallback');
+  const cardFallbackTitle = $('askCardFallbackTitle');
+  const orientation = $('askOrientation');
+  const status = $('askReadingStatus');
+  const actions = $('askReadingActions');
+  const primary = $('askReadingPrimary');
+  const interpretation = $('askInterpretation');
+  const resultQuestionLabel = $('askResultQuestionLabel');
+  const resultQuestion = $('askResultQuestion');
+  const cardTitle = $('askCardTitle');
+  const canonicalTitle = $('askCanonicalTitle');
+  const keywordsLabel = $('askKeywordsLabel');
+  const keywords = $('askKeywords');
+  const reflectsLabel = $('askReflectsLabel');
+  const meaning = $('askMeaning');
+  const ganeshaLabel = $('askGaneshaLabel');
+  const ganeshaText = $('askGaneshaText');
+  const carryLabel = $('askCarryLabel');
+  const reflection = $('askReflection');
+  const disclaimer = $('askDisclaimer');
+  const storageNote = $('askStorageNote');
+  const scroll = $('askReadingScroll');
+
+  let session = null;
+  let selectedData = null;
+  let activeQuestion = '';
+  let activeFingerprint = '';
+  let currentView = 'question';
+  let previousFocus = null;
+  let activeTimer = null;
+  let lifecycleToken = 0;
+
+  function language() {
+    return document.documentElement.lang === 'th' ? 'th' : 'en';
+  }
+
+  function t(key) {
+    const lang = language();
+    return COPY[lang][key] || COPY.en[key] || key;
+  }
+
+  function emitInteraction(type, detail = {}) {
+    window.dispatchEvent(new CustomEvent('lgt:reading:interaction', {
+      detail: { type, spreadId: 'ask', ...detail }
+    }));
+  }
+
+  function clearTimer() {
+    if (activeTimer) {
+      window.clearTimeout(activeTimer);
+      activeTimer = null;
+    }
+  }
+
+  function after(ms, callback) {
+    clearTimer();
+    activeTimer = window.setTimeout(() => {
+      activeTimer = null;
+      callback();
+    }, motionIsReduced() ? Math.min(ms, 80) : ms);
+  }
+
+  function setMainInert(value) {
+    if (!mainApp) return;
+    if ('inert' in mainApp) mainApp.inert = value;
+    if (value) mainApp.setAttribute('aria-hidden', 'true');
+    else mainApp.removeAttribute('aria-hidden');
+  }
+
+  function setReadingMode(value) {
+    document.body.classList.toggle('is-reading-open', value);
+  }
+
+  function guardMessage(code) {
+    if (code === 'required') return t('required');
+    if (code === 'tooLong') return t('tooLong');
+    if (code === 'multipleQuestions') return t('multipleQuestions');
+    if (code === 'spam') return t('spam');
+    if (code === 'safetyCrisis') return t('safetyCrisis');
+    return t('inappropriate');
+  }
+
+  function validateQuestion({ showRequired = false } = {}) {
+    const result = GUARD.validate(questionInput.value);
+    questionCount.textContent = `${result.length}/${GUARD.maxLength}`;
+    questionField.classList.toggle('is-invalid', !result.ok && (result.code !== 'required' || showRequired));
+    if (result.ok) questionError.textContent = '';
+    else if (result.code === 'required' && !showRequired) questionError.textContent = '';
+    else questionError.textContent = guardMessage(result.code);
+    questionSubmit.disabled = !result.ok;
+    return result;
+  }
+
+  function updateStaticCopy() {
+    eyebrow.textContent = t('eyebrow');
+    title.textContent = t('title');
+    backButton.setAttribute('aria-label', t('back'));
+    intro.textContent = currentView === 'question' ? t('intro') : (currentView === 'choosing' ? t('chooseHint') : currentView === 'selected' ? t('selectedHint') : currentView === 'restored' ? t('restoredHint') : '');
+    questionLabel.textContent = t('questionLabel');
+    questionInput.placeholder = t('placeholder');
+    questionHint.textContent = t('questionHint');
+    questionSubmit.textContent = t('askCards');
+    sealLabel.textContent = t('sealedLabel');
+    orientation.textContent = t('upright');
+    resultQuestionLabel.textContent = t('questionRecap');
+    keywordsLabel.textContent = t('keywords');
+    reflectsLabel.textContent = t('cardReflects');
+    ganeshaLabel.textContent = t('ganeshaReflection');
+    carryLabel.textContent = t('carryForward');
+    disclaimer.textContent = t('disclaimer');
+    storageNote.textContent = t('storageFail');
+    choice.setAttribute('aria-label', t('choose'));
+
+    if (currentView === 'sealing') status.textContent = t('sealing');
+    else if (currentView === 'shuffling') status.textContent = t('shuffling');
+    else if (currentView === 'choosing') status.textContent = t('choose');
+    else if (currentView === 'selected') { status.textContent = t('selected'); primary.textContent = t('reveal'); }
+    else if (currentView === 'restored') { status.textContent = t('restored'); primary.textContent = t('reveal'); }
+    else if (currentView === 'revealed') { status.textContent = ''; primary.textContent = t('askAnother'); }
+    else status.textContent = '';
+
+    choice.querySelectorAll('[data-choice-index]').forEach((button) => {
+      button.setAttribute('aria-label', `${t('choose')} ${Number(button.dataset.choiceIndex) + 1}`);
+    });
+
+    if (!shell.hidden) validateQuestion();
+    if (selectedData) renderCardText(selectedData);
+  }
+
+  function renderCardText(card) {
+    const lang = language();
+    cardTitle.textContent = card.title[lang];
+    canonicalTitle.textContent = lang === 'th' ? card.title.en : '';
+    meaning.textContent = card.upright[lang];
+    ganeshaText.textContent = ASK_CONTENT.get(card.id, lang);
+    reflection.textContent = card.reflection[lang];
+    resultQuestion.textContent = activeQuestion;
+    keywords.replaceChildren(...card.keywords[lang].map((word) => {
+      const span = document.createElement('span');
+      span.textContent = word;
+      return span;
+    }));
+    cardFront.alt = `${t('cardAlt')}${card.title[lang]}`;
+    cardFallbackTitle.textContent = card.title[lang];
+  }
+
+  function resetVisuals({ keepQuestion = false } = {}) {
+    clearTimer();
+    lifecycleToken += 1;
+    session = null;
+    selectedData = null;
+    activeFingerprint = '';
+    currentView = 'question';
+    shell.classList.remove('is-revealed');
+    questionCard.hidden = false;
+    questionSeal.hidden = true;
+    questionSeal.classList.remove('is-sealed');
+    sealText.textContent = '';
+    stage.hidden = true;
+    deck.hidden = false;
+    deck.classList.remove('is-shuffling');
+    choice.hidden = true;
+    choice.replaceChildren();
+    selected.hidden = true;
+    selectedCard.classList.remove('is-revealed');
+    cardFront.removeAttribute('src');
+    cardFront.hidden = false;
+    cardFront.alt = '';
+    cardFallback.hidden = true;
+    cardFallbackTitle.textContent = '';
+    orientation.hidden = true;
+    status.textContent = '';
+    actions.hidden = true;
+    primary.disabled = false;
+    interpretation.hidden = true;
+    storageNote.hidden = true;
+    if (!keepQuestion) {
+      activeQuestion = '';
+      questionInput.value = '';
+    }
+    questionError.textContent = '';
+    questionField.classList.remove('is-invalid');
+    scroll.scrollTop = 0;
+    updateStaticCopy();
+  }
+
+  function buildChoices(candidateIds) {
+    choice.replaceChildren();
+    candidateIds.forEach((cardId, index) => {
+      const button = document.createElement('button');
+      button.className = 'reading-card reading-card--choice';
+      button.type = 'button';
+      button.dataset.choiceIndex = String(index);
+      button.setAttribute('aria-label', `${t('choose')} ${index + 1}`);
+      button.innerHTML = `<img src="${CONTENT.cardBack}" alt="" decoding="async">`;
+      button.addEventListener('click', () => chooseCard(index, button), { once: true });
+      choice.appendChild(button);
+    });
+  }
+
+  function startShuffle() {
+    if (!session || session.state !== 'idle') return;
+    currentView = 'shuffling';
+    stage.hidden = false;
+    actions.hidden = true;
+    updateStaticCopy();
+    const candidates = session.prepareChoice(3);
+    emitInteraction('shuffle-start');
+    deck.classList.add('is-shuffling');
+
+    after(980, () => {
+      deck.classList.remove('is-shuffling');
+      deck.hidden = true;
+      buildChoices(candidates);
+      choice.hidden = false;
+      session.markChoosing();
+      currentView = 'choosing';
+      updateStaticCopy();
+      emitInteraction('choose-ready');
+      choice.querySelector('button')?.focus({ preventScroll: true });
+    });
+  }
+
+  function chooseCard(index, button) {
+    if (!session || session.state !== 'choosing') return;
+    choice.querySelectorAll('button').forEach((node) => { node.disabled = true; });
+    button.classList.add('is-chosen');
+    selectedData = session.selectCandidate(index);
+    const persisted = ASK_STORAGE.save({ fingerprint: activeFingerprint, cardId: selectedData.id, sessionId: session.sessionId });
+    if (!persisted) storageNote.hidden = false;
+    emitInteraction('card-select', { cardId: selectedData.id });
+    after(260, () => renderSelectedBack(false));
+  }
+
+  function renderSelectedBack(restored = false) {
+    stage.hidden = false;
+    deck.hidden = true;
+    choice.hidden = true;
+    selected.hidden = false;
+    orientation.hidden = true;
+    interpretation.hidden = true;
+    actions.hidden = false;
+    primary.disabled = false;
+    currentView = restored ? 'restored' : 'selected';
+    updateStaticCopy();
+  }
+
+  async function revealCard() {
+    if (!session || session.state !== 'selected' || !selectedData) return;
+    const revealToken = lifecycleToken;
+    primary.disabled = true;
+    currentView = 'revealing';
+    status.textContent = t('loading');
+    emitInteraction('card-reveal', { cardId: selectedData.id });
+    session.beginReveal();
+
+    cardFront.hidden = false;
+    cardFallback.hidden = true;
+    cardFront.src = selectedData.image;
+    renderCardText(selectedData);
+    let artworkReady = true;
+    try {
+      if (!cardFront.complete) await cardFront.decode();
+      if (!cardFront.naturalWidth) artworkReady = false;
+    } catch (_) {
+      artworkReady = false;
+    }
+
+    if (revealToken !== lifecycleToken || shell.hidden) return;
+    if (!artworkReady) {
+      cardFront.hidden = true;
+      cardFallback.hidden = false;
+      emitInteraction('card-art-fallback', { cardId: selectedData.id });
+    }
+
+    selected.hidden = false;
+    selectedCard.classList.add('is-revealed');
+    orientation.hidden = false;
+
+    after(640, () => {
+      if (session.state === 'revealing') session.markRevealed();
+      if (session.state === 'revealed') session.markInterpreted();
+      currentView = 'revealed';
+      interpretation.hidden = false;
+      actions.hidden = false;
+      primary.disabled = false;
+      shell.classList.add('is-revealed');
+      updateStaticCopy();
+      after(80, () => interpretation.scrollIntoView({ behavior: motionIsReduced() ? 'auto' : 'smooth', block: 'nearest' }));
+    });
+  }
+
+  async function submitQuestion() {
+    const validation = validateQuestion({ showRequired: true });
+    if (!validation.ok) {
+      questionInput.focus({ preventScroll: true });
+      return;
+    }
+
+    questionSubmit.disabled = true;
+    activeQuestion = validation.text;
+    questionInput.value = activeQuestion;
+    currentView = 'sealing';
+    questionCard.hidden = true;
+    questionSeal.hidden = false;
+    sealText.textContent = activeQuestion;
+    requestAnimationFrame(() => questionSeal.classList.add('is-sealed'));
+    updateStaticCopy();
+    emitInteraction('question-accepted');
+
+    const token = ++lifecycleToken;
+    activeFingerprint = await GUARD.fingerprint(activeQuestion);
+    if (token !== lifecycleToken || shell.hidden) return;
+
+    session = ENGINE.createSession('ask');
+    const stored = ASK_STORAGE.get(activeFingerprint);
+    if (stored) {
+      selectedData = CONTENT.getCard(stored.cardId);
+      session.restoreSelection({
+        sessionId: stored.sessionId,
+        cards: [{ positionId: 'answer', cardId: stored.cardId, orientation: ORIENTATION }]
+      });
+      emitInteraction('question-restored', { cardId: stored.cardId });
+      after(360, () => renderSelectedBack(true));
+      return;
+    }
+
+    after(430, startShuffle);
+  }
+
+  function askAnother() {
+    if (session?.state === 'interpreted') session.complete();
+    emitInteraction('ask-another');
+    resetVisuals();
+    after(60, () => questionInput.focus({ preventScroll: true }));
+  }
+
+  function primaryAction() {
+    if (currentView === 'selected' || currentView === 'restored') revealCard();
+    else if (currentView === 'revealed') askAnother();
+  }
+
+  function openAsk() {
+    if (!shell.hidden) return;
+    previousFocus = document.activeElement;
+    resetVisuals();
+    setMainInert(true);
+    setReadingMode(true);
+    shell.hidden = false;
+    requestAnimationFrame(() => shell.classList.add('is-active'));
+    emitInteraction('reading-open');
+    after(30, () => questionInput.focus({ preventScroll: true }));
+  }
+
+  function closeAsk() {
+    if (shell.hidden) return;
+    lifecycleToken += 1;
+    clearTimer();
+    emitInteraction('reading-close');
+    shell.classList.remove('is-active');
+    window.setTimeout(() => {
+      shell.hidden = true;
+      resetVisuals();
+      setMainInert(false);
+      setReadingMode(false);
+      if (previousFocus instanceof HTMLElement && document.contains(previousFocus)) previousFocus.focus({ preventScroll: true });
+      previousFocus = null;
+    }, motionIsReduced() ? 0 : 240);
+  }
+
+  document.querySelectorAll('[data-feature="ask"]').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      openAsk();
+    }, { capture: true });
+  });
+
+  questionInput.addEventListener('input', () => validateQuestion());
+  questionInput.addEventListener('blur', () => validateQuestion());
+  questionInput.addEventListener('keydown', (event) => {
+    if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+      event.preventDefault();
+      submitQuestion();
+    }
+  });
+  questionSubmit.addEventListener('click', submitQuestion);
+  backButton.addEventListener('click', closeAsk);
+  primary.addEventListener('click', primaryAction);
+  selectedCard.addEventListener('click', () => {
+    if (currentView === 'selected' || currentView === 'restored') revealCard();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (!shell.hidden && event.key === 'Escape') {
+      event.preventDefault();
+      closeAsk();
+    }
+  });
+
+  const languageObserver = new MutationObserver((mutations) => {
+    if (mutations.some((mutation) => mutation.attributeName === 'lang')) updateStaticCopy();
+  });
+  languageObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+
+  window.LGTAskGanesha = Object.freeze({ open: openAsk, close: closeAsk });
+})();
