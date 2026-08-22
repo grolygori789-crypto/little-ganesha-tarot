@@ -1,0 +1,92 @@
+{
+  "release": "V0.5.2",
+  "title": "Reading Discipline + Smart Reset",
+  "baseline_runtime": "V0.5.1",
+  "baseline_head": "ed38c109ef134c553d247a2e574be8b43f7f969f",
+  "risk": "MEDIUM",
+  "reading_engine": "1.1.0 (unchanged)",
+  "deck_ritual": "1.1.0 (unchanged)",
+  "features": [
+    "Ask Ganesha bilingual semantic duplicate lock for same-day equivalent questions",
+    "same semantic Ask question restores the same card and original answer contract",
+    "semantic comparison preserves topic, target, timeframe, conditional and comparison distinctions",
+    "named relationship subjects are kept distinct without storing raw question text",
+    "Three-Card locks only after one completed interpreted spread per local calendar day",
+    "same-day Three-Card return restores the same three cards and deterministic narrative",
+    "Daily Guidance and Three-Card show a quiet countdown to the next local day",
+    "Ask Ganesha shows the quiet countdown only when restoring a same/similar question",
+    "countdowns recalculate from device-local midnight and refresh after foreground/pageshow",
+    "existing background audio auto-pause/resume behavior verified and preserved",
+    "V0.5.1 compact 78-card selection UX preserved"
+  ],
+  "ask_duplicate_policy": {
+    "scope": "same device-local calendar day",
+    "languages": [
+      "th",
+      "en"
+    ],
+    "exact_duplicate": "same card + same reading",
+    "semantic_duplicate": "same card + original semantic answer contract",
+    "different_topic_or_timeframe": "new reading",
+    "raw_question_persisted": false,
+    "intentional_same_day_eviction": false
+  },
+  "three_card_daily_policy": {
+    "limit": "one completed interpreted spread per device-local calendar day",
+    "lock_point": "after successful interpretation",
+    "abandoned_before_completion": "does not consume the day",
+    "same_day_return": "restore same three cards + same narrative",
+    "reset": "00:00 in the device local timezone"
+  },
+  "quiet_countdown": {
+    "one_hour_or_more": "hours + minutes",
+    "under_one_hour": "minutes",
+    "final_minute": "seconds",
+    "background_behavior": "timer suspended; recalculated from wall clock when visible"
+  },
+  "audio_lifecycle": {
+    "code_change": false,
+    "baseline_verified": true,
+    "hidden": "auto-pause only when audio was playing",
+    "visible": "resume from the same position only when it had been playing before hide",
+    "manual_pause": "preserved"
+  },
+  "privacy": "local-only; no AI/API/backend; semantic duplicate metadata stores no raw question text",
+  "target_runtime_build": "0.5.2",
+  "baseline_runtime_build": "0.5.1",
+  "baseline_repository_head": "ed38c109ef134c553d247a2e574be8b43f7f969f",
+  "release_type": "reading discipline / persistence / lifecycle polish",
+  "orientation_policy": "upright-only",
+  "protected": [
+    "Reading Engine 1.1.0",
+    "Deck Ritual 1.1.0 and compact 78-card UX",
+    "Daily one-card persistence",
+    "Semantic Ask no-drift answer composition",
+    "Question Contract",
+    "Ask Context and spiritual safety boundaries",
+    "Three-Card Narrative",
+    "Save/Share",
+    "Home profile / age / zodiac",
+    "PWA architecture",
+    "manual audio intent"
+  ],
+  "automated_qa": {
+    "status": "PASS",
+    "ask_semantic_lock_curated_cases": 30,
+    "ask_semantic_regressions": 1404,
+    "ask_context_regressions": 1404,
+    "three_card_bilingual_samples": 1456,
+    "question_analyzer_cases": "344+",
+    "reading_day_local_midnight": "PASS",
+    "three_card_daily_persistence": "PASS",
+    "reading_engine_regression": "PASS",
+    "compact_deck_regression": "PASS",
+    "save_share_regression": "PASS",
+    "home_profile_regression": "PASS",
+    "global_copy_regression": "PASS",
+    "runtime_cache_coherence": "PASS"
+  },
+  "archive_reextract": "PASS",
+  "deployed_real_device": "PENDING",
+  "release_status": "VERIFIED FOR UPLOAD — automated QA/checksum/archive re-extraction PASS; real-device acceptance pending"
+}

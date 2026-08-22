@@ -1673,3 +1673,55 @@
     }
   }
 }
+
+/* V0.5.2 — Quiet local-day reset countdown */
+@layer reading {
+  .reading-reset-note {
+    margin-top: 1.15rem;
+    padding: .95rem 1rem 1rem;
+    border: 1px solid rgba(229,189,112,.14);
+    border-radius: .95rem;
+    background: linear-gradient(145deg, rgba(229,189,112,.045), rgba(255,255,255,.014));
+    text-align: center;
+    box-shadow: inset 0 1px rgba(255,245,218,.025);
+  }
+
+  .reading-reset-note > span {
+    display: block;
+    font-family: "Cormorant Garamond", "Noto Serif Thai", Georgia, serif;
+    font-size: .6rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(229,189,112,.66);
+  }
+
+  html[lang="th"] .reading-reset-note > span {
+    font-family: "Noto Serif Thai", serif;
+    letter-spacing: .025em;
+    text-transform: none;
+  }
+
+  .reading-reset-note > p {
+    margin: .42rem 0 .18rem;
+    font-family: "Noto Serif Thai", "Cormorant Garamond", serif;
+    font-size: .7rem;
+    line-height: 1.55;
+    color: rgba(255,248,233,.48);
+  }
+
+  .reading-reset-note > strong {
+    display: block;
+    font-family: "Cormorant Garamond", "Noto Serif Thai", Georgia, serif;
+    font-size: clamp(1rem, 4.2vw, 1.18rem);
+    font-weight: 600;
+    letter-spacing: .025em;
+    color: rgba(247,217,147,.9);
+    font-variant-numeric: tabular-nums;
+  }
+
+  html[lang="th"] .reading-reset-note > strong {
+    font-family: "Noto Serif Thai", serif;
+    letter-spacing: .01em;
+  }
+}

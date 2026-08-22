@@ -1,13 +1,13 @@
 'use strict';
 const fs=require('fs'); const assert=(c,m)=>{if(!c)throw new Error(m)}; const read=p=>fs.readFileSync(p,'utf8');
-const TARGET='0.5.1';
+const TARGET='0.5.2';
 const index=read('index.html'), app=read('js/app.js'), sw=read('sw.js'), dailyUi=read('js/reading-ui.js'), askUi=read('js/ask-ui.js'), threeUi=read('js/three-ui.js');
 const guard=read('js/question-guard.js'), askContent=read('js/ask-content.js'), storage=read('js/ask-storage.js'), analyzer=read('js/question-analyzer.js');
 const contract=read('js/question-contract.js'), context=read('js/ask-context.js'), semantic=read('js/ask-semantic.js'), engine=read('js/reading-engine.js'), content=read('js/reading-content.js'), css=read('css/reading.css');
-const readingExport=read('js/reading-export.js'), askExport=read('js/ask-export.js'), threeNarrative=read('js/three-narrative.js'), threeExport=read('js/three-export.js');
+const readingExport=read('js/reading-export.js'), askExport=read('js/ask-export.js'), threeNarrative=read('js/three-narrative.js'), threeExport=read('js/three-export.js'), readingDay=read('js/reading-day.js'), threeStorage=read('js/three-storage.js');
 for(const marker of [`meta name="application-version" content="${TARGET}"`,`body data-build="${TARGET}"`,`manifest.webmanifest?v=${TARGET}`,`css/app.css?v=${TARGET}`,`css/reading.css?v=${TARGET}`,`BUILD ${TARGET}`]) assert(index.includes(marker),`Missing live marker: ${marker}`);
 assert(app.includes(`window.LGT_BUILD = '${TARGET}'`),'app.js build mismatch.'); assert(sw.includes(`const BUILD = '${TARGET}';`),'Service Worker build mismatch.');
-const scripts=['js/pwa.js','js/audio.js','js/profile-details.js','js/app.js','js/reading-content.js','js/reading-engine.js','js/reading-export.js','js/three-narrative.js','js/question-guard.js','js/ask-content.js','js/question-analyzer.js','js/question-contract.js','js/ask-context.js','js/ask-semantic.js','js/ask-storage.js','js/reading-ui.js','js/ask-export.js','js/ask-ui.js','js/three-export.js','js/three-ui.js'];
+const scripts=['js/pwa.js','js/audio.js','js/profile-details.js','js/app.js','js/reading-content.js','js/reading-engine.js','js/reading-day.js','js/reading-export.js','js/three-narrative.js','js/question-guard.js','js/ask-content.js','js/question-analyzer.js','js/question-contract.js','js/ask-context.js','js/ask-semantic.js','js/ask-storage.js','js/reading-ui.js','js/ask-export.js','js/ask-ui.js','js/three-export.js','js/three-storage.js','js/three-ui.js'];
 for(const p of scripts){assert(index.includes(`${p}?v=${TARGET}`),`index missing ${p}`);assert(sw.includes(`${p}?v=${TARGET}`),`SW shell missing ${p}`);}
 assert(!sw.includes('assets/cards/00_THE_FOOL.png'),'Full deck must not be pre-cached.');
 assert(content.includes('"dailyLenses"')&&content.includes("const CONTENT_VERSION = 'daily-guidance-v3'"),'Protected Daily content model missing.');
@@ -19,9 +19,13 @@ assert(guard.includes("normalize('NFKC')")&&guard.includes('safetyCrisis'),'Ques
 assert(readingExport.includes("const VERSION = 'reading-export-v1'")&&readingExport.includes('navigator.canShare'),'Shared export transport missing.'); assert(askExport.includes("const VERSION = 'ask-export-v1'"),'Ask export missing.');
 assert(threeNarrative.includes("const VERSION = 'three-narrative-v1'")&&threeNarrative.includes('profileCount'),'Three-card narrative missing.'); assert(threeExport.includes("const VERSION = 'three-export-v1'"),'Three-card export missing.');
 assert(threeUi.includes('selectCandidates(selectedIndices)')&&threeUi.includes("runExport('save')")&&threeUi.includes("runExport('share')"),'Three-card selection or Save/Share wiring missing.');
+assert(readingDay.includes("version: '1.0.0'")&&readingDay.includes('nextLocalMidnight')&&readingDay.includes('formatRemaining'),'Shared local-day/countdown module missing.');
+assert(threeStorage.includes("lgt.reading.three.v1")&&threeUi.includes('THREE_STORAGE.get()')&&threeUi.includes('THREE_STORAGE.save(session)'),'Three-card daily persistence missing.');
+assert(storage.includes('findSemantic')&&askUi.includes('ASK_STORAGE.findSemantic')&&askUi.includes('analysisSnapshot'),'Ask semantic duplicate lock missing.');
+assert(dailyUi.includes('startResetCountdown')&&askUi.includes('startResetCountdown')&&threeUi.includes('startResetCountdown'),'Quiet countdown wiring missing.');
 for(const cls of ['.ask-question-error','.reading-home-action','.ask-share-question-option','.three-selected-rail','.three-result-card','.three-story']) assert(css.includes(cls),`UI style missing: ${cls}`);
 const staticIds=[...index.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]); assert(new Set(staticIds).size===staticIds.length,'Duplicate static IDs.');
 const allTemplates=[dailyUi,askUi,threeUi].flatMap(text=>[...text.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1])); assert(new Set(allTemplates).size===allTemplates.length,'Duplicate reading-template IDs.');
-const order=['js/app.js','js/reading-content.js','js/reading-engine.js','js/reading-export.js','js/three-narrative.js','js/question-guard.js','js/ask-content.js','js/question-analyzer.js','js/question-contract.js','js/ask-context.js','js/ask-semantic.js','js/ask-storage.js','js/reading-ui.js','js/ask-export.js','js/ask-ui.js','js/three-export.js','js/three-ui.js'].map(p=>index.indexOf(`${p}?v=${TARGET}`)); assert(order.every(v=>v>=0)&&order.every((v,i)=>i===0||v>order[i-1]),'Runtime script dependency order invalid.');
+const order=['js/app.js','js/reading-content.js','js/reading-engine.js','js/reading-day.js','js/reading-export.js','js/three-narrative.js','js/question-guard.js','js/ask-content.js','js/question-analyzer.js','js/question-contract.js','js/ask-context.js','js/ask-semantic.js','js/ask-storage.js','js/reading-ui.js','js/ask-export.js','js/ask-ui.js','js/three-export.js','js/three-storage.js','js/three-ui.js'].map(p=>index.indexOf(`${p}?v=${TARGET}`)); assert(order.every(v=>v>=0)&&order.every((v,i)=>i===0||v>order[i-1]),'Runtime script dependency order invalid.');
 const stripped=css.replace(/\/\*[\s\S]*?\*\//g,'').replace(/"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'/g,''); let depth=0; for(const ch of stripped){if(ch==='{')depth++;if(ch==='}')depth--;assert(depth>=0,'CSS closes before it opens.');} assert(depth===0,'CSS brace balance mismatch.');
-console.log('V0.5.1 package + Three-Card wiring checks: PASS');
+console.log('V0.5.2 package + reading discipline wiring: PASS');

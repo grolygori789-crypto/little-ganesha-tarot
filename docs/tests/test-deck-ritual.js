@@ -3,9 +3,9 @@ const fs=require('fs');
 const assert=(value,message)=>{if(!value)throw new Error(message);};
 const read=(p)=>fs.readFileSync(p,'utf8');
 const index=read('index.html'),sw=read('sw.js'),engine=read('js/reading-engine.js'),ritual=read('js/deck-ritual.js'),daily=read('js/reading-ui.js'),ask=read('js/ask-ui.js'),three=read('js/three-ui.js'),css=read('css/reading.css');
-assert(index.includes('js/deck-ritual.js?v=0.5.1'),'Deck Ritual must load in index.');
-assert(index.indexOf('js/deck-ritual.js?v=0.5.1')<index.indexOf('js/reading-ui.js?v=0.5.1'),'Deck Ritual must load before reading UIs.');
-assert(sw.includes("url('js/deck-ritual.js?v=0.5.1')"),'Deck Ritual must be cached by the service worker.');
+assert(index.includes('js/deck-ritual.js?v=0.5.2'),'Deck Ritual must load in index.');
+assert(index.indexOf('js/deck-ritual.js?v=0.5.2')<index.indexOf('js/reading-ui.js?v=0.5.2'),'Deck Ritual must load before reading UIs.');
+assert(sw.includes("url('js/deck-ritual.js?v=0.5.2')"),'Deck Ritual must be cached by the service worker.');
 assert(engine.includes('Math.min(CONTENT.cards.length'),'Reading Engine must permit a full 78-card candidate deck.');
 assert(/prepareChoice\(78\)/.test(daily)&&/rowCount:\s*6/.test(daily),'Daily must use full-deck compact 6-row ritual.');
 assert(/prepareChoice\(78\)/.test(ask)&&/rowCount:\s*6/.test(ask),'Ask must use full-deck compact 6-row ritual.');
@@ -13,4 +13,4 @@ assert(/prepareChoice\(78\)/.test(three)&&/selectionLimit:\s*3/.test(three)&&/ro
 assert(ritual.includes("version: '1.1.0'")&&ritual.includes('1, 8, 6')&&ritual.includes('ArrowRight')&&ritual.includes('ArrowDown'),'Deck Ritual 1.1.0 accessibility/row support missing.');
 assert(css.includes('V0.5.1 — Compact full-deck viewport')&&css.includes('overflow: hidden')&&css.includes('--cards-in-row'),'Compact no-scroll deck CSS missing.');
 assert(three.includes("stage.hidden=true")&&three.includes("deckRitual?.destroy()")&&three.includes("rail.scrollIntoView"),'Three-Card ready-state stage collapse missing.');
-console.log('V0.5.1 compact full-deck ritual checks: PASS');
+console.log('V0.5.2 compact full-deck ritual regression: PASS');

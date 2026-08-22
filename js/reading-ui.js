@@ -5,7 +5,8 @@
   const CONTENT = window.LGTReadingContent;
   const READING_EXPORT = window.LGTReadingExport;
   const DECK_RITUAL = window.LGTDeckRitual;
-  if (!ENGINE || !CONTENT || !READING_EXPORT || !DECK_RITUAL) throw new Error('Daily Guidance UI requires Reading Engine, content, Deck Ritual, and shared Reading Export.');
+  const DAY = window.LGTReadingDay;
+  if (!ENGINE || !CONTENT || !READING_EXPORT || !DECK_RITUAL || !DAY) throw new Error('Daily Guidance UI requires Reading Engine, content, Deck Ritual, Reading Day, and shared Reading Export.');
 
   const COPY = {
     en: {
@@ -16,7 +17,7 @@
       begin: 'Begin',
       shuffling: 'Shuffling the deck',
       choose: 'Choose one card',
-      chooseHint: 'Move through the deck at your own pace and choose the card that catches you. There is no right or wrong choice.',
+      chooseHint: 'Let your eyes settle on the shuffled deck and choose the card that catches you. There is no right or wrong choice.',
       selected: 'Your card is chosen',
       selectedHint: 'This is your Daily Guidance card for today on this device.',
       reveal: 'Reveal the card',
@@ -48,7 +49,9 @@
       exportShared: 'Your reading image is ready to share.',
       exportSavedFallback: 'Direct sharing is not available here, so the image was saved instead.',
       exportFailed: 'The image could not be created right now. Please try again.',
-      exportCancelled: 'Sharing was cancelled.'
+      exportCancelled: 'Sharing was cancelled.',
+      resetKicker: 'A NEW DAILY CARD ARRIVES WITH THE NEW DAY',
+      resetLabel: 'Your next Daily Guidance will be available in'
     },
     th: {
       eyebrow: 'คำแนะนำประจำวัน',
@@ -58,7 +61,7 @@
       begin: 'เริ่ม',
       shuffling: 'กำลังสับไพ่',
       choose: 'เลือกไพ่หนึ่งใบ',
-      chooseHint: 'ค่อยๆ เลื่อนไปตามสำรับ แล้วเลือกใบที่สะดุดใจ ไม่ต้องคิดว่าใบไหนถูกหรือผิด',
+      chooseHint: 'มองไปตามสำรับที่สับไว้ แล้วเลือกใบที่สะดุดใจ ไม่ต้องคิดว่าใบไหนถูกหรือผิด',
       selected: 'เลือกไพ่แล้ว',
       selectedHint: 'ไพ่ใบนี้จะเป็นไพ่ประจำวันนี้ของคุณบนอุปกรณ์เครื่องนี้',
       reveal: 'เปิดไพ่',
@@ -90,7 +93,9 @@
       exportShared: 'เตรียมภาพสำหรับการแชร์แล้ว',
       exportSavedFallback: 'อุปกรณ์นี้แชร์ภาพตรงจากหน้านี้ไม่ได้ จึงบันทึกภาพลงเครื่องให้แทน',
       exportFailed: 'ยังสร้างภาพผลการอ่านไม่ได้ในตอนนี้ กรุณาลองใหม่อีกครั้ง',
-      exportCancelled: 'ยกเลิกการแชร์แล้ว'
+      exportCancelled: 'ยกเลิกการแชร์แล้ว',
+      resetKicker: 'ไพ่ประจำวันใบใหม่จะพร้อมเมื่อขึ้นวันใหม่',
+      resetLabel: 'ไพ่ประจำวันใบใหม่จะพร้อมใน'
     }
   };
 
@@ -187,6 +192,11 @@
           </div>
           <p class="reading-share__status" id="dailyShareStatus" role="status" aria-live="polite"></p>
         </section>
+        <section class="reading-reset-note" id="dailyResetNote" hidden>
+          <span id="dailyResetKicker"></span>
+          <p id="dailyResetLabel"></p>
+          <strong id="dailyResetTime"></strong>
+        </section>
         <p class="reading-disclaimer" id="dailyDisclaimer"></p>
       </article>
 
@@ -232,6 +242,10 @@
   const saveButton = $('dailySaveImage');
   const shareButton = $('dailyShareImage');
   const shareStatus = $('dailyShareStatus');
+  const resetNote = $('dailyResetNote');
+  const resetKicker = $('dailyResetKicker');
+  const resetLabel = $('dailyResetLabel');
+  const resetTime = $('dailyResetTime');
   const disclaimer = $('dailyDisclaimer');
   const storageNote = $('dailyStorageNote');
   const scroll = $('dailyReadingScroll');
@@ -245,6 +259,7 @@
   let lifecycleToken = 0;
   let exportBusy = false;
   let deckRitual = null;
+  let stopCountdown = null;
 
   const LENS_KEYS = Object.freeze([
     'workGoals',
@@ -306,6 +321,8 @@
     keywordsLabel.textContent = t('keywords');
     lensesTitle.textContent = t('lensesTitle');
     lensesHint.textContent = t('lensesHint');
+    resetKicker.textContent = t('resetKicker');
+    resetLabel.textContent = t('resetLabel');
     disclaimer.textContent = t('disclaimer');
     saveShareTitle.textContent = t('saveShareTitle');
     saveShareHint.textContent = t('saveShareHint');
@@ -341,6 +358,33 @@
     }
 
     if (selectedData) renderCardText(selectedData);
+    if (!resetNote.hidden) resetTime.textContent = DAY.formatRemaining(DAY.snapshot().remainingMs, language());
+  }
+
+  function stopResetCountdown() {
+    if (stopCountdown) stopCountdown();
+    stopCountdown = null;
+    resetNote.hidden = true;
+  }
+
+  function resetForNewDay() {
+    stopResetCountdown();
+    if (session?.state === 'interpreted') session.complete();
+    resetVisuals();
+    session = ENGINE.createSession('daily');
+    shell.classList.add('is-active');
+    currentView = 'intro';
+    updateStaticCopy();
+    emitInteraction('day-reset');
+  }
+
+  function startResetCountdown() {
+    stopResetCountdown();
+    resetNote.hidden = false;
+    stopCountdown = DAY.subscribe((info, meta) => {
+      resetTime.textContent = DAY.formatRemaining(info.remainingMs, language());
+      if (meta.rolledOver && !shell.hidden) resetForNewDay();
+    });
   }
 
   function renderDailyLenses(card) {
@@ -395,6 +439,7 @@
 
   function resetVisuals() {
     clearTimer();
+    stopResetCountdown();
     currentView = 'intro';
     selectedData = null;
     preloadedFront = null;
@@ -539,6 +584,7 @@
       primary.disabled = false;
       shell.classList.add('is-revealed');
       updateStaticCopy();
+      startResetCountdown();
       after(80, () => interpretation.scrollIntoView({ behavior: motionIsReduced() ? 'auto' : 'smooth', block: 'nearest' }));
     });
   }

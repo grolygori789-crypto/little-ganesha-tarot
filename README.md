@@ -1,68 +1,69 @@
-# Little Ganesha Tarot — V0.5.1 Compact Full-Deck UX Polish
+# Little Ganesha Tarot — V0.5.2 Reading Discipline + Smart Reset
 
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.5.1  
-**Baseline runtime:** V0.5.0  
-**Baseline GitHub HEAD:** `e437f063d5e153183241c37fda7b5e5200a40ea9` — `Add Three Card Ritual V0.5.0`  
+**Target runtime:** V0.5.2  
+**Baseline runtime:** V0.5.1  
+**Baseline GitHub HEAD:** `ed38c109ef134c553d247a2e574be8b43f7f969f` — `Compact full deck UX V0.5.1`  
 **Risk:** MEDIUM  
-**Architecture:** local-first · no AI/API/backend · Reading Engine 1.1.0 preserved · Deck Ritual 1.1.0
+**Architecture:** local-first · no AI/API/backend · Reading Engine 1.1.0 preserved · Deck Ritual 1.1.0 preserved
 
 ## Purpose
 
-V0.5.1 polishes the already-shipped three playable reading modes by fitting the **entire 78-card facedown deck inside one mobile viewport** and removing dead layout space after selection. The protected Daily, Semantic Ask, Three-Card narrative, Save/Share, and Reading Engine behavior remains unchanged.
+V0.5.2 adds reading discipline without changing the compact 78-card ritual that shipped in V0.5.1. The release prevents rerolling the same Ask Ganesha question, makes Three-Card a once-per-local-day completed reading, adds a restrained countdown to the next reading window, and keeps mobile audio intent correct when the app moves between foreground and background.
 
-The selection experience follows one shared premium visual language: the deck is shuffled first, every facedown position is bound to a real hidden card, and the user chooses the position themselves. No card is generated or re-randomized after the tap.
+## Ask Ganesha — Smart Same-Question Lock
 
-## Premium Deck Ritual
+Ask Ganesha still answers the **actual question** through the protected Semantic Ask pipeline. V0.5.2 adds a bilingual same-day semantic identity layer before a new card can be chosen.
 
-- The full 78-card deck is securely shuffled once before selection.
-- All 78 facedown positions are presented as **six overlapping rows of 13 cards**, so the complete shuffled deck is visible at once on a portrait phone without horizontal deck scrolling.
-- The visible cards overlap in the same physical visual language, while each selectable exposed strip remains a distinct position mapped to one hidden card before the user taps.
-- Selected cards lift from the spread with a restrained gold highlight.
-- Three-Card selections receive subtle 1 / 2 / 3 order markers before reveal.
-- Keyboard users get roving focus plus Left/Right/Up/Down/Home/End navigation.
-- The component is created only while a reading is choosing cards and is destroyed afterward. In Three-Card, the selection stage now collapses completely after the third choice, so the selected-card rail and Reveal action move together without a blank viewport-sized gap.
+- An exact same question on the same local day restores the same card and reading.
+- A Thai or English paraphrase that resolves to the same semantic question restores the same card and the **original answer contract** rather than recomposing from the paraphrase as a new reading.
+- Matching considers the semantic family/topic, target, perspective, question type family, timeframe, conditional status, and comparison status.
+- Related wording is normalized where it is genuinely the same question, including common Thai/English ellipsis such as an omitted first-person pronoun.
+- Different people, materially different timeframes, different topics, conditions, or comparisons are not intentionally merged.
+- Relationship questions with a named person keep a local hashed subject cue so Alice and Bob do not become the same reading.
+- Raw question text is **not persisted** by the semantic duplicate layer.
+- There is no intentional same-day record eviction; stored mappings last for the local day unless device storage itself is unavailable.
 
-### Mode treatment
+The existing safety boundaries for medical, legal, gambling, specific investment outcomes, death, and harmful unseen/spiritual claims remain protected.
 
-**Daily Guidance — Quick Ritual**  
-Choose one card from the full shuffled deck. The layout is slightly tighter so a daily pull remains fast and light.
+## Three-Card — One Completed Reading Per Day
 
-**Ask Ganesha — Focus Ritual**  
-After the question has been accepted, hold the question in mind and choose one card from the full shuffled deck. Same-question/same-day restoration remains protected and keeps the original card.
+Three-Card now allows one **completed interpreted spread** per device-local calendar day.
 
-**Three-Card Reading — Full Ritual**  
-Choose three cards from the full shuffled deck in order: **Past → Present → What May Unfold Next**. All three remain facedown until the spread is ready, then the reading is revealed as one connected story.
+- Entering the mode or selecting cards does not consume the day by itself.
+- The daily lock is written only after all three cards have been successfully revealed and interpreted.
+- Returning later on the same day restores the same Past / Present / What May Unfold Next cards and the same deterministic narrative.
+- At the next device-local midnight the previous lock expires and a fresh spread becomes available.
 
-## Three-Card Narrative Standard
+This preserves the full 78-card user-choice ritual while preventing repeated rerolls until a preferred spread appears.
 
-Three-Card is intentionally not three one-card definitions placed side by side. The narrative layer reads **Past → Present → What May Unfold Next** as one connected movement, with the middle card treated as the hinge between background and direction.
+## Quiet Countdown
 
-The composer uses 78 curated bilingual card essences, card tone, arcana/suit/court patterns, and movement between the first, middle, and final card. Thai and English are authored separately rather than translated at runtime. The result must explain where the story came from, what is changing now, and where the present pattern may lead without requiring the reader to decode tarot jargon.
+Daily Guidance and completed Three-Card readings show a calm secondary countdown to the next local day. Ask Ganesha shows it only when the current question was restored as an exact or semantic duplicate.
 
-The final card is always framed as a **direction**, never a guaranteed future.
+- 1 hour or more: hours + minutes
+- under 1 hour: minutes
+- final minute: seconds
+- reset boundary: `00:00` in the device's local timezone
 
-## Language Standard — All Playable Modes
+The countdown is based on wall-clock time, not a background-running stopwatch. It suspends visual updates while hidden and recalculates when the app becomes visible or returns through `pageshow`, so long background periods do not create countdown drift.
 
-Daily Guidance, Ask Ganesha, and Three-Card Reading are held to the same product voice standard:
+## Audio Lifecycle
 
-- Thai must read like natural professional Thai, not translated or textbook language.
-- English must read like native professional English, not Thai-shaped English.
-- The reading should sound like an experienced tarot reader explaining the situation clearly, not a card dictionary.
-- Keep the language understandable on first read and practical enough to apply.
-- Avoid vague mystical filler, deterministic fate claims, unnecessary jargon, and forced positivity.
-- Where cards conflict, the reading must explain the tension rather than flatten it into a generic positive message.
+The V0.5.1 baseline already contains the approved `visibilitychange` audio behavior. V0.5.2 verifies and preserves it rather than rewriting working audio code:
 
-## Save + Share
+- if music is playing when the app becomes hidden, it pauses and keeps the current playback position;
+- when the app becomes visible again, it resumes only if it had been playing before the hide;
+- a manual pause remains a manual pause and is never overridden by foreground restoration.
 
-**Save Image + Share remain standard utilities for every playable reading mode.** The permanent product rule is: **Save Image + Share as the standard result utilities for every tarot reading mode**. Three-Card uses the same shared export transport as Daily and Ask, with a mode-specific renderer.
+## Protected V0.5.1 UX
 
-## Protected Behavior
+The compact full deck remains unchanged: **78 cards, six overlapping rows of 13, no horizontal deck scrolling**, pre-shuffled hidden card mapping before the tap, and no dead selection-stage space after Three-Card choice 3/3.
 
-Daily persistence, Ask same-question/same-card behavior, Semantic Ask, Spiritual & Unseen boundaries, question privacy, Home profile/age/zodiac, audio, PWA behavior, and existing Save/Share remain protected.
+Daily Guidance, Ask Ganesha, and Three-Card keep Save Image + Share. The permanent product rule remains: **Save Image + Share as the standard result utilities for every tarot reading mode**. Thai and English continue to use the native professional reading standard rather than literal translation or card-dictionary prose.
 
 ## QA
 
-Automated QA covers the canonical 78-card model, full-deck selection capacity, six-row compact ritual wiring, multi-card uniqueness/position mapping, selection-stage collapse, bilingual narrative samples, Semantic Ask, Save/Share, runtime version coherence, and inherited Daily/Ask/Three-Card regressions.
+Automated QA covers Reading Engine state/persistence, the compact 78-card ritual, local-midnight/countdown logic, bilingual semantic duplicate matching, same-card/same-reading restoration, Ask Context and Semantic Ask matrices, Three-Card daily persistence, 1,456 bilingual Three-Card narrative samples, Save/Share, profile/zodiac, copy, repository structure, and V0.5.2 runtime/service-worker coherence.
 
-Real-device visual/touch QA remains required after deployment.
+Real-device acceptance remains the final deployment check.

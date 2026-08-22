@@ -13,9 +13,10 @@
   const READING_EXPORT = window.LGTReadingExport;
   const ASK_EXPORT = window.LGTAskExport;
   const DECK_RITUAL = window.LGTDeckRitual;
+  const DAY = window.LGTReadingDay;
 
-  if (!ENGINE || !CONTENT || !GUARD || !ASK_CONTENT || !ASK_STORAGE || !ANALYZER || !ASK_CONTEXT || !QUESTION_CONTRACT || !ASK_SEMANTIC || !READING_EXPORT || !ASK_EXPORT || !DECK_RITUAL) {
-    throw new Error('Ask Ganesha requires Reading Engine, tarot content, Question Guard, Ask content, Ask storage, Question Analyzer, Question Contract, Ask Context, Semantic Ask, Deck Ritual, and shared reading export.');
+  if (!ENGINE || !CONTENT || !GUARD || !ASK_CONTENT || !ASK_STORAGE || !ANALYZER || !ASK_CONTEXT || !QUESTION_CONTRACT || !ASK_SEMANTIC || !READING_EXPORT || !ASK_EXPORT || !DECK_RITUAL || !DAY) {
+    throw new Error('Ask Ganesha requires Reading Engine, tarot content, Question Guard, Ask content, Ask storage, Question Analyzer, Question Contract, Ask Context, Semantic Ask, Deck Ritual, Reading Day, and shared reading export.');
   }
 
   const ORIENTATION = 'upright';
@@ -34,11 +35,15 @@
       sealing: 'Holding your question',
       shuffling: 'Shuffling the deck',
       choose: 'Choose one card',
-      chooseHint: 'Keep your question in mind, move through the shuffled deck, and choose the card that draws you in.',
+      chooseHint: 'Keep your question in mind, look across the shuffled deck, and choose the card that draws you in.',
       selected: 'Your card is chosen',
       selectedHint: 'Take a moment with your question, then reveal the card when you are ready.',
       restored: 'SAME QUESTION · SAME CARD',
-      restoredHint: 'You have asked this same question today, so the same card is waiting for you.',
+      restoredHint: 'You have already asked this question today, so the same card and reading are waiting for you.',
+      restoredSimilar: 'SAME THEME · SAME READING',
+      restoredSimilarHint: 'This is essentially the same question you asked today, so the same card and reading remain in place.',
+      resetLabel: 'You can read this question again in',
+      resetKicker: 'THIS READING STAYS WITH THIS QUESTION TODAY',
       reveal: 'Reveal the Card',
       loading: 'Preparing your reading',
       upright: 'UPRIGHT',
@@ -93,11 +98,15 @@
       sealing: 'กำลังวางคำถามไว้กับไพ่',
       shuffling: 'กำลังสับไพ่',
       choose: 'เลือกไพ่หนึ่งใบ',
-      chooseHint: 'นึกถึงคำถามของคุณไว้ แล้วค่อยๆ เลื่อนไปตามสำรับที่สับไว้ เลือกใบที่สะดุดใจที่สุด',
+      chooseHint: 'นึกถึงคำถามของคุณไว้ มองไปตามสำรับที่สับแล้วเลือกใบที่สะดุดใจที่สุด',
       selected: 'เลือกไพ่แล้ว',
       selectedHint: 'อยู่กับคำถามของคุณสักครู่ แล้วค่อยเปิดไพ่เมื่อพร้อม',
       restored: 'คำถามเดิม · ไพ่ใบเดิม',
-      restoredHint: 'วันนี้คุณเคยถามคำถามเดียวกันแล้ว ไพ่ใบเดิมจึงรออยู่ตรงนี้',
+      restoredHint: 'วันนี้คุณเคยถามคำถามนี้แล้ว ไพ่และคำอ่านเดิมจึงยังรออยู่ตรงนี้',
+      restoredSimilar: 'เรื่องเดิม · คำอ่านเดิม',
+      restoredSimilarHint: 'คำถามนี้มีสาระสำคัญใกล้เคียงกับเรื่องที่คุณถามไว้วันนี้ ไพ่และคำอ่านเดิมจึงยังคงอยู่',
+      resetLabel: 'คำถามนี้จะเปิดให้อ่านใหม่ใน',
+      resetKicker: 'คำอ่านนี้จะอยู่กับคำถามนี้ตลอดวันนี้',
       reveal: 'เปิดไพ่',
       loading: 'กำลังเตรียมผลการอ่าน',
       upright: 'ไพ่ตั้งตรง',
@@ -280,6 +289,11 @@
           </div>
           <p class="reading-share__status" id="askShareStatus" role="status" aria-live="polite"></p>
         </section>
+        <section class="reading-reset-note" id="askResetNote" hidden>
+          <span id="askResetKicker"></span>
+          <p id="askResetLabel"></p>
+          <strong id="askResetTime"></strong>
+        </section>
         <p class="reading-disclaimer" id="askDisclaimer"></p>
       </article>
 
@@ -352,6 +366,10 @@
   const saveButton = $('askSaveImage');
   const shareButton = $('askShareImage');
   const shareStatus = $('askShareStatus');
+  const resetNote = $('askResetNote');
+  const resetKicker = $('askResetKicker');
+  const resetLabel = $('askResetLabel');
+  const resetTime = $('askResetTime');
   const disclaimer = $('askDisclaimer');
   const storageNote = $('askStorageNote');
   const scroll = $('askReadingScroll');
@@ -369,6 +387,8 @@
   let lifecycleToken = 0;
   let exportBusy = false;
   let deckRitual = null;
+  let restoredMatchType = '';
+  let stopCountdown = null;
 
   function language() {
     return document.documentElement.lang === 'th' ? 'th' : 'en';
@@ -435,7 +455,8 @@
     eyebrow.textContent = t('eyebrow');
     title.textContent = t('title');
     backButton.setAttribute('aria-label', t('back'));
-    intro.textContent = currentView === 'question' ? t('intro') : (currentView === 'choosing' ? t('chooseHint') : currentView === 'selected' ? t('selectedHint') : currentView === 'restored' ? t('restoredHint') : '');
+    const restoredHintKey = restoredMatchType === 'semantic' ? 'restoredSimilarHint' : 'restoredHint';
+    intro.textContent = currentView === 'question' ? t('intro') : (currentView === 'choosing' ? t('chooseHint') : currentView === 'selected' ? t('selectedHint') : currentView === 'restored' ? t(restoredHintKey) : '');
     questionLabel.textContent = t('questionLabel');
     questionInput.placeholder = t('placeholder');
     questionHint.textContent = t('questionHint');
@@ -463,6 +484,8 @@
     homeAction.setAttribute('aria-label', t('back'));
     saveButton.setAttribute('aria-label', t('saveImage'));
     shareButton.setAttribute('aria-label', t('shareImage'));
+    resetKicker.textContent = t('resetKicker');
+    resetLabel.textContent = t('resetLabel');
     disclaimer.textContent = t('disclaimer');
     storageNote.textContent = t('storageFail');
     choice.setAttribute('aria-label', t('choose'));
@@ -471,7 +494,7 @@
     else if (currentView === 'shuffling') status.textContent = t('shuffling');
     else if (currentView === 'choosing') status.textContent = t('choose');
     else if (currentView === 'selected') { status.textContent = t('selected'); primary.textContent = t('reveal'); }
-    else if (currentView === 'restored') { status.textContent = t('restored'); primary.textContent = t('reveal'); }
+    else if (currentView === 'restored') { status.textContent = t(restoredMatchType === 'semantic' ? 'restoredSimilar' : 'restored'); primary.textContent = t('reveal'); }
     else if (currentView === 'revealed') { status.textContent = ''; primary.textContent = t('askAnother'); }
     else status.textContent = '';
 
@@ -480,6 +503,40 @@
     if (!shell.hidden) validateQuestion();
     if (currentView === 'focus' && activeAnalysis?.candidates) showFocusResolver(activeAnalysis);
     if (selectedData) renderCardText(selectedData);
+    if (!resetNote.hidden) resetTime.textContent = DAY.formatRemaining(DAY.snapshot().remainingMs, language());
+  }
+
+  function restoreAnalysisFromStored(current, stored) {
+    let resolved = ANALYZER.withStoredResolution(current, stored);
+    const snapshot = stored?.analysisSnapshot;
+    if (!snapshot) return resolved;
+    return Object.freeze({
+      ...resolved,
+      ...snapshot,
+      text: resolved.text,
+      timeframeMeta: snapshot.timeframeMeta || resolved.timeframeMeta,
+      ambiguous: false,
+      candidates: Object.freeze([snapshot.domain || resolved.domain])
+    });
+  }
+
+  function stopResetCountdown() {
+    if (stopCountdown) stopCountdown();
+    stopCountdown = null;
+    resetNote.hidden = true;
+  }
+
+  function startResetCountdown() {
+    stopResetCountdown();
+    if (!restoredMatchType) return;
+    resetNote.hidden = false;
+    stopCountdown = DAY.subscribe((info, meta) => {
+      resetTime.textContent = DAY.formatRemaining(info.remainingMs, language());
+      if (meta.rolledOver) {
+        restoredMatchType = '';
+        stopResetCountdown();
+      }
+    });
   }
 
   function renderCardText(card) {
@@ -507,6 +564,8 @@
 
   function resetVisuals({ keepQuestion = false } = {}) {
     clearTimer();
+    stopResetCountdown();
+    restoredMatchType = '';
     lifecycleToken += 1;
     session = null;
     selectedData = null;
@@ -667,6 +726,7 @@
       primary.disabled = false;
       shell.classList.add('is-revealed');
       updateStaticCopy();
+      if (restoredMatchType) startResetCountdown();
       after(80, () => interpretation.scrollIntoView({ behavior: motionIsReduced() ? 'auto' : 'smooth', block: 'nearest' }));
     });
   }
@@ -755,6 +815,7 @@
 
     session = ENGINE.createSession('ask');
     if (stored) {
+      restoredMatchType = stored.matchType || 'exact';
       selectedData = CONTENT.getCard(stored.cardId);
       session.restoreSelection({
         sessionId: stored.sessionId,
@@ -762,7 +823,7 @@
       });
       // Enrich a V0.4.4 record with the resolved context without changing its card.
       ASK_STORAGE.save({ fingerprint: activeFingerprint, cardId: stored.cardId, sessionId: stored.sessionId, analysis: activeAnalysis });
-      emitInteraction('question-restored', { cardId: stored.cardId, context: activeAnalysis?.domain || 'general' });
+      emitInteraction('question-restored', { cardId: stored.cardId, context: activeAnalysis?.domain || 'general', matchType: restoredMatchType });
       after(360, () => renderSelectedBack(true));
       return;
     }
@@ -810,9 +871,10 @@
     activeFingerprint = await GUARD.fingerprint(activeQuestion);
     if (token !== lifecycleToken || shell.hidden) return;
     pendingStored = ASK_STORAGE.get(activeFingerprint);
+    if (!pendingStored) pendingStored = ASK_STORAGE.findSemantic(activeAnalysis, { excludeFingerprint: activeFingerprint });
 
-    // A previously resolved same-day question keeps the same focus as well as the same card.
-    if (pendingStored?.contextKey) activeAnalysis = ANALYZER.withStoredResolution(activeAnalysis, pendingStored);
+    // A same-day exact or semantic duplicate keeps the original focus, card, and answer contract.
+    if (pendingStored?.contextKey) activeAnalysis = restoreAnalysisFromStored(activeAnalysis, pendingStored);
 
     if (activeAnalysis.ambiguous && !pendingStored?.contextKey) {
       showFocusResolver(activeAnalysis);

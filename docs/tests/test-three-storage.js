@@ -1,0 +1,23 @@
+'use strict';
+const fs=require('fs'); const vm=require('vm'); const assert=(v,m)=>{if(!v)throw new Error(m);};
+global.window=globalThis;
+class StorageMock{constructor(){this.m=new Map()}getItem(k){return this.m.has(k)?this.m.get(k):null}setItem(k,v){this.m.set(String(k),String(v))}removeItem(k){this.m.delete(String(k))}clear(){this.m.clear()}}
+global.localStorage=new StorageMock();
+if(typeof global.CustomEvent==='undefined')global.CustomEvent=class CustomEvent extends Event{constructor(type,opts={}){super(type);this.detail=opts.detail}};
+const load=p=>vm.runInThisContext(fs.readFileSync(p,'utf8'),{filename:p});
+load('js/reading-content.js'); load('js/reading-engine.js'); load('js/three-storage.js'); load('js/three-narrative.js');
+const E=globalThis.LGTReadingEngine,S=globalThis.LGTThreeStorage,N=globalThis.LGTThreeNarrative;
+const date='2026-08-23';
+let incomplete=E.createSession('three'); const c0=incomplete.prepareChoice(78); incomplete.markChoosing(); incomplete.selectCandidates([0,1,2]);
+assert(S.save(incomplete,date)===false,'Three-card must not lock before interpretation completes.');
+incomplete.beginReveal(); incomplete.markRevealed(); incomplete.markInterpreted();
+assert(S.save(incomplete,date)===true,'Completed Three-card reading did not persist.');
+const stored=S.get(date); assert(stored&&stored.cards.length===3,'Same-day Three-card record did not restore.');
+assert(new Set(stored.cards.map(x=>x.cardId)).size===3,'Stored Three-card spread must stay unique.');
+let restored=E.createSession('three'); restored.restoreSelection(stored); const cards=restored.getSelectedCards().map(x=>x.card);
+const first=JSON.stringify(N.compose(incomplete.getSelectedCards().map(x=>x.card),'en'));
+const second=JSON.stringify(N.compose(cards,'en'));
+assert(first===second,'Restored same-day Three-card narrative changed.');
+assert(S.get('2026-08-24')===null,'Three-card daily lock must expire on the next local day.');
+S.clearExpired('2026-08-24'); assert(localStorage.getItem(S.key)===null,'Expired Three-card record was not cleared.');
+console.log('Three-card one-completed-reading-per-day tests: PASS');

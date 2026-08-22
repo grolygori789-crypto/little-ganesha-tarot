@@ -1,11 +1,12 @@
 'use strict';
 const fs=require('fs'); const assert=(x,m)=>{if(!x)throw new Error(m);};
 const index=fs.readFileSync('index.html','utf8'),sw=fs.readFileSync('sw.js','utf8'),ui=fs.readFileSync('js/three-ui.js','utf8'),css=fs.readFileSync('css/reading.css','utf8'),engine=fs.readFileSync('js/reading-engine.js','utf8');
-for(const file of ['js/three-narrative.js','js/three-export.js','js/three-ui.js'])assert(fs.existsSync(file),`Missing ${file}`);
-assert(index.includes('three-narrative.js?v=0.5.1')&&index.includes('three-export.js?v=0.5.1')&&index.includes('three-ui.js?v=0.5.1'),'Three-card modules are not wired in index.');
-assert(sw.includes("const BUILD = '0.5.1'")&&sw.includes("three-ui.js?v=0.5.1"),'Three-card PWA shell wiring missing.');
+for(const file of ['js/three-narrative.js','js/three-export.js','js/three-storage.js','js/three-ui.js'])assert(fs.existsSync(file),`Missing ${file}`);
+assert(index.includes('three-narrative.js?v=0.5.2')&&index.includes('three-export.js?v=0.5.2')&&index.includes('three-storage.js?v=0.5.2')&&index.includes('three-ui.js?v=0.5.2'),'Three-card modules are not wired in index.');
+assert(sw.includes("const BUILD = '0.5.2'")&&sw.includes("three-ui.js?v=0.5.2"),'Three-card PWA shell wiring missing.');
 assert(ui.includes("[data-feature=\"three\"]")&&ui.includes('selectCandidates(selectedIndices)'),'Three-card feature route/multi-selection missing.');
 assert(ui.includes("runExport('save')")&&ui.includes("runExport('share')"),'Three-card Save/Share standard missing.');
+assert(ui.includes('THREE_STORAGE.get()')&&ui.includes('THREE_STORAGE.save(session)')&&ui.includes('startResetCountdown'),'Three-card daily lock/countdown wiring missing.');
 assert(css.includes('V0.5.0 — Three-Card Reading')&&css.includes('V0.5.1 — Compact full-deck viewport'),'Three-card base or V0.5.1 polish CSS missing.');
 assert(engine.includes('selectCandidates(indices)')&&engine.includes("LGTReadingEngineVersion = '1.1.0'"),'Reading Engine multi-card API missing.');
 console.log('Three-card package/wiring tests: PASS');

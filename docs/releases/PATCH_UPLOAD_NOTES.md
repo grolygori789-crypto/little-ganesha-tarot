@@ -1,9 +1,9 @@
-# Upload Notes — V0.5.1
+# Upload Notes — V0.5.2
 
-Overlay this package on `main` at baseline `e437f063d5e153183241c37fda7b5e5200a40ea9`.
+Overlay this package on `main` at baseline `ed38c109ef134c553d247a2e574be8b43f7f969f`.
 
 Recommended commit message (≤50 chars):
 
-`Compact full deck UX V0.5.1`
+`Add reading discipline V0.5.2`
 
-After deployment, fully restart the installed PWA if an older service-worker session remains. Confirm `BUILD 0.5.1` in Settings before real-device QA.
+After deployment, fully restart the installed PWA if an older service-worker session remains. Confirm `BUILD 0.5.2` in Settings before real-device acceptance.
