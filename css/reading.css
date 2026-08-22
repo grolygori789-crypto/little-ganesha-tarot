@@ -346,6 +346,35 @@
 
   .reading-actions { display: grid; place-items: center; margin: .35rem auto 0; }
 
+  .ask-reading-actions { gap: .52rem; }
+
+  .reading-home-action {
+    min-height: 2rem;
+    padding: .28rem .7rem;
+    border: 0;
+    background: transparent;
+    color: rgba(255,248,233,.55);
+    font-family: "Cormorant Garamond", "Noto Serif Thai", Georgia, serif;
+    font-size: .78rem;
+    font-weight: 500;
+    letter-spacing: .045em;
+    text-decoration: underline;
+    text-decoration-color: rgba(229,189,112,.22);
+    text-underline-offset: .23rem;
+    transition: color .2s ease, text-decoration-color .2s ease;
+  }
+
+  html[lang="th"] .reading-home-action {
+    font-family: "Noto Serif Thai", serif;
+    letter-spacing: .01em;
+  }
+
+  .reading-home-action:hover,
+  .reading-home-action:focus-visible {
+    color: rgba(255,248,233,.82);
+    text-decoration-color: rgba(229,189,112,.52);
+  }
+
   .reading-primary {
     min-width: min(16rem, 82vw);
     min-height: 3.15rem;
@@ -1208,6 +1237,46 @@
 
   .ask-reading-block--reflection > span {
     margin-bottom: .2rem;
+  }
+
+  .ask-reading-share {
+    margin-top: 1.45rem;
+  }
+
+  .ask-share-question-option {
+    display: grid;
+    gap: .3rem;
+    margin-top: .82rem;
+    padding: .7rem .78rem;
+    border: 1px solid rgba(247,217,147,.10);
+    border-radius: .76rem;
+    background: rgba(229,189,112,.02);
+    cursor: pointer;
+  }
+
+  .ask-share-question-control {
+    display: flex;
+    align-items: center;
+    gap: .58rem;
+    font-family: "Noto Serif Thai", "Cormorant Garamond", serif;
+    font-size: .74rem;
+    line-height: 1.45;
+    color: rgba(255,248,233,.72);
+  }
+
+  .ask-share-question-control input {
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    accent-color: #d9b56c;
+    flex: 0 0 auto;
+  }
+
+  .ask-share-question-option small {
+    padding-left: 1.58rem;
+    font-size: .62rem;
+    line-height: 1.5;
+    color: rgba(255,248,233,.42);
   }
 
   @media (max-width: 380px) {

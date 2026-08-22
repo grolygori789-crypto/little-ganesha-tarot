@@ -1,33 +1,18 @@
-# PATCH UPLOAD NOTES — V0.4.6
+# PATCH UPLOAD NOTES — V0.4.7
 
-## Target
+**Package:** Little Ganesha Tarot V0.4.7 — Reading Actions Standard  
+**Baseline:** V0.4.6 at `470300f2d6fe46349c27241d223b892045409363`
 
-Little Ganesha Tarot V0.4.6 — Semantic Ask Ganesha
+## Upload
 
-## Baseline
-
-GitHub `main` verified before development:
-
-`0b35a8ec749644abc66c300e3b197e29365951da` — `Add Spiritual Ask context V0.4.5`
-
-## Upload method
-
-Extract the supplied ZIP and overlay its repository-relative contents onto the local repository root. Review GitHub Desktop Changes, then commit and push.
+Overlay the package at repository root on `main` without changing folder structure. Do not delete unrelated assets or application files.
 
 Recommended commit message:
 
-`Upgrade Ask Ganesha semantics V0.4.6`
+`Standardize reading Save Share V0.4.7`
 
-## Expected functional change
+## After Push
 
-Ask Ganesha gains a Semantic Slot Parser, micro-facets, Question Contract, card-context profile, Semantic Bridge, contract-driven Answer Composer, and Answer Validator. The primary answer must stay on the exact subject, perspective, metric, and explicit timeframe of the user's question.
+Re-read deployed `main`, confirm all live build/cache markers are `0.4.7`, allow service-worker propagation, then run the real-device checklist in `docs/qa/QA_V0_4_7.md`.
 
-## Protected behavior
-
-Do not manually alter Reading Engine, Daily Guidance, Daily Save/Share, audio, profile, or canonical card assets during upload.
-
-## After push
-
-Re-read deployed `main`, confirm all runtime/build/cache markers are 0.4.6, allow GitHub Pages/service-worker propagation, then perform the real-device checklist in `docs/qa/QA_V0_4_6.md`.
-
-Older versioned patch manifests and release documents may remain as historical rollback provenance. Overlay extraction does not delete tracked historical files automatically.
+Important regression checks: Daily Guidance must still Save/Share as before; Ask Ganesha must Save a full reading, Share with the exact question hidden by default, optionally include the question, keep Ask Another in its existing position, and expose Back to Home beneath it.

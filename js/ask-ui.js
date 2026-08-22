@@ -10,9 +10,11 @@
   const ASK_CONTEXT = window.LGTAskContext;
   const QUESTION_CONTRACT = window.LGTQuestionContract;
   const ASK_SEMANTIC = window.LGTAskSemantic;
+  const READING_EXPORT = window.LGTReadingExport;
+  const ASK_EXPORT = window.LGTAskExport;
 
-  if (!ENGINE || !CONTENT || !GUARD || !ASK_CONTENT || !ASK_STORAGE || !ANALYZER || !ASK_CONTEXT || !QUESTION_CONTRACT || !ASK_SEMANTIC) {
-    throw new Error('Ask Ganesha requires Reading Engine, tarot content, Question Guard, Ask content, Ask storage, Question Analyzer, Question Contract, Ask Context, and Semantic Ask.');
+  if (!ENGINE || !CONTENT || !GUARD || !ASK_CONTENT || !ASK_STORAGE || !ANALYZER || !ASK_CONTEXT || !QUESTION_CONTRACT || !ASK_SEMANTIC || !READING_EXPORT || !ASK_EXPORT) {
+    throw new Error('Ask Ganesha requires Reading Engine, tarot content, Question Guard, Ask content, Ask storage, Question Analyzer, Question Contract, Ask Context, Semantic Ask, and shared reading export.');
   }
 
   const ORIENTATION = 'upright';
@@ -50,6 +52,18 @@
       carryForward: 'A QUESTION TO CARRY FORWARD',
       keywords: 'KEYWORDS',
       askAnother: 'Ask Another Question',
+      saveShareTitle: 'SAVE OR SHARE',
+      saveShareHint: 'Save a complete copy, or share a clean reading image. Your exact question is hidden from shared images unless you choose to include it.',
+      saveImage: 'Save Image',
+      shareImage: 'Share',
+      includeQuestion: 'Include my question in the shared image',
+      includeQuestionHint: 'Off by default. The reading itself may still reveal the topic.',
+      exportPreparing: 'Preparing your reading image',
+      exportSaved: 'Your complete reading image has been saved.',
+      exportShared: 'Your reading image is ready to share.',
+      exportSavedFallback: 'Direct sharing is not available here, so the image was saved instead.',
+      exportFailed: 'The image could not be created right now. Please try again.',
+      exportCancelled: 'Sharing was cancelled.',
       disclaimer: 'Use tarot as a tool for reflection, not a fixed prediction. Keep what feels useful and make important decisions with real-world information as well.',
       storageFail: 'This device could not remember this question. If you ask it again today, a different card may appear.',
       cardAlt: 'Tarot card for your question: ',
@@ -97,6 +111,18 @@
       carryForward: 'คำถามชวนทบทวนต่อ',
       keywords: 'คำสำคัญ',
       askAnother: 'ถามเรื่องอื่น',
+      saveShareTitle: 'บันทึกหรือแชร์',
+      saveShareHint: 'บันทึกผลการอ่านฉบับเต็ม หรือสร้างภาพสะอาดตาสำหรับแชร์ โดยระบบจะซ่อนข้อความคำถามของคุณจากภาพที่แชร์ไว้ก่อน',
+      saveImage: 'บันทึกภาพ',
+      shareImage: 'แชร์',
+      includeQuestion: 'แสดงคำถามของฉันในภาพที่แชร์',
+      includeQuestionHint: 'ค่าเริ่มต้นคือซ่อนคำถาม ทั้งนี้เนื้อหาผลการอ่านอาจยังบอกได้ว่าคุณถามเกี่ยวกับเรื่องใด',
+      exportPreparing: 'กำลังเตรียมภาพผลการอ่าน',
+      exportSaved: 'บันทึกภาพผลการอ่านฉบับเต็มแล้ว',
+      exportShared: 'เตรียมภาพสำหรับการแชร์แล้ว',
+      exportSavedFallback: 'อุปกรณ์นี้แชร์ภาพตรงจากหน้านี้ไม่ได้ จึงบันทึกภาพลงเครื่องให้แทน',
+      exportFailed: 'ยังสร้างภาพผลการอ่านไม่ได้ในตอนนี้ กรุณาลองใหม่อีกครั้ง',
+      exportCancelled: 'ยกเลิกการแชร์แล้ว',
       disclaimer: 'ใช้ไพ่ทาโรต์เป็นเครื่องมือช่วยทบทวนตัวเอง ไม่ใช่คำทำนายที่ตายตัว เลือกรับเฉพาะสิ่งที่เป็นประโยชน์ และใช้ข้อมูลในโลกจริงประกอบการตัดสินใจเรื่องสำคัญเสมอ',
       storageFail: 'อุปกรณ์นี้จำคำถามนี้ไว้ไม่ได้ หากถามซ้ำอีกครั้งในวันนี้ ไพ่จึงอาจเปลี่ยนไป',
       cardAlt: 'ไพ่ทาโรต์สำหรับคำถามของคุณ: ',
@@ -193,8 +219,9 @@
       </div>
 
       <div class="reading-status" id="askReadingStatus" role="status" aria-live="polite"></div>
-      <div class="reading-actions" id="askReadingActions" hidden>
+      <div class="reading-actions ask-reading-actions" id="askReadingActions" hidden>
         <button class="reading-primary" id="askReadingPrimary" type="button"></button>
+        <button class="reading-home-action" id="askBackHome" type="button" hidden></button>
       </div>
 
       <article class="reading-interpretation ask-interpretation" id="askInterpretation" hidden>
@@ -233,6 +260,24 @@
         <section class="reading-reflection ask-reading-block ask-reading-block--reflection">
           <span id="askCarryLabel"></span>
           <p id="askReflection"></p>
+        </section>
+        <section class="reading-share ask-reading-share" id="askSaveShare" hidden>
+          <div class="reading-share__heading">
+            <span id="askSaveShareTitle"></span>
+            <p id="askSaveShareHint"></p>
+          </div>
+          <label class="ask-share-question-option" for="askIncludeQuestion">
+            <span class="ask-share-question-control">
+              <input id="askIncludeQuestion" type="checkbox">
+              <span id="askIncludeQuestionLabel"></span>
+            </span>
+            <small id="askIncludeQuestionHint"></small>
+          </label>
+          <div class="reading-share__actions">
+            <button class="reading-secondary" id="askSaveImage" type="button"></button>
+            <button class="reading-secondary reading-secondary--strong" id="askShareImage" type="button"></button>
+          </div>
+          <p class="reading-share__status" id="askShareStatus" role="status" aria-live="polite"></p>
         </section>
         <p class="reading-disclaimer" id="askDisclaimer"></p>
       </article>
@@ -277,6 +322,7 @@
   const status = $('askReadingStatus');
   const actions = $('askReadingActions');
   const primary = $('askReadingPrimary');
+  const homeAction = $('askBackHome');
   const interpretation = $('askInterpretation');
   const resultQuestionLabel = $('askResultQuestionLabel');
   const resultQuestion = $('askResultQuestion');
@@ -296,6 +342,15 @@
   const ganeshaText = $('askGaneshaText');
   const carryLabel = $('askCarryLabel');
   const reflection = $('askReflection');
+  const saveShare = $('askSaveShare');
+  const saveShareTitle = $('askSaveShareTitle');
+  const saveShareHint = $('askSaveShareHint');
+  const includeQuestion = $('askIncludeQuestion');
+  const includeQuestionLabel = $('askIncludeQuestionLabel');
+  const includeQuestionHint = $('askIncludeQuestionHint');
+  const saveButton = $('askSaveImage');
+  const shareButton = $('askShareImage');
+  const shareStatus = $('askShareStatus');
   const disclaimer = $('askDisclaimer');
   const storageNote = $('askStorageNote');
   const scroll = $('askReadingScroll');
@@ -305,11 +360,13 @@
   let activeQuestion = '';
   let activeFingerprint = '';
   let activeAnalysis = null;
+  let activeReading = null;
   let pendingStored = null;
   let currentView = 'question';
   let previousFocus = null;
   let activeTimer = null;
   let lifecycleToken = 0;
+  let exportBusy = false;
 
   function language() {
     return document.documentElement.lang === 'th' ? 'th' : 'en';
@@ -394,6 +451,16 @@
     conditionLabel.textContent = t('conditionsTitle');
     ganeshaLabel.textContent = t('ganeshaReflection');
     carryLabel.textContent = t('carryForward');
+    saveShareTitle.textContent = t('saveShareTitle');
+    saveShareHint.textContent = t('saveShareHint');
+    includeQuestionLabel.textContent = t('includeQuestion');
+    includeQuestionHint.textContent = t('includeQuestionHint');
+    saveButton.textContent = t('saveImage');
+    shareButton.textContent = t('shareImage');
+    homeAction.textContent = t('back');
+    homeAction.setAttribute('aria-label', t('back'));
+    saveButton.setAttribute('aria-label', t('saveImage'));
+    shareButton.setAttribute('aria-label', t('shareImage'));
     disclaimer.textContent = t('disclaimer');
     storageNote.textContent = t('storageFail');
     choice.setAttribute('aria-label', t('choose'));
@@ -418,6 +485,7 @@
   function renderCardText(card) {
     const lang = language();
     const reading = ASK_SEMANTIC.compose(card, activeAnalysis, lang);
+    activeReading = reading;
     cardTitle.textContent = card.title[lang];
     canonicalTitle.textContent = lang === 'th' ? card.title.en : '';
     focusResult.textContent = reading?.contextLabel || ANALYZER.label(activeAnalysis?.domain || 'general', lang);
@@ -444,6 +512,7 @@
     selectedData = null;
     activeFingerprint = '';
     activeAnalysis = null;
+    activeReading = null;
     pendingStored = null;
     currentView = 'question';
     shell.classList.remove('is-revealed');
@@ -469,7 +538,14 @@
     status.textContent = '';
     actions.hidden = true;
     primary.disabled = false;
+    homeAction.hidden = true;
     interpretation.hidden = true;
+    saveShare.hidden = true;
+    includeQuestion.checked = false;
+    shareStatus.textContent = '';
+    saveButton.disabled = false;
+    shareButton.disabled = false;
+    exportBusy = false;
     storageNote.hidden = true;
     if (!keepQuestion) {
       activeQuestion = '';
@@ -536,6 +612,8 @@
     selected.hidden = false;
     orientation.hidden = true;
     interpretation.hidden = true;
+    saveShare.hidden = true;
+    homeAction.hidden = true;
     actions.hidden = false;
     primary.disabled = false;
     currentView = restored ? 'restored' : 'selected';
@@ -579,12 +657,59 @@
       if (session.state === 'revealed') session.markInterpreted();
       currentView = 'revealed';
       interpretation.hidden = false;
+      saveShare.hidden = false;
+      homeAction.hidden = false;
       actions.hidden = false;
       primary.disabled = false;
       shell.classList.add('is-revealed');
       updateStaticCopy();
       after(80, () => interpretation.scrollIntoView({ behavior: motionIsReduced() ? 'auto' : 'smooth', block: 'nearest' }));
     });
+  }
+
+  async function runExport(action = 'save') {
+    if (exportBusy || !selectedData || !activeReading) return;
+    exportBusy = true;
+    saveButton.disabled = true;
+    shareButton.disabled = true;
+
+    const lang = language();
+    const includeExactQuestion = action === 'save' ? true : includeQuestion.checked;
+    try {
+      await READING_EXPORT.execute({
+        action,
+        buildBlob: () => ASK_EXPORT.buildImageBlob({
+          card: selectedData,
+          reading: activeReading,
+          question: activeQuestion,
+          includeQuestion: includeExactQuestion,
+          lang
+        }),
+        filename: ASK_EXPORT.filename(selectedData),
+        shareTitle: lang === 'th' ? 'ผลการอ่าน Ask Ganesha' : 'Ask Ganesha Reading',
+        shareText: lang === 'th' ? 'ผลการอ่านจาก Little Ganesha Tarot' : 'My Ask Ganesha reading from Little Ganesha Tarot',
+        onStatus: (message) => { shareStatus.textContent = message; },
+        onEvent: (eventType) => {
+          const base = { cardId: selectedData.id, includeQuestion: includeExactQuestion };
+          if (eventType === 'share') emitInteraction('reading-share', base);
+          else emitInteraction('reading-save', { ...base, fallbackFromShare: eventType === 'save-fallback' });
+        },
+        messages: {
+          preparing: t('exportPreparing'),
+          saved: t('exportSaved'),
+          shared: t('exportShared'),
+          savedFallback: t('exportSavedFallback'),
+          cancelled: t('exportCancelled')
+        }
+      });
+    } catch (error) {
+      console.error(error);
+      shareStatus.textContent = t('exportFailed');
+    } finally {
+      exportBusy = false;
+      saveButton.disabled = false;
+      shareButton.disabled = false;
+    }
   }
 
   function boundaryMessage(boundary) {
@@ -751,7 +876,10 @@
   });
   questionSubmit.addEventListener('click', submitQuestion);
   backButton.addEventListener('click', closeAsk);
+  homeAction.addEventListener('click', closeAsk);
   primary.addEventListener('click', primaryAction);
+  saveButton.addEventListener('click', () => { runExport('save'); });
+  shareButton.addEventListener('click', () => { runExport('share'); });
   selectedCard.addEventListener('click', () => {
     if (currentView === 'selected' || currentView === 'restored') revealCard();
   });

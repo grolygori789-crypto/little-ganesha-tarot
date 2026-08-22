@@ -1,0 +1,305 @@
+{
+  "project": "Little Ganesha Tarot — The Golden Path",
+  "studio": "Benedict Interactive",
+  "target_runtime_build": "0.4.7",
+  "baseline_runtime_build": "0.4.6",
+  "master_plan_in_force": "V4.0 + newest approved current-room product decision",
+  "release_type": "Reading Actions Standard — shared Save/Share + Ask privacy-aware export + Back to Home",
+  "risk_classification": "MEDIUM",
+  "risk_reason": "Introduces a small shared export transport, a new Ask-specific canvas renderer, and limited Daily/Ask UI wiring. Reading Engine, card selection, Semantic Ask, storage schema, assets, and audio lifecycle remain unchanged.",
+  "baseline_repository": "grolygori789-crypto/little-ganesha-tarot",
+  "baseline_branch": "main",
+  "baseline_repository_head": "470300f2d6fe46349c27241d223b892045409363",
+  "baseline_repository_head_message": "Upgrade Ask Ganesha semantics V0.4.6",
+  "release_status": "VERIFIED FOR UPLOAD — QA-S/unit/package/version/language/structure/checksum/archive re-extraction PASS; deployed V0.4.7 real-device QA pending.",
+  "feature_summary": {
+    "reading_action_standard": "Save Image + Share are mandatory result utilities for every tarot reading mode; Daily Guidance and Ask Ganesha implement the standard now and future spreads inherit it.",
+    "shared_export_module": "reading-export-v1 centralizes native share, save fallback, status callbacks, common canvas helpers, and local date formatting.",
+    "daily_guidance": "Existing curated Daily renderer preserved; delivery now uses shared export transport.",
+    "ask_export": "ask-export-v1 creates a curated bilingual reading image from the Semantic Ask result.",
+    "ask_save_privacy": "Save Image always includes the complete private reading including the exact question.",
+    "ask_share_privacy": "Share hides the exact question by default; user can explicitly include it. The toggle is not persisted and resets off.",
+    "ask_privacy_disclosure": "UI states that the interpretation itself may still reveal the topic even when the exact question is hidden.",
+    "ask_navigation": "Ask Another stays in its existing primary position below the card flow; Back to Home is added beneath as a secondary action.",
+    "languages": [
+      "en",
+      "th"
+    ],
+    "backend_ai_api": "none",
+    "reading_engine_version": "1.0.2 unchanged",
+    "question_analyzer_version": "question-analyzer-v3 unchanged",
+    "question_contract_version": "question-contract-v1 unchanged",
+    "ask_context_version": "ask-context-v2 unchanged",
+    "ask_semantic_version": "ask-semantic-v1 unchanged"
+  },
+  "protected_runtime_not_functionally_modified": [
+    "js/reading-engine.js",
+    "js/reading-content.js",
+    "js/question-guard.js",
+    "js/ask-content.js",
+    "js/question-analyzer.js",
+    "js/question-contract.js",
+    "js/ask-context.js",
+    "js/ask-semantic.js",
+    "js/ask-storage.js",
+    "canonical card assets",
+    "audio lifecycle"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "action": "replace",
+      "size": 5147,
+      "sha256": "629bffb933f9c953f5364c88411e1b6b9e94383e6f44347a894a830d9ae82222"
+    },
+    {
+      "path": "css/reading.css",
+      "action": "replace",
+      "size": 35369,
+      "sha256": "a8bcd0965c0f50af2679bc2608f7ff71da809abf80fd733a00e8752e5ecfeb9b"
+    },
+    {
+      "path": "docs/governance/REPOSITORY_STRUCTURE_POLICY_V1.md",
+      "action": "replace",
+      "size": 4928,
+      "sha256": "8cf0bf3901d9f4285111ad0373a5fc0f442115e6aa7098acafee284f457b94af",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/qa/QA_V0_4_7.md",
+      "action": "add",
+      "size": 2882,
+      "sha256": "fc44a21459150c7e573ea7e008613ac6596c100e9746525975f45f098b2b1397"
+    },
+    {
+      "path": "docs/releases/PATCH_UPLOAD_NOTES.md",
+      "action": "replace",
+      "size": 855,
+      "sha256": "27e0e69bd2b5749b2f9dc50318a76223db340e91489be0e954eeeeb55df6eb76"
+    },
+    {
+      "path": "docs/releases/RELEASE_NOTES_V0_4_7.md",
+      "action": "add",
+      "size": 2342,
+      "sha256": "65ffd8540ea2651471d90dfa7b98eae78d571dcafe4542afab316b387ba060c9"
+    },
+    {
+      "path": "docs/tests/test-ask-content.js",
+      "action": "replace",
+      "size": 1515,
+      "sha256": "ca0676c9fd16d019d717875839e28cf163dea78e4ab1607f00524ebfea39ffd3",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/tests/test-ask-context.js",
+      "action": "replace",
+      "size": 2165,
+      "sha256": "38f9dcbbeabaab042fc5f69fb04fd561953f79d9065d5fb91fa2b1ac89a8b3ec",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/tests/test-ask-semantic.js",
+      "action": "replace",
+      "size": 7862,
+      "sha256": "3ee6e3a897af4cdacbc5eedcfd8e28e2b1e18a71e6bd731d971c9ec176f266fa",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/tests/test-ask-storage.js",
+      "action": "replace",
+      "size": 4111,
+      "sha256": "619c08559eaedd0499c36b802eeba350e9c9078c413c4da5a25d5c4edb398a96",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/tests/test-global-copy.js",
+      "action": "replace",
+      "size": 4588,
+      "sha256": "e2e91c13093863309645d3933406ca4b9d94fbfb700daaec58a68a115a9492ad",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/tests/test-package.js",
+      "action": "replace",
+      "size": 5488,
+      "sha256": "b2d0310784aa21b1f82b0780b5801ac02bd980dec463904a90943cfc3228bb6f"
+    },
+    {
+      "path": "docs/tests/test-question-analyzer.js",
+      "action": "replace",
+      "size": 13724,
+      "sha256": "8b2e8c380859ef3388b6f4ad9b72a3aa8bb4b804dd0beaa5ead1a11d043e5ba8",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/tests/test-question-contract.js",
+      "action": "replace",
+      "size": 2568,
+      "sha256": "b5e8db1c3921a5ba7069e10574cf9a28d96845a1de77ae9d7357566c09d66b16",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/tests/test-question-guard.js",
+      "action": "replace",
+      "size": 2550,
+      "sha256": "5d5b0038bb769475120200292b745d019a6a9ab99f9b2b59004a338f4942a4ce",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/tests/test-reading-engine.js",
+      "action": "replace",
+      "size": 12938,
+      "sha256": "90fb72cad85d00b1636d6475b51b016f37cb65acd20804e21291a3464cbec2b8",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "docs/tests/test-reading-export.js",
+      "action": "add",
+      "size": 1655,
+      "sha256": "4ff0d4bea8727bbe2541ea4dbaa884e0c787a26e28cff27f12d7cc29a52d2a2f"
+    },
+    {
+      "path": "docs/tests/test-repo-structure.js",
+      "action": "replace",
+      "size": 2263,
+      "sha256": "edee83f18bba1957715033f0b5d9b8964414654a8849f0abe4cc6638e6e0e75e"
+    },
+    {
+      "path": "docs/tests/test-save-share-standard.js",
+      "action": "add",
+      "size": 2767,
+      "sha256": "0db78e51a7476c8a5d5ab755e1f45d9cd38adc67fed5d14e60b6ee17f8a97a51"
+    },
+    {
+      "path": "docs/tests/test-version-coherence.js",
+      "action": "replace",
+      "size": 2222,
+      "sha256": "951c8e52a74e3fff5a7cf9f37175352e969a4e5acd5dffba2dfcbeeec19b07e0"
+    },
+    {
+      "path": "index.html",
+      "action": "replace",
+      "size": 19132,
+      "sha256": "ccec1ea451d41248810c446fd33b7c3d56c606d553907af33853afd8b6b18177"
+    },
+    {
+      "path": "js/app.js",
+      "action": "replace",
+      "size": 27311,
+      "sha256": "03af111504b86882a4ac4bfdba7169f856e9baf83df7f13447b1d05ec5a9e2e4"
+    },
+    {
+      "path": "js/ask-content.js",
+      "action": "replace",
+      "size": 44422,
+      "sha256": "1df5572fe3966734c494beda5759c4b083a78ddb94b32c8ed11c8057fa8b502f",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/ask-context.js",
+      "action": "replace",
+      "size": 88594,
+      "sha256": "af581777d4058ad89978cfe0e7b8c2689ac8118288ea8c57336f3722c7424b6e",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/ask-export.js",
+      "action": "add",
+      "size": 11120,
+      "sha256": "250d4a24c10e2b39de204922c6b067777d1d8f722fe104fd4559a0212815ad2e"
+    },
+    {
+      "path": "js/ask-semantic.js",
+      "action": "replace",
+      "size": 40949,
+      "sha256": "e6b42a29de59f4425d0be0608c90e7be9fa1556a109084c5983bbb80cc6c07e5",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/ask-storage.js",
+      "action": "replace",
+      "size": 3492,
+      "sha256": "1bde838eba9d9d3984f0c38b1d6c65912a5ea5c7a5ab35b77be72221a8dfdc18",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/ask-ui.js",
+      "action": "replace",
+      "size": 44595,
+      "sha256": "e5b049679d413f7970c9dd363c348678b85a05b22a2e7d3786dcda899cb34e4e"
+    },
+    {
+      "path": "js/question-analyzer.js",
+      "action": "replace",
+      "size": 58520,
+      "sha256": "82fe8359ccc849b678d2f1373be01a3d46facb2745cc9cab99f55b0b2b4ac97b",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/question-contract.js",
+      "action": "replace",
+      "size": 20374,
+      "sha256": "3013ea28a612fcc683f6a0385c92e10c7f42fe1bd74dcc5c7fa9210a419dfca9",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/question-guard.js",
+      "action": "replace",
+      "size": 5646,
+      "sha256": "bec840ef54ed876733f32adfe4ba18ab297e462da1cbef7fd31ba41720c9af0a",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/reading-content.js",
+      "action": "replace",
+      "size": 314407,
+      "sha256": "a865421e87429eed8fa8a411ec376b8644c12298612d033c70222a1632efffe3",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/reading-engine.js",
+      "action": "replace",
+      "size": 11641,
+      "sha256": "63ea7607f31d4df616c2d083cbeb1aefd33e8e9cd13fdf6ee1d47ad2b1c5f966",
+      "unchanged_from_baseline": true
+    },
+    {
+      "path": "js/reading-export.js",
+      "action": "add",
+      "size": 4657,
+      "sha256": "1f4f86b04dea99afc990dc068a33b949a488d09877b75d310df68fc530db7c47"
+    },
+    {
+      "path": "js/reading-ui.js",
+      "action": "replace",
+      "size": 37768,
+      "sha256": "ef2a2f7098e45f244e6d70237386fc674466fc3f770d2a3b52de352e59fefdd2"
+    },
+    {
+      "path": "sw.js",
+      "action": "replace",
+      "size": 4490,
+      "sha256": "3063212924d36970e47cfc52c1ef9f56c9cae4ebf1f13cea4a07e9641bdd6ce6"
+    }
+  ],
+  "qa": {
+    "js_syntax": "PASS",
+    "reading_engine_regression": "PASS",
+    "daily_guidance_regression": "PASS",
+    "question_guard": "PASS",
+    "question_analyzer_344_plus": "PASS",
+    "question_contract": "PASS",
+    "ask_context_78x9x2": "PASS",
+    "semantic_ask_78x9x2": "PASS",
+    "same_question_context_persistence": "PASS",
+    "global_ui_copy_localization": "PASS",
+    "shared_reading_export_transport": "PASS",
+    "save_share_standard": "PASS",
+    "ask_privacy_navigation": "PASS",
+    "package_wiring": "PASS",
+    "version_coherence": "PASS",
+    "repository_structure": "PASS",
+    "archive_reextract": "PASS",
+    "deployed_real_device": "PENDING"
+  }
+}

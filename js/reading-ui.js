@@ -3,7 +3,8 @@
 
   const ENGINE = window.LGTReadingEngine;
   const CONTENT = window.LGTReadingContent;
-  if (!ENGINE || !CONTENT) throw new Error('Daily Guidance UI requires Reading Engine and content.');
+  const READING_EXPORT = window.LGTReadingExport;
+  if (!ENGINE || !CONTENT || !READING_EXPORT) throw new Error('Daily Guidance UI requires Reading Engine, content, and shared Reading Export.');
 
   const COPY = {
     en: {
@@ -846,52 +847,32 @@
     return `little-ganesha-tarot-daily-${base}.png`;
   }
 
-  async function saveBlob(blob, filename) {
-    const href = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = href;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    window.setTimeout(() => URL.revokeObjectURL(href), 1200);
-  }
-
   async function runExport(action = 'save') {
     if (exportBusy || !selectedData) return;
     exportBusy = true;
     saveButton.disabled = true;
     shareButton.disabled = true;
-    shareStatus.textContent = t('exportPreparing');
 
     try {
-      const blob = await buildReadingImageBlob();
-      const filename = filenameForCard(selectedData);
-      if (action === 'share') {
-        const file = new File([blob], filename, { type: 'image/png' });
-        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
-          try {
-            await navigator.share({
-              files: [file],
-              title: language() === 'th' ? 'ผลการอ่านไพ่ประจำวัน' : 'Daily Guidance Reading',
-              text: language() === 'th' ? 'ผลการอ่านไพ่จาก Little Ganesha Tarot' : 'My Daily Guidance from Little Ganesha Tarot'
-            });
-            shareStatus.textContent = t('exportShared');
-            emitInteraction('reading-share', { cardId: selectedData.id });
-          } catch (error) {
-            if (String(error?.name || '') === 'AbortError') shareStatus.textContent = t('exportCancelled');
-            else throw error;
-          }
-        } else {
-          await saveBlob(blob, filename);
-          shareStatus.textContent = t('exportSavedFallback');
-          emitInteraction('reading-save', { cardId: selectedData.id, fallbackFromShare: true });
+      await READING_EXPORT.execute({
+        action,
+        buildBlob: buildReadingImageBlob,
+        filename: filenameForCard(selectedData),
+        shareTitle: language() === 'th' ? 'ผลการอ่านไพ่ประจำวัน' : 'Daily Guidance Reading',
+        shareText: language() === 'th' ? 'ผลการอ่านไพ่จาก Little Ganesha Tarot' : 'My Daily Guidance from Little Ganesha Tarot',
+        onStatus: (message) => { shareStatus.textContent = message; },
+        onEvent: (eventType) => {
+          if (eventType === 'share') emitInteraction('reading-share', { cardId: selectedData.id });
+          else emitInteraction('reading-save', { cardId: selectedData.id, fallbackFromShare: eventType === 'save-fallback' });
+        },
+        messages: {
+          preparing: t('exportPreparing'),
+          saved: t('exportSaved'),
+          shared: t('exportShared'),
+          savedFallback: t('exportSavedFallback'),
+          cancelled: t('exportCancelled')
         }
-      } else {
-        await saveBlob(blob, filename);
-        shareStatus.textContent = t('exportSaved');
-        emitInteraction('reading-save', { cardId: selectedData.id });
-      }
+      });
     } catch (error) {
       console.error(error);
       shareStatus.textContent = t('exportFailed');

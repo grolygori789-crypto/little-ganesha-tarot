@@ -1,182 +1,102 @@
-# Little Ganesha Tarot — V0.4.6 Semantic Ask Ganesha
+# Little Ganesha Tarot — V0.4.7 Reading Actions Standard
 
-**Project:** Little Ganesha Tarot — The Golden Path  
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.4.6  
-**Master Plan in force:** V4.0 + newest approved current-room product decision  
-**Baseline repository HEAD:** `0b35a8ec749644abc66c300e3b197e29365951da` — `Add Spiritual Ask context V0.4.5`
+**Target runtime:** V0.4.7  
+**Baseline runtime:** V0.4.6  
+**Baseline GitHub HEAD:** `470300f2d6fe46349c27241d223b892045409363` — `Upgrade Ask Ganesha semantics V0.4.6`  
+**Risk:** MEDIUM  
+**Architecture:** local-first PWA · no AI/API/backend added
 
-## Release purpose
+## Purpose
 
-V0.4.6 fixes the most important product-quality weakness found during real-device Ask Ganesha testing: a reading could identify the broad question category yet still produce prose that did not answer the exact thing the user asked.
+V0.4.7 establishes **Save Image + Share as the standard result utilities for every tarot reading mode**. The currently implemented Daily Guidance and Ask Ganesha both use the same shared export transport and fallback behavior. Future reading spreads must adopt the same standard rather than inventing one-off save/share flows.
 
-The release therefore makes **semantic question fidelity** a hard runtime requirement. The question determines the subject that must be answered; the card determines what the reading says about that subject. A card is no longer allowed to pull the primary answer into an unrelated generic meaning.
+This release does not change card selection, Reading Engine logic, Semantic Ask interpretation, the nine Ask context families, or same-question/same-day behavior.
 
-Everything remains local to the browser. No AI, API, backend, remote inference, or account service is introduced.
+## Reading Result Action Standard
 
-## Semantic Ask architecture
+Every completed reading mode must provide:
 
-`Question Guard → Semantic Slot Parser → Micro-Facet Resolver → Confidence/Ambiguity → Question Contract → existing Ask draw/restore → Card Context Profile → Semantic Bridge → Contract-driven Answer Composer → Answer Validator → Result`
+- **Save Image** — creates a curated reading image locally on the device.
+- **Share** — uses the native file share sheet when supported; otherwise saves the generated image as a graceful fallback.
+- No server upload is required for export.
+- Reading chrome/navigation/music controls are never baked into the exported image.
+- Each reading mode owns a curated renderer for its own content, while transport/fallback behavior is shared through `js/reading-export.js`.
 
-The shared Reading Engine remains protected and unchanged.
+This keeps the implementation reusable without forcing every spread into the same visual layout.
 
-### Semantic slots
+## Ask Ganesha Save & Share
 
-The local Question Analyzer v3 extracts, when present:
+Ask Ganesha now exports a purpose-built reading card containing the selected tarot card, reading focus, direct semantic answer, card rationale, conditions, Little Ganesha reflection, carry-forward question, date, and a concise reflection disclaimer.
 
-- domain,
-- facet / micro-facet,
-- target,
-- perspective,
-- question type,
-- metric,
-- timeframe,
-- comparison / conditional structure,
-- polarity / certainty request,
-- confidence / ambiguity,
-- factual or epistemic boundary.
+Privacy behavior is deliberate:
 
-The nine top-level context families remain:
+- **Save Image** always saves the complete private reading, including the user’s exact question.
+- **Share** hides the exact question by default.
+- The user may explicitly enable **Include my question in the shared image** before sharing.
+- The toggle is off by default and is not persisted.
+- Hiding the exact question does not claim to anonymize the reading; the interpretation itself may still reveal the topic.
+- Raw Ask question text is still not stored in same-question local persistence.
 
-1. Self-image & attractiveness
-2. Social perception
-3. Love & relationships
-4. Work & direction
-5. Money & resources
-6. Choice & action
-7. Outlook & opportunity
-8. Inner state & growth
-9. Spiritual & Unseen / ศรัทธา จิตวิญญาณ และสิ่งเร้นลับ
+When the exact question is hidden, the exported heading changes from “Answer to Your Question” to the neutral “Insight from This Reading” / “ข้อความจากการอ่านครั้งนี้”.
 
-Beneath them, the parser distinguishes dozens of micro-facets such as appearance, attractiveness, first impression, feelings, reconciliation, commitment, career direction, promotion, income, wealth, debt, financial stability, continue-or-stop, timing, success, burnout, healing, divine protection, dreams, signs/synchronicity, karma/destiny, past life, and unseen influence.
+## Ask Navigation
 
-## Question Contract / No Drift Rule
+The existing **Ask Another Question / ถามเรื่องอื่น** primary button remains in its current position directly below the card flow. It is not moved.
 
-Every accepted question is converted into a compact contract before a reading is composed.
+A lower-emphasis **Back to Home / กลับหน้าหลัก** action is added directly beneath it only after the reading is revealed. It closes Ask Ganesha through the existing navigation lifecycle rather than reloading the application.
 
-The contract records what the answer **must cover**, such as:
+## Shared Export Architecture
 
-- the exact topic/micro-facet,
-- directional tendency where appropriate,
-- the card rationale,
-- a practical condition/caveat,
-- an explicit timeframe when the user supplied one,
-- the relevant target/perspective,
-- uncertainty boundaries for another person's private feelings,
-- symbolic-only boundaries for unverifiable spiritual claims.
+`js/reading-export.js` is a small reusable browser module responsible for:
 
-It also records what the answer **must avoid**, including domain drift, unsupported certainty, mind-reading claims, supernatural fact claims, fear confirmation, and exact-date claims where tarot cannot establish them.
+- file creation handoff;
+- native file sharing;
+- save fallback when direct sharing is unavailable;
+- common canvas text/layout helpers;
+- localized date formatting;
+- deterministic status callbacks for each reading UI.
 
-**No Drift Rule:** the primary subject of the answer must remain the primary subject of the user's question.
+Daily Guidance keeps its already-tested curated renderer and now routes delivery through the shared module. Ask Ganesha uses `js/ask-export.js` as its own renderer and the same shared delivery module.
 
-## Hard timeframe preservation
+This separation keeps complexity in the easy-to-medium range: shared transport, isolated renderers, no backend, no framework migration, and no Reading Engine refactor.
 
-An explicit timeframe is now a semantic requirement rather than optional context.
+## Protected Behavior
 
-For example:
+V0.4.7 intentionally preserves:
 
-`ผมจะรวยมั้ยในอีก 1 ปีข้างหน้า`
+- Reading Engine `1.0.2`;
+- Daily Guidance card selection and persistence;
+- Daily Guidance six lenses;
+- the Daily curated export content/layout;
+- Question Guard;
+- Question Analyzer v3;
+- Question Contract v1;
+- Ask Context v2 including Spiritual & Unseen;
+- Semantic Ask v1 no-drift behavior;
+- Ask same-question/same-day same-card rule;
+- no raw Ask question persistence;
+- audio lifecycle and canonical tarot assets.
 
-is parsed as a money/wealth outlook with an explicit one-year horizon. The final direct answer must mention that one-year period and remain about financial position/wealth. A generic message about “today”, happiness, or warmth cannot pass the Answer Validator for that question.
+## Languages
 
-Numeric Thai/English day, week, month, and year periods are supported alongside common named periods such as today, this week, next month, next year, by year-end, short term, and long term.
+All newly visible copy is authored separately for English and Thai. English is written as native product copy rather than translated Thai; Thai is written as natural Thai UI language rather than literal English translation.
 
-## Card Context Profile + Semantic Bridge
+## Validation
 
-Each drawn card is converted into a small structured profile for the resolved context:
+The release package runs the full inherited semantic/reading regression suite plus dedicated reading-action tests covering:
 
-- direction: strong positive / moderate positive / mixed / moderate challenging / strong challenging,
-- strength,
-- canonical keywords,
-- relevant context text,
-- topic anchor.
+- shared export module wiring and dependency order;
+- Daily migration to shared delivery without replacing its renderer;
+- Ask Save/Share controls;
+- Ask complete-save vs privacy-aware-share behavior;
+- default-off question inclusion;
+- Ask Another position preservation;
+- Back to Home secondary action;
+- TH/EN copy completeness;
+- fallback from unavailable native sharing to local save;
+- Reading Engine / Semantic Ask regression;
+- version coherence and repository structure;
+- archive checksum and clean re-extraction.
 
-The Semantic Bridge joins that card profile to the Question Contract before prose is generated. Logic therefore comes before presentation: the app first establishes what the card implies **about the asked subject**, then writes the bilingual answer.
-
-## Result hierarchy
-
-Ask Ganesha now prioritizes:
-
-1. **Answer to Your Question / คำตอบต่อคำถามของคุณ**
-2. **Why This Card Points There / ทำไมไพ่ใบนี้จึงสะท้อนแบบนั้น**
-3. **What to Keep in View / สิ่งที่ควรคำนึงประกอบ**
-4. **Little Ganesha's Reflection / มุมมองจากพระพิฆเนศน้อย**
-5. **A Question to Carry Forward / คำถามชวนทบทวนต่อ**
-
-The generic card meaning is not allowed to replace the direct answer.
-
-## Ambiguity and multi-question behavior
-
-If two legitimate subjects score too closely, the existing premium focus chooser asks the user which subject matters most instead of silently guessing.
-
-A genuine conditional single question remains accepted, for example:
-
-`ถ้าผมย้ายงาน รายได้จะดีขึ้นไหม`
-
-Two independent questions in one input remain rejected so one card is not forced to answer unrelated issues.
-
-## Bilingual writing standard
-
-Thai and English copy are authored as separate native-language surfaces rather than literal word-for-word translations. The semantic contract is language-neutral; presentation phrases, topic wording, caveats, time phrasing, and Little Ganesha reflection are rendered natively for each language.
-
-## Safety and epistemic boundaries
-
-The existing local Question Content Guard remains in place. Medical diagnosis, legal verdict, lottery/gambling outcome, specific investment-price/guaranteed-return, and time-of-death requests continue to require reframing.
-
-Questions about another person's private feelings do not claim mind reading. Spiritual & Unseen questions remain welcome, but symbolic tarot reflection is kept distinct from factual verification of deities, spirits, curses, psychic powers, past-life identity, or supernatural attack.
-
-## Same-question behavior and privacy
-
-The existing rule remains:
-
-**same normalized question + same local day = same card**
-
-Resolved semantic metadata may be stored with the local fingerprint/card record to restore the same reading focus. Raw question text is not persisted for repeat-question matching. Existing V0.4.4/V0.4.5 compatible records remain readable.
-
-## Protected behavior
-
-V0.4.6 does **not** functionally rewrite:
-
-- `js/reading-engine.js`,
-- `js/reading-content.js`,
-- `js/reading-ui.js`,
-- Daily Guidance content/lenses,
-- Daily Save/Share,
-- canonical card assets,
-- audio lifecycle.
-
-The Service Worker/build cache receives only the required runtime version/resource-list update for the two new semantic modules.
-
-## QA status before upload
-
-Static/unit/package validation includes:
-
-- Reading Engine regression,
-- Question Guard regression,
-- semantic-slot parsing in Thai and English,
-- explicit timeframe preservation,
-- conditional vs multi-question distinction,
-- ambiguity resolution,
-- Question Contract requirements,
-- money/wealth + one-year + The Sun regression,
-- appearance/public-perception + Six of Pentacles regression,
-- third-party-feelings uncertainty,
-- Spiritual & Unseen epistemic boundaries,
-- 78 cards × 9 contexts × 2 languages = **1,404 contract-validated Semantic Ask compositions** with no fallback,
-- same-question semantic metadata persistence,
-- package/script dependency order,
-- hard runtime version coherence,
-- repository structure,
-- checksum and final archive re-extraction.
-
-Real-device validation of V0.4.6 remains required after deployment.
-
-See:
-
-- `docs/qa/QA_V0_4_6.md`
-- `docs/releases/RELEASE_NOTES_V0_4_6.md`
-- `docs/releases/PATCH_UPLOAD_NOTES.md`
-
-## Canonical promotion note
-
-V0.4.5 at GitHub HEAD `0b35a8ec749644abc66c300e3b197e29365951da` is the deployed baseline used to build this patch. V0.4.6 is a candidate until it is pushed and passes the appropriate real-device gate. Governance/current-status documentation should be promoted deliberately afterward rather than pre-declaring the candidate canonical.
+Real-device Save/Share validation remains required after V0.4.7 is deployed.
