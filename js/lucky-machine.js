@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'lucky-machine-v1';
+  const VERSION = 'lucky-machine-v1.1';
   const TAU = Math.PI * 2;
   const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
   const lerp = (a, b, t) => a + ((b - a) * t);
@@ -86,12 +86,12 @@
     resetBalls() {
       const g = this.geometry();
       const positions = [
-        [-0.44, -0.42], [0, -0.50], [0.44, -0.40],
-        [-0.52, 0.02], [0, -0.04], [0.50, 0.04],
-        [-0.38, 0.43], [0.06, 0.48], [0.43, 0.40]
+        [-0.43, -0.44], [0, -0.51], [0.43, -0.42],
+        [-0.54, -0.03], [-0.18, -0.07], [0.19, -0.03], [0.54, 0.02],
+        [-0.38, 0.40], [0.05, 0.48], [0.42, 0.38]
       ];
       this.balls = positions.map(([px, py], index) => ({
-        number: index + 1,
+        number: index,
         x: g.cx + (px * g.chamberR * 1.15),
         y: g.cy + (py * g.chamberR * 1.15),
         vx: 0,
@@ -261,7 +261,7 @@
         }
       });
 
-      // Lightweight equal-mass collisions keep the nine crystal orbs tactile without a heavy physics dependency.
+      // Lightweight equal-mass collisions keep the ten crystal orbs tactile without a heavy physics dependency.
       for (let i = 0; i < live.length; i += 1) {
         for (let j = i + 1; j < live.length; j += 1) {
           const a = live[i];
@@ -615,7 +615,7 @@
       ctx.fillStyle = '#fff1c4';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.font = `600 ${radius * 0.78}px "Cormorant Garamond", Georgia, serif`;
+      ctx.font = `700 ${radius * 0.76}px Georgia, "Times New Roman", serif`;
       ctx.fillText(String(number), 0, radius * 0.05);
       ctx.restore();
 

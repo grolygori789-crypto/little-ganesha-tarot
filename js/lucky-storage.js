@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'lucky-storage-v1';
+  const VERSION = 'lucky-storage-v1.1';
   const KEY = 'lgt.lucky.v1';
   const SCHEMA = 1;
 
@@ -16,7 +16,7 @@
     return Array.isArray(numbers)
       && numbers.length === 3
       && new Set(numbers).size === 3
-      && numbers.every((number) => Number.isInteger(number) && number >= 1 && number <= 9);
+      && numbers.every((number) => Number.isInteger(number) && number >= 0 && number <= 9);
   }
 
   function normalizeRecord(value) {
@@ -56,7 +56,7 @@
   }
 
   function generateNumbers() {
-    const pool = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const pool = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     const out = [];
     while (out.length < 3) {
       const index = randomInt(pool.length);

@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'lucky-ui-v1';
+  const VERSION = 'lucky-ui-v1.1';
   const Content = window.LGTLuckyContent;
   const Storage = window.LGTLuckyStorage;
   const MachineAPI = window.LGTLuckyMachine;
@@ -72,6 +72,7 @@
             <span class="lucky-spin__ornament" aria-hidden="true">✦</span>
           </button>
           <p class="lucky-lock-note" id="luckyLockNote"></p>
+          <button class="lucky-home" id="luckyHome" type="button"><span aria-hidden="true">⌂</span><span id="luckyHomeText"></span></button>
         </div>
 
         <section class="lucky-result" id="luckyResult" hidden aria-labelledby="luckyPatternTitle">
@@ -85,11 +86,17 @@
             <h3 id="luckyPatternTitle"></h3>
             <p id="luckyPattern"></p>
           </article>
+          <article class="lucky-number-set-card" aria-labelledby="luckyNumberSetTitle">
+            <h3 id="luckyNumberSetTitle"></h3>
+            <div class="lucky-number-set" id="luckyNumberSet"></div>
+            <p id="luckyNumberSetHint"></p>
+          </article>
           <div class="lucky-export-actions">
             <button class="lucky-secondary" id="luckySave" type="button"><span aria-hidden="true">⇩</span><span id="luckySaveText"></span></button>
             <button class="lucky-secondary lucky-secondary--gold" id="luckyShare" type="button"><span aria-hidden="true">↗</span><span id="luckyShareText"></span></button>
           </div>
           <button class="lucky-replay" id="luckyReplay" type="button"><span aria-hidden="true">↻</span><span id="luckyReplayText"></span></button>
+          <button class="lucky-result-home" id="luckyResultHome" type="button"><span aria-hidden="true">⌂</span><span id="luckyResultHomeText"></span></button>
         </section>
 
         <footer class="lucky-footnote">
@@ -105,6 +112,8 @@
     state.machine = new MachineAPI.LuckyOracleMachine(el('luckyMachine'));
 
     el('luckyBack').addEventListener('click', close);
+    el('luckyHome').addEventListener('click', close);
+    el('luckyResultHome').addEventListener('click', close);
     el('luckySpin').addEventListener('click', () => runReveal({ replay: false }));
     el('luckyReplay').addEventListener('click', () => runReveal({ replay: true }));
     el('luckySave').addEventListener('click', () => exportAction('save'));
@@ -132,6 +141,10 @@
     setText('luckySaveText', c.save);
     setText('luckyShareText', c.share);
     setText('luckyReplayText', c.replay);
+    setText('luckyHomeText', c.home);
+    setText('luckyResultHomeText', c.home);
+    setText('luckyNumberSetTitle', c.numberSetTitle);
+    setText('luckyNumberSetHint', c.numberSetHint);
     setText('luckyDisclaimer', c.disclaimer);
     el('luckyBack')?.setAttribute('aria-label', c.back);
     state.root.querySelector('.lucky-oracle')?.setAttribute('aria-label', c.oracleAria);
@@ -178,6 +191,16 @@
       grid.appendChild(card);
     });
     setText('luckyPattern', Content.pattern(record.numbers, language));
+    const numberSet = el('luckyNumberSet');
+    if (numberSet) {
+      numberSet.replaceChildren();
+      Content.numberSet(record.numbers).forEach((value) => {
+        const chip = document.createElement('span');
+        chip.className = 'lucky-number-set__chip';
+        chip.textContent = value;
+        numberSet.appendChild(chip);
+      });
+    }
     el('luckyResult').hidden = false;
     el('luckySpin').hidden = true;
     el('luckyLockNote').hidden = false;
@@ -231,6 +254,8 @@
       spin.classList.toggle('is-turning', state.busy);
     }
     el('luckyBack').disabled = false;
+    el('luckyHome').disabled = false;
+    el('luckyResultHome').disabled = false;
     setMachineCopy();
   }
 
@@ -240,6 +265,9 @@
     if (!record) record = Storage.createToday();
     state.record = record;
     hideResult();
+    if (replay) {
+      requestAnimationFrame(() => state.root?.querySelector('.lucky-oracle')?.scrollIntoView({ behavior: currentReducedMotion() ? 'auto' : 'smooth', block: 'start' }));
+    }
     setBusy(true, 'spin');
     await state.sfx.spin();
     const roles = Content.roles(lang());

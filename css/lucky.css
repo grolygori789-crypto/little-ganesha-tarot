@@ -1,4 +1,4 @@
-/* V0.9.0 — Lucky Numbers / Luxury Kinetic Oracle */
+/* V0.9.1 — Lucky Numbers / zero-inclusive polish + exit affordance */
 
 body.lucky-mode-open {
   overscroll-behavior: none;
@@ -348,6 +348,41 @@ body.lucky-mode-open .mini-player {
   line-height: 1.55;
 }
 
+.lucky-home,
+.lucky-result-home {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .42rem;
+  min-height: 2.7rem;
+  margin-top: .48rem;
+  padding: .56rem 1rem;
+  border: 1px solid rgba(247,217,147,.16);
+  border-radius: 999px;
+  background: rgba(5,31,31,.36);
+  color: rgba(255,248,233,.62);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .055em;
+  backdrop-filter: blur(8px);
+  transition: transform .2s ease, color .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.lucky-home:hover,
+.lucky-result-home:hover {
+  color: #f5db9d;
+  border-color: rgba(247,217,147,.34);
+  background: rgba(16,51,50,.52);
+}
+
+.lucky-home:active,
+.lucky-result-home:active { transform: scale(.975); }
+
+.lucky-result-home {
+  width: 100%;
+  margin-top: .18rem;
+}
+
 .lucky-result {
   width: min(100%, 34rem);
   margin: 1.1rem auto 0;
@@ -432,9 +467,11 @@ body.lucky-mode-open .mini-player {
   position: relative;
   z-index: 1;
   color: #fff0c4;
-  font-family: "Cormorant Garamond", Georgia, serif !important;
-  font-size: 2.15rem;
-  font-weight: 600;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 2.08rem;
+  font-weight: 700;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
   line-height: 1;
 }
 
@@ -498,6 +535,54 @@ body.lucky-mode-open .mini-player {
   color: rgba(255,248,233,.76);
   font-size: .84rem;
   line-height: 1.68;
+}
+
+.lucky-number-set-card {
+  margin-top: .78rem;
+  padding: .9rem .95rem .88rem;
+  border: 1px solid rgba(247,217,147,.13);
+  border-radius: 1.18rem;
+  background: linear-gradient(145deg, rgba(255,255,255,.025), rgba(7,38,37,.54));
+  box-shadow: inset 0 1px rgba(255,255,255,.028);
+}
+
+.lucky-number-set-card h3 {
+  margin: 0 0 .6rem;
+  color: rgba(247,217,147,.78);
+  font-family: "Cormorant Garamond", "Noto Serif Thai", "Noto Serif Devanagari", serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.lucky-number-set {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .42rem;
+}
+
+.lucky-number-set__chip {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.55rem;
+  min-height: 2.05rem;
+  padding: .28rem .68rem;
+  border: 1px solid rgba(247,217,147,.22);
+  border-radius: 999px;
+  background: rgba(7,43,41,.68);
+  color: #fff1c4;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: .94rem;
+  font-weight: 700;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  box-shadow: inset 0 1px rgba(255,255,255,.035);
+}
+
+.lucky-number-set-card p {
+  margin: .58rem 0 0;
+  color: rgba(255,248,233,.48);
+  font-size: .7rem;
+  line-height: 1.55;
 }
 
 .lucky-export-actions {
@@ -602,6 +687,7 @@ html[lang="th"] .lucky-screen,
 
 html[lang="th"] .lucky-intro h2,
 html[lang="th"] .lucky-pattern-card h3,
+html[lang="th"] .lucky-number-set-card h3,
 html[lang="th"] .lucky-number-card__copy strong,
 html[lang="th"] .lucky-spin,
 html[lang="th"] .lucky-eyebrow,
@@ -618,6 +704,7 @@ html[lang="hi"] .lucky-screen,
 
 html[lang="hi"] .lucky-intro h2,
 html[lang="hi"] .lucky-pattern-card h3,
+html[lang="hi"] .lucky-number-set-card h3,
 html[lang="hi"] .lucky-number-card__copy strong,
 html[lang="hi"] .lucky-spin,
 html[lang="hi"] .lucky-eyebrow,
@@ -630,6 +717,7 @@ html[lang="hi"] .lucky-result__eyebrow {
 html[lang="hi"] .lucky-intro p,
 html[lang="hi"] .lucky-number-card__copy p,
 html[lang="hi"] .lucky-pattern-card p,
+html[lang="hi"] .lucky-number-set-card p,
 html[lang="hi"] .lucky-lock-note,
 html[lang="hi"] .lucky-footnote p {
   line-height: 1.75;

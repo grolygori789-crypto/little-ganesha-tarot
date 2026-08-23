@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'lucky-export-v1';
+  const VERSION = 'lucky-export-v1.1';
 
   const language = () => window.LGTLuckyContent?.normalizeLanguage(document.documentElement.lang) || 'en';
 
@@ -96,7 +96,7 @@
     ctx.fillStyle = '#fff1c6';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.font = `600 ${radius * 0.82}px "Cormorant Garamond", Georgia, serif`;
+    ctx.font = `700 ${radius * 0.79}px Georgia, "Times New Roman", serif`;
     ctx.fillText(String(number), x, y + radius * 0.05);
 
     const shine = ctx.createRadialGradient(x - radius * 0.42, y - radius * 0.48, 0, x - radius * 0.36, y - radius * 0.40, radius * 0.46);
@@ -119,15 +119,15 @@
     const fonts = fontsFor(lang);
     const canvas = document.createElement('canvas');
     canvas.width = 1080;
-    canvas.height = 1350;
+    canvas.height = 1600;
     const ctx = canvas.getContext('2d');
 
-    const bg = ctx.createLinearGradient(0, 0, 1080, 1350);
+    const bg = ctx.createLinearGradient(0, 0, 1080, 1600);
     bg.addColorStop(0, '#0d3433');
     bg.addColorStop(0.52, '#082828');
     bg.addColorStop(1, '#061c1d');
     ctx.fillStyle = bg;
-    ctx.fillRect(0, 0, 1080, 1350);
+    ctx.fillRect(0, 0, 1080, 1600);
 
     const halo = ctx.createRadialGradient(540, 455, 20, 540, 455, 560);
     halo.addColorStop(0, 'rgba(231,190,105,.17)');
@@ -138,10 +138,10 @@
 
     ctx.strokeStyle = 'rgba(235,197,118,.44)';
     ctx.lineWidth = 2;
-    rounded(ctx, 42, 42, 996, 1266, 34);
+    rounded(ctx, 42, 42, 996, 1516, 34);
     ctx.stroke();
     ctx.strokeStyle = 'rgba(235,197,118,.14)';
-    rounded(ctx, 58, 58, 964, 1234, 28);
+    rounded(ctx, 58, 58, 964, 1484, 28);
     ctx.stroke();
 
     ctx.textAlign = 'center';
@@ -190,7 +190,21 @@
     ctx.font = fonts.body;
     const patternEnd = drawWrapped(ctx, content.pattern(record.numbers, lang), 138, 810, 804, 40, 5);
 
-    const detailsTop = Math.max(1015, patternEnd + 24);
+    const setTop = Math.max(1010, patternEnd + 36);
+    ctx.fillStyle = '#f0cf86';
+    ctx.font = fonts.heading;
+    ctx.textAlign = 'left';
+    ctx.fillText(copy.numberSetTitle, 138, setTop);
+
+    ctx.fillStyle = '#fff1c6';
+    ctx.font = '700 30px Georgia, "Times New Roman", serif';
+    ctx.fillText(content.numberSet(record.numbers).join('   ·   '), 138, setTop + 54);
+
+    ctx.fillStyle = 'rgba(255,248,233,.55)';
+    ctx.font = fonts.bodySmall;
+    drawWrapped(ctx, copy.numberSetHint, 138, setTop + 94, 804, 31, 2);
+
+    const detailsTop = Math.max(1190, setTop + 165);
     const detailWidth = 244;
     record.numbers.forEach((number, index) => {
       const info = content.number(number, lang);
@@ -207,10 +221,10 @@
     ctx.textAlign = 'center';
     ctx.fillStyle = 'rgba(255,248,233,.46)';
     ctx.font = fonts.bodySmall;
-    ctx.fillText(copy.exportFooter, 540, 1250);
+    ctx.fillText(copy.exportFooter, 540, 1490);
     ctx.font = lang === 'en' ? '400 18px Georgia, serif' : (lang === 'th' ? '400 18px "Noto Sans Thai", sans-serif' : '400 18px "Noto Sans Devanagari", sans-serif');
     const disclaimerLines = wrap(ctx, copy.disclaimer, 790).slice(0, 2);
-    disclaimerLines.forEach((line, index) => ctx.fillText(line, 540, 1284 + (index * 24)));
+    disclaimerLines.forEach((line, index) => ctx.fillText(line, 540, 1530 + (index * 24)));
 
     return new Promise((resolve, reject) => {
       canvas.toBlob((blob) => blob ? resolve(blob) : reject(new Error('Could not render Lucky Numbers image.')), 'image/png', 0.96);

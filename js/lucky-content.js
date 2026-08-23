@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'lucky-content-v1';
+  const VERSION = 'lucky-content-v1.1';
 
   const COPY = {
     en: {
@@ -21,6 +21,9 @@
       share: 'SHARE',
       replay: 'REPLAY REVEAL',
       back: 'Back',
+      home: 'BACK TO HOME',
+      numberSetTitle: "Today's Number Set",
+      numberSetHint: 'A few ways to carry the three digits into everyday contexts. Symbolic, not predictive.',
       countdownLead: 'A new set becomes available in',
       dailyLock: 'This set stays the same until your next local day.',
       disclaimer: 'For reflection and play. Not for lottery, gambling, investment, or guaranteed outcomes.',
@@ -55,6 +58,9 @@
       share: 'แชร์',
       replay: 'ดูจังหวะเปิดเลขอีกครั้ง',
       back: 'กลับ',
+      home: 'กลับหน้าหลัก',
+      numberSetTitle: 'ชุดเลขของวันนี้',
+      numberSetHint: 'รูปแบบตัวเลขที่หยิบไปใช้ในบริบทต่างๆ ได้ตามสบาย เป็นเพียงสัญลักษณ์ ไม่ใช่การทำนายผล',
       countdownLead: 'เปิดเลขชุดใหม่ได้อีกใน',
       dailyLock: 'เลขชุดนี้จะคงเดิมจนถึงวันใหม่ตามเวลาบนอุปกรณ์',
       disclaimer: 'ใช้เพื่อความสนุกและการทบทวนตัวเอง ไม่ใช่เลขหวย คำแนะนำการพนัน การลงทุน หรือการรับรองผลลัพธ์ใดๆ',
@@ -89,6 +95,9 @@
       share: 'शेयर करें',
       replay: 'अंक फिर से प्रकट होते देखें',
       back: 'वापस',
+      home: 'मुख्य पृष्ठ पर लौटें',
+      numberSetTitle: 'आज के अंक-संयोजन',
+      numberSetHint: 'इन तीन अंकों को रोज़मर्रा के संदर्भों में देखने के कुछ तरीके—प्रतीकात्मक, भविष्यवाणी नहीं।',
       countdownLead: 'नया सेट मिलने में',
       dailyLock: 'ये अंक आपके डिवाइस के स्थानीय दिन बदलने तक यही रहेंगे।',
       disclaimer: 'मनन और आनंद के लिए। लॉटरी, जुए, निवेश या किसी निश्चित परिणाम की भविष्यवाणी नहीं।',
@@ -110,6 +119,7 @@
 
   const NUMBERS = {
     en: {
+      0: { keyword: 'Potential', core: 'Make room before you add more. A pause, reset, or clean slate can reveal what deserves to begin next.', support: 'Use openness as support: leave enough space for a better option, new information, or an unexpected connection to appear.', balance: 'Emptiness is useful when it creates room rather than drift. Give the open space one gentle boundary so it can still have direction.' },
       1: { keyword: 'Initiative', core: 'Choose one clear direction and give it your first deliberate move.', support: 'Use decisiveness as a resource: simplify the next step instead of waiting for perfect certainty.', balance: 'Keep independence from turning into isolation. Ask for input when it genuinely improves the choice.' },
       2: { keyword: 'Attunement', core: 'Pay attention to timing, tone, and the space between your needs and someone else’s.', support: 'Patience and cooperation can unlock more than force today.', balance: 'Do not confuse harmony with self-erasure. A calm boundary can still be kind.' },
       3: { keyword: 'Expression', core: 'Give shape to what wants to be said, made, shared, or enjoyed.', support: 'Creativity, conversation, and a lighter touch can loosen what has become too rigid.', balance: 'Keep enthusiasm connected to follow-through so good energy becomes something real.' },
@@ -121,6 +131,7 @@
       9: { keyword: 'Completion', core: 'Notice what is ready to be finished, released, forgiven, or understood from a wider perspective.', support: 'Compassion and perspective can help you close a chapter without dragging its weight forward.', balance: 'Closure is not the same as avoidance. Keep the lesson even when you let the burden go.' }
     },
     th: {
+      0: { keyword: 'พื้นที่ใหม่', core: 'วันนี้เลข 0 ชวนให้เว้นพื้นที่ก่อนเติมสิ่งใหม่ การพัก ตั้งหลัก หรือเริ่มจากหน้าว่างอาจช่วยให้เห็นว่าอะไรควรเกิดขึ้นต่อ', support: 'ใช้ความเปิดกว้างเป็นแรงหนุน ไม่ต้องรีบปิดทุกคำตอบ เผื่อที่ให้ข้อมูล ทางเลือก หรือความเชื่อมโยงใหม่เข้ามา', balance: 'พื้นที่ว่างจะมีประโยชน์เมื่อไม่กลายเป็นการปล่อยลอย ตั้งขอบเขตเล็กๆ ไว้หนึ่งอย่างเพื่อให้การเปิดรับยังมีทิศทาง' },
       1: { keyword: 'การเริ่มต้น', core: 'วันนี้เหมาะกับการเลือกทิศทางให้ชัด แล้วขยับก้าวแรกด้วยความตั้งใจ', support: 'ใช้ความเด็ดขาดเป็นแรงหนุน ลดขั้นตอนที่ไม่จำเป็น แล้วเริ่มจากสิ่งที่ทำได้จริงก่อน', balance: 'ความเป็นตัวของตัวเองไม่จำเป็นต้องกลายเป็นการทำทุกอย่างคนเดียว เปิดรับความเห็นเมื่อมันช่วยให้ตัดสินใจดีขึ้น' },
       2: { keyword: 'การรับฟัง', core: 'ให้ความสำคัญกับจังหวะ น้ำเสียง และพื้นที่ระหว่างความต้องการของเรากับอีกฝ่าย', support: 'ความอดทนและความร่วมมืออาจพาเรื่องไปได้ไกลกว่าการเร่งหรือกดดัน', balance: 'รักษาความกลมกลืนได้โดยไม่ต้องลดคุณค่าความต้องการของตัวเอง ขอบเขตที่สุภาพก็ยังเป็นขอบเขต' },
       3: { keyword: 'การแสดงออก', core: 'สิ่งที่อยากพูด อยากสร้าง หรืออยากแบ่งปัน ควรได้มีพื้นที่ออกมาเป็นรูปธรรม', support: 'บทสนทนา ความคิดสร้างสรรค์ และอารมณ์ที่เบาขึ้นช่วยคลายเรื่องที่ตึงเกินไปได้', balance: 'ความคึกคักจะมีพลังมากขึ้นเมื่อพาไปถึงการลงมือทำ ไม่ใช่หยุดอยู่แค่ไอเดีย' },
@@ -132,6 +143,7 @@
       9: { keyword: 'การปิดวงจร', core: 'มองดูว่าเรื่องใดพร้อมจะจบ วาง ให้อภัย หรือทำความเข้าใจจากมุมที่กว้างขึ้นแล้ว', support: 'ความเมตตาและระยะมองที่กว้างขึ้นช่วยให้ปิดบทหนึ่งได้โดยไม่ต้องลากน้ำหนักของมันต่อไป', balance: 'การวางไม่ใช่การหนี เก็บบทเรียนไว้ได้ แม้ไม่จำเป็นต้องเก็บภาระเดิมไว้ด้วย' }
     },
     hi: {
+      0: { keyword: 'संभावना', core: 'आज थोड़ा खाली स्थान छोड़ना उपयोगी हो सकता है। ठहराव, रीसेट या नई शुरुआत आपको दिखा सकती है कि आगे वास्तव में क्या जगह माँग रहा है।', support: 'खुलापन सहारा बन सकता है—हर जवाब तुरंत तय न करें; नई जानकारी, विकल्प या अप्रत्याशित जुड़ाव के लिए जगह रखें।', balance: 'खाली जगह तभी मदद करती है जब वह भटकाव न बने। एक हल्की-सी सीमा रखें ताकि खुलापन भी दिशा में रहे।' },
       1: { keyword: 'पहल', core: 'आज एक दिशा साफ़ चुनें और उसकी ओर पहला ठोस कदम जानबूझकर रखें।', support: 'निर्णय लेने की क्षमता को सहारा बनाइए—पूर्ण निश्चितता का इंतज़ार करने के बजाय अगला कदम सरल कीजिए।', balance: 'स्वतंत्रता को अकेले सब कुछ उठाने की आदत न बनने दें। सही जगह पर राय लेना निर्णय को बेहतर कर सकता है।' },
       2: { keyword: 'तालमेल', core: 'आज समय, लहजे और अपनी ज़रूरतों व दूसरे व्यक्ति की ज़रूरतों के बीच के संतुलन को ध्यान से देखें।', support: 'धैर्य और सहयोग वहाँ रास्ता खोल सकते हैं जहाँ दबाव काम नहीं करता।', balance: 'शांति बनाए रखना अपने हिस्से को मिटा देना नहीं है। नरम लेकिन साफ़ सीमा भी सम्मानजनक होती है।' },
       3: { keyword: 'अभिव्यक्ति', core: 'जो बात कहना, बनाना, बाँटना या आनंद से जीना चाहती है, उसे आज कोई वास्तविक रूप दें।', support: 'रचनात्मकता, बातचीत और थोड़ा हल्कापन जमी हुई स्थिति को ढीला कर सकता है।', balance: 'उत्साह को पूरा करने की आदत से जोड़ें, ताकि अच्छी ऊर्जा सिर्फ़ विचार बनकर न रह जाए।' },
@@ -153,6 +165,22 @@
     return [c.coreRole, c.supportRole, c.balanceRole];
   }
 
+  function numberSet(numbers) {
+    if (!Array.isArray(numbers) || numbers.length !== 3) return [];
+    const values = numbers.map(Number);
+    if (values.some((number) => !Number.isInteger(number) || number < 0 || number > 9)) return [];
+    const pair = (first, second) => first === 0 && second !== 0 ? `${second}0` : `${first}${second}`;
+    const firstNonZero = values.findIndex((number) => number !== 0);
+    const rotated = firstNonZero > 0 ? [...values.slice(firstNonZero), ...values.slice(0, firstNonZero)] : values;
+    const forms = [
+      ...values.map(String),
+      pair(values[0], values[1]),
+      pair(values[1], values[2]),
+      rotated.join('')
+    ];
+    return [...new Set(forms)];
+  }
+
   function pattern(numbers, lang) {
     const language = normalizeLanguage(lang);
     const [a, b, c] = numbers.map((number) => NUMBERS[language][number]);
@@ -170,6 +198,7 @@
     copy: (lang) => COPY[normalizeLanguage(lang)],
     number: (number, lang) => NUMBERS[normalizeLanguage(lang)][Number(number)] || null,
     roles: roleCopy,
+    numberSet,
     pattern,
     normalizeLanguage
   });
