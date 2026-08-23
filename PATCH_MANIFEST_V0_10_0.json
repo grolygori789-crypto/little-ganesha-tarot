@@ -1,0 +1,88 @@
+{
+  "release": "V0.10.0",
+  "title": "Tarot Library — Premium Editorial Archive",
+  "baseline_runtime": "V0.9.1",
+  "baseline_head": "df8732c02182d012a95b8c8aa6ccfb7b1633f881",
+  "baseline_head_message": "Polish Lucky Numbers V0.9.1",
+  "risk": "HIGH operational / MEDIUM functional",
+  "risk_reason": "Tarot Library adds a complete full-screen educational/deck-browsing surface plus Settings About & Guide. It is additive and does not change reading selection or persistence, but the PWA Service Worker/cache identity moves to V0.10.0.",
+  "target_runtime_build": "0.10.0",
+  "languages": ["en", "th", "hi"],
+  "feature_contract": {
+    "identity": "Tarot Library is the premium educational and canonical-deck exploration surface for Little Ganesha Tarot.",
+    "rooms": [
+      "Explore the 78 Cards",
+      "Learn Tarot",
+      "Ways to Read",
+      "Little Ganesha Spreads",
+      "Tarot Essentials"
+    ],
+    "deck_source": "window.LGTReadingContent canonical 78-card source; Hindi uses the existing Hindi card-content layer",
+    "card_detail": "canonical artwork, localized title, Arcana/suit metadata, keywords, upright meaning, reflection and six context lenses",
+    "visuals": "canonical card art plus code-driven structural/spread visuals; no stock or unrelated generated imagery",
+    "history": "museum-grounded editorial history that separates documented Renaissance game history from later divination/occult traditions and unproven ancient-origin claims",
+    "settings": "About & Guide covers privacy, daily rules, Save/Share, languages, accessibility and project information",
+    "navigation": "persistent Back/Home hierarchy; card detail restores the previous deck scroll position",
+    "performance": "Library code/styles are app-shell resources; 78 full-resolution card artworks remain lazy/runtime resources",
+    "accessibility": "touch/keyboard navigation, Reduced Motion support, localized UI and no hover-only information"
+  },
+  "new_files": [
+    "css/tarot-library.css",
+    "js/tarot-library-content.js",
+    "js/tarot-library-ui.js",
+    "docs/governance/TAROT_LIBRARY_PRODUCT_STANDARD_V1.md",
+    "docs/releases/RELEASE_NOTES_V0_10_0.md",
+    "docs/qa/QA_V0_10_0.md"
+  ],
+  "runtime_files_changed": [
+    "index.html",
+    "js/app.js",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "documentation_files_changed": [
+    "README.md",
+    "docs/governance/TAROT_LIBRARY_PRODUCT_STANDARD_V1.md",
+    "docs/releases/RELEASE_NOTES_V0_10_0.md",
+    "docs/qa/QA_V0_10_0.md",
+    "CHECKSUMS_SHA256.txt",
+    "PATCH_MANIFEST_V0_10_0.json"
+  ],
+  "protected": [
+    "js/reading-engine.js",
+    "js/deck-ritual.js",
+    "canonical 78-card IDs and artwork",
+    "pre-shuffle/prebound tarot selection integrity",
+    "Daily Guidance persistence",
+    "Ask Ganesha semantics and persistence",
+    "Three-Card / Golden Path / Remove the Obstacle Focus daily locks",
+    "existing reading Save/Share behavior",
+    "Hindi Ask analysis/storage/safety behavior",
+    "Lucky Numbers V0.9.1 result generation and persistence",
+    "audio lifecycle V0.5.3",
+    "existing reading card viewers",
+    "universal app icon system"
+  ],
+  "rollback": {
+    "stable_reference": "df8732c02182d012a95b8c8aa6ccfb7b1633f881",
+    "instruction": "Restore the V0.9.1 runtime/build/cache files from this commit and remove the V0.10.0 Tarot Library files if a serious regression appears."
+  },
+  "repository_cleanliness": {
+    "root_patch_manifest_count": 1,
+    "delete_after_upload": [
+      "PATCH_MANIFEST_V0_9_0.json",
+      "PATCH_MANIFEST_V0_9_1.json"
+    ],
+    "keep": "PATCH_MANIFEST_V0_10_0.json"
+  },
+  "qa": {
+    "javascript_syntax": "PASS",
+    "manifest_json": "PASS",
+    "content_contract": "PASS",
+    "runtime_coherence": "PASS",
+    "headless_chromium_interaction": "PASS",
+    "package_checksum_reextract": "PASS",
+    "real_device": "PENDING"
+  },
+  "release_status": "STATIC/INTERACTION/PACKAGE QA PASS — real-device V0.10.0 acceptance pending"
+}
