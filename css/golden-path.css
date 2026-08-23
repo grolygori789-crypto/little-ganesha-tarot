@@ -158,3 +158,123 @@
     .golden-focus-option { transition: none; }
   }
 }
+
+/* V0.6.2 — Golden Path editorial reading-card balance */
+@layer reading {
+  /* Golden Path carries substantially longer consultation copy than Three-Card.
+     Keep each revealed card as one calm editorial block instead of a narrow
+     image/text split. Three-Card itself remains untouched. */
+  .golden-shell .three-revealed-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .golden-shell .three-result-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: .58rem;
+    padding: 1rem 1rem 1.08rem;
+    background:
+      radial-gradient(circle at 50% 16%, rgba(229,189,112,.052), transparent 13rem),
+      linear-gradient(150deg, rgba(18,58,57,.48), rgba(5,30,31,.6));
+  }
+
+  .golden-shell .three-result-card__position {
+    align-self: stretch;
+    margin-bottom: .04rem;
+    padding-bottom: .56rem;
+    border-bottom: 1px solid rgba(247,217,147,.085);
+    line-height: 1.35;
+  }
+
+  .golden-shell .three-result-card__art {
+    width: clamp(7.2rem, 31vw, 8.15rem);
+    margin: .18rem auto .08rem;
+    align-self: center;
+    border-radius: .62rem;
+    box-shadow:
+      0 14px 30px rgba(0,0,0,.25),
+      0 0 0 1px rgba(229,189,112,.035);
+  }
+
+  .golden-shell .three-result-card figcaption {
+    width: 100%;
+    min-width: 0;
+    align-self: stretch;
+    text-align: center;
+  }
+
+  .golden-shell .three-result-card figcaption strong {
+    font-size: clamp(1.08rem, 4.5vw, 1.2rem);
+    line-height: 1.35;
+  }
+
+  .golden-shell .three-result-card figcaption small {
+    margin-top: .1rem;
+    font-size: .76rem;
+    letter-spacing: .025em;
+  }
+
+  .golden-shell .three-result-card figcaption p {
+    margin: .78rem 0 0;
+    padding-top: .78rem;
+    border-top: 1px solid rgba(247,217,147,.085);
+    text-align: left;
+    font-size: .94rem;
+    line-height: 1.78;
+    color: rgba(255,248,233,.8);
+    overflow-wrap: break-word;
+  }
+
+  html[lang="th"] .golden-shell .three-result-card figcaption p {
+    font-size: .95rem;
+    line-height: 1.86;
+  }
+
+  html[lang="en"] .golden-shell .three-result-card figcaption p {
+    line-height: 1.74;
+  }
+
+  /* The card itself should remain the visual anchor, while the zoom affordance
+     is present but quieter than in the denser side-by-side layout. */
+  .golden-shell .three-result-card__zoom-cue {
+    right: .3rem;
+    bottom: .3rem;
+    width: 1.42rem;
+    height: 1.42rem;
+    border-color: rgba(247,217,147,.3);
+    background: rgba(5,27,28,.78);
+  }
+
+  .golden-shell .three-result-card__zoom-cue::before {
+    left: .37rem;
+    top: .34rem;
+    width: .42rem;
+    height: .42rem;
+    border-width: 1.4px;
+  }
+
+  .golden-shell .three-result-card__zoom-cue::after {
+    left: .79rem;
+    top: .82rem;
+    width: .34rem;
+    height: 1.4px;
+  }
+
+  @media (max-width: 370px) {
+    .golden-shell .three-result-card {
+      padding: .88rem .86rem .98rem;
+      gap: .52rem;
+    }
+
+    .golden-shell .three-result-card__art {
+      width: clamp(6.85rem, 32vw, 7.35rem);
+    }
+
+    html[lang="th"] .golden-shell .three-result-card figcaption p {
+      font-size: .92rem;
+      line-height: 1.82;
+    }
+  }
+}

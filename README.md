@@ -1,56 +1,59 @@
-# Little Ganesha Tarot — V0.6.1 Golden Path Hotfix
+# Little Ganesha Tarot — V0.6.2 Golden Path Layout Refinement
 
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.6.1  
-**Baseline runtime:** V0.6.0  
-**Baseline GitHub HEAD:** `0ba83f9e24d23e2bd27b6ad99c02218e174fc182` — `Add Golden Path V0.6.0`  
+**Target runtime:** V0.6.2  
+**Baseline runtime:** V0.6.1  
+**Baseline GitHub HEAD:** `9d8be0b6b27d1e2f00856a5d68ca425905744312` — `Fix Golden Path selection V0.6.1`  
 **Reading Engine:** 1.1.0 (unchanged)  
-**Risk:** HIGH operationally because runtime cache/SW identity changes; functional code change is isolated to Golden Path UI.
+**Deck Ritual:** 1.1.0 (unchanged)  
+**Risk:** HIGH operationally because Service Worker/cache identity moves with the runtime; the functional change itself is an isolated LOW-risk Golden Path CSS presentation refinement.
 
 ## Purpose
 
-V0.6.1 corrects two real-device defects in the V0.6.0 Golden Path card-selection stage:
+V0.6.2 refines the revealed-card presentation in **The Golden Path** after real-device review showed that the inherited Three-Card side-by-side card/copy layout was visually unbalanced for Golden Path's longer consultation text, especially in Thai on phones.
 
-1. the 78 facedown choices displayed broken image placeholders instead of the canonical card back;
-2. after the first card was chosen, the remaining cards became unavailable, preventing the second and third selections.
+The previous layout kept artwork and long interpretation copy in two narrow columns. This made the artwork compete with the reading, forced excessive line wrapping, and produced tall, dense blocks that were harder to scan.
 
-Both defects had one shared integration cause: Golden Path created the protected Deck Ritual without passing the multi-card spread configuration used by Three-Card Reading.
+## V0.6.2 editorial layout
 
-## Fix
+Golden Path revealed cards now use a dedicated mobile-first editorial hierarchy:
 
-Golden Path now invokes Deck Ritual with the accepted multi-card configuration:
+1. position label;
+2. centered tarot artwork with the existing tap-to-enlarge affordance;
+3. card title and English subtitle where applicable;
+4. full-width interpretation text below a quiet divider.
 
-- canonical `CONTENT.cardBack`,
-- candidate count from the pre-shuffled 78-card session,
-- `selectionLimit: 3`,
-- six rows,
-- full-deck variant.
+The result keeps the artwork important without sacrificing reading comfort. Long Thai and English interpretations receive the full content width, calmer line length, improved leading, and clearer visual hierarchy.
 
-The shared Reading Engine and Deck Ritual implementation themselves are unchanged.
-
-## Golden Path contract preserved
-
-- six Focus choices remain unchanged;
-- full 78-card deck is shuffled before display;
-- each facedown position remains bound before selection;
-- exactly three unique cards are selected;
-- positions remain Where You Stand / What Blocks the Path / The Way Forward;
-- the three cards are interpreted as one connected consultation;
-- only a completed reading consumes the local calendar day;
-- reopening on the same local day restores the same Focus, cards and conclusion;
-- Quiet Countdown remains active after completion;
-- Save / Share and tap-to-enlarge remain available.
+Golden Path also forces its revealed-card list to remain one card block per row rather than inheriting Three-Card's multi-column desktop rule. This protects long-form consultation readability at wider viewport sizes as well.
 
 ## Protected behavior
 
-V0.6.1 does not modify Reading Engine 1.1.0, Deck Ritual 1.1.0, Daily Guidance, Ask Ganesha, Three-Card Reading, Golden narrative/storage/export/viewer logic, profile, audio lifecycle, or the PWA fetch strategy. Service Worker changes are build/cache identity updates required for coherent delivery of the hotfix.
+V0.6.2 does **not** modify:
+
+- Reading Engine 1.1.0;
+- Deck Ritual 1.1.0;
+- 78-card selection integrity;
+- Golden Path Focus selection;
+- Golden Path narrative or card meanings;
+- one-completed-reading-per-local-day lock;
+- same-day Focus/card/conclusion restore;
+- Quiet Countdown;
+- Save / Share;
+- tap-to-enlarge viewer behavior;
+- Daily Guidance;
+- Ask Ganesha;
+- Three-Card Reading presentation or logic;
+- profile, audio lifecycle, or PWA fetch strategy.
+
+Service Worker changes are limited to the required V0.6.2 build/cache identity update.
 
 ## Repository cleanliness
 
-The repository root must keep **one current Patch Manifest only**. After V0.6.1 is uploaded, remove all superseded root manifests and keep only `PATCH_MANIFEST_V0_6_1.json`.
+The repository root keeps **one current Patch Manifest only**. After this release is uploaded, remove every superseded root manifest and keep only `PATCH_MANIFEST_V0_6_2.json`.
 
-Delivery utilities, installers, temporary backups, staging folders and package-only checksum files stay outside the repository. `CHECKSUMS_SHA256.txt` remains one rolling current-release file.
+Delivery installers, apply scripts, temporary backups, staging folders, and package-only checksum files stay outside the repository. `CHECKSUMS_SHA256.txt` remains the single rolling current-release checksum file.
 
 ## Acceptance
 
-Static/package QA passes for V0.6.1. Real-device acceptance remains required for the corrected Golden Path selection flow and the protected completion/restore/countdown flow.
+Static/package QA is included. Real-device acceptance should focus on visual balance and reading comfort in Thai and English while also smoke-testing the already accepted Golden Path selection, restore, countdown, Save/Share, viewer, and audio behavior.
