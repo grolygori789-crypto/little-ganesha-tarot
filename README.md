@@ -1,105 +1,68 @@
-# Little Ganesha Tarot — V0.15.0 Help & Feedback
+# Little Ganesha Tarot — V0.15.1 Studio Contact Polish
 
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.15.0  
-**Stable baseline runtime:** V0.14.0  
-**Stable baseline GitHub HEAD:** `3effae89a2f3fddfed0914b38250629aeefbffd7` — `Add Legal & IP Suite V0.14.0`  
+**Target runtime:** V0.15.1  
+**Stable baseline runtime:** V0.15.0  
+**Stable baseline GitHub HEAD:** `bf8a875ac886e67cfb4bab607fb3c212c5472bc6` — `Add Help & Feedback V0.15.0`  
 **Reading Engine:** 1.1.0 (unchanged)  
-**Deck Ritual:** 1.1.0 (unchanged)
+**Deck Ritual:** 1.1.0 (unchanged)  
+**Legal acknowledgement version:** 1.0.0 (unchanged)
 
-## V0.15.0
+## V0.15.1
 
-V0.15.0 closes two production-quality gaps without changing tarot selection, reading persistence, content, payments, Journal semantics, audio lifecycle, or legal acceptance behavior.
+V0.15.1 is a small production polish release for Benedict Interactive contact identity. It does not change tarot behavior, reading persistence, the V0.15.0 Tarot Library keyboard fix, Help & Feedback transport, diagnostics, Journal, payments, audio, or legal acknowledgement behavior.
 
-### 1. Tarot Library mobile search keyboard fix
+### Public studio contact
 
-The previous Tarot Library search rebuilt the full deck view after every `input` event. On mobile browsers/PWAs that destroyed the focused `<input>` node, which could dismiss the software keyboard after each character and interrupt IME composition.
+Help & Feedback now presents a concise public contact identity:
 
-V0.15.0 keeps the original search input mounted while the user types. Search now updates only:
+- **Benedict Interactive**
+- **Bangkok, Thailand**
+- **benedict.support@gmail.com**
 
-- the result count;
-- the card grid / empty state; and
-- filter active state.
+The same identity appears in the Help & Feedback report/feedback screen so users can clearly see who receives support mail. The email address remains a user-initiated `mailto:` destination; Little Ganesha Tarot does not silently send reports in the background.
 
-The fix preserves live search, query state, filtering, card navigation and all 78 canonical cards. It is specifically designed not to interfere with English, Thai or Hindi/Devanagari input composition.
+`Bangkok, Thailand` is intentionally a coarse studio location. It is not presented as a registered office or full legal service address, and no street-level address is exposed.
 
-### 2. Help & Feedback
+## Preserved V0.15.0 behavior
 
-Settings now receives a dedicated **Help & Feedback** group with:
+The V0.15.0 Tarot Library mobile search fix remains unchanged: the search input stays mounted while users type, so mobile software keyboards and EN / TH / HI input composition are not interrupted by per-character DOM replacement.
 
-- **Report a Problem**;
-- **Send Feedback**; and
-- **Copy Diagnostic Info**.
+Help & Feedback remains available from Settings with:
 
-The official support destination is:
+- Report a Problem
+- Send Feedback
+- Copy Diagnostic Info
 
-`benedict.support@gmail.com`
-
-Report/feedback flows are available in English, Thai and Hindi. The app prepares a `mailto:` message and opens the user's email application. Nothing is transmitted by Little Ganesha Tarot merely by opening the form; the user decides whether to send the email from their email client.
-
-### Diagnostic privacy boundary
-
-Technical diagnostics are intentionally narrow and non-sensitive:
-
-- app/build version;
-- current language;
-- coarse platform;
-- browser family/major version;
-- browser vs installed-PWA environment;
-- current app screen; and
-- timestamp.
-
-The Help & Feedback module does **not** automatically read or attach:
-
-- Ask Ganesha question text;
-- Journal entries or reflections;
-- reading history or reading content;
-- profile name or birth date;
-- PromptPay/payment information; or
-- screenshots/files.
-
-The report screen explicitly asks users not to send passwords, payment details, private Journal entries or personal reading questions.
+Diagnostics remain limited to non-sensitive technical context such as build, language, platform, browser family/major version, Browser/PWA mode, current screen and timestamp. The module does not automatically read Ask questions, Journal content, readings, profile data, payment information, screenshots, location data or tracking identifiers.
 
 ## Protected behavior
 
-V0.15.0 does not modify:
+V0.15.1 does not modify:
 
 - Reading Engine 1.1.0 or Deck Ritual 1.1.0;
-- canonical 78-card identity/content/artwork;
-- Daily / Ask / Three-Card / Golden Path / Remove the Obstacle selection and local-day locks;
-- Lucky Numbers selection, persistence, replay or SFX/haptics;
-- Journal IndexedDB, capture, reflection or deletion semantics;
-- Reading Hub intent routing;
+- canonical 78-card content or selection integrity;
+- Daily / Ask / Signature Focus persistence and locks;
+- Lucky Numbers selection, replay, SFX or haptics;
+- Tarot Library search/filter semantics beyond the already-shipped V0.15.0 fix;
+- Journal IndexedDB/capture/delete behavior;
+- Reading Hub;
 - PromptPay support;
-- Legal Center and legal acknowledgement version 1.0.0;
-- Save/Share exports;
-- background audio lifecycle; or
-- card viewers and app icons.
+- Legal Center or legal acknowledgement version 1.0.0;
+- reading Save/Share;
+- background audio lifecycle;
+- card viewers or app icons.
 
 ## Runtime coherence
 
-HTML metadata, body build marker, CSS/JS/manifest query strings, `window.LGT_BUILD`, visible build label, manifest icon URLs, Service Worker build/cache identity and application-shell URLs move coherently to V0.15.0.
-
-New shell files:
-
-- `css/help-feedback.css`
-- `js/help-feedback.js`
+HTML metadata, body build marker, CSS/JS/manifest query strings, `window.LGT_BUILD`, visible build label, manifest icon URLs, Service Worker build/cache identity and application-shell URLs move coherently to V0.15.1.
 
 ## Risk
 
-Functional change: **LOW–MEDIUM** — isolated Tarot Library result rendering fix plus additive Help & Feedback UI.  
+Functional change: **LOW** — static studio-contact presentation only.  
 Operational deployment: **HIGH** — Service Worker/cache identity moves with the runtime build.  
-Rollback baseline: `3effae89a2f3fddfed0914b38250629aeefbffd7`.
+Rollback baseline: `bf8a875ac886e67cfb4bab607fb3c212c5472bc6`.
 
 ## Acceptance
 
-Static/package QA covers JavaScript syntax, manifest JSON, runtime-version coherence, Service Worker shell inclusion, support-email contract, non-sensitive diagnostic contract, removal of search-input replacement during typing, and SHA-256 package integrity.
-
-A real-device acceptance pass remains required for:
-
-- continuous mobile keyboard typing in Tarot Library search;
-- Thai and Hindi IME behavior;
-- Android installed-PWA `mailto:` handoff;
-- Report / Feedback copy and email flows;
-- Settings layout/scrolling; and
-- installed-PWA cache update behavior.
+Static/package QA verifies JavaScript syntax, JSON validity, contact identity, support mailto destination, runtime coherence, protected-search preservation and SHA-256 package integrity. A real-device acceptance pass remains required for final Settings/contact presentation and installed-PWA update behavior.

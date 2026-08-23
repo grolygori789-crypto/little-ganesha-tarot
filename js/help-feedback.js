@@ -1,7 +1,9 @@
 (() => {
   'use strict';
 
-  const VERSION = 'help-feedback-v1';
+  const VERSION = 'help-feedback-v1.1';
+  const STUDIO_NAME = 'Benedict Interactive';
+  const STUDIO_LOCATION = 'Bangkok, Thailand';
   const SUPPORT_EMAIL = 'benedict.support@gmail.com';
   const MAX_MESSAGE = 1200;
 
@@ -245,7 +247,7 @@
             <span class="hf-eyebrow" id="hfEyebrow"></span>
             <h1 id="hfTitle"></h1>
             <p class="hf-intro" id="hfIntro"></p>
-            <div class="hf-address"><span id="hfSupportLabel"></span><strong>${SUPPORT_EMAIL}</strong></div>
+            <div class="hf-address"><span id="hfSupportLabel"></span><strong>${SUPPORT_EMAIL}</strong><small>${STUDIO_NAME} · ${STUDIO_LOCATION}</small></div>
             <label class="hf-field">
               <span id="hfMessageLabel"></span>
               <textarea id="hfMessage" maxlength="${MAX_MESSAGE}" rows="8"></textarea>
@@ -392,7 +394,11 @@
       <button class="setting-link" id="hfReportButton" type="button"><span><strong id="hfReportLabel"></strong><small id="hfReportSub"></small></span><span>›</span></button>
       <button class="setting-link" id="hfFeedbackButton" type="button"><span><strong id="hfFeedbackLabel"></strong><small id="hfFeedbackSub"></small></span><span>›</span></button>
       <button class="setting-link" id="hfDiagnosticsButton" type="button"><span><strong id="hfDiagnosticsLabel"></strong><small id="hfDiagnosticsSub"></small></span><span>⧉</span></button>
-      <p class="hf-settings-email"><span id="hfSupportMailLabel"></span><strong>${SUPPORT_EMAIL}</strong></p>`;
+      <div class="hf-studio-contact" aria-label="Benedict Interactive contact">
+        <strong>${STUDIO_NAME}</strong>
+        <span>${STUDIO_LOCATION}</span>
+        <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a>
+      </div>`;
     support.parentNode.insertBefore(section, support);
     state.settingsSection = section;
     section.querySelector('#hfReportButton').addEventListener('click', (event) => openDialog('report', event.currentTarget));
@@ -412,7 +418,6 @@
     section.querySelector('#hfFeedbackSub').textContent = c.feedbackSub;
     section.querySelector('#hfDiagnosticsLabel').textContent = c.diagnostics;
     section.querySelector('#hfDiagnosticsSub').textContent = c.diagnosticsSub;
-    section.querySelector('#hfSupportMailLabel').textContent = `${c.supportMail}:`;
   }
 
   window.addEventListener('keydown', (event) => {
@@ -432,6 +437,7 @@
   window.LGTHelpFeedback = Object.freeze({
     version: VERSION,
     supportEmail: SUPPORT_EMAIL,
+    studio: Object.freeze({ name: STUDIO_NAME, location: STUDIO_LOCATION }),
     diagnostics,
     openReport: () => openDialog('report'),
     openFeedback: () => openDialog('feedback'),

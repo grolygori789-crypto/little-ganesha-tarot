@@ -3,6 +3,7 @@
 **Product:** Little Ganesha Tarot — The Golden Path  
 **Studio:** Benedict Interactive  
 **Runtime introduced:** V0.15.0  
+**Contact identity polish:** V0.15.1  
 **Official support email:** `benedict.support@gmail.com`
 
 ## Purpose
@@ -64,3 +65,16 @@ If `mailto:` is not usable on a device, users can copy report details or copy di
 ## Protected boundaries
 
 Help & Feedback must not change tarot RNG/selection, daily locks, semantic Ask persistence, Journal storage, Save/Share output, support/payment behavior, audio lifecycle, or legal acknowledgement state.
+
+
+## Public studio contact identity
+
+From runtime V0.15.1, Help & Feedback may display the following public studio contact identity:
+
+- **Studio:** Benedict Interactive
+- **Location:** Bangkok, Thailand
+- **Support:** `benedict.support@gmail.com`
+
+`Bangkok, Thailand` is a coarse studio-location descriptor only. It must not be presented as a registered office, legal service address, or corporate-registration claim unless that status is separately verified and explicitly approved. No street address is required by this product standard.
+
+The contact block is informational only and does not change the privacy boundary, mailto transport, diagnostics scope, or user-controlled sending model defined above.

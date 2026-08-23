@@ -1,0 +1,84 @@
+{
+  "release": "V0.15.1",
+  "feature": "Studio Contact Polish",
+  "baseline": {
+    "runtime": "V0.15.0",
+    "git_head": "bf8a875ac886e67cfb4bab607fb3c212c5472bc6",
+    "commit": "Add Help & Feedback V0.15.0"
+  },
+  "risk": {
+    "functional": "LOW",
+    "operational": "HIGH",
+    "reason": "Adds only public studio contact presentation to Help & Feedback; PWA Service Worker/cache identity moves to V0.15.1. Tarot, search behavior, storage, payments, Journal, audio and legal acknowledgement behavior are unchanged."
+  },
+  "rollback": "bf8a875ac886e67cfb4bab607fb3c212c5472bc6",
+  "studio": {
+    "name": "Benedict Interactive",
+    "location": "Bangkok, Thailand",
+    "support_email": "benedict.support@gmail.com",
+    "location_scope": "Coarse studio location only; not asserted as a registered office or legal service address."
+  },
+  "files": [
+    "CHECKSUMS_SHA256.txt",
+    "PATCH_MANIFEST_V0_15_1.json",
+    "README.md",
+    "css/help-feedback.css",
+    "docs/governance/HELP_FEEDBACK_STANDARD_V1.md",
+    "docs/qa/QA_V0_15_1.md",
+    "docs/releases/RELEASE_NOTES_V0_15_1.md",
+    "index.html",
+    "js/app.js",
+    "js/help-feedback.js",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "add": [
+    "PATCH_MANIFEST_V0_15_1.json",
+    "docs/qa/QA_V0_15_1.md",
+    "docs/releases/RELEASE_NOTES_V0_15_1.md"
+  ],
+  "replace": [
+    "CHECKSUMS_SHA256.txt",
+    "README.md",
+    "css/help-feedback.css",
+    "docs/governance/HELP_FEEDBACK_STANDARD_V1.md",
+    "index.html",
+    "js/app.js",
+    "js/help-feedback.js",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "delete_after_upload": [
+    "PATCH_MANIFEST_V0_9_0.json",
+    "PATCH_MANIFEST_V0_9_1.json",
+    "PATCH_MANIFEST_V0_10_0.json",
+    "PATCH_MANIFEST_V0_11_0.json",
+    "PATCH_MANIFEST_V0_11_1.json",
+    "PATCH_MANIFEST_V0_12_0.json",
+    "PATCH_MANIFEST_V0_13_0.json",
+    "PATCH_MANIFEST_V0_14_0.json",
+    "PATCH_MANIFEST_V0_15_0.json"
+  ],
+  "protected_unchanged": [
+    "Reading Engine 1.1.0",
+    "Deck Ritual 1.1.0",
+    "canonical 78-card content/artwork",
+    "Daily Guidance selection and local-day lock",
+    "Ask Ganesha semantic persistence and contextual reading",
+    "Three-Card / Golden Path / Remove the Obstacle Focus locks",
+    "Lucky Numbers selection/persistence/replay/SFX/haptics",
+    "Tarot Library V0.15.0 search keyboard fix and search/filter semantics",
+    "Journal IndexedDB / capture / reflection / delete behavior",
+    "Reading Hub",
+    "PromptPay QR and support flow",
+    "Legal Center and legal acknowledgement version 1.0.0",
+    "reading Save/Share exports",
+    "background audio lifecycle",
+    "card viewers and app icons"
+  ],
+  "privacy": {
+    "transport": "User-initiated mailto only; no background report submission backend.",
+    "change": "No privacy-scope expansion. The added Bangkok, Thailand text is static studio identity, not user location collection."
+  },
+  "qa_status": "STATIC/PACKAGE QA PASS — real-device interaction acceptance pending"
+}
