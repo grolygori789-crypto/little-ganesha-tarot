@@ -1,0 +1,80 @@
+{
+  "release": "V0.15.0",
+  "feature": "Help & Feedback + Tarot Library Search Keyboard Fix",
+  "baseline": {
+    "runtime": "V0.14.0",
+    "git_head": "3effae89a2f3fddfed0914b38250629aeefbffd7",
+    "commit": "Add Legal & IP Suite V0.14.0"
+  },
+  "risk": {
+    "functional": "LOW-MEDIUM",
+    "operational": "HIGH",
+    "reason": "Fixes isolated Tarot Library search rendering and adds an opt-in mailto Help & Feedback surface. Service Worker/cache identity moves to V0.15.0; tarot selection, storage, payments, Journal, audio and legal acknowledgement behavior are unchanged."
+  },
+  "rollback": "3effae89a2f3fddfed0914b38250629aeefbffd7",
+  "support_email": "benedict.support@gmail.com",
+  "files": [
+    "CHECKSUMS_SHA256.txt",
+    "PATCH_MANIFEST_V0_15_0.json",
+    "README.md",
+    "css/help-feedback.css",
+    "docs/governance/HELP_FEEDBACK_STANDARD_V1.md",
+    "docs/qa/QA_V0_15_0.md",
+    "docs/releases/RELEASE_NOTES_V0_15_0.md",
+    "index.html",
+    "js/app.js",
+    "js/help-feedback.js",
+    "js/tarot-library-ui.js",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "add": [
+    "PATCH_MANIFEST_V0_15_0.json",
+    "css/help-feedback.css",
+    "docs/governance/HELP_FEEDBACK_STANDARD_V1.md",
+    "docs/qa/QA_V0_15_0.md",
+    "docs/releases/RELEASE_NOTES_V0_15_0.md",
+    "js/help-feedback.js"
+  ],
+  "replace": [
+    "CHECKSUMS_SHA256.txt",
+    "README.md",
+    "index.html",
+    "js/app.js",
+    "js/tarot-library-ui.js",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "delete_after_upload": [
+    "PATCH_MANIFEST_V0_9_0.json",
+    "PATCH_MANIFEST_V0_9_1.json",
+    "PATCH_MANIFEST_V0_10_0.json",
+    "PATCH_MANIFEST_V0_11_0.json",
+    "PATCH_MANIFEST_V0_11_1.json",
+    "PATCH_MANIFEST_V0_12_0.json",
+    "PATCH_MANIFEST_V0_13_0.json",
+    "PATCH_MANIFEST_V0_14_0.json"
+  ],
+  "protected_unchanged": [
+    "Reading Engine 1.1.0",
+    "Deck Ritual 1.1.0",
+    "canonical 78-card content/artwork",
+    "Daily Guidance selection and local-day lock",
+    "Ask Ganesha semantic persistence and contextual reading",
+    "Three-Card / Golden Path / Remove the Obstacle Focus locks",
+    "Lucky Numbers selection/persistence/replay/SFX/haptics",
+    "Journal IndexedDB / capture / reflection / delete behavior",
+    "Reading Hub",
+    "PromptPay QR and support flow",
+    "Legal Center and legal acknowledgement version 1.0.0",
+    "reading Save/Share exports",
+    "background audio lifecycle",
+    "card viewers and app icons"
+  ],
+  "privacy": {
+    "transport": "User-initiated mailto only; no background report submission backend.",
+    "diagnostics": "Build, language, coarse platform, browser family/major version, Browser/PWA mode, current screen and timestamp only.",
+    "excluded": "No automatic Ask question text, Journal content, reading content/history, profile data, payment data, screenshots/files, location or tracking identifiers."
+  },
+  "qa_status": "STATIC/PACKAGE QA PASS — browser/device interaction acceptance pending"
+}

@@ -1,122 +1,105 @@
-# Little Ganesha Tarot — V0.14.0 Legal & IP Suite
+# Little Ganesha Tarot — V0.15.0 Help & Feedback
 
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.14.0  
-**Stable baseline runtime:** V0.13.0  
-**Stable baseline GitHub HEAD:** `f21e6a4c81812276d661d6ebb0a3e6c86c6cf48b` — `Add PromptPay Support V0.13.0`  
+**Target runtime:** V0.15.0  
+**Stable baseline runtime:** V0.14.0  
+**Stable baseline GitHub HEAD:** `3effae89a2f3fddfed0914b38250629aeefbffd7` — `Add Legal & IP Suite V0.14.0`  
 **Reading Engine:** 1.1.0 (unchanged)  
-**Deck Ritual:** 1.1.0 (unchanged)  
-**Legal text version:** 1.0.0
+**Deck Ritual:** 1.1.0 (unchanged)
 
-## V0.14.0
+## V0.15.0
 
-V0.14.0 adds a complete legal, intellectual-property and privacy layer without changing tarot behaviour.
+V0.15.0 closes two production-quality gaps without changing tarot selection, reading persistence, content, payments, Journal semantics, audio lifecycle, or legal acceptance behavior.
 
-Settings now includes a premium **Legal Center** with four independently authored documents in English, Thai and Hindi:
+### 1. Tarot Library mobile search keyboard fix
 
-- Copyright & Intellectual Property
-- Terms of Use
-- Privacy Policy
-- Third-Party Notices
+The previous Tarot Library search rebuilt the full deck view after every `input` event. On mobile browsers/PWAs that destroyed the focused `<input>` node, which could dismiss the software keyboard after each character and interrupt IME composition.
 
-The repository also gains a proprietary `LICENSE.md` and a versioned legal archive under `docs/legal/`.
+V0.15.0 keeps the original search input mounted while the user types. Search now updates only:
 
-## One-time legal acknowledgement
+- the result count;
+- the card grid / empty state; and
+- filter active state.
 
-When legal version 1.0.0 has not yet been acknowledged on the device, the title-screen Begin action opens a concise legal acknowledgement before starting the journey.
+The fix preserves live search, query state, filtering, card navigation and all 78 canonical cards. It is specifically designed not to interfere with English, Thai or Hindi/Devanagari input composition.
 
-Users can:
+### 2. Help & Feedback
 
-- review Terms of Use;
-- review Privacy Policy;
-- switch EN / TH / HI;
-- choose **Agree & Continue**; or
-- choose **Not now** and return to the title screen.
+Settings now receives a dedicated **Help & Feedback** group with:
 
-Acceptance is remembered locally only as:
+- **Report a Problem**;
+- **Send Feedback**; and
+- **Copy Diagnostic Info**.
 
-- `lgt.legal.acceptedVersion`
-- `lgt.legal.acceptedAt`
+The official support destination is:
 
-No account or remote consent backend is introduced.
+`benedict.support@gmail.com`
 
-## Screenshot policy
+Report/feedback flows are available in English, Thai and Hindi. The app prepares a `mailto:` message and opens the user's email application. Nothing is transmitted by Little Ganesha Tarot merely by opening the form; the user decides whether to send the email from their email client.
 
-V0.14.0 deliberately **does not implement screenshot blocking**.
+### Diagnostic privacy boundary
 
-The current product is a browser/PWA experience and already provides intentional Save/Share output. A PWA cannot guarantee the same cross-platform capture prevention as native secure-window APIs, while blocking ordinary screenshots would create UX inconsistency and weak protection against determined copying.
+Technical diagnostics are intentionally narrow and non-sensitive:
 
-Instead, the legal contract explicitly permits ordinary personal, non-commercial screenshots and sharing of a user’s own reading. It separately reserves rights against unauthorised commercial redistribution, clean asset distribution, mass extraction, scraping, copied competing products and unauthorised dataset/model-training use.
+- app/build version;
+- current language;
+- coarse platform;
+- browser family/major version;
+- browser vs installed-PWA environment;
+- current app screen; and
+- timestamp.
 
-**No screenshot block = no extra licence.**
+The Help & Feedback module does **not** automatically read or attach:
 
-## Privacy truthfulness
+- Ask Ganesha question text;
+- Journal entries or reflections;
+- reading history or reading content;
+- profile name or birth date;
+- PromptPay/payment information; or
+- screenshots/files.
 
-The Privacy Policy documents the actual current runtime:
-
-- optional profile data stays in browser/device storage;
-- reading locks and preferences are local;
-- Ask Ganesha reading storage keeps a fingerprint and semantic descriptors rather than the full exact question text;
-- exact Ask wording can enter Journal only when its dedicated setting is enabled, OFF by default;
-- Journal uses local IndexedDB and supports single, bulk and full clear actions;
-- PromptPay payments occur outside the app and banking credentials are never collected by Little Ganesha;
-- Save/Share is user initiated;
-- Google Fonts and normal hosting can create ordinary network request metadata;
-- no Benedict Interactive behavioural advertising SDK or product analytics SDK is present in this release;
-- local data is not cloud backup and is not separately encrypted by the app.
-
-## Intellectual-property discipline
-
-The legal suite protects original code, protectable Little Ganesha artwork, written interpretations, localization, UX/UI expression, curation/arrangement, brand materials and documentation to the extent applicable law protects them.
-
-It explicitly does **not** claim exclusive ownership over general tarot concepts, traditional terminology/structures, historical facts, ideas/methods, public-domain material or third-party rights.
-
-AI-assisted material is addressed conservatively: no rights are claimed beyond applicable law, while protectable human-authored and human-directed contributions are reserved where protection exists.
-
-## Third-party notices
-
-The Legal Center identifies Google Fonts/typefaces, PromptPay/Thai QR Payment, planned Buy Me a Coffee support, platform references, traditional/public-domain tarot foundations and future separately licensed third-party/open-source components.
-
-Third-party licences remain controlling for their own components.
+The report screen explicitly asks users not to send passwords, payment details, private Journal entries or personal reading questions.
 
 ## Protected behavior
 
-V0.14.0 does not modify:
+V0.15.0 does not modify:
 
 - Reading Engine 1.1.0 or Deck Ritual 1.1.0;
-- canonical 78-card selection integrity;
-- Daily / Ask / Focus persistence;
-- reading Save/Share exports;
-- Lucky Numbers;
-- Tarot Library;
-- Journal capture/storage/delete semantics;
-- Reading Hub;
+- canonical 78-card identity/content/artwork;
+- Daily / Ask / Three-Card / Golden Path / Remove the Obstacle selection and local-day locks;
+- Lucky Numbers selection, persistence, replay or SFX/haptics;
+- Journal IndexedDB, capture, reflection or deletion semantics;
+- Reading Hub intent routing;
 - PromptPay support;
-- background audio lifecycle;
-- card viewers or app icons.
+- Legal Center and legal acknowledgement version 1.0.0;
+- Save/Share exports;
+- background audio lifecycle; or
+- card viewers and app icons.
 
 ## Runtime coherence
 
-HTML metadata, body build marker, asset query strings, `window.LGT_BUILD`, visible build label, manifest URLs, Service Worker build/cache identity and application-shell URLs move coherently to V0.14.0.
+HTML metadata, body build marker, CSS/JS/manifest query strings, `window.LGT_BUILD`, visible build label, manifest icon URLs, Service Worker build/cache identity and application-shell URLs move coherently to V0.15.0.
 
 New shell files:
 
-- `css/legal.css`
-- `js/legal-content.js`
-- `js/legal-ui.js`
+- `css/help-feedback.css`
+- `js/help-feedback.js`
 
 ## Risk
 
-Functional change: **LOW–MEDIUM** — additive legal UI plus local acknowledgement gate.  
+Functional change: **LOW–MEDIUM** — isolated Tarot Library result rendering fix plus additive Help & Feedback UI.  
 Operational deployment: **HIGH** — Service Worker/cache identity moves with the runtime build.  
-Rollback baseline: `f21e6a4c81812276d661d6ebb0a3e6c86c6cf48b`.
-
-## Legal-review note
-
-This suite is intentionally conservative and avoids claiming rights the project cannot legitimately own. It is not a promise of enforceability in every jurisdiction. Before a major commercial/store launch, qualified technology/IP counsel should review final rights-holder identity, governing-law language, official legal contact details and any later remote-data/payment integrations.
+Rollback baseline: `3effae89a2f3fddfed0914b38250629aeefbffd7`.
 
 ## Acceptance
 
-Static/package QA covers JavaScript syntax, legal-content initialization, all three languages, consent/navigation wiring, screenshot-policy contract, privacy-data contract, runtime coherence, Service Worker inclusion and SHA-256 package integrity.
+Static/package QA covers JavaScript syntax, manifest JSON, runtime-version coherence, Service Worker shell inclusion, support-email contract, non-sensitive diagnostic contract, removal of search-input replacement during typing, and SHA-256 package integrity.
 
-A real browser/device acceptance pass remains required for final typography, scrolling, title-screen acknowledgement interaction and installed-PWA update behaviour.
+A real-device acceptance pass remains required for:
+
+- continuous mobile keyboard typing in Tarot Library search;
+- Thai and Hindi IME behavior;
+- Android installed-PWA `mailto:` handoff;
+- Report / Feedback copy and email flows;
+- Settings layout/scrolling; and
+- installed-PWA cache update behavior.

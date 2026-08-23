@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'tarot-library-ui-v1';
+  const VERSION = 'tarot-library-ui-v1.1';
   const Content = window.LGTTarotLibraryContent;
   if (!Content) throw new Error('Tarot Library UI requires tarot-library-content.js.');
 
@@ -86,26 +86,43 @@
     });
   }
 
-  function renderDeck(preserveFocus=false) {
+  function deckResultsMarkup(list, c=copy()) {
+    return list.length ? list.map((base)=>{
+      const card=Content.card(base.id,lang());
+      return `<button class="tl-card-tile" type="button" data-tl-card="${base.id}" aria-label="${esc(c.openCard)}: ${esc(card.displayTitle)}">
+        <span class="tl-card-tile__image">${cardImage(base.id)}</span>
+        <span class="tl-card-tile__copy"><strong>${esc(card.displayTitle)}</strong><small>${esc(Content.cardMeta(base,lang()))}</small></span>
+      </button>`;
+    }).join('') : `<p class="tl-empty">${esc(c.noCards)}</p>`;
+  }
+
+  function refreshDeckResults() {
+    const c=copy();
+    const list=filteredCards();
+    const grid=$('tlCardGrid');
+    const count=state.root?.querySelector('.tl-count');
+    if (count) count.textContent=c.cardsFound(list.length);
+    if (grid) grid.innerHTML=deckResultsMarkup(list,c);
+    state.root?.querySelectorAll('[data-tl-filter]').forEach((button)=>{
+      const active=button.dataset.tlFilter===state.filter;
+      button.classList.toggle('is-active',active);
+      button.setAttribute('aria-pressed',String(active));
+    });
+  }
+
+  function renderDeck() {
     const c = copy();
     const list = filteredCards();
     const filters = ['all','major','minor','wands','cups','swords','pentacles'];
     $('tlContent').innerHTML = `
       <section class="tl-page-head"><span class="tl-eyebrow">${esc(c.eyebrow)}</span><h1 id="tlPageTitle">${esc(c.exploreCards)}</h1><p>${esc(c.exploreCardsSub)}</p></section>
       <section class="tl-deck-tools">
-        <label class="tl-search"><span>${esc(c.search)}</span><input id="tlSearch" type="search" autocomplete="off" value="${esc(state.query)}" placeholder="${esc(c.searchPlaceholder)}"></label>
-        <div class="tl-filters" role="group" aria-label="Deck filters">${filters.map((f)=>`<button type="button" data-tl-filter="${f}" class="${state.filter===f?'is-active':''}">${esc(deckFilterLabel(f))}</button>`).join('')}</div>
+        <label class="tl-search"><span>${esc(c.search)}</span><input id="tlSearch" type="search" autocomplete="off" value="${esc(state.query)}" placeholder="${esc(c.searchPlaceholder)}" enterkeyhint="search"></label>
+        <div class="tl-filters" role="group" aria-label="Deck filters">${filters.map((f)=>`<button type="button" data-tl-filter="${f}" aria-pressed="${state.filter===f?'true':'false'}" class="${state.filter===f?'is-active':''}">${esc(deckFilterLabel(f))}</button>`).join('')}</div>
         <p class="tl-count">${esc(c.cardsFound(list.length))}</p>
       </section>
-      <section class="tl-card-grid" id="tlCardGrid">${list.length ? list.map((base)=>{
-        const card=Content.card(base.id,lang());
-        return `<button class="tl-card-tile" type="button" data-tl-card="${base.id}" aria-label="${esc(c.openCard)}: ${esc(card.displayTitle)}">
-          <span class="tl-card-tile__image">${cardImage(base.id)}</span>
-          <span class="tl-card-tile__copy"><strong>${esc(card.displayTitle)}</strong><small>${esc(Content.cardMeta(base,lang()))}</small></span>
-        </button>`;
-      }).join('') : `<p class="tl-empty">${esc(c.noCards)}</p>`}</section>
+      <section class="tl-card-grid" id="tlCardGrid">${deckResultsMarkup(list,c)}</section>
     `;
-    if (preserveFocus) requestAnimationFrame(()=>$('tlSearch')?.focus({preventScroll:true}));
   }
 
   function renderCardDetail() {
@@ -219,16 +236,16 @@
   function onRootClick(event) {
     const closeButton=event.target.closest?.('[data-tl-close]'); if (closeButton) { close(); return; }
     const viewButton=event.target.closest?.('[data-tl-view]'); if (viewButton) { const next=viewButton.dataset.tlView; if(next==='deck' && state.view!=='card') state.deckScroll=0; state.view=next; state.cardId=null; render(); return; }
-    const filterButton=event.target.closest?.('[data-tl-filter]'); if (filterButton) { state.filter=filterButton.dataset.tlFilter; renderDeck(); return; }
+    const filterButton=event.target.closest?.('[data-tl-filter]'); if (filterButton) { state.filter=filterButton.dataset.tlFilter; refreshDeckResults(); return; }
     const cardButton=event.target.closest?.('[data-tl-card]'); if (cardButton) { state.deckScroll=$('tlScroll')?.scrollTop || 0; state.cardId=cardButton.dataset.tlCard; state.view='card'; render(); return; }
   }
 
   function onRootInput(event) {
     if (event.target?.id !== 'tlSearch') return;
     state.query=event.target.value;
-    const pos=event.target.selectionStart;
-    renderDeck(true);
-    requestAnimationFrame(()=>{ const input=$('tlSearch'); if(input && Number.isInteger(pos)) input.setSelectionRange(pos,pos); });
+    // Keep the original input element focused. Replacing it on every keystroke
+    // dismisses mobile software keyboards and can interrupt IME composition.
+    refreshDeckResults();
   }
 
   function injectSettingsGuide() {
