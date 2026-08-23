@@ -1,25 +1,43 @@
-# Little Ganesha Tarot — Canonical App Icon Pack
+# Little Ganesha Tarot — Canonical Universal App Icon Pack
 
-Status: **FINAL / CANONICAL / WIRED** under Master Plan V3.3 and app build V0.3.2.
+Status: **FINAL / CANONICAL / WIRED** for runtime V0.7.1.
 
-Files:
-- `app-icon-1024.png` — canonical raster master for current web/PWA production.
+## Canonical design
+
+The V0.7.1 icon system replaces the earlier edge-framed launcher artwork with one
+universal, mask-safe Little Ganesha identity.
+
+Design locks:
+
+- Little Ganesha remains the single recognizable protagonist.
+- The tarot card in his hand uses the **canonical production card-back artwork**.
+- No platform-critical border, ornament, or line is allowed to touch the outer icon edge.
+- The background is full-bleed royal plum so circular, squircle, rounded-square, and square
+  launcher masks remain visually intentional.
+- A restrained internal gold halo/ring provides structure without becoming a crop hazard.
+- Essential identity details stay within the adaptive safe zone.
+- No title text is embedded in the production icon.
+- Platform files are derivatives of one canonical master; do not independently redraw them.
+
+## Files
+
+- `app-icon-1024.png` — canonical 1024×1024 raster master.
 - `icon-512x512.png` — standard PWA/launcher derivative.
 - `icon-192x192.png` — standard PWA/launcher derivative.
-- `icon-maskable-512x512.png` — Android/Chromium maskable-safe derivative.
+- `icon-maskable-512x512.png` — more conservative Android/Chromium maskable derivative.
 - `apple-touch-icon.png` — 180×180 iPhone/iPad Home Screen derivative.
 - `favicon-48x48.png` — browser/favicon derivative.
 - `favicon-32x32.png` — browser/favicon derivative.
 - `favicon.ico` — 16/32/48 fallback bundle.
 
-Integration:
-- `manifest.webmanifest` references the 192, 512, and maskable 512 assets using relative repository-safe URLs.
-- `index.html` references the manifest, Apple touch icon, and favicon set.
-- `js/pwa.js` registers `sw.js` from the application root.
-- `sw.js` provides an offline application shell and versioned cache cleanup without pre-caching the full 78-card deck or audio library.
+## Integration
 
-Rules:
-- Do not add title text inside the production app icon.
-- Do not independently redraw the icon per platform.
-- Preserve the canonical Little Ganesha identity and tarot-card cue.
-- Future icon replacement is a brand-level change and requires a Master Plan update.
+`manifest.webmanifest` references separate `any` and `maskable` assets. `index.html`
+references the Apple touch icon and favicon set. Runtime V0.7.1 cache-busts icon URLs so
+new launcher assets are not confused with the previous pack.
+
+## Replacement rule
+
+Future replacements are brand-level changes. They require an explicit approved product
+decision plus release documentation and mask/safe-zone QA. Cosmetic experimentation alone
+is not sufficient reason to replace this pack.

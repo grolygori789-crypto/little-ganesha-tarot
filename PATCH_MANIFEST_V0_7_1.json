@@ -1,0 +1,67 @@
+{
+  "release": "V0.7.1",
+  "title": "Universal App Icon",
+  "baseline_runtime": "V0.7.0",
+  "baseline_head": "102511d1a076defd83b805c5983719f4b0c9a379",
+  "baseline_head_message": "Add Signature Focus system V0.7.0",
+  "risk": "HIGH_OPERATIONAL_LOW_FUNCTIONAL",
+  "risk_reason": "Brand assets and manifest wiring are isolated, but the Service Worker/cache identity moves so installed clients receive a coherent icon pack.",
+  "target_runtime_build": "0.7.1",
+  "reading_engine": "1.1.0 unchanged",
+  "deck_ritual": "1.1.0 unchanged",
+  "change": [
+    "replace canonical app icon master and all launcher/favicon derivatives",
+    "held tarot card uses the canonical production card-back artwork",
+    "remove platform-critical edge frame and use a full-bleed mask-safe background",
+    "use a more conservative maskable derivative for Android/Chromium launcher masks",
+    "cache-bust manifest/icon references under build 0.7.1",
+    "add canonical Universal App Icon governance addendum"
+  ],
+  "protected": [
+    "all V0.7.0 reading modes and interpretation content",
+    "Reading Engine 1.1.0",
+    "Deck Ritual 1.1.0",
+    "78-card pre-shuffle/prebound integrity",
+    "per-Focus daily lock and same-day restore",
+    "Save/Share and card viewers",
+    "profile behavior",
+    "background audio lifecycle"
+  ],
+  "runtime_files_changed": [
+    "assets/icons/app-icon-1024.png",
+    "assets/icons/icon-512x512.png",
+    "assets/icons/icon-192x192.png",
+    "assets/icons/icon-maskable-512x512.png",
+    "assets/icons/apple-touch-icon.png",
+    "assets/icons/favicon-48x48.png",
+    "assets/icons/favicon-32x32.png",
+    "assets/icons/favicon.ico",
+    "assets/icons/README.md",
+    "manifest.webmanifest",
+    "index.html",
+    "js/app.js",
+    "sw.js",
+    "README.md",
+    "docs/governance/APP_ICON_SYSTEM_V1.md",
+    "docs/releases/RELEASE_NOTES_V0_7_1.md",
+    "docs/qa/QA_V0_7_1.md",
+    "CHECKSUMS_SHA256.txt"
+  ],
+  "rollback": {
+    "stable_reference": "102511d1a076defd83b805c5983719f4b0c9a379",
+    "instruction": "Restore V0.7.0 icon/runtime marker files if a serious launcher or PWA regression appears."
+  },
+  "repository_cleanliness": {
+    "root_patch_manifest_count": 1,
+    "delete_after_upload": [
+      "PATCH_MANIFEST_V0_5_3.json",
+      "PATCH_MANIFEST_V0_5_4.json",
+      "PATCH_MANIFEST_V0_6_0.json",
+      "PATCH_MANIFEST_V0_6_1.json",
+      "PATCH_MANIFEST_V0_6_2.json",
+      "PATCH_MANIFEST_V0_7_0.json"
+    ],
+    "keep": "PATCH_MANIFEST_V0_7_1.json"
+  },
+  "release_status": "STATIC/PACKAGE QA PASS — real-device launcher acceptance pending"
+}
