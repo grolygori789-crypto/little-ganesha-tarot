@@ -1,119 +1,60 @@
-# Little Ganesha Tarot — V0.11.1 Journal Numeral Polish
+# Little Ganesha Tarot — V0.12.0 Reading Hub
 
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.11.1  
-**Stable baseline runtime:** V0.11.0  
-**Stable baseline GitHub HEAD:** `395bfd6598db8233fa17293cabbc5acd9600d11b` — `Add Private Journal V0.11.0`  
+**Target runtime:** V0.12.0  
+**Stable baseline runtime:** V0.11.1  
+**Stable baseline GitHub HEAD:** `2bc6e664d2347add826843678ab9ece10ed37653` — `Commit: Fix Journal numerals V0.11.1`  
 **Reading Engine:** 1.1.0 (unchanged)  
 **Deck Ritual:** 1.1.0 (unchanged)
 
+## V0.12.0
 
-## V0.11.1 polish
+V0.12.0 turns the bottom-navigation **Read / เปิดไพ่ / रीडिंग** placeholder into a premium **Reading Hub**. The Hub is navigation and guidance only: it does not draw cards, alter probabilities, modify daily locks, or introduce a new tarot mode.
 
-V0.11.1 is a focused real-device typography correction for Journal count numerals. A displayed
-**1** in Journal summary/count surfaces could resemble an uppercase **I** under the editorial font
-treatment. Journal now uses a dedicated lining-numeral stack (`Georgia` / `Times New Roman`) for
-count digits, matching the legibility standard already used by Lucky Numbers.
+The experience begins with **What brings you here today?** rather than asking users to understand spread names first. Five intent chips can highlight the most suitable existing reading without auto-launching it:
 
-The fix covers the monthly summary counters, per-day saved-entry count, card-count labels, calendar
-day/count markers, pattern/monthly numeric summaries and multi-select count. No Journal data schema,
-capture behavior, reflections, deletion behavior, reading locks, tarot selection or Lucky Numbers
-selection changes in this patch.
+- quick reflection → Daily Guidance;
+- one clear question → Ask Ganesha;
+- see how the situation is unfolding → Three-Card Reading;
+- find direction → The Golden Path;
+- something feels stuck → Remove the Obstacle.
 
-## What ships
+Users remain free to choose any reading. The recommendation is an interface aid, not divination and not a hidden personalization model.
 
-V0.11.0 introduced **Journal** from a placeholder into **My Path**, a private reflection archive that
-preserves the user's completed Little Ganesha experiences as a calm editorial history rather than a
-plain notes list.
+## Premium Reading Sanctuary
 
-The Journal includes:
+The Hub uses the same Deep Teal / Antique Gold / Warm Ivory visual language as the rest of Little Ganesha, with a restrained canonical card-back fan, fine editorial rules, generous spacing, and calm motion. It avoids duplicating the Home dashboard: Home remains the product overview, while Read becomes the dedicated place for choosing and starting a tarot reading.
 
-- a premium timeline grouped by local date;
-- a monthly calendar with saved-entry markers and a reflection ring;
-- real Little Ganesha card artwork and Lucky Number orbs as visual anchors;
-- search by card, mode, Focus, saved reading text, question (when permitted), or personal reflection;
-- mode filters and a Bookmarked filter;
-- entry detail pages containing the saved reading snapshot, cards/numbers and personal reflection;
-- bookmarks;
-- one-entry deletion and multi-select bulk deletion with confirmation;
-- factual monthly pattern observations and a monthly reflection prompt;
-- private Journal settings, including automatic capture and exact Ask Ganesha question privacy;
-- a two-stage **Clear Journal Data** action.
+## Live reading status
 
-## Snapshot model
+The Hub reads existing local state without changing it:
 
-Journal entries preserve a snapshot of the reading text that was displayed when a completed reading
-was captured. This prevents an old Journal entry from silently changing if future product releases
-refine tarot copy. A revisited reading in another supported locale may add a localized snapshot to the
-same Journal entry without overwriting the older locale snapshot.
+- Daily Guidance shows whether today’s card is already set and offers a revisit;
+- Ask Ganesha may show how many same-day question records are already kept;
+- Three-Card, Golden Path and Remove the Obstacle show 0–6 Focus progress and continue to reopen existing same-day readings through their protected storage modules.
 
-The Journal captures completed Daily Guidance, Ask Ganesha, Three-Card Reading, The Golden Path,
-Remove the Obstacle and Lucky Numbers results. It does not alter how those modes select, lock, restore
-or reroll their results.
-
-## Privacy and control
-
-The Journal is local-first and private by design. Entries are stored in an IndexedDB database named
-`little-ganesha-journal` on the user's device. There is no account, cloud sync or remote Journal
-upload in this release.
-
-**Keep completed readings in my Journal** is the capture control. **Save exact Ask Ganesha questions**
-is OFF by default; when it is off, the Journal can keep the reading without storing the exact question
-wording.
-
-Deleting a Journal entry deletes only the Journal snapshot, reflection and bookmark. It never deletes
-or resets Daily Guidance state, Ask semantic state, Signature Focus locks or Lucky Numbers state.
-Deleted current-day source entries are suppressed from automatic re-capture, so a deliberate delete
-does not immediately reappear while the original reading remains valid elsewhere in the app.
-
-## Premium visual system
-
-My Path uses the same Deep Teal / Antique Gold / Warm Ivory visual language as Little Ganesha while
-being intentionally calmer than the reading rituals. Existing canonical card art is reused rather than
-duplicated or replaced. Subtle glow, fine rules, restrained sacred geometry, generous spacing and
-editorial typography create the feeling of a private archive rather than a file manager.
-
-Trash actions stay out of the normal timeline surface. Single deletion lives inside entry detail;
-bulk deletion appears only after the user enters Select mode. Destructive actions use an understated
-trash icon and explicit confirmation.
-
-## Patterns and monthly reflection
-
-Pattern cards are computed only from saved Journal data. They may surface factual observations such
-as a repeated card or the most frequently explored Focus. They do not claim that repetition proves a
-supernatural message or future event.
-
-The monthly reflection card summarizes saved readings, reflections and bookmarks and offers one
-open-ended question for the user to consider.
+All numbers are UI status only. No stored reading record is rewritten by the Hub.
 
 ## Native languages
 
-Journal UI, privacy controls, deletion flows, calendar/timeline labels, pattern copy, reflection prompts
-and Settings copy are authored for **English, Thai and Hindi**. Existing reading snapshots are kept in
-the locale in which they were captured; if that entry also has a snapshot in the currently selected
-locale, the Journal uses it.
+Reading Hub UI and guidance are independently authored for **English, Thai and Hindi**. Brand masthead text remains non-localized.
 
 ## Protected behavior
 
-V0.11.1 does not modify Reading Engine 1.1.0, Deck Ritual 1.1.0, canonical 78-card IDs/artwork,
-pre-shuffle/prebound selection integrity, Daily Guidance selection persistence, Ask Ganesha semantic
-persistence, Signature Focus daily locks, existing reading Save/Share, Hindi safety/semantic behavior,
-Lucky Numbers V0.9.1 result persistence, Tarot Library V0.10.0 content/navigation, audio lifecycle
-V0.5.3, card viewers or universal icons.
+V0.12.0 does not modify Reading Engine 1.1.0, Deck Ritual 1.1.0, the canonical 78-card model, full-deck pre-shuffle/prebound selection, Daily Guidance persistence, Ask Ganesha semantic persistence, Focus locks, Save/Share, Journal IndexedDB, Tarot Library, Lucky Numbers, card viewers, universal icons, or the accepted background-audio lifecycle.
+
+Existing reading modules are opened through their already-exported public UI APIs. The Hub never reimplements their reading logic.
 
 ## Runtime coherence
 
-The PWA build/cache identity moves coherently to V0.11.1: HTML metadata and asset query strings,
-manifest icon references, `window.LGT_BUILD`, visible build label, Service Worker build/cache IDs and
-application-shell URLs all move together. Journal CSS and JavaScript remain in the application shell; their cache-busting URLs move with the build.
+HTML metadata, body build marker, all application asset query strings, `window.LGT_BUILD`, manifest icon URLs, visible build label, Service Worker build/cache IDs, and Service Worker application-shell URLs move together to V0.12.0. `css/read-hub.css` and `js/read-hub.js` are included in the application shell.
 
-Because the Service Worker identity changes, deployment is operationally HIGH risk even though Journal
-is additive and does not write to protected reading-state stores.
+## Risk
+
+Functional change: **MEDIUM** — new full-screen navigation surface that launches protected existing modes.  
+Operational deployment: **HIGH** — Service Worker/cache identity changes with the runtime build.  
+Rollback baseline: `2bc6e664d2347add826843678ab9ece10ed37653`.
 
 ## Acceptance
 
-Static, syntax, storage-contract, deletion-isolation and package QA are included and pass.
-**Real-device V0.11.1 acceptance remains required** for Journal capture after each reading mode,
-EN/TH/HI layouts, calendar/timeline interaction, reflection editing, bookmarks, single/bulk delete,
-Settings privacy toggles, Clear Journal Data, reduced motion, mobile safe areas and PWA refresh/cache
-activation.
+Static, syntax, runtime-coherence, navigation-contract and packaged-checksum QA are included. Real-device acceptance remains required for EN/TH/HI layout, bottom Read navigation, intent highlighting, Daily/Ask/Focus status, launch into all five reading modes, Back/Home behavior, reduced motion, safe areas and PWA cache activation.
