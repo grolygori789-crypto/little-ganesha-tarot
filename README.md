@@ -1,56 +1,122 @@
-# Little Ganesha Tarot — V0.13.0 PromptPay Support
+# Little Ganesha Tarot — V0.14.0 Legal & IP Suite
 
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.13.0  
-**Stable baseline runtime:** V0.12.0  
-**Stable baseline GitHub HEAD:** `4bbf2648d71f7903545a625d841edc64a8e80021` — `Commit: Add Reading Hub V0.12.0`  
+**Target runtime:** V0.14.0  
+**Stable baseline runtime:** V0.13.0  
+**Stable baseline GitHub HEAD:** `f21e6a4c81812276d661d6ebb0a3e6c86c6cf48b` — `Add PromptPay Support V0.13.0`  
 **Reading Engine:** 1.1.0 (unchanged)  
-**Deck Ritual:** 1.1.0 (unchanged)
+**Deck Ritual:** 1.1.0 (unchanged)  
+**Legal text version:** 1.0.0
 
-## V0.13.0
+## V0.14.0
 
-V0.13.0 activates the Thailand support path in **Settings → Support the Project** with a dedicated PromptPay experience. Support remains fully optional and isolated from tarot selection, reading quality, daily locks, Journal data and feature access.
+V0.14.0 adds a complete legal, intellectual-property and privacy layer without changing tarot behaviour.
 
-The Settings card now opens a premium full-screen PromptPay sheet instead of a disabled placeholder. The sheet includes:
+Settings now includes a premium **Legal Center** with four independently authored documents in English, Thai and Hindi:
 
-- a scan-safe PromptPay QR on a true white field;
-- the recipient name in Thai and official English spelling;
-- a concise thank-you message;
-- an explicit recipient-name verification reminder;
-- a **Save QR** action for same-device banking flows;
-- EN / TH / HI native interface copy;
-- Back to Settings, Back to Home, Escape handling, safe-area layout and reduced-motion support.
+- Copyright & Intellectual Property
+- Terms of Use
+- Privacy Policy
+- Third-Party Notices
 
-## QR asset discipline
+The repository also gains a proprietary `LICENSE.md` and a versioned legal archive under `docs/legal/`.
 
-The supplied bank image is **not** shipped wholesale. V0.13.0 derives a clean `assets/support/promptpay-qr.png` containing only the payment QR and its required white quiet zone. The bank page, masked identification text and other screenshot content are excluded from the app asset.
+## One-time legal acknowledgement
 
-The QR remains black/white on a white field. It is not recolored, decorated or overlaid by the Little Ganesha visual system. Automated QR detection/decoding succeeds at the shipped resolution and at representative mobile display sizes.
+When legal version 1.0.0 has not yet been acknowledged on the device, the title-screen Begin action opens a concise legal acknowledgement before starting the journey.
 
-## Same-device payment flow
+Users can:
 
-Users who are viewing the app on the same phone they use for banking can press **Save QR**, then select the saved image from a compatible banking app. The app does not prefill an amount and does not track, verify or infer whether a payment was completed.
+- review Terms of Use;
+- review Privacy Policy;
+- switch EN / TH / HI;
+- choose **Agree & Continue**; or
+- choose **Not now** and return to the title screen.
 
-## International support
+Acceptance is remembered locally only as:
 
-**Buy Me a Coffee remains Coming soon in V0.13.0.** No placeholder URL or fake destination is introduced. It should be activated only after the official Benedict Interactive / Little Ganesha support URL is supplied and verified.
+- `lgt.legal.acceptedVersion`
+- `lgt.legal.acceptedAt`
+
+No account or remote consent backend is introduced.
+
+## Screenshot policy
+
+V0.14.0 deliberately **does not implement screenshot blocking**.
+
+The current product is a browser/PWA experience and already provides intentional Save/Share output. A PWA cannot guarantee the same cross-platform capture prevention as native secure-window APIs, while blocking ordinary screenshots would create UX inconsistency and weak protection against determined copying.
+
+Instead, the legal contract explicitly permits ordinary personal, non-commercial screenshots and sharing of a user’s own reading. It separately reserves rights against unauthorised commercial redistribution, clean asset distribution, mass extraction, scraping, copied competing products and unauthorised dataset/model-training use.
+
+**No screenshot block = no extra licence.**
+
+## Privacy truthfulness
+
+The Privacy Policy documents the actual current runtime:
+
+- optional profile data stays in browser/device storage;
+- reading locks and preferences are local;
+- Ask Ganesha reading storage keeps a fingerprint and semantic descriptors rather than the full exact question text;
+- exact Ask wording can enter Journal only when its dedicated setting is enabled, OFF by default;
+- Journal uses local IndexedDB and supports single, bulk and full clear actions;
+- PromptPay payments occur outside the app and banking credentials are never collected by Little Ganesha;
+- Save/Share is user initiated;
+- Google Fonts and normal hosting can create ordinary network request metadata;
+- no Benedict Interactive behavioural advertising SDK or product analytics SDK is present in this release;
+- local data is not cloud backup and is not separately encrypted by the app.
+
+## Intellectual-property discipline
+
+The legal suite protects original code, protectable Little Ganesha artwork, written interpretations, localization, UX/UI expression, curation/arrangement, brand materials and documentation to the extent applicable law protects them.
+
+It explicitly does **not** claim exclusive ownership over general tarot concepts, traditional terminology/structures, historical facts, ideas/methods, public-domain material or third-party rights.
+
+AI-assisted material is addressed conservatively: no rights are claimed beyond applicable law, while protectable human-authored and human-directed contributions are reserved where protection exists.
+
+## Third-party notices
+
+The Legal Center identifies Google Fonts/typefaces, PromptPay/Thai QR Payment, planned Buy Me a Coffee support, platform references, traditional/public-domain tarot foundations and future separately licensed third-party/open-source components.
+
+Third-party licences remain controlling for their own components.
 
 ## Protected behavior
 
-V0.13.0 does not modify Reading Engine 1.1.0, Deck Ritual 1.1.0, the canonical 78-card deck, Daily Guidance, Ask Ganesha semantic persistence, Three-Card / Golden Path / Remove the Obstacle Focus locks, Reading Hub, Tarot Library, Journal, Lucky Numbers, Save/Share reading exports, audio lifecycle, app icons or card viewers.
+V0.14.0 does not modify:
 
-PromptPay support is an additive presentation layer only. It does not write to tarot state or Journal state.
+- Reading Engine 1.1.0 or Deck Ritual 1.1.0;
+- canonical 78-card selection integrity;
+- Daily / Ask / Focus persistence;
+- reading Save/Share exports;
+- Lucky Numbers;
+- Tarot Library;
+- Journal capture/storage/delete semantics;
+- Reading Hub;
+- PromptPay support;
+- background audio lifecycle;
+- card viewers or app icons.
 
 ## Runtime coherence
 
-HTML metadata, body build marker, all cache-busting query strings, `window.LGT_BUILD`, visible build label, manifest icon URLs, Service Worker build/cache IDs and application-shell URLs move coherently to V0.13.0. The new support CSS, JavaScript and PromptPay QR asset are included in the Service Worker shell.
+HTML metadata, body build marker, asset query strings, `window.LGT_BUILD`, visible build label, manifest URLs, Service Worker build/cache identity and application-shell URLs move coherently to V0.14.0.
+
+New shell files:
+
+- `css/legal.css`
+- `js/legal-content.js`
+- `js/legal-ui.js`
 
 ## Risk
 
-Functional change: **LOW–MEDIUM** — isolated support UI and local QR save behavior.  
+Functional change: **LOW–MEDIUM** — additive legal UI plus local acknowledgement gate.  
 Operational deployment: **HIGH** — Service Worker/cache identity moves with the runtime build.  
-Rollback baseline: `4bbf2648d71f7903545a625d841edc64a8e80021`.
+Rollback baseline: `f21e6a4c81812276d661d6ebb0a3e6c86c6cf48b`.
+
+## Legal-review note
+
+This suite is intentionally conservative and avoids claiming rights the project cannot legitimately own. It is not a promise of enforceability in every jurisdiction. Before a major commercial/store launch, qualified technology/IP counsel should review final rights-holder identity, governing-law language, official legal contact details and any later remote-data/payment integrations.
 
 ## Acceptance
 
-Static/package QA covers JavaScript syntax, localization contract, QR scan integrity, recipient-name presentation, Settings activation, modal navigation, Save QR behavior, runtime coherence, Service Worker shell inclusion and SHA-256 package verification. Real-device acceptance remains required for actual banking-app scan/use, Android/iOS save behavior and final visual review.
+Static/package QA covers JavaScript syntax, legal-content initialization, all three languages, consent/navigation wiring, screenshot-policy contract, privacy-data contract, runtime coherence, Service Worker inclusion and SHA-256 package integrity.
+
+A real browser/device acceptance pass remains required for final typography, scrolling, title-screen acknowledgement interaction and installed-PWA update behaviour.

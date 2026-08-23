@@ -1,0 +1,87 @@
+{
+  "release": "V0.14.0",
+  "feature": "Legal & IP Suite / Legal Center",
+  "baseline": {
+    "runtime": "V0.13.0",
+    "git_head": "f21e6a4c81812276d661d6ebb0a3e6c86c6cf48b",
+    "commit": "Add PromptPay Support V0.13.0"
+  },
+  "risk": {
+    "functional": "LOW-MEDIUM",
+    "operational": "HIGH",
+    "reason": "Adds a title-screen legal acknowledgement gate and Legal Center while moving the PWA Service Worker/cache identity to V0.14.0. Tarot, Journal, support, Save/Share and reading state logic are unchanged."
+  },
+  "rollback": "f21e6a4c81812276d661d6ebb0a3e6c86c6cf48b",
+  "legal_version": "1.0.0",
+  "screenshot_policy": "No technical screenshot blocking. Ordinary personal non-commercial screenshots and intended Save/Share output are permitted; broader proprietary rights remain reserved to the extent permitted by law.",
+  "files": [
+    "CHECKSUMS_SHA256.txt",
+    "PATCH_MANIFEST_V0_14_0.json",
+    "LICENSE.md",
+    "README.md",
+    "css/legal.css",
+    "docs/governance/LEGAL_AND_CONTENT_PROTECTION_STANDARD_V1.md",
+    "docs/legal/COPYRIGHT_AND_IP.md",
+    "docs/legal/PRIVACY_POLICY.md",
+    "docs/legal/README.md",
+    "docs/legal/TERMS_OF_USE.md",
+    "docs/legal/THIRD_PARTY_NOTICES.md",
+    "docs/qa/QA_V0_14_0.md",
+    "docs/releases/RELEASE_NOTES_V0_14_0.md",
+    "index.html",
+    "js/app.js",
+    "js/legal-content.js",
+    "js/legal-ui.js",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "add": [
+    "LICENSE.md",
+    "css/legal.css",
+    "docs/governance/LEGAL_AND_CONTENT_PROTECTION_STANDARD_V1.md",
+    "docs/legal/COPYRIGHT_AND_IP.md",
+    "docs/legal/PRIVACY_POLICY.md",
+    "docs/legal/README.md",
+    "docs/legal/TERMS_OF_USE.md",
+    "docs/legal/THIRD_PARTY_NOTICES.md",
+    "docs/qa/QA_V0_14_0.md",
+    "docs/releases/RELEASE_NOTES_V0_14_0.md",
+    "js/legal-content.js",
+    "js/legal-ui.js",
+    "PATCH_MANIFEST_V0_14_0.json"
+  ],
+  "replace": [
+    "CHECKSUMS_SHA256.txt",
+    "README.md",
+    "index.html",
+    "js/app.js",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "delete_after_upload": [
+    "PATCH_MANIFEST_V0_9_0.json",
+    "PATCH_MANIFEST_V0_9_1.json",
+    "PATCH_MANIFEST_V0_10_0.json",
+    "PATCH_MANIFEST_V0_11_0.json",
+    "PATCH_MANIFEST_V0_11_1.json",
+    "PATCH_MANIFEST_V0_12_0.json",
+    "PATCH_MANIFEST_V0_13_0.json"
+  ],
+  "protected_unchanged": [
+    "Reading Engine 1.1.0",
+    "Deck Ritual 1.1.0",
+    "canonical 78-card content/artwork",
+    "Daily Guidance selection and local-day lock",
+    "Ask Ganesha semantic persistence and contextual reading",
+    "Three-Card / Golden Path / Remove the Obstacle Focus locks",
+    "Lucky Numbers selection/persistence",
+    "Tarot Library",
+    "Journal IndexedDB / capture / reflection / delete behavior",
+    "Reading Hub",
+    "PromptPay QR and support flow",
+    "reading Save/Share exports",
+    "background audio lifecycle",
+    "card viewers and app icons"
+  ],
+  "qa_status": "STATIC/PACKAGE QA PASS — browser/device interaction acceptance pending"
+}
