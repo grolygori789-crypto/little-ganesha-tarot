@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'journal-ui-v1';
+  const VERSION = 'journal-ui-v1.1';
   const Store = window.LGTJournalStorage;
   const JC = window.LGTJournalContent;
   const Tarot = window.LGTReadingContent;
@@ -17,6 +17,7 @@
   const lang = () => JC.language(document.documentElement.lang);
   const c = () => JC.copy(lang());
   const esc = (value='') => String(value).replace(/[&<>'"]/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]));
+  const numeralize = (value='') => esc(value).replace(/\d+/g, (digits) => `<span class="journal-numeral">${digits}</span>`);
   const trashIcon = () => '<svg class="journal-trash" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 3h6l1 2h4v2H4V5h4l1-2Zm-2 6h10l-.7 11H7.7L7 9Zm3 2v7h2v-7h-2Zm4 0v7h2v-7h-2Z" fill="currentColor"/></svg>';
   const $ = (id) => state.root?.querySelector(`#${id}`) || document.getElementById(id);
 
@@ -136,7 +137,7 @@
       ${state.selectionMode?`<button class="journal-check ${selected?'is-checked':''}" type="button" data-journal-select="${esc(entry.id)}" aria-pressed="${selected}"><span aria-hidden="true">${selected?'✓':''}</span></button>`:''}
       <button class="journal-entry-open" type="button" data-journal-open="${esc(entry.id)}" aria-label="${esc(c().ariaEntry)}">
         ${entryVisual(entry,true)}
-        <span class="journal-entry-copy"><span class="journal-entry-meta"><strong>${esc(modeName(entry.mode))}</strong><time>${esc(formatTime(entry.completedAt))}</time></span>${focus?`<span class="journal-focus-pill">${esc(focus)}</span>`:''}<p>${esc(summary.slice(0,180))}</p><span class="journal-entry-foot">${entry.reflection?.trim()?'<span class="has-reflection">✦</span>':''}${entry.bookmarked?'<span class="is-bookmarked">★</span>':''}${entry.cards?.length?`<small>${esc(c().cardCount(entry.cards.length))}</small>`:''}</span></span>
+        <span class="journal-entry-copy"><span class="journal-entry-meta"><strong>${esc(modeName(entry.mode))}</strong><time>${esc(formatTime(entry.completedAt))}</time></span>${focus?`<span class="journal-focus-pill">${esc(focus)}</span>`:''}<p>${esc(summary.slice(0,180))}</p><span class="journal-entry-foot">${entry.reflection?.trim()?'<span class="has-reflection">✦</span>':''}${entry.bookmarked?'<span class="is-bookmarked">★</span>':''}${entry.cards?.length?`<small>${numeralize(c().cardCount(entry.cards.length))}</small>`:''}</span></span>
       </button>
     </article>`;
   }
@@ -145,7 +146,7 @@
     const s=stats();
     return `<section class="journal-hero"><div><span class="journal-eyebrow">${esc(c().eyebrow)}</span><h1 id="journalPageTitle">${esc(c().title)}</h1><p>${esc(c().intro)}</p></div><div class="journal-lotus" aria-hidden="true"><span>✦</span></div></section>
       <section class="journal-privacy"><span aria-hidden="true">◇</span><div><strong>${esc(c().privateTitle)}</strong><p>${esc(c().privateBody)}</p></div></section>
-      <section class="journal-stats"><article><strong>${s.readings}</strong><span>${esc(c().entries)}</span></article><article><strong>${s.reflections}</strong><span>${esc(c().reflections)}</span></article><article><strong>${s.bookmarks}</strong><span>${esc(c().savedMoments)}</span></article></section>`;
+      <section class="journal-stats"><article><strong class="journal-numeral">${s.readings}</strong><span>${esc(c().entries)}</span></article><article><strong class="journal-numeral">${s.reflections}</strong><span>${esc(c().reflections)}</span></article><article><strong class="journal-numeral">${s.bookmarks}</strong><span>${esc(c().savedMoments)}</span></article></section>`;
   }
 
   function controlsHtml() {
@@ -165,20 +166,20 @@
     let line=c().patternNeutral;
     if(topCard?.[1]>=2)line=c().repeatedCard(cardTitle(topCard[0]),topCard[1]);
     else if(topFocus?.[1]>=2)line=c().frequentFocus(focusName(topFocus[0]),topFocus[1]);
-    return `<section class="journal-pattern"><span class="journal-eyebrow">${esc(c().patternEyebrow)}</span><p>${esc(line)}</p></section>`;
+    return `<section class="journal-pattern"><span class="journal-eyebrow">${esc(c().patternEyebrow)}</span><p>${numeralize(line)}</p></section>`;
   }
 
   function monthlyHtml() {
     const source=state.entries.filter((entry)=>matchesTools(entry,false));
     const list=monthEntries(visibleMonthKey(),source); if(!list.length)return '';
     const s=stats(visibleMonthKey(),source); const month=new Intl.DateTimeFormat(locale(),{month:'long'}).format(state.view==='calendar'?state.month:new Date());
-    return `<section class="journal-monthly"><div class="journal-monthly__mark" aria-hidden="true">✦</div><div><span class="journal-eyebrow">${esc(c().monthlyEyebrow)}</span><h2>${esc(c().monthlyTitle(month))}</h2><p>${esc(c().monthSummary(s.readings,s.reflections,s.bookmarks))}</p><blockquote>${esc(c().monthlyPrompt)}</blockquote></div></section>`;
+    return `<section class="journal-monthly"><div class="journal-monthly__mark" aria-hidden="true">✦</div><div><span class="journal-eyebrow">${esc(c().monthlyEyebrow)}</span><h2>${esc(c().monthlyTitle(month))}</h2><p>${numeralize(c().monthSummary(s.readings,s.reflections,s.bookmarks))}</p><blockquote>${esc(c().monthlyPrompt)}</blockquote></div></section>`;
   }
 
   function renderTimeline() {
     const list=filteredEntries();
     const groups=new Map(); list.forEach(e=>{if(!groups.has(e.localDate))groups.set(e.localDate,[]);groups.get(e.localDate).push(e);});
-    const body=list.length?[...groups.entries()].map(([date,rows])=>`<section class="journal-day"><header><time>${esc(dateHeading(date))}</time><span>${esc(c().dayHasEntries(rows.length))}</span></header><div>${rows.map(entryCard).join('')}</div></section>`).join(''):`<section class="journal-empty"><span aria-hidden="true">✦</span><h2>${esc(state.entries.length?c().noMatches:c().emptyTitle)}</h2><p>${esc(state.entries.length?'':c().emptyBody)}</p></section>`;
+    const body=list.length?[...groups.entries()].map(([date,rows])=>`<section class="journal-day"><header><time>${esc(dateHeading(date))}</time><span>${numeralize(c().dayHasEntries(rows.length))}</span></header><div>${rows.map(entryCard).join('')}</div></section>`).join(''):`<section class="journal-empty"><span aria-hidden="true">✦</span><h2>${esc(state.entries.length?c().noMatches:c().emptyTitle)}</h2><p>${esc(state.entries.length?'':c().emptyBody)}</p></section>`;
     return `${body}${!state.dayFilter?patternHtml():''}${!state.dayFilter?monthlyHtml():''}`;
   }
 
@@ -190,7 +191,7 @@
     const byDay=new Map(); state.entries.filter((entry)=>matchesTools(entry,false)).forEach(e=>{if(!e.localDate.startsWith(monthKey(state.month)))return;if(!byDay.has(e.localDate))byDay.set(e.localDate,[]);byDay.get(e.localDate).push(e);});
     const weekdays=Array.from({length:7},(_,i)=>new Intl.DateTimeFormat(locale(),{weekday:'narrow'}).format(new Date(2026,7,24+i)));
     const cells=[]; for(let i=0;i<start;i++)cells.push('<span class="is-empty"></span>');
-    for(let d=1;d<=days;d+=1){const iso=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`,rows=byDay.get(iso)||[],hasReflection=rows.some(e=>e.reflection?.trim()),today=iso===todayISO();cells.push(`<button type="button" data-journal-day="${iso}" class="${rows.length?'has-entries':''} ${hasReflection?'has-reflection':''} ${today?'is-today':''}" ${rows.length?'':'disabled'}><span>${d}</span>${rows.length?`<small>${rows.length}</small>`:''}</button>`);}
+    for(let d=1;d<=days;d+=1){const iso=`${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`,rows=byDay.get(iso)||[],hasReflection=rows.some(e=>e.reflection?.trim()),today=iso===todayISO();cells.push(`<button type="button" data-journal-day="${iso}" class="${rows.length?'has-entries':''} ${hasReflection?'has-reflection':''} ${today?'is-today':''}" ${rows.length?'':'disabled'}><span class="journal-numeral">${d}</span>${rows.length?`<small class="journal-numeral">${rows.length}</small>`:''}</button>`);}
     return `<section class="journal-calendar"><header><button type="button" data-journal-month="-1" aria-label="${esc(c().monthPrevious)}">‹</button><h2>${esc(label)}</h2><button type="button" data-journal-month="1" aria-label="${esc(c().monthNext)}">›</button></header><div class="journal-weekdays">${weekdays.map(x=>`<span>${esc(x)}</span>`).join('')}</div><div class="journal-calendar-grid">${cells.join('')}</div><div class="journal-calendar-legend"><span><i></i>${esc(c().entries)}</span><span><i class="is-ring"></i>${esc(c().reflections)}</span></div></section>${patternHtml()}${monthlyHtml()}`;
   }
 
@@ -218,7 +219,7 @@
   function render() { if(!state.root)return; state.root.dataset.view=state.view; if(state.view==='detail')renderDetail();else renderHomeView(); $('journalScroll').scrollTop=0; updateSelectionBar(); }
 
   function updateTopbar(){const detail=state.view==='detail';$('journalBack').setAttribute('aria-label',detail?c().backJournal:c().backHome);$('journalHome').setAttribute('aria-label',c().backHome);$('journalSelectTop').hidden=detail;$('journalSelectTop').textContent=state.selectionMode?c().cancel:c().select;}
-  function updateSelectionBar(){const bar=$('journalSelectionBar');if(!bar)return;bar.hidden=!state.selectionMode;$('journalSelectionCancel').textContent=c().cancel;$('journalSelectionAll').textContent=c().selectAll;$('journalSelectionDeleteText').textContent=c().deleteSelected;$('journalSelectionCount').textContent=c().selectedCount(state.selected.size);$('journalSelectionDelete').disabled=!state.selected.size;}
+  function updateSelectionBar(){const bar=$('journalSelectionBar');if(!bar)return;bar.hidden=!state.selectionMode;$('journalSelectionCancel').textContent=c().cancel;$('journalSelectionAll').textContent=c().selectAll;$('journalSelectionDeleteText').textContent=c().deleteSelected;$('journalSelectionCount').innerHTML=numeralize(c().selectedCount(state.selected.size));$('journalSelectionDelete').disabled=!state.selected.size;}
 
   async function open(source=null) {
     if(!state.root)createRoot(); state.source=source||state.source; state.open=true; state.root.hidden=false; document.body.classList.add('journal-mode-open');

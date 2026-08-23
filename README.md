@@ -1,15 +1,28 @@
-# Little Ganesha Tarot — V0.11.0 Private Journal
+# Little Ganesha Tarot — V0.11.1 Journal Numeral Polish
 
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.11.0  
-**Stable baseline runtime:** V0.10.0  
-**Stable baseline GitHub HEAD:** `dc710973b0dce2e577964c520636f1969e4c3418` — `Add Tarot Library V0.10.0`  
+**Target runtime:** V0.11.1  
+**Stable baseline runtime:** V0.11.0  
+**Stable baseline GitHub HEAD:** `395bfd6598db8233fa17293cabbc5acd9600d11b` — `Add Private Journal V0.11.0`  
 **Reading Engine:** 1.1.0 (unchanged)  
 **Deck Ritual:** 1.1.0 (unchanged)
 
+
+## V0.11.1 polish
+
+V0.11.1 is a focused real-device typography correction for Journal count numerals. A displayed
+**1** in Journal summary/count surfaces could resemble an uppercase **I** under the editorial font
+treatment. Journal now uses a dedicated lining-numeral stack (`Georgia` / `Times New Roman`) for
+count digits, matching the legibility standard already used by Lucky Numbers.
+
+The fix covers the monthly summary counters, per-day saved-entry count, card-count labels, calendar
+day/count markers, pattern/monthly numeric summaries and multi-select count. No Journal data schema,
+capture behavior, reflections, deletion behavior, reading locks, tarot selection or Lucky Numbers
+selection changes in this patch.
+
 ## What ships
 
-V0.11.0 turns **Journal** from a placeholder into **My Path**, a private reflection archive that
+V0.11.0 introduced **Journal** from a placeholder into **My Path**, a private reflection archive that
 preserves the user's completed Little Ganesha experiences as a calm editorial history rather than a
 plain notes list.
 
@@ -82,7 +95,7 @@ locale, the Journal uses it.
 
 ## Protected behavior
 
-V0.11.0 does not modify Reading Engine 1.1.0, Deck Ritual 1.1.0, canonical 78-card IDs/artwork,
+V0.11.1 does not modify Reading Engine 1.1.0, Deck Ritual 1.1.0, canonical 78-card IDs/artwork,
 pre-shuffle/prebound selection integrity, Daily Guidance selection persistence, Ask Ganesha semantic
 persistence, Signature Focus daily locks, existing reading Save/Share, Hindi safety/semantic behavior,
 Lucky Numbers V0.9.1 result persistence, Tarot Library V0.10.0 content/navigation, audio lifecycle
@@ -90,9 +103,9 @@ V0.5.3, card viewers or universal icons.
 
 ## Runtime coherence
 
-The PWA build/cache identity moves coherently to V0.11.0: HTML metadata and asset query strings,
+The PWA build/cache identity moves coherently to V0.11.1: HTML metadata and asset query strings,
 manifest icon references, `window.LGT_BUILD`, visible build label, Service Worker build/cache IDs and
-application-shell URLs all move together. Journal CSS and JavaScript are added to the application shell.
+application-shell URLs all move together. Journal CSS and JavaScript remain in the application shell; their cache-busting URLs move with the build.
 
 Because the Service Worker identity changes, deployment is operationally HIGH risk even though Journal
 is additive and does not write to protected reading-state stores.
@@ -100,7 +113,7 @@ is additive and does not write to protected reading-state stores.
 ## Acceptance
 
 Static, syntax, storage-contract, deletion-isolation and package QA are included and pass.
-**Real-device V0.11.0 acceptance remains required** for Journal capture after each reading mode,
+**Real-device V0.11.1 acceptance remains required** for Journal capture after each reading mode,
 EN/TH/HI layouts, calendar/timeline interaction, reflection editing, bookmarks, single/bulk delete,
 Settings privacy toggles, Clear Journal Data, reduced motion, mobile safe areas and PWA refresh/cache
 activation.

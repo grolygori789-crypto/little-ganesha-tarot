@@ -1,4 +1,4 @@
-/* Little Ganesha Tarot — Journal V0.11.0
+/* Little Ganesha Tarot — Journal V0.11.1
    Private Reflection Archive / premium editorial layer */
 
 :root {
@@ -102,6 +102,16 @@ body.journal-mode-open .mini-player { opacity: 0; pointer-events: none; }
 }
 html[lang="th"] .journal-eyebrow,
 html[lang="hi"] .journal-eyebrow { letter-spacing: .055em; }
+
+/* Journal count numerals use the same explicit lining-numeral treatment as Lucky Numbers.
+   This prevents digit 1 from reading like a capital I in editorial/display contexts. */
+.journal-numeral {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  font-weight: 700;
+  letter-spacing: 0 !important;
+}
 
 .journal-hero {
   position: relative;

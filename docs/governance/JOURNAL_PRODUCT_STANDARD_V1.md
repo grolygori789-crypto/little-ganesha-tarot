@@ -115,6 +115,7 @@ locale must be disclosed rather than silently presented as a new translation of 
 - Destructive confirmation dialogs use proper modal semantics.
 - Reduced Motion removes nonessential Journal entrance/hover movement without hiding information.
 - All core actions remain usable on small mobile screens and safe-area devices.
+- Numeric counters use an explicit lining-numeral treatment; digit **1** must remain unmistakably a numeral and never resemble uppercase **I**.
 
 ## Protected systems
 
