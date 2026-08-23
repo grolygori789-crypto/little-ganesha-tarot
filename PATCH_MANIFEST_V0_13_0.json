@@ -1,0 +1,75 @@
+{
+  "release": "V0.13.0",
+  "feature": "PromptPay Support",
+  "baseline": {
+    "runtime": "V0.12.0",
+    "git_head": "4bbf2648d71f7903545a625d841edc64a8e80021",
+    "commit": "Commit: Add Reading Hub V0.12.0"
+  },
+  "risk": {
+    "functional": "LOW-MEDIUM",
+    "operational": "HIGH",
+    "reason": "Isolated support UI is additive, but PWA Service Worker and cache identity move with the runtime build."
+  },
+  "rollback": "4bbf2648d71f7903545a625d841edc64a8e80021",
+  "files": [
+    "CHECKSUMS_SHA256.txt",
+    "PATCH_MANIFEST_V0_13_0.json",
+    "README.md",
+    "assets/support/promptpay-qr.png",
+    "css/support.css",
+    "docs/governance/PROMPTPAY_SUPPORT_PRODUCT_STANDARD_V1.md",
+    "docs/qa/QA_V0_13_0.md",
+    "docs/releases/RELEASE_NOTES_V0_13_0.md",
+    "index.html",
+    "js/app.js",
+    "js/support.js",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "add": [
+    "assets/support/promptpay-qr.png",
+    "css/support.css",
+    "docs/governance/PROMPTPAY_SUPPORT_PRODUCT_STANDARD_V1.md",
+    "docs/qa/QA_V0_13_0.md",
+    "docs/releases/RELEASE_NOTES_V0_13_0.md",
+    "js/support.js",
+    "PATCH_MANIFEST_V0_13_0.json"
+  ],
+  "replace": [
+    "CHECKSUMS_SHA256.txt",
+    "README.md",
+    "index.html",
+    "js/app.js",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "delete_after_upload": [
+    "PATCH_MANIFEST_V0_9_0.json",
+    "PATCH_MANIFEST_V0_9_1.json",
+    "PATCH_MANIFEST_V0_10_0.json",
+    "PATCH_MANIFEST_V0_11_0.json",
+    "PATCH_MANIFEST_V0_11_1.json",
+    "PATCH_MANIFEST_V0_12_0.json"
+  ],
+  "protected_unchanged": [
+    "Reading Engine 1.1.0",
+    "Deck Ritual 1.1.0",
+    "canonical 78-card content/artwork",
+    "Daily Guidance selection and local-day lock",
+    "Ask Ganesha semantic persistence and contextual reading",
+    "Three-Card / Golden Path / Remove the Obstacle Focus locks",
+    "Reading Hub",
+    "Tarot Library",
+    "Journal IndexedDB / capture / delete behavior",
+    "Lucky Numbers persistence",
+    "reading Save/Share exports",
+    "background audio lifecycle",
+    "card viewers and app icons"
+  ],
+  "pending": [
+    "Buy Me a Coffee official support URL",
+    "real-device banking-app PromptPay acceptance"
+  ],
+  "qa_status": "STATIC/PACKAGE/BROWSER QA PASS — real-device banking-app acceptance pending"
+}

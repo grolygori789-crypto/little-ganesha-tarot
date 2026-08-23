@@ -1,60 +1,56 @@
-# Little Ganesha Tarot — V0.12.0 Reading Hub
+# Little Ganesha Tarot — V0.13.0 PromptPay Support
 
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.12.0  
-**Stable baseline runtime:** V0.11.1  
-**Stable baseline GitHub HEAD:** `2bc6e664d2347add826843678ab9ece10ed37653` — `Commit: Fix Journal numerals V0.11.1`  
+**Target runtime:** V0.13.0  
+**Stable baseline runtime:** V0.12.0  
+**Stable baseline GitHub HEAD:** `4bbf2648d71f7903545a625d841edc64a8e80021` — `Commit: Add Reading Hub V0.12.0`  
 **Reading Engine:** 1.1.0 (unchanged)  
 **Deck Ritual:** 1.1.0 (unchanged)
 
-## V0.12.0
+## V0.13.0
 
-V0.12.0 turns the bottom-navigation **Read / เปิดไพ่ / रीडिंग** placeholder into a premium **Reading Hub**. The Hub is navigation and guidance only: it does not draw cards, alter probabilities, modify daily locks, or introduce a new tarot mode.
+V0.13.0 activates the Thailand support path in **Settings → Support the Project** with a dedicated PromptPay experience. Support remains fully optional and isolated from tarot selection, reading quality, daily locks, Journal data and feature access.
 
-The experience begins with **What brings you here today?** rather than asking users to understand spread names first. Five intent chips can highlight the most suitable existing reading without auto-launching it:
+The Settings card now opens a premium full-screen PromptPay sheet instead of a disabled placeholder. The sheet includes:
 
-- quick reflection → Daily Guidance;
-- one clear question → Ask Ganesha;
-- see how the situation is unfolding → Three-Card Reading;
-- find direction → The Golden Path;
-- something feels stuck → Remove the Obstacle.
+- a scan-safe PromptPay QR on a true white field;
+- the recipient name in Thai and official English spelling;
+- a concise thank-you message;
+- an explicit recipient-name verification reminder;
+- a **Save QR** action for same-device banking flows;
+- EN / TH / HI native interface copy;
+- Back to Settings, Back to Home, Escape handling, safe-area layout and reduced-motion support.
 
-Users remain free to choose any reading. The recommendation is an interface aid, not divination and not a hidden personalization model.
+## QR asset discipline
 
-## Premium Reading Sanctuary
+The supplied bank image is **not** shipped wholesale. V0.13.0 derives a clean `assets/support/promptpay-qr.png` containing only the payment QR and its required white quiet zone. The bank page, masked identification text and other screenshot content are excluded from the app asset.
 
-The Hub uses the same Deep Teal / Antique Gold / Warm Ivory visual language as the rest of Little Ganesha, with a restrained canonical card-back fan, fine editorial rules, generous spacing, and calm motion. It avoids duplicating the Home dashboard: Home remains the product overview, while Read becomes the dedicated place for choosing and starting a tarot reading.
+The QR remains black/white on a white field. It is not recolored, decorated or overlaid by the Little Ganesha visual system. Automated QR detection/decoding succeeds at the shipped resolution and at representative mobile display sizes.
 
-## Live reading status
+## Same-device payment flow
 
-The Hub reads existing local state without changing it:
+Users who are viewing the app on the same phone they use for banking can press **Save QR**, then select the saved image from a compatible banking app. The app does not prefill an amount and does not track, verify or infer whether a payment was completed.
 
-- Daily Guidance shows whether today’s card is already set and offers a revisit;
-- Ask Ganesha may show how many same-day question records are already kept;
-- Three-Card, Golden Path and Remove the Obstacle show 0–6 Focus progress and continue to reopen existing same-day readings through their protected storage modules.
+## International support
 
-All numbers are UI status only. No stored reading record is rewritten by the Hub.
-
-## Native languages
-
-Reading Hub UI and guidance are independently authored for **English, Thai and Hindi**. Brand masthead text remains non-localized.
+**Buy Me a Coffee remains Coming soon in V0.13.0.** No placeholder URL or fake destination is introduced. It should be activated only after the official Benedict Interactive / Little Ganesha support URL is supplied and verified.
 
 ## Protected behavior
 
-V0.12.0 does not modify Reading Engine 1.1.0, Deck Ritual 1.1.0, the canonical 78-card model, full-deck pre-shuffle/prebound selection, Daily Guidance persistence, Ask Ganesha semantic persistence, Focus locks, Save/Share, Journal IndexedDB, Tarot Library, Lucky Numbers, card viewers, universal icons, or the accepted background-audio lifecycle.
+V0.13.0 does not modify Reading Engine 1.1.0, Deck Ritual 1.1.0, the canonical 78-card deck, Daily Guidance, Ask Ganesha semantic persistence, Three-Card / Golden Path / Remove the Obstacle Focus locks, Reading Hub, Tarot Library, Journal, Lucky Numbers, Save/Share reading exports, audio lifecycle, app icons or card viewers.
 
-Existing reading modules are opened through their already-exported public UI APIs. The Hub never reimplements their reading logic.
+PromptPay support is an additive presentation layer only. It does not write to tarot state or Journal state.
 
 ## Runtime coherence
 
-HTML metadata, body build marker, all application asset query strings, `window.LGT_BUILD`, manifest icon URLs, visible build label, Service Worker build/cache IDs, and Service Worker application-shell URLs move together to V0.12.0. `css/read-hub.css` and `js/read-hub.js` are included in the application shell.
+HTML metadata, body build marker, all cache-busting query strings, `window.LGT_BUILD`, visible build label, manifest icon URLs, Service Worker build/cache IDs and application-shell URLs move coherently to V0.13.0. The new support CSS, JavaScript and PromptPay QR asset are included in the Service Worker shell.
 
 ## Risk
 
-Functional change: **MEDIUM** — new full-screen navigation surface that launches protected existing modes.  
-Operational deployment: **HIGH** — Service Worker/cache identity changes with the runtime build.  
-Rollback baseline: `2bc6e664d2347add826843678ab9ece10ed37653`.
+Functional change: **LOW–MEDIUM** — isolated support UI and local QR save behavior.  
+Operational deployment: **HIGH** — Service Worker/cache identity moves with the runtime build.  
+Rollback baseline: `4bbf2648d71f7903545a625d841edc64a8e80021`.
 
 ## Acceptance
 
-Static, syntax, runtime-coherence, navigation-contract and packaged-checksum QA are included. Real-device acceptance remains required for EN/TH/HI layout, bottom Read navigation, intent highlighting, Daily/Ask/Focus status, launch into all five reading modes, Back/Home behavior, reduced motion, safe areas and PWA cache activation.
+Static/package QA covers JavaScript syntax, localization contract, QR scan integrity, recipient-name presentation, Settings activation, modal navigation, Save QR behavior, runtime coherence, Service Worker shell inclusion and SHA-256 package verification. Real-device acceptance remains required for actual banking-app scan/use, Android/iOS save behavior and final visual review.
