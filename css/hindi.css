@@ -54,3 +54,9 @@ html[lang="hi"] .three-result-card figcaption small {
     padding-inline: .55rem;
   }
 }
+/* V0.8.1 — keep the canonical English brand masthead typeface in every locale.
+   Hindi localizes product copy, not the LITTLE GANESHA / TAROT wordmark. */
+html[lang="hi"] .title-lockup h1,
+html[lang="hi"] .title-lockup h1 > span {
+  font-family: "Cormorant Garamond", Georgia, serif;
+}
