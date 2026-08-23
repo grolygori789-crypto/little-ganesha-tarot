@@ -1,0 +1,58 @@
+{
+  "release": "V0.6.0",
+  "title": "The Golden Path",
+  "baseline_runtime": "V0.5.4",
+  "baseline_head": "1000e17d906e5c12d6376562a108ca12e6103376",
+  "baseline_head_message": "Complete V0.5.4 runtime fix",
+  "risk": "MEDIUM",
+  "release_type": "new reading mode using protected shared reading infrastructure",
+  "target_runtime_build": "0.6.0",
+  "reading_engine": "1.1.0 unchanged",
+  "features": [
+    "The Golden Path becomes a playable three-card direction-finding consultation",
+    "six user-selected focuses: general life, love, career, money, well-being, personal growth",
+    "78-card pre-shuffled 6x13 selection ritual reused from protected Reading Engine and Deck Ritual",
+    "positions: Where You Stand, What Blocks the Path, The Way Forward",
+    "single integrated bilingual consultation with cross-card synthesis and practical next steps",
+    "one completed Golden Path reading per device-local calendar day",
+    "same-day restore preserves focus and three cards and deterministically reconstructs the same conclusion",
+    "Quiet Countdown to next local-day Golden Path reading",
+    "Save and Share artifact export",
+    "tap-to-enlarge artwork viewer for all three Golden Path cards",
+    "native independently authored Thai and English UI and interpretation framing"
+  ],
+  "protected": [
+    "Reading Engine 1.1.0 selection integrity",
+    "Daily Guidance",
+    "Ask Ganesha semantic duplicate lock and contextual reading",
+    "Three-Card Reading daily lock and narrative",
+    "compact 6x13 full-deck ritual",
+    "Three-Card Artwork Viewer V0.5.4",
+    "Save/Share shared export foundation",
+    "profile age/zodiac",
+    "background audio lifecycle",
+    "existing PWA behavior"
+  ],
+  "new_runtime_files": [
+    "css/golden-path.css",
+    "js/golden-narrative.js",
+    "js/golden-storage.js",
+    "js/golden-export.js",
+    "js/golden-ui.js",
+    "js/golden-card-viewer.js"
+  ],
+  "live_marker_updates": [
+    "index.html application-version, body data-build, CSS/JS/manifest queries and visible build label",
+    "js/app.js window.LGT_BUILD",
+    "sw.js BUILD, cache identities, app-shell query versions and Golden Path app-shell assets",
+    "README.md current runtime",
+    "current root Patch Manifest",
+    "CHECKSUMS_SHA256.txt"
+  ],
+  "repository_cleanliness": {
+    "root_patch_manifest_count": 1,
+    "delete_after_upload": ["PATCH_MANIFEST_V0_5_4.json"],
+    "do_not_commit": ["installers", "apply scripts", "temporary backups", "staging folders", "package-only checksum files"]
+  },
+  "release_status": "STATIC/PACKAGE QA PASS — Golden Path real-device acceptance pending"
+}

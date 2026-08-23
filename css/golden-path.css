@@ -1,0 +1,160 @@
+@layer reading {
+  .golden-focus-panel {
+    margin: .2rem 0 1rem;
+    padding: 1rem;
+    border: 1px solid rgba(247,217,147,.12);
+    border-radius: 1rem;
+    background: linear-gradient(160deg, rgba(229,189,112,.045), rgba(255,255,255,.018));
+  }
+
+  .golden-focus-panel__head h3 {
+    margin: 0;
+    font-family: "Noto Serif Thai", "Cormorant Garamond", serif;
+    font-size: clamp(1.12rem, 4.5vw, 1.35rem);
+    font-weight: 600;
+    color: rgba(255,248,233,.92);
+  }
+
+  .golden-focus-panel__head p {
+    margin: .35rem 0 0;
+    font-size: .86rem;
+    line-height: 1.55;
+    color: rgba(255,248,233,.52);
+  }
+
+  .golden-focus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .68rem;
+    margin-top: .9rem;
+  }
+
+  .golden-focus-option {
+    display: grid;
+    grid-template-columns: auto minmax(0,1fr);
+    gap: .64rem;
+    align-items: start;
+    min-height: 6.3rem;
+    padding: .78rem .72rem;
+    border: 1px solid rgba(247,217,147,.12);
+    border-radius: .88rem;
+    background: rgba(5,27,28,.66);
+    color: rgba(255,248,233,.82);
+    text-align: left;
+    transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+  }
+
+  .golden-focus-option:active { transform: scale(.985); }
+  .golden-focus-option:hover,
+  .golden-focus-option:focus-visible {
+    border-color: rgba(247,217,147,.34);
+    background: rgba(229,189,112,.055);
+  }
+  .golden-focus-option:focus-visible {
+    outline: 2px solid rgba(247,217,147,.72);
+    outline-offset: 3px;
+  }
+  .golden-focus-option.is-selected {
+    border-color: rgba(247,217,147,.5);
+    background: linear-gradient(145deg, rgba(229,189,112,.12), rgba(5,27,28,.72));
+    box-shadow: inset 0 0 0 1px rgba(229,189,112,.05), 0 10px 24px rgba(0,0,0,.16);
+  }
+
+  .golden-focus-option__number {
+    display: grid;
+    place-items: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    border: 1px solid rgba(247,217,147,.22);
+    border-radius: 50%;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: .72rem;
+    letter-spacing: .06em;
+    color: rgba(229,189,112,.78);
+  }
+
+  .golden-focus-option__copy strong {
+    display: block;
+    font-family: "Noto Serif Thai", "Cormorant Garamond", serif;
+    font-size: .94rem;
+    line-height: 1.3;
+    font-weight: 600;
+    color: rgba(255,248,233,.9);
+  }
+
+  .golden-focus-option__copy small {
+    display: block;
+    margin-top: .28rem;
+    font-size: .72rem;
+    line-height: 1.45;
+    color: rgba(255,248,233,.46);
+  }
+
+  .golden-focus-current {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin: 0 0 .8rem;
+    padding: .68rem .82rem;
+    border: 1px solid rgba(247,217,147,.12);
+    border-radius: .8rem;
+    background: rgba(229,189,112,.035);
+  }
+  .golden-focus-current[hidden] { display: none; }
+  .golden-focus-current span {
+    font-size: .66rem;
+    letter-spacing: .11em;
+    text-transform: uppercase;
+    color: rgba(229,189,112,.62);
+  }
+  .golden-focus-current strong {
+    font-family: "Noto Serif Thai", "Cormorant Garamond", serif;
+    font-size: .88rem;
+    font-weight: 600;
+    text-align: right;
+    color: rgba(255,248,233,.86);
+  }
+
+  .golden-signature {
+    position: relative;
+    overflow: hidden;
+  }
+  .golden-signature::after {
+    content: "";
+    position: absolute;
+    width: 9rem;
+    height: 9rem;
+    right: -4.5rem;
+    top: -4.8rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(229,189,112,.10), rgba(229,189,112,0) 70%);
+    pointer-events: none;
+  }
+
+  .golden-actions-block ol {
+    margin: .55rem 0 0;
+    padding-left: 1.25rem;
+  }
+  .golden-actions-block li {
+    padding-left: .25rem;
+    margin: .48rem 0;
+    font-family: "Noto Serif Thai", "Cormorant Garamond", serif;
+    font-size: .96rem;
+    line-height: 1.62;
+    color: rgba(255,248,233,.78);
+  }
+  .golden-actions-block li::marker { color: rgba(229,189,112,.68); }
+
+  body.is-golden-card-viewer-open #goldenScroll { overflow: hidden; }
+
+  @media (max-width: 390px) {
+    .golden-focus-panel { padding: .82rem; }
+    .golden-focus-grid { grid-template-columns: 1fr; }
+    .golden-focus-option { min-height: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .golden-focus-option { transition: none; }
+  }
+}

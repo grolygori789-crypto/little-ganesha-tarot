@@ -11,10 +11,10 @@
   <meta name="format-detection" content="telephone=no">
   <meta name="color-scheme" content="dark">
   <meta name="description" content="Little Ganesha Tarot — The Golden Path by Benedict Interactive">
-  <meta name="application-version" content="0.5.4">
+  <meta name="application-version" content="0.6.0">
   <title>Little Ganesha Tarot — The Golden Path</title>
 
-  <link rel="manifest" href="manifest.webmanifest?v=0.5.4">
+  <link rel="manifest" href="manifest.webmanifest?v=0.6.0">
   <link rel="icon" href="assets/icons/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
@@ -23,12 +23,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600&family=Noto+Serif+Thai:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/app.css?v=0.5.4">
-  <link rel="stylesheet" href="css/reading.css?v=0.5.4">
-  <link rel="stylesheet" href="css/three-card-viewer.css?v=0.5.4">
-  <link rel="stylesheet" href="css/profile-home.css?v=0.5.4">
+  <link rel="stylesheet" href="css/app.css?v=0.6.0">
+  <link rel="stylesheet" href="css/reading.css?v=0.6.0">
+  <link rel="stylesheet" href="css/three-card-viewer.css?v=0.6.0">
+  <link rel="stylesheet" href="css/golden-path.css?v=0.6.0">
+  <link rel="stylesheet" href="css/profile-home.css?v=0.6.0">
 </head>
-<body data-build="0.5.4">
+<body data-build="0.6.0">
   <main class="app-shell" id="app">
     <section class="studio-splash" id="studioSplash" aria-label="Benedict Interactive">
       <div class="studio-splash__glow" aria-hidden="true"></div>
@@ -160,7 +161,7 @@
         </section>
 
         <section class="settings-group"><button class="danger-link" id="returnTitleButton" type="button" data-copy="returnTitle">Return to Title</button></section>
-        <p class="build-label">BUILD 0.5.4</p>
+        <p class="build-label">BUILD 0.6.0</p>
       </div>
 
       <nav class="bottom-nav" aria-label="Primary navigation" data-copy-aria="primaryNavAria">
@@ -206,29 +207,34 @@
     <div class="modal-backdrop" id="exitModal" role="dialog" aria-modal="true" aria-labelledby="exitModalTitle" hidden><div class="modal-card"><span class="modal-card__ornament" aria-hidden="true">✦</span><h2 id="exitModalTitle" data-copy="exitTitle">Return to Title?</h2><p data-copy="exitBody">Your preferences will be kept.</p><div class="modal-card__actions"><button class="modal-button" id="exitCancel" type="button" data-copy="cancel">Cancel</button><button class="modal-button modal-button--primary" id="exitConfirm" type="button" data-copy="confirm">Return</button></div></div></div>
     <p class="sr-only" id="liveStatus" aria-live="polite"></p>
   </main>
-  <script src="js/pwa.js?v=0.5.4" defer></script>
-  <script src="js/audio.js?v=0.5.4" defer></script>
-  <script src="js/profile-details.js?v=0.5.4" defer></script>
-  <script src="js/app.js?v=0.5.4" defer></script>
-  <script src="js/reading-content.js?v=0.5.4" defer></script>
-  <script src="js/reading-engine.js?v=0.5.4" defer></script>
-  <script src="js/reading-day.js?v=0.5.4" defer></script>
-  <script src="js/reading-export.js?v=0.5.4" defer></script>
-  <script src="js/deck-ritual.js?v=0.5.4" defer></script>
-  <script src="js/three-narrative.js?v=0.5.4" defer></script>
-  <script src="js/question-guard.js?v=0.5.4" defer></script>
-  <script src="js/ask-content.js?v=0.5.4" defer></script>
-  <script src="js/question-analyzer.js?v=0.5.4" defer></script>
-  <script src="js/question-contract.js?v=0.5.4" defer></script>
-  <script src="js/ask-context.js?v=0.5.4" defer></script>
-  <script src="js/ask-semantic.js?v=0.5.4" defer></script>
-  <script src="js/ask-storage.js?v=0.5.4" defer></script>
-  <script src="js/reading-ui.js?v=0.5.4" defer></script>
-  <script src="js/ask-export.js?v=0.5.4" defer></script>
-  <script src="js/ask-ui.js?v=0.5.4" defer></script>
-  <script src="js/three-export.js?v=0.5.4" defer></script>
-  <script src="js/three-storage.js?v=0.5.4" defer></script>
-  <script src="js/three-ui.js?v=0.5.4" defer></script>
-  <script src="js/three-card-viewer.js?v=0.5.4" defer></script>
+  <script src="js/pwa.js?v=0.6.0" defer></script>
+  <script src="js/audio.js?v=0.6.0" defer></script>
+  <script src="js/profile-details.js?v=0.6.0" defer></script>
+  <script src="js/app.js?v=0.6.0" defer></script>
+  <script src="js/reading-content.js?v=0.6.0" defer></script>
+  <script src="js/reading-engine.js?v=0.6.0" defer></script>
+  <script src="js/reading-day.js?v=0.6.0" defer></script>
+  <script src="js/reading-export.js?v=0.6.0" defer></script>
+  <script src="js/deck-ritual.js?v=0.6.0" defer></script>
+  <script src="js/three-narrative.js?v=0.6.0" defer></script>
+  <script src="js/question-guard.js?v=0.6.0" defer></script>
+  <script src="js/ask-content.js?v=0.6.0" defer></script>
+  <script src="js/question-analyzer.js?v=0.6.0" defer></script>
+  <script src="js/question-contract.js?v=0.6.0" defer></script>
+  <script src="js/ask-context.js?v=0.6.0" defer></script>
+  <script src="js/ask-semantic.js?v=0.6.0" defer></script>
+  <script src="js/ask-storage.js?v=0.6.0" defer></script>
+  <script src="js/reading-ui.js?v=0.6.0" defer></script>
+  <script src="js/ask-export.js?v=0.6.0" defer></script>
+  <script src="js/ask-ui.js?v=0.6.0" defer></script>
+  <script src="js/three-export.js?v=0.6.0" defer></script>
+  <script src="js/three-storage.js?v=0.6.0" defer></script>
+  <script src="js/three-ui.js?v=0.6.0" defer></script>
+  <script src="js/three-card-viewer.js?v=0.6.0" defer></script>
+  <script src="js/golden-narrative.js?v=0.6.0" defer></script>
+  <script src="js/golden-storage.js?v=0.6.0" defer></script>
+  <script src="js/golden-export.js?v=0.6.0" defer></script>
+  <script src="js/golden-ui.js?v=0.6.0" defer></script>
+  <script src="js/golden-card-viewer.js?v=0.6.0" defer></script>
 </body>
 </html>

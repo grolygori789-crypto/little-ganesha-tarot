@@ -1,56 +1,83 @@
-# Little Ganesha Tarot — V0.5.4 Three-Card Viewer
+# Little Ganesha Tarot — V0.6.0 Golden Path
 
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.5.4  
-**Baseline runtime:** V0.5.3  
-**Baseline GitHub HEAD:** `ac0a19589e981afc89db37dc8e3e10830045a80d` — `Update Master Plan to V4.1`  
-**Runtime feature baseline:** `bee251a009f2b310593a453bbc99971588db1468` — `Fix background audio pause V0.5.3`  
+**Target runtime:** V0.6.0  
+**Baseline runtime:** V0.5.4  
+**Baseline GitHub HEAD:** `1000e17d906e5c12d6376562a108ca12e6103376` — `Complete V0.5.4 runtime fix`  
+**Reading Engine:** 1.1.0 (unchanged)  
 **Risk:** MEDIUM
 
 ## Purpose
 
-V0.5.4 adds a focused enlarged-card viewer to the completed Three-Card Reading without changing the reading itself.
+V0.6.0 ships **The Golden Path** as the fourth playable reading mode.
 
-The three result cards remain compact so the narrative stays easy to scan. A user who wants to inspect the artwork can tap any revealed card image to open a larger presentation at approximately the same visual scale used by the single-card reading mode.
+The mode is designed as a direction-finding consultation rather than a Past / Present / Future spread. It uses the shared 78-card Reading Engine and the protected compact 6×13 full-deck ritual, then interprets three chosen cards as one connected reading:
 
-## Three-Card Viewer
+1. **Where You Stand**
+2. **What Blocks the Path**
+3. **The Way Forward**
 
-- Tap/click any revealed card artwork to open the larger viewer.
-- The viewer is intentionally not a full-screen card takeover; it keeps generous surrounding space and preserves the sense of looking more closely at the same reading.
-- A restrained magnifier cue communicates that the artwork is interactive without adding repeated instructional copy under every card.
-- Close with the × button, by tapping the dimmed backdrop, or with Escape on a keyboard.
-- Keyboard users can focus the card artwork and open it with Enter or Space.
-- Focus returns to the originating card after the viewer closes.
-- Thai and English accessibility labels are authored independently and update with the app language.
-- Reduced-motion preference disables viewer transitions.
+## Six Focuses
+
+- General Life
+- Love & Relationships
+- Career & Work
+- Money & Resources
+- Well-being & Balance
+- Personal Growth
+
+Focus changes interpretation context only. It never changes card probability or selection integrity.
+
+## Golden Path reading standard
+
+The three cards are read as one consultation, not three dictionary definitions. The reading includes:
+
+- Your Path at a Glance
+- full position-by-position contextual interpretation
+- Your Golden Path synthesis
+- three practical next steps
+- one forward reflection question
+- native English / Thai composition
+- Save + Share
+- tap-to-enlarge card artwork
+
+English and Thai are independently authored native outputs with the same conclusion and safety intent.
+
+## Daily discipline
+
+Golden Path follows the same completed-reading discipline as Three-Card Reading:
+
+- entering the mode does not consume the day,
+- leaving before completion does not consume the day,
+- the first completed Golden Path reading is locked to that device-local calendar day,
+- reopening on the same local day restores the same focus and same three cards,
+- the interpretation is deterministically regenerated from that locked focus + cards,
+- a Quiet Countdown shows time remaining until the next local day,
+- next local day = a new Golden Path reading becomes available.
 
 ## Protected behavior
 
-This release does not alter:
+V0.6.0 does not rewrite:
 
 - Reading Engine 1.1.0,
-- 78-card pre-shuffled selection integrity,
-- compact 6×13 deck ritual,
-- Three-Card card selection or narrative composition,
-- Three-Card one-completed-reading-per-local-day lock,
 - Daily Guidance,
-- Ask Ganesha semantic duplicate discipline,
-- Quiet Countdown,
-- Save/Share,
-- profile age/zodiac,
-- V0.5.3 background audio lifecycle,
-- PWA architecture beyond the required V0.5.4 cache/build identity update.
+- Ask Ganesha semantic discipline,
+- Three-Card Reading,
+- compact 6×13 deck ritual,
+- Save / Share foundation,
+- Three-Card artwork viewer,
+- profile / age / zodiac,
+- audio lifecycle,
+- PWA foundation beyond the required V0.6.0 build/cache identity update.
 
-## Acceptance focus
+## Repository cleanliness
 
-Real-device validation should confirm:
+Release delivery utilities, installers, temporary backups, package checksum files, and staging artifacts must stay outside the repository.
 
-1. Complete or restore a Three-Card Reading.
-2. Tap each revealed card image; the correct card opens enlarged.
-3. Viewer size is close to single-card mode and does not feel like a full-screen takeover.
-4. Close with × and backdrop tap; return position remains stable.
-5. Music behavior is unchanged while opening/closing the viewer.
-6. Save/Share output remains unchanged.
-7. Reopen the same Three-Card Reading on the same local day; the same three cards and narrative remain locked.
+The repository root keeps **one current runtime Patch Manifest only**. When V0.6.0 is committed, `PATCH_MANIFEST_V0_5_4.json` must be removed and replaced by `PATCH_MANIFEST_V0_6_0.json`.
 
-Static/package QA is included with the V0.5.4 patch. Real-device acceptance remains the final gate.
+`CHECKSUMS_SHA256.txt` remains one rolling current-release file and is overwritten rather than version-piled.
+
+## Acceptance
+
+Static/package QA is included in V0.6.0. Real-device acceptance remains the final gate for the new Golden Path mode.
