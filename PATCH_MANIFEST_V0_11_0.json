@@ -1,0 +1,78 @@
+{
+  "release": "V0.11.0",
+  "title": "Private Journal — My Path",
+  "baseline_runtime": "V0.10.0",
+  "baseline_head": "dc710973b0dce2e577964c520636f1969e4c3418",
+  "baseline_head_message": "Add Tarot Library V0.10.0",
+  "risk": "HIGH operational / MEDIUM functional",
+  "risk_reason": "Journal adds a persistent IndexedDB feature, automatic capture, privacy controls, reflection editing and destructive management flows. It is additive and does not write to protected reading-state stores. The PWA Service Worker/cache identity also moves to V0.11.0, making deployment operationally HIGH risk.",
+  "target_runtime_build": "0.11.0",
+  "languages": ["en", "th", "hi"],
+  "feature_contract": {
+    "identity": "My Path — private reflection archive, not a generic notes/history table",
+    "storage": "local IndexedDB database little-ganesha-journal; no account or cloud sync",
+    "capture": "completed/displayed Daily, Ask, Three-Card, Golden Path, Remove the Obstacle and completed Lucky Numbers may be captured as historical snapshots",
+    "snapshot_integrity": "saved reading wording is preserved by locale and is not silently rewritten by future content updates",
+    "ask_privacy": "exact Ask Ganesha question storage is separately controlled and OFF by default",
+    "reflection": "each Journal entry may contain a private user reflection and bookmark",
+    "navigation": "premium timeline and monthly calendar with search, mode filter and bookmark filter",
+    "patterns": "descriptive saved-data observations only; no supernatural certainty",
+    "single_delete": "entry detail overflow menu with explicit confirmation",
+    "bulk_delete": "Select mode supports multiple checked entries and confirmed bulk deletion",
+    "clear_all": "Settings Clear Journal Data requires two confirmation stages",
+    "delete_isolation": "Journal deletion never resets source readings or daily locks",
+    "delete_persistence": "deleted source identities are locally suppressed from automatic re-capture",
+    "visuals": "existing canonical tarot art and Lucky number orbs are reused as editorial visual anchors"
+  },
+  "new_files": [
+    "css/journal.css",
+    "js/journal-content.js",
+    "js/journal-storage.js",
+    "js/journal-capture.js",
+    "js/journal-ui.js",
+    "docs/governance/JOURNAL_PRODUCT_STANDARD_V1.md",
+    "docs/releases/RELEASE_NOTES_V0_11_0.md",
+    "docs/qa/QA_V0_11_0.md"
+  ],
+  "runtime_files_changed": [
+    "index.html",
+    "js/app.js",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "documentation_files_changed": [
+    "README.md",
+    "CHECKSUMS_SHA256.txt",
+    "PATCH_MANIFEST_V0_11_0.json"
+  ],
+  "protected": [
+    "js/reading-engine.js and Reading Engine 1.1.0",
+    "js/deck-ritual.js and Deck Ritual 1.1.0",
+    "canonical 78-card IDs and artwork",
+    "pre-shuffle/prebound tarot selection integrity",
+    "Daily Guidance source persistence",
+    "Ask Ganesha semantic storage and question matching",
+    "Three-Card / Golden Path / Remove the Obstacle Focus daily locks",
+    "Lucky Numbers V0.9.1 daily-result persistence",
+    "existing tarot and Lucky Save/Share behavior",
+    "Hindi analysis, storage, safety and narrative behavior",
+    "Tarot Library V0.10.0 content and navigation",
+    "audio lifecycle V0.5.3",
+    "card viewers",
+    "universal app icon system"
+  ],
+  "rollback": {
+    "stable_reference": "dc710973b0dce2e577964c520636f1969e4c3418",
+    "instruction": "Restore the V0.10.0 runtime/build/cache files from this commit and remove V0.11.0 Journal files if a serious regression appears. Journal data lives separately in IndexedDB and does not mutate source reading locks."
+  },
+  "repository_cleanliness": {
+    "root_patch_manifest_count": 1,
+    "delete_after_upload": [
+      "PATCH_MANIFEST_V0_9_0.json",
+      "PATCH_MANIFEST_V0_9_1.json",
+      "PATCH_MANIFEST_V0_10_0.json"
+    ],
+    "keep": "PATCH_MANIFEST_V0_11_0.json"
+  },
+  "release_status": "STATIC/PACKAGE QA PASS — real-device V0.11.0 acceptance pending"
+}

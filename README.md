@@ -1,97 +1,106 @@
-# Little Ganesha Tarot — V0.10.0 Tarot Library
+# Little Ganesha Tarot — V0.11.0 Private Journal
 
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.10.0  
-**Stable baseline runtime:** V0.9.1  
-**Stable baseline GitHub HEAD:** `df8732c02182d012a95b8c8aa6ccfb7b1633f881` — `Polish Lucky Numbers V0.9.1`  
+**Target runtime:** V0.11.0  
+**Stable baseline runtime:** V0.10.0  
+**Stable baseline GitHub HEAD:** `dc710973b0dce2e577964c520636f1969e4c3418` — `Add Tarot Library V0.10.0`  
 **Reading Engine:** 1.1.0 (unchanged)  
 **Deck Ritual:** 1.1.0 (unchanged)
 
 ## What ships
 
-V0.10.0 turns the former **Card Library** placeholder into a complete **Tarot Library**: a premium,
-mobile-first editorial room for browsing the full 78-card deck, learning how tarot developed,
-understanding how cards are read in context, and learning how every Little Ganesha reading mode works.
+V0.11.0 turns **Journal** from a placeholder into **My Path**, a private reflection archive that
+preserves the user's completed Little Ganesha experiences as a calm editorial history rather than a
+plain notes list.
 
-The Library has five primary rooms:
+The Journal includes:
 
-1. **Explore the 78 Cards** — searchable/filterable canonical deck with full card artwork and detailed card pages.
-2. **Learn Tarot** — history, 78-card structure, Major/Minor Arcana, four suits, court cards and symbolism.
-3. **Ways to Read** — one-card and three-card reading, better questions, reversals, card tension and reroll discipline.
-4. **Little Ganesha Spreads** — Daily Guidance, Ask Ganesha, Three-Card Reading, The Golden Path, Remove the Obstacle and Lucky Numbers.
-5. **Tarot Essentials** — concise answers to important beginner and product-context questions.
+- a premium timeline grouped by local date;
+- a monthly calendar with saved-entry markers and a reflection ring;
+- real Little Ganesha card artwork and Lucky Number orbs as visual anchors;
+- search by card, mode, Focus, saved reading text, question (when permitted), or personal reflection;
+- mode filters and a Bookmarked filter;
+- entry detail pages containing the saved reading snapshot, cards/numbers and personal reflection;
+- bookmarks;
+- one-entry deletion and multi-select bulk deletion with confirmation;
+- factual monthly pattern observations and a monthly reflection prompt;
+- private Journal settings, including automatic capture and exact Ask Ganesha question privacy;
+- a two-stage **Clear Journal Data** action.
 
-Settings also gains **About & Guide**, covering privacy, daily-reading rules, Save/Share, languages,
-accessibility and project information without crowding the Tarot learning experience.
+## Snapshot model
 
-## Premium editorial visual system
+Journal entries preserve a snapshot of the reading text that was displayed when a completed reading
+was captured. This prevents an old Journal entry from silently changing if future product releases
+refine tarot copy. A revisited reading in another supported locale may add a localized snapshot to the
+same Journal entry without overwriting the older locale snapshot.
 
-The Library uses the canonical Little Ganesha card artwork already in the product as its visual anchor.
-It does not add stock imagery or unrelated decorative art. The home hero uses a restrained three-card
-fan, suit education uses representative canonical cards, and reading-method pages use lightweight
-code-driven spread diagrams. Deep teal, antique gold, warm ivory, fine borders and generous negative
-space keep the experience consistent with Little Ganesha rather than turning it into a generic help page.
+The Journal captures completed Daily Guidance, Ask Ganesha, Three-Card Reading, The Golden Path,
+Remove the Obstacle and Lucky Numbers results. It does not alter how those modes select, lock, restore
+or reroll their results.
 
-All 78 card images are lazy-loaded in the deck browser; they are not added wholesale to the Service
-Worker application shell. This protects startup/cache weight while preserving the premium visual experience.
+## Privacy and control
 
-## 78-card deck detail
+The Journal is local-first and private by design. Entries are stored in an IndexedDB database named
+`little-ganesha-journal` on the user's device. There is no account, cloud sync or remote Journal
+upload in this release.
 
-The Library reads from `window.LGTReadingContent`, the same canonical 78-card source used by the reading
-experience. It therefore reuses existing card IDs, titles, artwork, keywords, upright meanings,
-reflection questions and six practical reading lenses instead of creating a second deck database.
-Hindi continues to use the existing first-class Hindi card content layer.
+**Keep completed readings in my Journal** is the capture control. **Save exact Ask Ganesha questions**
+is OFF by default; when it is off, the Journal can keep the reading without storing the exact question
+wording.
 
-No card probability, shuffle, draw, persistence or reading outcome can be changed from the Library.
-It is an educational/exploration surface only.
+Deleting a Journal entry deletes only the Journal snapshot, reflection and bookmark. It never deletes
+or resets Daily Guidance state, Ask semantic state, Signature Focus locks or Lucky Numbers state.
+Deleted current-day source entries are suppressed from automatic re-capture, so a deliberate delete
+does not immediately reappear while the original reading remains valid elsewhere in the app.
 
-## Historical standard
+## Premium visual system
 
-Tarot history is deliberately written conservatively. The Library distinguishes documented history
-from later occult tradition: early tarot is presented as a Renaissance card game; divinatory use and
-occult systems are presented as later developments; claims of an ancient Egyptian origin are identified
-as later claims rather than established historical fact.
+My Path uses the same Deep Teal / Antique Gold / Warm Ivory visual language as Little Ganesha while
+being intentionally calmer than the reading rituals. Existing canonical card art is reused rather than
+duplicated or replaced. Subtle glow, fine rules, restrained sacred geometry, generous spacing and
+editorial typography create the feeling of a private archive rather than a file manager.
 
-The history editorial basis for this release was checked against museum scholarship from The Metropolitan
-Museum of Art and the Victoria and Albert Museum.
+Trash actions stay out of the normal timeline surface. Single deletion lives inside entry detail;
+bulk deletion appears only after the user enters Select mode. Destructive actions use an understated
+trash icon and explicit confirmation.
+
+## Patterns and monthly reflection
+
+Pattern cards are computed only from saved Journal data. They may surface factual observations such
+as a repeated card or the most frequently explored Focus. They do not claim that repetition proves a
+supernatural message or future event.
+
+The monthly reflection card summarizes saved readings, reflections and bookmarks and offers one
+open-ended question for the user to consider.
 
 ## Native languages
 
-English, Thai and Hindi are first-class throughout the Tarot Library: navigation, search/filter UI,
-card detail labels, history, teaching material, spread guides, FAQs, About & Guide and accessibility
-labels are authored for natural reading in each language rather than runtime machine translation.
-
-The canonical `LITTLE GANESHA TAROT / THE GOLDEN PATH` brand lockup remains unchanged across locales.
-
-## Navigation and accessibility
-
-The Library is a dedicated full-screen overlay with persistent Back and Home controls. Card detail
-returns to the deck; educational rooms return to the Library hub; Home exits the Library cleanly.
-Escape follows the same hierarchy on keyboard-capable devices.
-
-Reduced Motion removes or shortens decorative Library motion without changing content or navigation.
-The deck browser supports search, Arcana/suit filters, lazy images and mobile-first responsive layouts.
+Journal UI, privacy controls, deletion flows, calendar/timeline labels, pattern copy, reflection prompts
+and Settings copy are authored for **English, Thai and Hindi**. Existing reading snapshots are kept in
+the locale in which they were captured; if that entry also has a snapshot in the currently selected
+locale, the Journal uses it.
 
 ## Protected behavior
 
-V0.10.0 does not change Reading Engine 1.1.0, Deck Ritual 1.1.0, canonical 78-card IDs/artwork,
-pre-shuffle/prebound selection integrity, Daily Guidance persistence, Ask Ganesha semantics/persistence,
-Signature Focus daily locks, existing reading Save/Share, Hindi Ask analysis/storage/safety behavior,
-Lucky Numbers V0.9.1 daily-result contract, audio lifecycle V0.5.3, existing card viewers or universal icons.
+V0.11.0 does not modify Reading Engine 1.1.0, Deck Ritual 1.1.0, canonical 78-card IDs/artwork,
+pre-shuffle/prebound selection integrity, Daily Guidance selection persistence, Ask Ganesha semantic
+persistence, Signature Focus daily locks, existing reading Save/Share, Hindi safety/semantic behavior,
+Lucky Numbers V0.9.1 result persistence, Tarot Library V0.10.0 content/navigation, audio lifecycle
+V0.5.3, card viewers or universal icons.
 
 ## Runtime coherence
 
-The PWA build/cache identity moves coherently to V0.10.0: HTML asset query strings, manifest icon
-references, `window.LGT_BUILD`, visible build label, Service Worker build/cache IDs and app-shell URLs
-move together. New Library CSS/JS are included in the application shell; the 78 full-resolution card
-images remain runtime/lazy resources.
+The PWA build/cache identity moves coherently to V0.11.0: HTML metadata and asset query strings,
+manifest icon references, `window.LGT_BUILD`, visible build label, Service Worker build/cache IDs and
+application-shell URLs all move together. Journal CSS and JavaScript are added to the application shell.
 
-Because the Service Worker identity changes, deployment is operationally HIGH risk even though the
-new feature is additive and isolated from reading-selection state.
+Because the Service Worker identity changes, deployment is operationally HIGH risk even though Journal
+is additive and does not write to protected reading-state stores.
 
 ## Acceptance
 
-Static, syntax, content-contract, package and headless Chromium interaction QA are included and pass.
-**Real-device V0.10.0 acceptance remains required** for Library navigation, 78-card browsing, search,
-filters, card-detail typography/images, EN/TH/HI layouts, Settings About & Guide, reduced motion,
-mobile safe areas and PWA refresh/cache activation.
+Static, syntax, storage-contract, deletion-isolation and package QA are included and pass.
+**Real-device V0.11.0 acceptance remains required** for Journal capture after each reading mode,
+EN/TH/HI layouts, calendar/timeline interaction, reflection editing, bookmarks, single/bulk delete,
+Settings privacy toggles, Clear Journal Data, reduced motion, mobile safe areas and PWA refresh/cache
+activation.
