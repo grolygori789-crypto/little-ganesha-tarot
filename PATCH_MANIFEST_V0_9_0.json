@@ -1,0 +1,75 @@
+{
+  "release": "V0.9.0",
+  "title": "Lucky Numbers — Luxury Kinetic Oracle",
+  "baseline_runtime": "V0.8.1",
+  "baseline_head": "246c29467f06014a4fc902b94d3e341a59dbf74f",
+  "baseline_head_message": "Fix Hindi brand title V0.8.1",
+  "risk": "HIGH",
+  "risk_reason": "Lucky Numbers adds a complete interactive daily mode with Canvas animation, persistence, localized interpretation, synthesized SFX/haptics and Save/Share. The PWA Service Worker/cache identity also moves to V0.9.0. Protected tarot-selection subsystems remain unchanged.",
+  "target_runtime_build": "0.9.0",
+  "languages": ["en", "th", "hi"],
+  "feature_contract": {
+    "pool": "integers 1 through 9",
+    "daily_output": "exactly three unique numbers",
+    "roles": ["Core Number", "Supporting Number", "Balancing Number"],
+    "selection": "created only on deliberate reveal start; crypto.getRandomValues where available with rejection sampling",
+    "persistence": "same device-local day restores the exact fixed set; interruption cannot reroll; replay is presentation-only",
+    "framing": "symbolic daily reflection and play; not lottery, gambling, investment or guaranteed outcomes",
+    "presentation": "responsive Canvas/CSS brass-and-crystal kinetic oracle with three-ball sequential reveal",
+    "accessibility": "reduced-motion path, localized canvas labels and DOM result text",
+    "export": "localized Save/Share portrait artwork using shared reading-export utility"
+  },
+  "new_files": [
+    "css/lucky.css",
+    "js/lucky-content.js",
+    "js/lucky-storage.js",
+    "js/lucky-machine.js",
+    "js/lucky-sfx.js",
+    "js/lucky-export.js",
+    "js/lucky-ui.js",
+    "docs/governance/LUCKY_NUMBERS_PRODUCT_STANDARD_V1.md",
+    "docs/releases/RELEASE_NOTES_V0_9_0.md",
+    "docs/qa/QA_V0_9_0.md"
+  ],
+  "runtime_files_changed": [
+    "index.html",
+    "js/app.js",
+    "manifest.webmanifest",
+    "sw.js"
+  ],
+  "documentation_files_changed": ["README.md"],
+  "protected": [
+    "js/reading-engine.js",
+    "js/deck-ritual.js",
+    "canonical 78-card IDs and artwork",
+    "pre-shuffle/prebound selection integrity",
+    "Daily Guidance persistence",
+    "Ask Ganesha question semantics and persistence",
+    "Three-Card / Golden Path / Remove the Obstacle Focus daily locks",
+    "existing reading Save/Share behavior",
+    "Hindi Ask analysis/storage/safety behavior",
+    "audio lifecycle V0.5.3",
+    "card viewers",
+    "universal app icon system"
+  ],
+  "rollback": {
+    "stable_reference": "246c29467f06014a4fc902b94d3e341a59dbf74f",
+    "instruction": "Restore the V0.8.1 runtime/build/cache files from this commit and remove V0.9.0 Lucky Numbers files if a serious regression appears."
+  },
+  "repository_cleanliness": {
+    "root_patch_manifest_count": 1,
+    "delete_after_upload": [
+      "PATCH_MANIFEST_V0_5_3.json",
+      "PATCH_MANIFEST_V0_5_4.json",
+      "PATCH_MANIFEST_V0_6_0.json",
+      "PATCH_MANIFEST_V0_6_1.json",
+      "PATCH_MANIFEST_V0_6_2.json",
+      "PATCH_MANIFEST_V0_7_0.json",
+      "PATCH_MANIFEST_V0_7_1.json",
+      "PATCH_MANIFEST_V0_8_0.json",
+      "PATCH_MANIFEST_V0_8_1.json"
+    ],
+    "keep": "PATCH_MANIFEST_V0_9_0.json"
+  },
+  "release_status": "STATIC/PACKAGE QA PASS — real-device V0.9.0 acceptance pending"
+}
