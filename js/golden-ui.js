@@ -17,7 +17,7 @@
     en: {
       eyebrow:'THE GOLDEN PATH', title:'Find the way forward',
       intro:'Choose the part of life you want to look at. Then draw three cards to see where you stand, what is blocking movement, and the direction that deserves your attention next.',
-      focusTitle:'What would you like to explore?', focusHint:'Choose one focus for today’s Golden Path reading. Once the reading is completed, the same focus, cards, and guidance will return until your next local day.',
+      focusTitle:'What would you like to explore?', focusHint:'Each focus can be completed once per local day. A focus you have already explored reopens the same cards and guidance until the day changes.', progress:n=>`${n} of 6 explored today`, readToday:'Read today', revisit:'Tap to revisit today’s reading',
       begin:'Begin the Reading', shuffling:'Shuffling the full deck', choose:'Choose a card',
       chooseWhere:'Choose the first card for the ground you are standing on now.', chooseBlock:'Choose the second card for what is making the path harder to see or move through.', chooseForward:'Choose the final card for the direction that can help you move forward.',
       where:'Where You Stand', block:'What Blocks the Path', forward:'The Way Forward', chosen:'Chosen', selected:'Your Golden Path cards are ready', reveal:'Reveal the Golden Path', loading:'Preparing your Golden Path reading',
@@ -25,7 +25,7 @@
       saveShareTitle:'SAVE OR SHARE', saveShareHint:'Create a clean image of your Golden Path reading to keep or share.', saveImage:'Save Image', shareImage:'Share',
       preparing:'Preparing your reading image', saved:'Your Golden Path image has been saved.', shared:'Your Golden Path image is ready to share.', savedFallback:'Direct sharing is not available here, so the image was saved instead.', failed:'The image could not be created right now. Please try again.', cancelled:'Sharing was cancelled.',
       done:'Back to Home', back:'Back to Home', upright:'UPRIGHT', cardAlt:'Tarot card: ',
-      resetKicker:'TODAY’S GOLDEN PATH IS COMPLETE', resetLabel:'Your next Golden Path reading will be available in', storageFail:'This device could not save today’s Golden Path reading, so the daily lock may not survive a reload.',
+      resetKicker:'THIS FOCUS IS COMPLETE FOR TODAY', resetLabel:'A new Golden Path reading for this focus will be available in', storageFail:'This device could not save this Focus reading, so today’s restored result may not survive a reload.',
       disclaimer:'Use this reading as reflective guidance for direction and choices, not as a fixed prediction. Money readings are not financial advice, and well-being readings do not diagnose illness or replace professional medical care.',
       focuses: {
         general:['General Life','A wider look at where life is asking for attention'],
@@ -39,7 +39,7 @@
     th: {
       eyebrow:'เส้นทางสีทอง', title:'มองทางข้างหน้าให้ชัดขึ้น',
       intro:'เลือกเรื่องในชีวิตที่คุณอยากมองให้ชัด แล้วเปิดไพ่สามใบเพื่อดูว่าตอนนี้คุณยืนอยู่ตรงไหน อะไรกำลังขวาง และทิศทางไหนควรได้รับความสนใจต่อจากนี้',
-      focusTitle:'วันนี้อยากสำรวจเรื่องไหน?', focusHint:'เลือกหนึ่งหัวข้อสำหรับเส้นทางสีทองของวันนี้ เมื่อเปิดไพ่เสร็จแล้ว หัวข้อ ไพ่ และคำอ่านชุดเดิมจะกลับมาเหมือนเดิมจนถึงวันใหม่ตามเวลาของอุปกรณ์',
+      focusTitle:'วันนี้อยากสำรวจเรื่องไหน?', focusHint:'แต่ละหัวข้อเปิดเส้นทางสีทองชุดใหม่ได้วันละหนึ่งครั้งตามเวลาของอุปกรณ์ หัวข้อที่ดูแล้วสามารถแตะกลับมาอ่านไพ่และคำอ่านชุดเดิมได้ตลอดทั้งวัน', progress:n=>`วันนี้เปิดแล้ว ${n} จาก 6 หัวข้อ`, readToday:'อ่านแล้ววันนี้', revisit:'แตะเพื่อดูผลเดิม',
       begin:'เริ่มเปิดเส้นทางสีทอง', shuffling:'กำลังสับไพ่ทั้งสำรับ', choose:'เลือกไพ่',
       chooseWhere:'เลือกใบแรกสำหรับจุดที่คุณกำลังยืนอยู่ในเรื่องนี้', chooseBlock:'เลือกใบที่สองสำหรับสิ่งที่กำลังทำให้ทางเดินติดขัดหรือมองได้ไม่ชัด', chooseForward:'เลือกใบสุดท้ายสำหรับทิศทางที่ช่วยให้คุณเดินต่อได้ดีขึ้น',
       where:'จุดที่คุณอยู่ตอนนี้', block:'สิ่งที่ขวางเส้นทาง', forward:'ทางข้างหน้า', chosen:'เลือกแล้ว', selected:'ไพ่เส้นทางสีทองทั้งสามพร้อมแล้ว', reveal:'เปิดเส้นทางสีทอง', loading:'กำลังเตรียมคำอ่านเส้นทางสีทอง',
@@ -47,7 +47,7 @@
       saveShareTitle:'บันทึกหรือแชร์', saveShareHint:'สร้างภาพผลการอ่านเส้นทางสีทองแบบสะอาดตาเพื่อเก็บไว้หรือส่งต่อได้ทันที', saveImage:'บันทึกภาพ', shareImage:'แชร์',
       preparing:'กำลังเตรียมภาพผลการอ่าน', saved:'บันทึกภาพเส้นทางสีทองแล้ว', shared:'เตรียมภาพสำหรับการแชร์แล้ว', savedFallback:'อุปกรณ์นี้แชร์ภาพตรงจากหน้านี้ไม่ได้ จึงบันทึกภาพลงเครื่องให้แทน', failed:'ยังสร้างภาพผลการอ่านไม่ได้ในตอนนี้ กรุณาลองใหม่อีกครั้ง', cancelled:'ยกเลิกการแชร์แล้ว',
       done:'กลับหน้าหลัก', back:'กลับหน้าหลัก', upright:'ไพ่ตั้งตรง', cardAlt:'ไพ่ทาโรต์: ',
-      resetKicker:'เส้นทางสีทองของวันนี้เสร็จสมบูรณ์แล้ว', resetLabel:'เปิดเส้นทางสีทองครั้งใหม่ได้ใน', storageFail:'อุปกรณ์นี้บันทึกเส้นทางสีทองของวันนี้ไม่ได้ การล็อกหนึ่งครั้งต่อวันจึงอาจหายไปหลังเปิดแอปใหม่',
+      resetKicker:'หัวข้อนี้อ่านแล้วสำหรับวันนี้', resetLabel:'หัวข้อนี้จะเปิดเส้นทางสีทองชุดใหม่ได้ใน', storageFail:'อุปกรณ์นี้บันทึกผลของหัวข้อนี้ไม่ได้ ผลเดิมของวันนี้จึงอาจไม่กลับมาหลังเปิดแอปใหม่',
       disclaimer:'ใช้การอ่านนี้เพื่อช่วยทบทวนทิศทางและการตัดสินใจ ไม่ใช่คำทำนายที่ตายตัว หมวดการเงินไม่ใช่คำแนะนำทางการเงิน และหมวดสุขภาวะไม่ใช่การวินิจฉัยโรคหรือการทดแทนการดูแลจากผู้เชี่ยวชาญทางการแพทย์',
       focuses: {
         general:['ภาพรวมชีวิต','มองกว้างขึ้นว่าช่วงนี้ชีวิตกำลังเรียกร้องความสนใจตรงไหน'],
@@ -68,7 +68,7 @@
     <header class="reading-header"><button class="reading-back" id="goldenBack" type="button"><span aria-hidden="true">‹</span></button><div class="reading-header__copy"><span class="reading-eyebrow" id="goldenEyebrow"></span><h2 id="goldenReadingTitle"></h2></div><span class="reading-header__balance" aria-hidden="true"></span></header>
     <div class="reading-scroll" id="goldenScroll">
       <div class="reading-intro" id="goldenIntro"></div>
-      <section class="golden-focus-panel" id="goldenFocusPanel"><div class="golden-focus-panel__head"><h3 id="goldenFocusTitle"></h3><p id="goldenFocusHint"></p></div><div class="golden-focus-grid" id="goldenFocusGrid"></div></section>
+      <section class="golden-focus-panel" id="goldenFocusPanel"><div class="golden-focus-panel__head"><h3 id="goldenFocusTitle"></h3><p id="goldenFocusHint"></p><p class="focus-daily-progress" id="goldenFocusProgress"></p></div><div class="golden-focus-grid" id="goldenFocusGrid"></div></section>
       <div class="golden-focus-current" id="goldenFocusCurrent" hidden><span></span><strong></strong></div>
       <section class="three-selected-rail golden-selected-rail" id="goldenRail" aria-label="Golden Path card positions" hidden>
         ${['where','block','forward'].map((id,index)=>`<div class="three-slot" data-slot="${id}"><span class="three-slot__label" id="goldenSlotLabel${index}"></span><div class="three-slot__card"><img src="${CONTENT.cardBack}" alt="" decoding="async"><span>${index+1}</span></div><strong id="goldenSlotName${index}"></strong></div>`).join('')}
@@ -101,12 +101,17 @@
   function setMainInert(value){if(!mainApp)return;if('inert'in mainApp)mainApp.inert=value;if(value)mainApp.setAttribute('aria-hidden','true');else mainApp.removeAttribute('aria-hidden');}
 
   function buildFocusGrid(){
+    const read=GOLDEN_STORAGE.getAll();
+    $('goldenFocusProgress').textContent=COPY[lang()].progress(Object.keys(read).length);
     focusGrid.replaceChildren();
     focusOrder.forEach((id,index)=>{
-      const button=document.createElement('button'); button.type='button'; button.className='golden-focus-option'; button.dataset.goldenFocus=id; button.setAttribute('aria-pressed',String(focusId===id));
+      const done=Boolean(read[id]);
+      const button=document.createElement('button'); button.type='button'; button.className='golden-focus-option'; button.dataset.goldenFocus=id; button.setAttribute('aria-pressed',String(!done&&focusId===id));
       const copy=COPY[lang()].focuses[id];
-      button.innerHTML=`<span class="golden-focus-option__number" aria-hidden="true">0${index+1}</span><span class="golden-focus-option__copy"><strong>${copy[0]}</strong><small>${copy[1]}</small></span>`;
-      if(focusId===id)button.classList.add('is-selected');
+      if(done)button.classList.add('is-read-today');
+      if(!done&&focusId===id)button.classList.add('is-selected');
+      button.setAttribute('aria-label',done?`${copy[0]} · ${t('readToday')} · ${t('revisit')}`:copy[0]);
+      button.innerHTML=`<span class="golden-focus-option__number" aria-hidden="true">0${index+1}</span><span class="golden-focus-option__copy"><strong>${copy[0]}</strong><small>${copy[1]}</small>${done?`<span class="focus-read-badge"><span class="focus-read-check" aria-hidden="true">✓</span>${t('readToday')}</span><small class="focus-read-hint">${t('revisit')}</small>`:''}</span>`;
       button.addEventListener('click',()=>selectFocus(id)); focusGrid.appendChild(button);
     });
   }
@@ -114,7 +119,7 @@
   function updateCurrentFocus(){
     if(!focusId){focusCurrent.hidden=true;return;}
     const focus=NARRATIVE.getFocus(focusId); focusCurrent.hidden=false;
-    focusCurrent.querySelector('span').textContent=lang()==='th'?'หัวข้อวันนี้':'TODAY’S FOCUS';
+    focusCurrent.querySelector('span').textContent=lang()==='th'?'หัวข้อที่กำลังอ่าน':'CURRENT FOCUS';
     focusCurrent.querySelector('strong').textContent=focus.label[lang()];
   }
 
@@ -151,7 +156,13 @@
 
   function selectFocus(id){
     if(view!=='focus'||!NARRATIVE.focuses[id])return;
-    focusId=id; primary.disabled=false; buildFocusGrid(); updateCurrentFocus(); status.textContent=lang()==='th'?`เลือก ${NARRATIVE.getFocus(id).label.th} แล้ว`:`${NARRATIVE.getFocus(id).label.en} selected`; emit('focus-select',{focusId:id});
+    const stored=GOLDEN_STORAGE.get(id);
+    focusId=id;
+    if(stored){
+      session.restoreSelection(stored);selectedCards=session.getSelectedCards().map(entry=>entry.card);restoredToday=true;
+      focusPanel.hidden=true;focusCurrent.hidden=false;rail.hidden=false;stage.hidden=true;intro.hidden=true;actions.hidden=false;primary.disabled=true;updateCurrentFocus();emit('focus-restore',{focusId:id});after(40,()=>revealReading({restored:true}));return;
+    }
+    primary.disabled=false;buildFocusGrid();updateCurrentFocus();status.textContent=lang()==='th'?`เลือก ${NARRATIVE.getFocus(id).label.th} แล้ว`:`${NARRATIVE.getFocus(id).label.en} selected`;emit('focus-select',{focusId:id});
   }
 
   function stopResetCountdown(){if(stopCountdown)stopCountdown();stopCountdown=null;resetNote.hidden=true;}
@@ -208,10 +219,8 @@
 
   function primaryAction(){if(view==='focus')start();else if(view==='selected')revealReading();else if(view==='revealed')close();}
   function open(){
-    if(!shell.hidden)return;previousFocus=document.activeElement;reset();session=ENGINE.createSession('golden');const stored=GOLDEN_STORAGE.get();
-    if(stored){focusId=stored.focusId;session.restoreSelection(stored);selectedCards=session.getSelectedCards().map(entry=>entry.card);restoredToday=true;}
-    setMainInert(true);document.body.classList.add('is-reading-open');shell.hidden=false;requestAnimationFrame(()=>shell.classList.add('is-active'));emit('reading-open',{restored:Boolean(stored)});
-    if(stored){focusPanel.hidden=true;focusCurrent.hidden=false;rail.hidden=false;stage.hidden=true;intro.hidden=true;actions.hidden=false;primary.disabled=true;updateCurrentFocus();after(40,()=>revealReading({restored:true}));}else after(30,()=>focusGrid.querySelector('button')?.focus({preventScroll:true}));
+    if(!shell.hidden)return;previousFocus=document.activeElement;reset();GOLDEN_STORAGE.clearExpired();session=ENGINE.createSession('golden');
+    setMainInert(true);document.body.classList.add('is-reading-open');shell.hidden=false;requestAnimationFrame(()=>shell.classList.add('is-active'));emit('reading-open',{completedFocusCount:GOLDEN_STORAGE.count()});after(30,()=>focusGrid.querySelector('button')?.focus({preventScroll:true}));
   }
   function close(){if(shell.hidden)return;lifecycle++;if(timer)clearTimeout(timer);emit('reading-close');shell.classList.remove('is-active');setTimeout(()=>{shell.hidden=true;shell.classList.remove('is-revealed');reset();setMainInert(false);document.body.classList.remove('is-reading-open');if(previousFocus instanceof HTMLElement&&document.contains(previousFocus))previousFocus.focus({preventScroll:true});previousFocus=null;},reduced()?0:220);}
 

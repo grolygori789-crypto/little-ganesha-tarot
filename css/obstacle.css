@@ -1,0 +1,44 @@
+@layer reading {
+  .obstacle-focus-panel {
+    margin:.2rem 0 1rem;padding:1rem;border:1px solid rgba(224,178,126,.13);border-radius:1rem;
+    background:linear-gradient(160deg,rgba(210,158,105,.052),rgba(255,255,255,.017));
+  }
+  .obstacle-focus-panel__head h3{margin:0;font-family:"Noto Serif Thai","Cormorant Garamond",serif;font-size:clamp(1.12rem,4.5vw,1.35rem);font-weight:600;color:rgba(255,248,233,.93);}
+  .obstacle-focus-panel__head p{margin:.35rem 0 0;font-size:.86rem;line-height:1.58;color:rgba(255,248,233,.52);}
+  .obstacle-focus-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.68rem;margin-top:.9rem;}
+  .obstacle-focus-option{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.64rem;align-items:start;min-height:6.3rem;padding:.78rem .72rem;border:1px solid rgba(224,178,126,.12);border-radius:.88rem;background:rgba(5,27,28,.66);color:rgba(255,248,233,.82);text-align:left;transition:transform .18s ease,border-color .18s ease,background .18s ease,box-shadow .18s ease;}
+  .obstacle-focus-option:active{transform:scale(.985)}
+  .obstacle-focus-option:hover,.obstacle-focus-option:focus-visible{border-color:rgba(224,178,126,.36);background:rgba(210,158,105,.06)}
+  .obstacle-focus-option:focus-visible{outline:2px solid rgba(224,178,126,.74);outline-offset:3px}
+  .obstacle-focus-option.is-selected{border-color:rgba(224,178,126,.52);background:linear-gradient(145deg,rgba(210,158,105,.13),rgba(5,27,28,.72));box-shadow:inset 0 0 0 1px rgba(210,158,105,.055),0 10px 24px rgba(0,0,0,.16)}
+  .obstacle-focus-option__number{display:grid;place-items:center;width:1.8rem;height:1.8rem;border:1px solid rgba(224,178,126,.24);border-radius:50%;font-family:"Cormorant Garamond",Georgia,serif;font-size:.72rem;letter-spacing:.06em;color:rgba(224,178,126,.82)}
+  .obstacle-focus-option__copy strong{display:block;font-family:"Noto Serif Thai","Cormorant Garamond",serif;font-size:.94rem;line-height:1.3;font-weight:600;color:rgba(255,248,233,.91)}
+  .obstacle-focus-option__copy small{display:block;margin-top:.28rem;font-size:.72rem;line-height:1.45;color:rgba(255,248,233,.46)}
+  .obstacle-focus-current{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin:0 0 .8rem;padding:.68rem .82rem;border:1px solid rgba(224,178,126,.12);border-radius:.8rem;background:rgba(210,158,105,.038)}
+  .obstacle-focus-current[hidden]{display:none}.obstacle-focus-current span{font-size:.66rem;letter-spacing:.11em;text-transform:uppercase;color:rgba(224,178,126,.65)}
+  .obstacle-focus-current strong{font-family:"Noto Serif Thai","Cormorant Garamond",serif;font-size:.88rem;font-weight:600;text-align:right;color:rgba(255,248,233,.87)}
+
+  /* Long-form editorial reading cards: one calm block per card, optimized for Thai and English. */
+  .obstacle-shell .three-revealed-cards{grid-template-columns:1fr;gap:1rem}
+  .obstacle-shell .three-result-card{display:flex;flex-direction:column;align-items:stretch;gap:.58rem;padding:1rem 1rem 1.08rem;background:radial-gradient(circle at 50% 16%,rgba(210,158,105,.055),transparent 13rem),linear-gradient(150deg,rgba(18,58,57,.48),rgba(5,30,31,.6))}
+  .obstacle-shell .three-result-card__position{align-self:stretch;margin-bottom:.04rem;padding-bottom:.56rem;border-bottom:1px solid rgba(224,178,126,.09);line-height:1.35;color:rgba(224,178,126,.8)}
+  .obstacle-shell .three-result-card__art{width:clamp(7.2rem,31vw,8.15rem);margin:.18rem auto .08rem;align-self:center;border-radius:.62rem;box-shadow:0 14px 30px rgba(0,0,0,.25),0 0 0 1px rgba(210,158,105,.04)}
+  .obstacle-shell .three-result-card figcaption{display:flex;flex-direction:column;align-items:center;align-self:stretch;min-width:0;text-align:center}
+  .obstacle-shell .three-result-card figcaption strong{font-size:clamp(1.12rem,4.8vw,1.28rem);line-height:1.35;color:#e4b983}
+  .obstacle-shell .three-result-card figcaption small{margin-top:.11rem;font-size:.76rem;letter-spacing:.025em;color:rgba(255,248,233,.43)}
+  .obstacle-shell .three-result-card figcaption p{align-self:stretch;margin:.78rem 0 0;padding-top:.76rem;border-top:1px solid rgba(224,178,126,.085);text-align:left;font-size:clamp(.91rem,3.75vw,.98rem);line-height:1.82;color:rgba(255,248,233,.82)}
+  html[lang="th"] .obstacle-shell .three-result-card figcaption p{font-size:clamp(.92rem,3.8vw,.99rem);line-height:1.88}
+  html[lang="en"] .obstacle-shell .three-result-card figcaption p{max-width:34rem;margin-left:auto;margin-right:auto}
+
+  .obstacle-knot{border-color:rgba(224,178,126,.19);background:linear-gradient(145deg,rgba(210,158,105,.06),rgba(255,255,255,.014))}
+  .obstacle-release{position:relative;overflow:hidden;border-color:rgba(224,178,126,.24);background:linear-gradient(145deg,rgba(210,158,105,.085),rgba(255,255,255,.016));box-shadow:inset 0 1px rgba(255,245,218,.035)}
+  .obstacle-release::after{content:"";position:absolute;width:9rem;height:9rem;right:-4.5rem;top:-4.8rem;border-radius:50%;background:radial-gradient(circle,rgba(210,158,105,.12),rgba(210,158,105,0) 70%);pointer-events:none}
+  .obstacle-actions-block ol{margin:.55rem 0 0;padding-left:1.25rem}.obstacle-actions-block li{padding-left:.25rem;margin:.48rem 0;font-family:"Noto Serif Thai","Cormorant Garamond",serif;font-size:.96rem;line-height:1.68;color:rgba(255,248,233,.79)}.obstacle-actions-block li::marker{color:rgba(224,178,126,.72)}
+  .obstacle-watch{border-color:rgba(224,178,126,.11);background:rgba(255,255,255,.017)}
+  body.is-obstacle-card-viewer-open #obstacleScroll{overflow:hidden}
+  .obstacle-shell .three-result-card__zoom-cue{width:1.48rem;height:1.48rem;right:.34rem;bottom:.34rem;background:rgba(5,27,28,.76);border-color:rgba(224,178,126,.28);box-shadow:0 4px 11px rgba(0,0,0,.24)}
+  .obstacle-shell .three-result-card__zoom-cue::before{left:.39rem;top:.35rem;width:.44rem;height:.44rem}.obstacle-shell .three-result-card__zoom-cue::after{left:.83rem;top:.86rem;width:.34rem}
+  @media(max-width:390px){.obstacle-focus-panel{padding:.82rem}.obstacle-focus-grid{grid-template-columns:1fr}.obstacle-focus-option{min-height:0}.obstacle-shell .three-result-card{padding:.92rem .88rem 1rem}.obstacle-shell .three-result-card__art{width:clamp(6.95rem,31vw,7.7rem)}}
+  @media(min-width:600px){.obstacle-shell .three-revealed-cards{grid-template-columns:1fr}.obstacle-shell .three-result-card{max-width:36rem;width:100%;margin-inline:auto}.obstacle-shell .three-result-card__art{width:8.35rem}.obstacle-shell .three-result-card figcaption p{max-width:32rem;margin-left:auto;margin-right:auto}}
+  @media(prefers-reduced-motion:reduce){.obstacle-focus-option{transition:none}}
+}
