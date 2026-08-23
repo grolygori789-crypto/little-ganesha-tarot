@@ -1,83 +1,56 @@
-# Little Ganesha Tarot — V0.6.0 Golden Path
+# Little Ganesha Tarot — V0.6.1 Golden Path Hotfix
 
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.6.0  
-**Baseline runtime:** V0.5.4  
-**Baseline GitHub HEAD:** `1000e17d906e5c12d6376562a108ca12e6103376` — `Complete V0.5.4 runtime fix`  
+**Target runtime:** V0.6.1  
+**Baseline runtime:** V0.6.0  
+**Baseline GitHub HEAD:** `0ba83f9e24d23e2bd27b6ad99c02218e174fc182` — `Add Golden Path V0.6.0`  
 **Reading Engine:** 1.1.0 (unchanged)  
-**Risk:** MEDIUM
+**Risk:** HIGH operationally because runtime cache/SW identity changes; functional code change is isolated to Golden Path UI.
 
 ## Purpose
 
-V0.6.0 ships **The Golden Path** as the fourth playable reading mode.
+V0.6.1 corrects two real-device defects in the V0.6.0 Golden Path card-selection stage:
 
-The mode is designed as a direction-finding consultation rather than a Past / Present / Future spread. It uses the shared 78-card Reading Engine and the protected compact 6×13 full-deck ritual, then interprets three chosen cards as one connected reading:
+1. the 78 facedown choices displayed broken image placeholders instead of the canonical card back;
+2. after the first card was chosen, the remaining cards became unavailable, preventing the second and third selections.
 
-1. **Where You Stand**
-2. **What Blocks the Path**
-3. **The Way Forward**
+Both defects had one shared integration cause: Golden Path created the protected Deck Ritual without passing the multi-card spread configuration used by Three-Card Reading.
 
-## Six Focuses
+## Fix
 
-- General Life
-- Love & Relationships
-- Career & Work
-- Money & Resources
-- Well-being & Balance
-- Personal Growth
+Golden Path now invokes Deck Ritual with the accepted multi-card configuration:
 
-Focus changes interpretation context only. It never changes card probability or selection integrity.
+- canonical `CONTENT.cardBack`,
+- candidate count from the pre-shuffled 78-card session,
+- `selectionLimit: 3`,
+- six rows,
+- full-deck variant.
 
-## Golden Path reading standard
+The shared Reading Engine and Deck Ritual implementation themselves are unchanged.
 
-The three cards are read as one consultation, not three dictionary definitions. The reading includes:
+## Golden Path contract preserved
 
-- Your Path at a Glance
-- full position-by-position contextual interpretation
-- Your Golden Path synthesis
-- three practical next steps
-- one forward reflection question
-- native English / Thai composition
-- Save + Share
-- tap-to-enlarge card artwork
-
-English and Thai are independently authored native outputs with the same conclusion and safety intent.
-
-## Daily discipline
-
-Golden Path follows the same completed-reading discipline as Three-Card Reading:
-
-- entering the mode does not consume the day,
-- leaving before completion does not consume the day,
-- the first completed Golden Path reading is locked to that device-local calendar day,
-- reopening on the same local day restores the same focus and same three cards,
-- the interpretation is deterministically regenerated from that locked focus + cards,
-- a Quiet Countdown shows time remaining until the next local day,
-- next local day = a new Golden Path reading becomes available.
+- six Focus choices remain unchanged;
+- full 78-card deck is shuffled before display;
+- each facedown position remains bound before selection;
+- exactly three unique cards are selected;
+- positions remain Where You Stand / What Blocks the Path / The Way Forward;
+- the three cards are interpreted as one connected consultation;
+- only a completed reading consumes the local calendar day;
+- reopening on the same local day restores the same Focus, cards and conclusion;
+- Quiet Countdown remains active after completion;
+- Save / Share and tap-to-enlarge remain available.
 
 ## Protected behavior
 
-V0.6.0 does not rewrite:
-
-- Reading Engine 1.1.0,
-- Daily Guidance,
-- Ask Ganesha semantic discipline,
-- Three-Card Reading,
-- compact 6×13 deck ritual,
-- Save / Share foundation,
-- Three-Card artwork viewer,
-- profile / age / zodiac,
-- audio lifecycle,
-- PWA foundation beyond the required V0.6.0 build/cache identity update.
+V0.6.1 does not modify Reading Engine 1.1.0, Deck Ritual 1.1.0, Daily Guidance, Ask Ganesha, Three-Card Reading, Golden narrative/storage/export/viewer logic, profile, audio lifecycle, or the PWA fetch strategy. Service Worker changes are build/cache identity updates required for coherent delivery of the hotfix.
 
 ## Repository cleanliness
 
-Release delivery utilities, installers, temporary backups, package checksum files, and staging artifacts must stay outside the repository.
+The repository root must keep **one current Patch Manifest only**. After V0.6.1 is uploaded, remove all superseded root manifests and keep only `PATCH_MANIFEST_V0_6_1.json`.
 
-The repository root keeps **one current runtime Patch Manifest only**. When V0.6.0 is committed, `PATCH_MANIFEST_V0_5_4.json` must be removed and replaced by `PATCH_MANIFEST_V0_6_0.json`.
-
-`CHECKSUMS_SHA256.txt` remains one rolling current-release file and is overwritten rather than version-piled.
+Delivery utilities, installers, temporary backups, staging folders and package-only checksum files stay outside the repository. `CHECKSUMS_SHA256.txt` remains one rolling current-release file.
 
 ## Acceptance
 
-Static/package QA is included in V0.6.0. Real-device acceptance remains the final gate for the new Golden Path mode.
+Static/package QA passes for V0.6.1. Real-device acceptance remains required for the corrected Golden Path selection flow and the protected completion/restore/countdown flow.

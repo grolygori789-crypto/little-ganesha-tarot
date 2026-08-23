@@ -165,7 +165,17 @@
 
   function buildChoices(){
     deckRitual?.destroy();
-    deckRitual=DECK_RITUAL.create({container:choice,groupLabel:t('choose'),ariaLabelBuilder:(index)=>`${t('choose')} ${index+1}`,onSelect:({index,button})=>pick(index,button)});
+    deckRitual=DECK_RITUAL.create({
+      container:choice,
+      cardBack:CONTENT.cardBack,
+      count:candidates.length,
+      selectionLimit:3,
+      rowCount:6,
+      variant:'full',
+      groupLabel:t('choose'),
+      ariaLabelBuilder:(index)=>`${t('choose')} ${index+1}`,
+      onSelect:({index,button})=>pick(index,button)
+    });
   }
 
   function start(){
