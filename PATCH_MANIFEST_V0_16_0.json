@@ -1,42 +1,26 @@
 {
   "release": "V0.16.0",
-  "revision": "HF1+AUDIO5",
-  "hf1_baseline_head": "cb1d5624d27bb1ae9fc07516541ed9ebf03a6ec3",
-  "audio5_baseline_head": "bc9e0843e0d892ef7ec3ca695aaa3a1d6433bb62",
+  "revision": "STABLE-RESTORE-1+AUDIO5",
   "date": "2026-08-24",
-  "type": "pre-launch-stabilization",
-  "runtime_files_replaced": [
-    "js/pwa.js",
-    "sw.js"
-  ],
-  "playlist_size": 5,
-  "playlist_manifest": "data/AUDIO_MANIFEST_V1.json",
-  "playlist_assets_added": [
-    "assets/audio/bamboo-in-the-rain.mp3",
-    "assets/audio/path-of-still-water.mp3",
-    "assets/audio/breath-of-the-morning.mp3"
-  ],
-  "new_release_evidence": [
-    "docs/governance/LEGAL_AND_CONTENT_PROTECTION_STANDARD_V1_KOFI_AMENDMENT.md",
-    "docs/qa/QA_V0_16_0_HF1.md",
-    "docs/releases/RELEASE_NOTES_V0_16_0_HF1.md",
-    "docs/tests/test-v0_16_0-hf1.js",
-    "docs/checksums/CHECKSUMS_V0_16_0_HF1.sha256",
-    "docs/qa/QA_AUDIO_PLAYLIST_5_V1.md",
-    "docs/releases/RELEASE_NOTES_AUDIO_PLAYLIST_5_V1.md",
-    "docs/checksums/CHECKSUMS_AUDIO_PLAYLIST_5_V1.sha256"
-  ],
-  "protected_unchanged": [
+  "current_main_before_restore": "d17b918a0441ef4e651a2d6ce5bab50f8d613703",
+  "known_good_runtime_baseline": "cb1d5624d27bb1ae9fc07516541ed9ebf03a6ec3",
+  "known_good_reference_around_02_54_thailand": "34a6d27659f01eaf3ad703dece9c6017c68db2ae",
+  "strategy": "forward restore; do not rewrite Git history",
+  "hf1_runtime_wrapper_active": false,
+  "retained": [
+    "Ko-fi Support V0.16.0",
+    "PromptPay support state from Ko-fi baseline",
+    "five-track soundtrack",
+    "three new MP3 assets",
+    "existing user data and localStorage contracts",
     "Reading Engine 1.1.0",
-    "Deck Ritual 1.1.0",
-    "canonical 78-card selection/probability",
-    "Daily / Focus reading contracts",
-    "approved reading narratives",
-    "Save/Share transport",
-    "Journal deletion/tombstone semantics",
-    "Tarot Library search/IME behavior",
-    "audio engine lifecycle/crossfade implementation in js/audio.js",
-    "support destinations and recipient identity"
+    "Deck Ritual 1.1.0"
   ],
-  "real_device_acceptance_required": true
+  "restored_runtime": [
+    "js/pwa.js -> exact cb1d5624 pre-HF1 content",
+    "sw.js -> Ko-fi cb1d5624 behavior plus isolated AUDIO5 shell entry and fresh cache revision"
+  ],
+  "audio5_integration": "js/audio-playlist-5.js loaded after js/audio.js; no PWA global property wrappers",
+  "historical_hf1_docs_may_remain": true,
+  "real_device_retest_required": true
 }
