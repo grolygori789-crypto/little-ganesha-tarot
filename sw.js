@@ -7,6 +7,7 @@ const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${BUILD}`;
 
 const scopeURL = self.registration.scope;
 const url = (path) => new URL(path, scopeURL).href;
+const PROMPTPAY_CANONICAL = url('assets/support/promptpay-qr.png?v=0.16.0');
 
 const APP_SHELL = [
   url('./'),
@@ -110,8 +111,6 @@ const APP_SHELL = [
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
     const cache = await caches.open(SHELL_CACHE);
-    // addAll is deliberately used as a release gate: a broken core asset path
-    // should fail installation instead of silently producing a partial shell.
     await cache.addAll(APP_SHELL);
     await self.skipWaiting();
   })());
@@ -151,7 +150,6 @@ async function staleWhileRevalidate(request) {
   }).catch(() => null);
 
   if (cached) {
-    // Start revalidation immediately but return the cached asset without delay.
     networkPromise.catch(() => {});
     return cached;
   }
@@ -165,8 +163,6 @@ self.addEventListener('fetch', (event) => {
 
   const requestURL = new URL(request.url);
 
-  // Do not interfere with cross-origin font/CDN requests or HTTP range requests
-  // used by streaming audio/video. Those should remain browser/network managed.
   if (requestURL.origin !== self.location.origin || request.headers.has('range')) return;
 
   if (request.mode === 'navigate') {
@@ -176,6 +172,18 @@ self.addEventListener('fetch', (event) => {
       } catch (_) {
         return (await caches.match(url('index.html'))) || (await caches.match(url('./'))) || Response.error();
       }
+    })());
+    return;
+  }
+
+  // support.js still requests the historical ?v=0.13.0 URL.  The QR bytes
+  // are unchanged, so normalize that request to the canonical pre-cached
+  // V0.16.0 asset instead of allowing offline cache-key drift.
+  if (requestURL.pathname.endsWith('/assets/support/promptpay-qr.png')) {
+    event.respondWith((async () => {
+      const cached = await caches.match(PROMPTPAY_CANONICAL);
+      if (cached) return cached;
+      return staleWhileRevalidate(request);
     })());
     return;
   }

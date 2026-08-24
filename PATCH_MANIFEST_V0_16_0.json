@@ -1,80 +1,35 @@
 {
   "release": "V0.16.0",
-  "feature": "Worldwide Ko-fi Support",
-  "baseline": {
-    "runtime": "V0.15.1",
-    "git_head": "34a6d27659f01eaf3ad703dece9c6017c68db2ae",
-    "commit": "Refresh Handoff V5.0"
-  },
-  "risk": {
-    "functional": "LOW",
-    "operational": "HIGH",
-    "reason": "Activates an isolated user-initiated Ko-fi support flow and polishes Support UX. Service Worker/cache identity moves to V0.16.0; tarot selection, storage, Journal, PromptPay, audio, Legal and Help behavior remain protected."
-  },
-  "rollback": "34a6d27659f01eaf3ad703dece9c6017c68db2ae",
-  "worldwide_support": {
-    "provider": "Ko-fi",
-    "official_url": "https://ko-fi.com/benedictinteractive",
-    "mode": "external user-initiated voluntary support",
-    "payment_backend": false,
-    "payment_callback": false,
-    "entitlement": false,
-    "reading_effect": false
-  },
-  "files": [
-    "CHECKSUMS_SHA256.txt",
-    "PATCH_MANIFEST_V0_16_0.json",
-    "README.md",
-    "css/support.css",
-    "docs/governance/KOFI_SUPPORT_PRODUCT_STANDARD_V1.md",
-    "docs/governance/MASTER_PLAN_V5_0_CHANGELOG.md",
-    "docs/qa/QA_V0_16_0.md",
-    "docs/releases/RELEASE_NOTES_V0_16_0.md",
-    "index.html",
-    "js/support.js",
-    "manifest.webmanifest",
+  "revision": "HF1",
+  "baseline_head": "cb1d5624d27bb1ae9fc07516541ed9ebf03a6ec3",
+  "date": "2026-08-24",
+  "type": "pre-launch-defect-hotfix",
+  "runtime_files_replaced": [
+    "js/pwa.js",
     "sw.js"
   ],
-  "add": [
-    "PATCH_MANIFEST_V0_16_0.json",
-    "docs/governance/KOFI_SUPPORT_PRODUCT_STANDARD_V1.md",
-    "docs/governance/MASTER_PLAN_V5_0_CHANGELOG.md",
-    "docs/qa/QA_V0_16_0.md",
-    "docs/releases/RELEASE_NOTES_V0_16_0.md"
-  ],
-  "replace": [
-    "CHECKSUMS_SHA256.txt",
-    "README.md",
-    "css/support.css",
-    "index.html",
-    "js/support.js",
-    "manifest.webmanifest",
-    "sw.js"
-  ],
-  "delete_after_upload": [
-    "PATCH_MANIFEST_V0_15_1.json"
+  "new_release_evidence": [
+    "docs/governance/LEGAL_AND_CONTENT_PROTECTION_STANDARD_V1_KOFI_AMENDMENT.md",
+    "docs/qa/QA_V0_16_0_HF1.md",
+    "docs/releases/RELEASE_NOTES_V0_16_0_HF1.md",
+    "docs/tests/test-v0_16_0-hf1.js",
+    "docs/checksums/CHECKSUMS_V0_16_0_HF1.sha256"
   ],
   "protected_unchanged": [
     "Reading Engine 1.1.0",
     "Deck Ritual 1.1.0",
-    "canonical 78-card content/artwork",
-    "Daily Guidance selection and local-day lock",
-    "Ask Ganesha semantic persistence and contextual reading",
-    "Three-Card / Golden Path / Remove the Obstacle Focus locks",
-    "Lucky Numbers selection/persistence/replay/SFX/haptics",
-    "Tarot Library V0.15.0 search keyboard fix",
-    "Journal IndexedDB / capture / reflection / deletion",
-    "Reading Hub",
-    "PromptPay QR / recipient / save flow",
-    "Legal Center and acknowledgement version 1.0.0",
-    "Help & Feedback mailto/diagnostics",
-    "reading Save/Share",
-    "background audio lifecycle",
-    "card viewers and app icons"
+    "canonical 78-card selection/probability",
+    "Daily / Focus reading contracts",
+    "approved narrative modules",
+    "Save/Share transport",
+    "Journal deletion/tombstone semantics",
+    "Tarot Library search/IME behavior",
+    "audio lifecycle",
+    "support destinations and recipient identity"
   ],
-  "privacy": {
-    "change": "No Benedict Interactive payment collection, donor tracking, or support-linked reading data is added. Ko-fi opens only after explicit user action.",
-    "external_destination": "Ko-fi handles its own external page/account/payment data."
-  },
-  "qa_status": "STATIC QA READY — real-device interaction/PWA acceptance pending"
+  "manual_root_cleanup_after_upload": [
+    "DELETE PATCH_MANIFEST_V0_15_1.json",
+    "DELETE CHECKSUMS_SHA256.txt"
+  ],
+  "real_device_acceptance_required": true
 }
