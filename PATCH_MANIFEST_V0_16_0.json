@@ -1,35 +1,42 @@
 {
   "release": "V0.16.0",
-  "revision": "HF1",
-  "baseline_head": "cb1d5624d27bb1ae9fc07516541ed9ebf03a6ec3",
+  "revision": "HF1+AUDIO5",
+  "hf1_baseline_head": "cb1d5624d27bb1ae9fc07516541ed9ebf03a6ec3",
+  "audio5_baseline_head": "bc9e0843e0d892ef7ec3ca695aaa3a1d6433bb62",
   "date": "2026-08-24",
-  "type": "pre-launch-defect-hotfix",
+  "type": "pre-launch-stabilization",
   "runtime_files_replaced": [
     "js/pwa.js",
     "sw.js"
+  ],
+  "playlist_size": 5,
+  "playlist_manifest": "data/AUDIO_MANIFEST_V1.json",
+  "playlist_assets_added": [
+    "assets/audio/bamboo-in-the-rain.mp3",
+    "assets/audio/path-of-still-water.mp3",
+    "assets/audio/breath-of-the-morning.mp3"
   ],
   "new_release_evidence": [
     "docs/governance/LEGAL_AND_CONTENT_PROTECTION_STANDARD_V1_KOFI_AMENDMENT.md",
     "docs/qa/QA_V0_16_0_HF1.md",
     "docs/releases/RELEASE_NOTES_V0_16_0_HF1.md",
     "docs/tests/test-v0_16_0-hf1.js",
-    "docs/checksums/CHECKSUMS_V0_16_0_HF1.sha256"
+    "docs/checksums/CHECKSUMS_V0_16_0_HF1.sha256",
+    "docs/qa/QA_AUDIO_PLAYLIST_5_V1.md",
+    "docs/releases/RELEASE_NOTES_AUDIO_PLAYLIST_5_V1.md",
+    "docs/checksums/CHECKSUMS_AUDIO_PLAYLIST_5_V1.sha256"
   ],
   "protected_unchanged": [
     "Reading Engine 1.1.0",
     "Deck Ritual 1.1.0",
     "canonical 78-card selection/probability",
     "Daily / Focus reading contracts",
-    "approved narrative modules",
+    "approved reading narratives",
     "Save/Share transport",
     "Journal deletion/tombstone semantics",
     "Tarot Library search/IME behavior",
-    "audio lifecycle",
+    "audio engine lifecycle/crossfade implementation in js/audio.js",
     "support destinations and recipient identity"
-  ],
-  "manual_root_cleanup_after_upload": [
-    "DELETE PATCH_MANIFEST_V0_15_1.json",
-    "DELETE CHECKSUMS_SHA256.txt"
   ],
   "real_device_acceptance_required": true
 }

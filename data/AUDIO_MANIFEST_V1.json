@@ -1,7 +1,7 @@
 {
   "project": "Little Ganesha Tarot: The Golden Path",
   "studio": "Benedict Interactive",
-  "version": "V0.2.2",
+  "version": "V0.3.0",
   "target_playlist_size": 5,
   "crossfade_seconds": 3.8,
   "shuffle_default": true,
@@ -23,6 +23,33 @@
       "path": "assets/audio/sunlight-on-bronze.mp3",
       "duration_seconds": 30.772,
       "role": "short reflective interlude",
+      "status": "active"
+    },
+    {
+      "order": 3,
+      "id": "bamboo-in-the-rain",
+      "title": "Bamboo in the Rain",
+      "path": "assets/audio/bamboo-in-the-rain.mp3",
+      "duration_seconds": 145.894,
+      "role": "renewal / rain-garden ambience",
+      "status": "active"
+    },
+    {
+      "order": 4,
+      "id": "path-of-still-water",
+      "title": "Path of Still Water",
+      "path": "assets/audio/path-of-still-water.mp3",
+      "duration_seconds": 182.178,
+      "role": "deep reflection / still-water ambience",
+      "status": "active"
+    },
+    {
+      "order": 5,
+      "id": "breath-of-the-morning",
+      "title": "Breath of the Morning",
+      "path": "assets/audio/breath-of-the-morning.mp3",
+      "duration_seconds": 174.42,
+      "role": "closing / quiet renewal",
       "status": "active"
     }
   ]

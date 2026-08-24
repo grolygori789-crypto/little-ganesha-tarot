@@ -29,6 +29,56 @@
   // authoritative live value without rewriting the stable app shell.
   installSlot('LGT_BUILD', () => RUNTIME_BUILD);
 
+
+  // AUDIO PLAYLIST V1 — expand the runtime playlist from 2 to 5 tracks
+  // without replacing the already-passed LittleGaneshaAudio engine.
+  const AUDIO_PLAYLIST_VERSION = 'audio-playlist-v1';
+  const AUDIO_PLAYLIST_EXTENSION = Object.freeze([
+    Object.freeze({
+      id: 'bamboo-in-the-rain',
+      title: 'Bamboo in the Rain',
+      src: 'assets/audio/bamboo-in-the-rain.mp3'
+    }),
+    Object.freeze({
+      id: 'path-of-still-water',
+      title: 'Path of Still Water',
+      src: 'assets/audio/path-of-still-water.mp3'
+    }),
+    Object.freeze({
+      id: 'breath-of-the-morning',
+      title: 'Breath of the Morning',
+      src: 'assets/audio/breath-of-the-morning.mp3'
+    })
+  ]);
+
+  installSlot('LGTAudio', (next) => {
+    if (!next || next.__playlistVersion === AUDIO_PLAYLIST_VERSION) return next;
+    if (!Array.isArray(next.tracks)) return next;
+
+    for (const track of AUDIO_PLAYLIST_EXTENSION) {
+      if (!next.tracks.some((item) => item?.id === track.id)) {
+        next.tracks.push({ ...track });
+      }
+    }
+
+    // audio.js V0.16.0 constructs with the original 2-track array and clamps
+    // the persisted index during construction. Restore a valid saved index
+    // after the extension is attached, before the first user-initiated play.
+    const savedIndex = Number.parseInt(localStorage.getItem('lgt.track') || '0', 10);
+    if (Number.isInteger(savedIndex) && savedIndex >= 0 && savedIndex < next.tracks.length) {
+      next.currentIndex = savedIndex;
+    }
+
+    try {
+      Object.defineProperty(next, '__playlistVersion', {
+        value: AUDIO_PLAYLIST_VERSION,
+        configurable: true
+      });
+    } catch (_) {}
+
+    return next;
+  });
+
   function isHindiAnalysis(analysis) {
     return String(analysis?.version || '').includes('hi') ||
       /[\u0900-\u097F]/u.test(String(analysis?.text || ''));
@@ -484,7 +534,8 @@
       'lucky-number-set-order',
       'read-hub-ask-count',
       'legal-kofi-attribution',
-      'build-marker-coherence'
+      'build-marker-coherence',
+      'audio-playlist-5'
     ])
   });
 
