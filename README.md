@@ -1,68 +1,82 @@
-# Little Ganesha Tarot — V0.15.1 Studio Contact Polish
+# Little Ganesha Tarot — V0.16.0 Worldwide Ko-fi Support
 
 **Studio:** Benedict Interactive  
-**Target runtime:** V0.15.1  
-**Stable baseline runtime:** V0.15.0  
-**Stable baseline GitHub HEAD:** `bf8a875ac886e67cfb4bab607fb3c212c5472bc6` — `Add Help & Feedback V0.15.0`  
+**Target runtime:** V0.16.0  
+**Stable baseline runtime:** V0.15.1  
+**Stable baseline GitHub HEAD:** `34a6d27659f01eaf3ad703dece9c6017c68db2ae` — `Refresh Handoff V5.0`  
 **Reading Engine:** 1.1.0 (unchanged)  
 **Deck Ritual:** 1.1.0 (unchanged)  
 **Legal acknowledgement version:** 1.0.0 (unchanged)
 
-## V0.15.1
+## V0.16.0
 
-V0.15.1 is a small production polish release for Benedict Interactive contact identity. It does not change tarot behavior, reading persistence, the V0.15.0 Tarot Library keyboard fix, Help & Feedback transport, diagnostics, Journal, payments, audio, or legal acknowledgement behavior.
+V0.16.0 activates the official worldwide voluntary-support destination through Ko-fi:
 
-### Public studio contact
+`https://ko-fi.com/benedictinteractive`
 
-Help & Feedback now presents a concise public contact identity:
+Settings → Support the Project now presents two active, isolated support routes:
 
-- **Benedict Interactive**
-- **Bangkok, Thailand**
-- **benedict.support@gmail.com**
+- **Worldwide:** Ko-fi
+- **Thailand:** PromptPay
 
-The same identity appears in the Help & Feedback report/feedback screen so users can clearly see who receives support mail. The email address remains a user-initiated `mailto:` destination; Little Ganesha Tarot does not silently send reports in the background.
+### Worldwide support UX
 
-`Bangkok, Thailand` is intentionally a coarse studio location. It is not presented as a registered office or full legal service address, and no street-level address is exposed.
+The previous Worldwide `Coming soon` state is replaced by a premium in-app Ko-fi support sheet using the existing Little Ganesha visual language.
 
-## Preserved V0.15.0 behavior
+The flow is:
 
-The V0.15.0 Tarot Library mobile search fix remains unchanged: the search input stays mounted while users type, so mobile software keyboards and EN / TH / HI input composition are not interrupted by per-character DOM replacement.
+Settings → Support the Project → Worldwide Support → Ko-fi sheet → user-initiated external Ko-fi page.
 
-Help & Feedback remains available from Settings with:
+The Ko-fi sheet includes:
 
-- Report a Problem
-- Send Feedback
-- Copy Diagnostic Info
+- EN / TH / HI native copy;
+- Little Ganesha / The Golden Path masthead;
+- clear Benedict Interactive support identity;
+- external-destination disclosure;
+- a single primary `Continue to Ko-fi` action;
+- optional-support disclaimer;
+- Back to Settings / Back to Home navigation;
+- Reduced Motion compatibility.
 
-Diagnostics remain limited to non-sensitive technical context such as build, language, platform, browser family/major version, Browser/PWA mode, current screen and timestamp. The module does not automatically read Ask questions, Journal content, readings, profile data, payment information, screenshots, location data or tracking identifiers.
+Ko-fi payment/account handling stays outside Little Ganesha Tarot. No payment backend, callback, donor account, entitlement, unlock, reading-quality change, analytics dependency, or support-linked probability is introduced.
+
+## PromptPay
+
+PromptPay behavior is preserved. The QR, recipient names, verification reminder, Save QR behavior and support isolation remain unchanged.
 
 ## Protected behavior
 
-V0.15.1 does not modify:
+V0.16.0 does not modify:
 
 - Reading Engine 1.1.0 or Deck Ritual 1.1.0;
 - canonical 78-card content or selection integrity;
 - Daily / Ask / Signature Focus persistence and locks;
-- Lucky Numbers selection, replay, SFX or haptics;
-- Tarot Library search/filter semantics beyond the already-shipped V0.15.0 fix;
-- Journal IndexedDB/capture/delete behavior;
+- Three-Card / Golden Path / Remove the Obstacle reading contracts;
+- Lucky Numbers generation, persistence, Replay, SFX or haptics;
+- Tarot Library V0.15.0 keyboard/search fix;
+- Journal IndexedDB / capture / deletion behavior;
 - Reading Hub;
-- PromptPay support;
+- PromptPay destination/QR behavior;
 - Legal Center or legal acknowledgement version 1.0.0;
+- Help & Feedback transport or diagnostics;
 - reading Save/Share;
 - background audio lifecycle;
 - card viewers or app icons.
 
 ## Runtime coherence
 
-HTML metadata, body build marker, CSS/JS/manifest query strings, `window.LGT_BUILD`, visible build label, manifest icon URLs, Service Worker build/cache identity and application-shell URLs move coherently to V0.15.1.
+HTML metadata/body/build label and asset query strings, live `window.LGT_BUILD`, manifest icon URLs, Service Worker BUILD/cache identity and app-shell URLs move to V0.16.0.
+
+The existing `js/app.js` feature logic is intentionally left otherwise unchanged; `js/support.js` finalizes the live build marker after the app shell initializes.
 
 ## Risk
 
-Functional change: **LOW** — static studio-contact presentation only.  
+Functional change: **LOW** — isolated support UI and external link only.  
 Operational deployment: **HIGH** — Service Worker/cache identity moves with the runtime build.  
-Rollback baseline: `bf8a875ac886e67cfb4bab607fb3c212c5472bc6`.
+Rollback baseline: `34a6d27659f01eaf3ad703dece9c6017c68db2ae`.
 
 ## Acceptance
 
-Static/package QA verifies JavaScript syntax, JSON validity, contact identity, support mailto destination, runtime coherence, protected-search preservation and SHA-256 package integrity. A real-device acceptance pass remains required for final Settings/contact presentation and installed-PWA update behavior.
+Static/package QA covers Ko-fi URL identity, EN/TH/HI support copy, external-link safety attributes, PromptPay preservation, runtime coherence, syntax/JSON validity, no support-to-reading coupling, and package checksums.
+
+Real-device acceptance remains required for installed-PWA update behavior, visual polish, focus/back navigation, and opening/returning from Ko-fi on the target phone.
