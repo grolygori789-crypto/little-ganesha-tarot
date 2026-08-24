@@ -1,0 +1,18 @@
+DELETE THESE 4 RESTORE-ONLY FILES AFTER UPLOADING THE REPLACEMENTS
+
+docs/checksums/CHECKSUMS_STABLE_RESTORE_KOFI_AUDIO5.sha256
+docs/qa/QA_STABLE_RESTORE_KOFI_AUDIO5.md
+docs/releases/RELEASE_NOTES_STABLE_RESTORE_KOFI_AUDIO5.md
+js/audio-playlist-5.js
+
+Do NOT delete:
+- assets/audio/bamboo-in-the-rain.mp3
+- assets/audio/path-of-still-water.mp3
+- assets/audio/breath-of-the-morning.mp3
+- data/AUDIO_MANIFEST_V1.json
+- Ko-fi / support files
+- HF1 QA/release/checksum files
+
+Target state:
+d17b918a0441ef4e651a2d6ce5bab50f8d613703
+Complete five-track soundtrack
