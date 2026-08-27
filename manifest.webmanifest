@@ -8,6 +8,7 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#071d1e",
   "theme_color": "#0c2b2c",
   "prefer_related_applications": false,

@@ -13,11 +13,57 @@
   <style id="lgt-zoom-lock">
     html, body { touch-action: pan-x pan-y; }
   </style>
+  <script id="lgt-orientation-lock">
+    (() => {
+      'use strict';
+
+      const TARGETS = ['portrait-primary', 'portrait'];
+
+      async function lockPortrait() {
+        const orientation = screen.orientation;
+        if (!orientation || typeof orientation.lock !== 'function') return false;
+
+        for (const target of TARGETS) {
+          try {
+            await orientation.lock(target);
+            return true;
+          } catch (_) {}
+        }
+        return false;
+      }
+
+      function requestPortraitLock() {
+        if (document.visibilityState !== 'visible') return;
+        lockPortrait().catch(() => {});
+      }
+
+      window.addEventListener('load', requestPortraitLock, { once: true });
+      window.addEventListener('pageshow', requestPortraitLock);
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) requestPortraitLock();
+      });
+      document.addEventListener('pointerdown', requestPortraitLock, { capture: true, passive: true, once: true });
+      document.addEventListener('touchstart', requestPortraitLock, { capture: true, passive: true, once: true });
+
+      if (screen.orientation?.addEventListener) {
+        screen.orientation.addEventListener('change', () => {
+          if (String(screen.orientation.type || '').startsWith('landscape')) {
+            requestPortraitLock();
+          }
+        });
+      }
+
+      window.LGTOrientationLock = Object.freeze({
+        target: 'portrait-primary',
+        lock: lockPortrait
+      });
+    })();
+  </script>
   <meta name="description" content="Little Ganesha Tarot — The Golden Path by Benedict Interactive">
   <meta name="application-version" content="0.16.0">
   <title>Little Ganesha Tarot — The Golden Path</title>
 
-  <link rel="manifest" href="manifest.webmanifest?v=0.16.0">
+  <link rel="manifest" href="manifest.webmanifest?v=0.16.0-portrait1">
   <link rel="icon" href="assets/icons/favicon.ico?v=0.16.0" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png?v=0.16.0">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png?v=0.16.0">
