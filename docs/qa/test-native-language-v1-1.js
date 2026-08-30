@@ -1,0 +1,10 @@
+const fs=require('fs'),vm=require('vm');
+const source=fs.readFileSync('js/native-language-v1.js','utf8');
+const cards=Array.from({length:78},(_,i)=>({id:String(i).padStart(2,'0'),upright:{en:'OLD EN '+i,th:'OLD TH '+i,hi:'HI '+i},reflection:{en:'REF EN '+i,th:'REF TH '+i,hi:'REF HI '+i},dailyLenses:{workGoals:{en:'WEN'+i,th:'WTH'+i,hi:'WHI'+i},moneyResources:{en:'MEN'+i,th:'MTH'+i,hi:'MHI'+i}}}));
+const before=cards.map(c=>JSON.stringify({reflection:c.reflection,dailyLenses:c.dailyLenses,hi:c.upright.hi}));
+const document={currentScript:{dataset:{stage:'core'}},documentElement:{lang:'en'}};
+const window={LGTReadingContent:{cards}};
+vm.runInNewContext(source,{window,document,Object,console,MutationObserver:function(){}});
+if(cards.some((c,i)=>JSON.stringify({reflection:c.reflection,dailyLenses:c.dailyLenses,hi:c.upright.hi})!==before[i])) throw new Error('Non-upright content changed');
+if(cards.some(c=>!c.upright.en||!c.upright.th)) throw new Error('Missing EN/TH upright');
+console.log('PASS: 78 cards, upright-only patch, lenses/reflection/Hindi preserved');
