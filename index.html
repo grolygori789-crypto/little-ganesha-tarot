@@ -63,7 +63,7 @@
   <meta name="application-version" content="0.16.0">
   <title>Little Ganesha Tarot — The Golden Path</title>
 
-  <link rel="manifest" href="manifest.webmanifest?v=0.16.0-portrait1">
+  <link rel="manifest" href="manifest.webmanifest?v=0.16.0-fullscreen1">
   <link rel="icon" href="assets/icons/favicon.ico?v=0.16.0" sizes="any">
   <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png?v=0.16.0">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png?v=0.16.0">
@@ -201,7 +201,7 @@
         <section class="settings-group"><h3 data-copy="experience">Experience</h3>
           <div class="setting-row"><div><strong data-copy="language">Language</strong><small data-copy="languageSub">Choose English or Thai</small></div><div class="segmented" role="group" aria-label="Language" data-copy-aria="languageAria"><button data-language="en" type="button">EN</button><button data-language="th" type="button">ไทย</button><button data-language="hi" type="button">हिन्दी</button></div></div>
           <div class="setting-row"><div><strong data-copy="motion">Motion</strong><small data-copy="motionSub">System follows your device accessibility setting</small></div><select id="motionSelect" aria-label="Motion" data-copy-aria="motion"><option value="system" data-copy-option="motionSystem">System</option><option value="full" data-copy-option="motionFull">Full</option><option value="reduced" data-copy-option="motionReduced">Reduced</option></select></div>
-          <div class="setting-row" id="browserFullscreenRow"><div><strong data-copy="immersive">Browser Full Screen</strong><small data-copy="immersiveSub">Optional · installed app already opens in app-like mode</small></div><label class="switch"><input id="immersiveToggle" type="checkbox" aria-label="Browser Full Screen" data-copy-aria="immersive"><span></span></label></div>
+          <div class="setting-row" id="browserFullscreenRow" hidden><div><strong data-copy="immersive">Browser Full Screen</strong><small data-copy="immersiveSub">Optional · installed app already opens in app-like mode</small></div><label class="switch"><input id="immersiveToggle" type="checkbox" aria-label="Browser Full Screen" data-copy-aria="immersive"><span></span></label></div>
         </section>
 
         <section class="settings-group"><h3 data-copy="audio">Audio</h3>
@@ -279,7 +279,7 @@
   <script src="js/pwa.js?v=0.16.0" defer></script>
   <script src="js/audio.js?v=0.16.0" defer></script>
   <script src="js/profile-details.js?v=0.16.0" defer></script>
-  <script src="js/app.js?v=0.16.0" defer></script>
+  <script src="js/app.js?v=0.16.0-fullscreen1" defer></script>
   <script src="js/reading-content.js?v=0.16.0" defer></script>
   <script src="js/native-language-v1.js?v=0.16.0-native1.1" data-stage="core" defer></script>
   <script src="js/hindi-content.js?v=0.16.0" defer></script>

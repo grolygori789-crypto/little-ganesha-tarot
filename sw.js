@@ -1,6 +1,6 @@
 'use strict';
 
-const BUILD = '0.16.0';
+const BUILD = '0.16.0-fullscreen1';
 const CACHE_PREFIX = 'little-ganesha-tarot-';
 const SHELL_CACHE = `${CACHE_PREFIX}shell-${BUILD}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${BUILD}`;
@@ -12,7 +12,7 @@ const PROMPTPAY_CANONICAL = url('assets/support/promptpay-qr.png?v=0.16.0');
 const APP_SHELL = [
   url('./'),
   url('index.html'),
-  url('manifest.webmanifest?v=0.16.0'),
+  url('manifest.webmanifest?v=0.16.0-fullscreen1'),
   url('css/app.css?v=0.16.0'),
   url('css/reading.css?v=0.16.0'),
   url('css/three-card-viewer.css?v=0.16.0'),
@@ -31,7 +31,7 @@ const APP_SHELL = [
   url('js/pwa.js?v=0.16.0'),
   url('js/audio.js?v=0.16.0'),
   url('js/profile-details.js?v=0.16.0'),
-  url('js/app.js?v=0.16.0'),
+  url('js/app.js?v=0.16.0-fullscreen1'),
   url('js/reading-content.js?v=0.16.0'),
   url('js/hindi-content.js?v=0.16.0'),
   url('js/reading-engine.js?v=0.16.0'),

@@ -78,7 +78,9 @@
   function showToast(message) { if (toastTimer) clearTimeout(toastTimer); toast.textContent = message; toast.hidden = false; requestAnimationFrame(() => toast.classList.add('is-visible')); toastTimer = setTimeout(() => { toast.classList.remove('is-visible'); setTimeout(() => { toast.hidden = true; }, 220); }, 2400); }
 
   function isStandaloneMode() {
-    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    return window.matchMedia('(display-mode: fullscreen)').matches ||
+      window.matchMedia('(display-mode: standalone)').matches ||
+      window.navigator.standalone === true;
   }
 
   async function requestImmersive() {
@@ -100,7 +102,9 @@
 
   async function beginJourney() {
     if (journeyStarted) return; journeyStarted = true; beginButton.disabled = true; liveStatus.textContent = copy('ready');
-    await audio.unlockAndStart(); syncAudioUI();
+    const audioStart = audio.unlockAndStart();
+    const fullscreenStart = requestImmersive();
+    await audioStart; await fullscreenStart; syncAudioUI();
     title.classList.add('is-beginning');
     setTimeout(() => {
       const done = localStorage.getItem(STORAGE.onboardingDone) === 'yes';
@@ -245,7 +249,7 @@
   function togglePlayerPanel() { const expanded = playerMore.getAttribute('aria-expanded') === 'true'; playerMore.setAttribute('aria-expanded', String(!expanded)); playerPanel.hidden = expanded; miniPlayer.classList.toggle('is-expanded', !expanded); }
   function requestExitToTitle() { exitModal.hidden = false; requestAnimationFrame(() => exitModal.classList.add('is-visible')); exitCancel.focus({ preventScroll: true }); }
   function closeExitModal() { exitModal.classList.remove('is-visible'); setTimeout(() => { exitModal.hidden = true; }, 220); }
-  async function exitToTitle() { closeExitModal(); await audio.stop({ resetTrack: false }); journeyStarted = false; mainApp.hidden = true; mainApp.classList.remove('settings-open'); onboarding.hidden = true; title.hidden = false; title.classList.remove('is-beginning'); beginButton.disabled = false; miniPlayer.classList.remove('is-visible', 'is-expanded'); playerPanel.hidden = true; playerMore.setAttribute('aria-expanded', 'false'); setTimeout(() => { miniPlayer.hidden = true; }, 260); if (document.fullscreenElement && document.exitFullscreen) { try { await document.exitFullscreen(); } catch (_) {} } requestAnimationFrame(() => title.classList.add('is-visible')); }
+  async function exitToTitle() { closeExitModal(); await audio.stop({ resetTrack: false }); journeyStarted = false; mainApp.hidden = true; mainApp.classList.remove('settings-open'); onboarding.hidden = true; title.hidden = false; title.classList.remove('is-beginning'); beginButton.disabled = false; miniPlayer.classList.remove('is-visible', 'is-expanded'); playerPanel.hidden = true; playerMore.setAttribute('aria-expanded', 'false'); setTimeout(() => { miniPlayer.hidden = true; }, 260); requestAnimationFrame(() => title.classList.add('is-visible')); }
 
   document.querySelectorAll('[data-language]').forEach((button) => button.addEventListener('click', () => setLanguage(button.dataset.language)));
   beginButton.addEventListener('click', beginJourney); soundToggle.addEventListener('click', () => audio.setEnabled(!audio.getState().enabled));
