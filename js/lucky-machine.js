@@ -1,12 +1,26 @@
 (() => {
   'use strict';
 
-  const VERSION = 'lucky-machine-v1.2';
+  const VERSION = 'lucky-machine-v1.3';
   const TAU = Math.PI * 2;
   const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
   const lerp = (a, b, t) => a + ((b - a) * t);
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
   const easeInOut = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const REVEAL_TIMES = [3.30, 5.80, 8.30];
+  const SETTLE_START = 8.34;
+  const COMPLETE_TIME = 10.42;
+
+  function mulberry32(seed) {
+    let value = seed >>> 0;
+    return () => {
+      value = (value + 0x6D2B79F5) >>> 0;
+      let t = value;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
 
   function roundedRectPath(ctx, x, y, width, height, radius) {
     const r = Math.min(radius, width / 2, height / 2);
@@ -41,6 +55,8 @@
       this.reducedVisible = 0;
       this.dialAngle = 0;
       this.balls = [];
+      this.layoutNonce = 0;
+      this.settleTargetReady = false;
       this.resizeObserver = typeof ResizeObserver === 'function' ? new ResizeObserver(() => this.resize()) : null;
       this.resizeObserver?.observe(canvas);
       window.addEventListener('resize', () => this.resize(), { passive: true });
@@ -86,36 +102,187 @@
       this.draw(performance.now());
     }
 
-    resetBalls() {
-      const g = this.geometry();
-      const positions = [];
-      const rings = [
-        { count: 1, radius: 0, offset: 0 },
-        { count: 6, radius: 0.31, offset: -Math.PI / 2 },
-        { count: 10, radius: 0.58, offset: 0.11 },
-        { count: 13, radius: 0.82, offset: 0.04 }
-      ];
+    nextLayoutSeed() {
+      this.layoutNonce = (this.layoutNonce + 1) >>> 0;
+      const clock = (Date.now() & 0xffffffff) >>> 0;
+      return (clock ^ Math.imul(this.layoutNonce, 0x9E3779B1)) >>> 0;
+    }
 
-      rings.forEach(({ count, radius, offset }) => {
-        for (let index = 0; index < count; index += 1) {
-          const angle = count === 1 ? 0 : offset + ((index / count) * TAU);
-          positions.push([
-            Math.cos(angle) * radius,
-            Math.sin(angle) * radius
-          ]);
-        }
+    createRestingLayout(count, g, seed = this.nextLayoutSeed()) {
+      const rng = mulberry32(seed);
+      const radius = g.mixBallR;
+      const maxDistance = g.chamberR - (radius * 1.08);
+      const minimum = radius * 2.05;
+      const points = Array.from({ length: count }, (_, index) => {
+        const angle = rng() * TAU;
+        const distance = Math.sqrt(rng()) * maxDistance * 0.78;
+        return {
+          x: g.cx + Math.cos(angle) * distance,
+          y: g.cy + Math.sin(angle) * distance * 0.72 - (g.chamberR * 0.18),
+          vx: (rng() - 0.5) * g.chamberR * 0.12,
+          vy: (rng() - 0.5) * g.chamberR * 0.08,
+          rotation: (rng() * TAU) + (index * 0.07)
+        };
       });
 
+      const constrainToChamber = (point) => {
+        const dx = point.x - g.cx;
+        const dy = point.y - g.cy;
+        const distance = Math.max(0.001, Math.hypot(dx, dy));
+        if (distance <= maxDistance) return;
+        const nx = dx / distance;
+        const ny = dy / distance;
+        point.x = g.cx + (nx * maxDistance);
+        point.y = g.cy + (ny * maxDistance);
+        const normalSpeed = (point.vx * nx) + (point.vy * ny);
+        if (normalSpeed > 0) {
+          point.vx -= normalSpeed * nx * 1.12;
+          point.vy -= normalSpeed * ny * 1.12;
+        }
+      };
+
+      const solveContacts = () => {
+        for (let i = 0; i < points.length; i += 1) {
+          for (let j = i + 1; j < points.length; j += 1) {
+            const a = points[i];
+            const b = points[j];
+            let dx = b.x - a.x;
+            let dy = b.y - a.y;
+            let distance = Math.hypot(dx, dy);
+            if (distance < 0.001) {
+              const angle = rng() * TAU;
+              dx = Math.cos(angle);
+              dy = Math.sin(angle);
+              distance = 1;
+            }
+            if (distance >= minimum) continue;
+            const nx = dx / distance;
+            const ny = dy / distance;
+            const overlap = (minimum - distance) * 0.505;
+            a.x -= nx * overlap;
+            a.y -= ny * overlap;
+            b.x += nx * overlap;
+            b.y += ny * overlap;
+            const relative = ((b.vx - a.vx) * nx) + ((b.vy - a.vy) * ny);
+            if (relative < 0) {
+              const impulse = -relative * 0.34;
+              a.vx -= impulse * nx;
+              a.vy -= impulse * ny;
+              b.vx += impulse * nx;
+              b.vy += impulse * ny;
+            }
+          }
+        }
+      };
+
+      // Position-based granular settling: gravity + circular wall + repeated
+      // equal-radius contact projection. This produces a stable, irregular pile
+      // without using an ordered ring/grid as the visible resting state.
+      const dt = 1 / 60;
+      for (let step = 0; step < 420; step += 1) {
+        points.forEach((point) => {
+          point.vy += g.chamberR * 3.55 * dt;
+          point.vx *= 0.972;
+          point.vy *= 0.972;
+          point.x += point.vx * dt;
+          point.y += point.vy * dt;
+        });
+        for (let pass = 0; pass < 4; pass += 1) {
+          points.forEach(constrainToChamber);
+          solveContacts();
+        }
+      }
+
+      // Final projection removes the tiny residual overlaps created by the last
+      // contact solve at the curved wall, then the balls are frozen at rest.
+      for (let pass = 0; pass < 36; pass += 1) {
+        points.forEach(constrainToChamber);
+        solveContacts();
+      }
+      points.forEach(constrainToChamber);
+      return points;
+    }
+
+    applyRestingLayout(balls, g = this.geometry()) {
+      const layout = this.createRestingLayout(balls.length, g);
+      balls.forEach((ball, index) => {
+        const point = layout[index];
+        ball.x = point.x;
+        ball.y = point.y;
+        ball.vx = 0;
+        ball.vy = 0;
+        ball.rotation = point.rotation;
+        ball.spin = 0;
+      });
+    }
+
+    stabilizeLiveBalls(balls, g = this.geometry()) {
+      const minimum = g.mixBallR * 2.03;
+      const maxDistance = g.chamberR - (g.mixBallR * 1.03);
+      for (let pass = 0; pass < 60; pass += 1) {
+        balls.forEach((ball) => {
+          const dx = ball.x - g.cx;
+          const dy = ball.y - g.cy;
+          const distance = Math.max(0.001, Math.hypot(dx, dy));
+          if (distance > maxDistance) {
+            const nx = dx / distance;
+            const ny = dy / distance;
+            ball.x = g.cx + (nx * maxDistance);
+            ball.y = g.cy + (ny * maxDistance);
+          }
+        });
+        for (let i = 0; i < balls.length; i += 1) {
+          for (let j = i + 1; j < balls.length; j += 1) {
+            const a = balls[i];
+            const b = balls[j];
+            let dx = b.x - a.x;
+            let dy = b.y - a.y;
+            let distance = Math.hypot(dx, dy);
+            if (distance < 0.001) {
+              dx = 1;
+              dy = 0;
+              distance = 1;
+            }
+            if (distance >= minimum) continue;
+            const nx = dx / distance;
+            const ny = dy / distance;
+            const overlap = (minimum - distance) * 0.505;
+            a.x -= nx * overlap;
+            a.y -= ny * overlap;
+            b.x += nx * overlap;
+            b.y += ny * overlap;
+          }
+        }
+        balls.forEach((ball) => {
+          const dx = ball.x - g.cx;
+          const dy = ball.y - g.cy;
+          const distance = Math.max(0.001, Math.hypot(dx, dy));
+          if (distance <= maxDistance) return;
+          const nx = dx / distance;
+          const ny = dy / distance;
+          ball.x = g.cx + (nx * maxDistance);
+          ball.y = g.cy + (ny * maxDistance);
+        });
+      }
+      balls.forEach((ball) => {
+        ball.vx = 0;
+        ball.vy = 0;
+        ball.spin = 0;
+      });
+    }
+
+    resetBalls() {
+      const g = this.geometry();
       // Three physical copies of every digit: 0..9 × 3 = 30 orbs.
-      // The copies are presentation only; number selection itself happens independently in storage.
-      this.balls = positions.map(([px, py], index) => ({
+      // Number selection remains independent; these are only the physical presentation.
+      this.balls = Array.from({ length: 30 }, (_, index) => ({
         number: index % 10,
         copyIndex: Math.floor(index / 10),
-        x: g.cx + (px * g.chamberR),
-        y: g.cy + (py * g.chamberR),
+        x: g.cx,
+        y: g.cy,
         vx: 0,
         vy: 0,
-        rotation: (index * 0.51) % TAU,
+        rotation: 0,
         spin: 0,
         ejected: false,
         ejectedAt: 0,
@@ -124,6 +291,7 @@
         startY: 0,
         slotIndex: -1
       }));
+      this.applyRestingLayout(this.balls, g);
     }
 
     setActive(active) {
@@ -157,6 +325,7 @@
       this.selected = [];
       this.revealFlags = [false, false, false];
       this.reducedVisible = 0;
+      this.settleTargetReady = false;
       this.resetBalls();
       this.draw(performance.now());
     }
@@ -176,18 +345,25 @@
         options.onPhase?.('reveal');
         [0, 1, 2].forEach((index) => {
           const timer = setTimeout(() => {
+            const ball = this.balls.find((candidate) => candidate.number === this.selected[index] && !candidate.ejected);
+            if (ball) {
+              ball.ejected = true;
+              ball.landed = true;
+              ball.slotIndex = index;
+            }
             this.reducedVisible = index + 1;
             options.onReveal?.(index, this.selected[index]);
             this.draw(performance.now());
             if (index === 2) {
               const done = setTimeout(() => {
+                this.applyRestingLayout(this.balls.filter((candidate) => !candidate.ejected));
                 this.state = 'result';
                 options.onComplete?.();
                 this.draw(performance.now());
-              }, 260);
+              }, 820);
               this.timers.push(done);
             }
-          }, 260 + (index * 360));
+          }, REVEAL_TIMES[index] * 1000);
           this.timers.push(timer);
         });
         return;
@@ -222,6 +398,9 @@
           ball.slotIndex = index;
         }
       });
+      // Restored/replayed results should look like a real machine that has stopped:
+      // the 27 remaining orbs settle under gravity instead of returning to a ring.
+      this.applyRestingLayout(this.balls.filter((ball) => !ball.ejected));
       this.draw(performance.now());
     }
 
@@ -229,15 +408,15 @@
       if (this.state !== 'playing') return;
       const elapsed = (now - this.startedAt) / 1000;
       const g = this.geometry();
-      const spinPower = clamp(1 - Math.max(0, elapsed - 2.1) / 1.4, 0.18, 1);
-      this.dialAngle += dt * (8.5 + (spinPower * 13));
+      const settleProgress = clamp((elapsed - SETTLE_START) / (COMPLETE_TIME - SETTLE_START), 0, 1);
+      const spinPower = lerp(0.78, 0, easeInOut(settleProgress));
+      this.dialAngle += dt * (6.4 + (spinPower * 15.5));
 
-      if (elapsed > 1.55 && this.phase !== 'reveal') {
+      if (elapsed > (REVEAL_TIMES[0] - 0.22) && this.phase !== 'reveal') {
         this.phase = 'reveal';
         this.callbacks.onPhase?.('reveal');
       }
-      const revealTimes = [1.72, 2.40, 3.08];
-      revealTimes.forEach((time, index) => {
+      REVEAL_TIMES.forEach((time, index) => {
         if (elapsed >= time && !this.revealFlags[index]) {
           this.revealFlags[index] = true;
           // Repeated results use a different physical copy of the same digit.
@@ -253,17 +432,51 @@
       });
 
       const live = this.balls.filter((ball) => !ball.ejected);
+      if (settleProgress > 0 && !this.settleTargetReady) {
+        const targets = this.createRestingLayout(live.length, g);
+        const orderedBalls = [...live].sort((a, b) => (a.x - b.x) || (a.y - b.y));
+        const orderedTargets = [...targets].sort((a, b) => (a.x - b.x) || (a.y - b.y));
+        orderedBalls.forEach((ball, index) => {
+          ball.settleX = orderedTargets[index].x;
+          ball.settleY = orderedTargets[index].y;
+        });
+        this.settleTargetReady = true;
+      }
+
       live.forEach((ball) => {
         const dx = ball.x - g.cx;
         const dy = ball.y - g.cy;
         const distance = Math.max(1, Math.hypot(dx, dy));
         const tangentX = -dy / distance;
         const tangentY = dx / distance;
-        const swirl = g.chamberR * 3.25 * spinPower;
-        ball.vx += tangentX * swirl * dt;
-        ball.vy += tangentY * swirl * dt;
-        ball.vx *= Math.pow(0.55, dt * (0.9 + (1 - spinPower)));
-        ball.vy *= Math.pow(0.55, dt * (0.9 + (1 - spinPower)));
+        const swirl = g.chamberR * 3.05 * spinPower;
+        const inward = g.chamberR * 1.18 * spinPower;
+        ball.vx += (tangentX * swirl * dt) - ((dx / distance) * inward * dt);
+        ball.vy += (tangentY * swirl * dt) - ((dy / distance) * inward * dt);
+        // Gravity is always present; while the motor is strong it is secondary,
+        // then it becomes dominant as the mechanism winds down.
+        ball.vy += g.chamberR * 0.92 * dt;
+
+        // Once the final reveal begins, motor force fades and gravity takes over.
+        // Stronger damping models rolling/contact friction so the remaining orbs
+        // naturally settle into an irregular pile instead of lining the glass wall.
+        if (settleProgress > 0) {
+          ball.vy += g.chamberR * 5.8 * settleProgress * dt;
+          if (Number.isFinite(ball.settleX) && Number.isFinite(ball.settleY)) {
+            const spring = 10.5 * easeInOut(settleProgress);
+            ball.vx += (ball.settleX - ball.x) * spring * dt;
+            ball.vy += (ball.settleY - ball.y) * spring * dt;
+          }
+          const settleDrag = Math.pow(0.028, dt * (1.35 + (settleProgress * 3.1)));
+          ball.vx *= settleDrag;
+          ball.vy *= settleDrag;
+          ball.spin *= Math.pow(0.18, dt * (1 + (settleProgress * 2)));
+        } else {
+          const motorDrag = Math.pow(0.58, dt * 0.82);
+          ball.vx *= motorDrag;
+          ball.vy *= motorDrag;
+        }
+
         ball.x += ball.vx * dt;
         ball.y += ball.vy * dt;
         ball.rotation += ball.spin * dt;
@@ -278,36 +491,56 @@
           ball.x = g.cx + (nx * maxDistance);
           ball.y = g.cy + (ny * maxDistance);
           const dot = (ball.vx * nx) + (ball.vy * ny);
-          ball.vx -= 1.84 * dot * nx;
-          ball.vy -= 1.84 * dot * ny;
+          const wallResponse = lerp(1.84, 1.06, settleProgress);
+          ball.vx -= wallResponse * dot * nx;
+          ball.vy -= wallResponse * dot * ny;
         }
       });
 
-      // Lightweight equal-mass collisions keep all 30 crystal orbs tactile without a heavy physics dependency.
-      for (let i = 0; i < live.length; i += 1) {
-        for (let j = i + 1; j < live.length; j += 1) {
-          const a = live[i];
-          const b = live[j];
-          const dx = b.x - a.x;
-          const dy = b.y - a.y;
-          const distance = Math.max(0.001, Math.hypot(dx, dy));
-          const minimum = g.mixBallR * 2.03;
-          if (distance >= minimum) continue;
-          const nx = dx / distance;
-          const ny = dy / distance;
-          const overlap = (minimum - distance) * 0.5;
-          a.x -= nx * overlap;
-          a.y -= ny * overlap;
-          b.x += nx * overlap;
-          b.y += ny * overlap;
-          const relative = ((b.vx - a.vx) * nx) + ((b.vy - a.vy) * ny);
-          if (relative < 0) {
-            const impulse = -relative * 0.88;
-            a.vx -= impulse * nx;
-            a.vy -= impulse * ny;
-            b.vx += impulse * nx;
-            b.vy += impulse * ny;
+      // Equal-mass contact resolution keeps the orbs tactile. During the
+      // settling phase we use extra position-solver passes so the final pile
+      // cannot freeze with visible overlaps.
+      const collisionPasses = settleProgress > 0 ? 4 : 1;
+      for (let pass = 0; pass < collisionPasses; pass += 1) {
+        for (let i = 0; i < live.length; i += 1) {
+          for (let j = i + 1; j < live.length; j += 1) {
+            const a = live[i];
+            const b = live[j];
+            const dx = b.x - a.x;
+            const dy = b.y - a.y;
+            const distance = Math.max(0.001, Math.hypot(dx, dy));
+            const minimum = g.mixBallR * 2.03;
+            if (distance >= minimum) continue;
+            const nx = dx / distance;
+            const ny = dy / distance;
+            const overlap = (minimum - distance) * 0.505;
+            a.x -= nx * overlap;
+            a.y -= ny * overlap;
+            b.x += nx * overlap;
+            b.y += ny * overlap;
+            const relative = ((b.vx - a.vx) * nx) + ((b.vy - a.vy) * ny);
+            if (relative < 0) {
+              const impulse = -relative * lerp(0.88, 0.22, settleProgress);
+              a.vx -= impulse * nx;
+              a.vy -= impulse * ny;
+              b.vx += impulse * nx;
+              b.vy += impulse * ny;
+            }
           }
+        }
+
+        if (settleProgress > 0) {
+          live.forEach((ball) => {
+            const dx = ball.x - g.cx;
+            const dy = ball.y - g.cy;
+            const distance = Math.max(0.001, Math.hypot(dx, dy));
+            const maxDistance = g.chamberR - (g.mixBallR * 1.03);
+            if (distance <= maxDistance) return;
+            const nx = dx / distance;
+            const ny = dy / distance;
+            ball.x = g.cx + (nx * maxDistance);
+            ball.y = g.cy + (ny * maxDistance);
+          });
         }
       }
 
@@ -335,7 +568,8 @@
         }
       });
 
-      if (elapsed >= 4.03) {
+      if (elapsed >= COMPLETE_TIME) {
+        this.stabilizeLiveBalls(this.balls.filter((ball) => !ball.ejected), g);
         this.state = 'result';
         this.phase = 'result';
         this.balls.filter((ball) => ball.ejected).forEach((ball) => {
@@ -362,16 +596,10 @@
       this.drawPedestal(ctx, g, w, h);
       this.drawChamber(ctx, g, now);
 
-      const idleT = now / 1000;
-      this.balls.forEach((ball, index) => {
+      this.balls.forEach((ball) => {
         if (ball.ejected) return;
-        let x = ball.x;
-        let y = ball.y;
-        if (this.state === 'idle') {
-          x += Math.sin(idleT * 0.65 + index) * 0.72;
-          y += Math.cos(idleT * 0.52 + index * 0.8) * 0.55;
-        }
-        this.drawOrb(ctx, x, y, g.mixBallR, ball.number, ball.rotation, 0.93);
+        // Resting orbs stay physically at rest; no decorative floating/bobbing.
+        this.drawOrb(ctx, ball.x, ball.y, g.mixBallR, ball.number, ball.rotation, 0.93);
       });
 
       this.drawGlassHighlights(ctx, g);
