@@ -1,0 +1,43 @@
+/*
+ * Little Ganesha Tarot — App Interaction Lock V1.0
+ *
+ * Removes browser-page selection/callout/drag behaviour from the app surface
+ * without changing taps, scrolling, sliders, reading gestures, or text-entry
+ * controls. Editable controls deliberately keep native editing semantics.
+ */
+
+html,
+body,
+body * {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+img,
+picture,
+svg,
+canvas,
+video,
+a {
+  -webkit-user-drag: none !important;
+  user-drag: none;
+  -webkit-touch-callout: none !important;
+}
+
+/*
+ * Regression guard: user-editable fields must remain fully usable for typing,
+ * caret placement, correction, paste, and normal form interaction.
+ */
+input,
+textarea,
+[contenteditable]:not([contenteditable="false"]),
+[data-native-selection="allow"],
+input *,
+textarea *,
+[contenteditable]:not([contenteditable="false"]) *,
+[data-native-selection="allow"] * {
+  -webkit-user-select: text !important;
+  user-select: text !important;
+  -webkit-touch-callout: default !important;
+}
