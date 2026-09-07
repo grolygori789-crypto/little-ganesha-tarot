@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'lucky-content-v1.1';
+  const VERSION = 'lucky-content-v1.2';
 
   const COPY = {
     en: {
@@ -183,14 +183,66 @@
 
   function pattern(numbers, lang) {
     const language = normalizeLanguage(lang);
-    const [a, b, c] = numbers.map((number) => NUMBERS[language][number]);
+    if (!Array.isArray(numbers) || numbers.length !== 3) return '';
+    const values = numbers.map(Number);
+    const meanings = values.map((number) => NUMBERS[language][number]);
+    if (meanings.some((meaning) => !meaning)) return '';
+
+    const [first, second, third] = values;
+    const [a, b, c] = meanings;
+    const allSame = first === second && second === third;
+    const coreSupportRepeat = first === second && second !== third;
+    const coreBalanceRepeat = first === third && first !== second;
+    const supportBalanceRepeat = second === third && first !== second;
+
     if (language === 'th') {
+      if (allSame) {
+        return `วันนี้ “${a.keyword}” เด่นชัดเป็นพิเศษ เพราะเลขเดียวกันปรากฏครบทั้งสามบทบาท คุณภาพนี้จึงทำหน้าที่ทั้งเป็นแกน เป็นแรงหนุน และช่วยรักษาสมดุลของวัน ไม่ได้หมายความว่าเหตุการณ์ใดต้องเกิดขึ้น แต่ชวนให้สังเกตคุณภาพนี้ให้ชัดขึ้นเวลาตัดสินใจและเลือกว่าจะตอบสนองต่อสิ่งต่างๆ อย่างไร`;
+      }
+      if (coreSupportRepeat) {
+        return `วันนี้ “${a.keyword}” ถูกเน้นย้ำทั้งในฐานะแกนและแรงหนุน ส่วน “${c.keyword}” ช่วยรักษาสมดุล เลขเหล่านี้ไม่ได้บอกว่าอะไรต้องเกิดขึ้น แต่ชวนให้สังเกตว่าคุณภาพที่ถูกเน้นย้ำกำลังทั้งนำทางและพยุงการตัดสินใจของตัวเองอย่างไร`;
+      }
+      if (coreBalanceRepeat) {
+        return `วันนี้ “${a.keyword}” เชื่อมทั้งแกนและสมดุลของวัน ขณะที่ “${b.keyword}” เป็นแรงหนุน เลขเหล่านี้ไม่ได้บอกว่าอะไรต้องเกิดขึ้น แต่ชวนให้สังเกตว่าคุณภาพที่กลับมาซ้ำกำลังสะท้อนทั้งทิศทางและวิธีรักษาสมดุลของตัวเองอย่างไร`;
+      }
+      if (supportBalanceRepeat) {
+        return `วันนี้ให้ “${a.keyword}” เป็นแกน ส่วน “${b.keyword}” ถูกเน้นย้ำทั้งในฐานะแรงหนุนและสิ่งที่ช่วยรักษาสมดุล เลขเหล่านี้ไม่ได้บอกว่าอะไรต้องเกิดขึ้น แต่ชวนให้สังเกตว่าคุณภาพที่ซ้ำกันกำลังช่วยทั้งประคองและคุมจังหวะการตอบสนองของตัวเองอย่างไร`;
+      }
       return `วันนี้ให้ “${a.keyword}” เป็นแกน ใช้ “${b.keyword}” เป็นแรงหนุน และให้ “${c.keyword}” ช่วยคุมจังหวะให้พอดี เลขทั้งสามไม่ได้บอกว่าต้องเกิดอะไรขึ้น แต่ชวนให้สังเกตคุณภาพสามอย่างนี้เมื่อเลือกว่าจะตอบสนองกับเรื่องต่างๆ อย่างไร`;
     }
+
     if (language === 'hi') {
+      if (allSame) {
+        return `आज ${first} अंक तीनों भूमिकाओं में आया है, इसलिए “${a.keyword}” पर खास जोर है—दिशा, सहारा और संतुलन तीनों में। इसका अर्थ यह नहीं कि कोई घटना तय है; बस आज अपने फैसलों और प्रतिक्रियाओं में इस गुण को थोड़ा अधिक ध्यान से देखने का संकेत है।`;
+      }
+      if (coreSupportRepeat) {
+        return `आज ${first} अंक दो बार आया है, इसलिए “${a.keyword}” दिशा और सहारे—दोनों में मौजूद है; संतुलन की भूमिका में “${c.keyword}” है। ये अंक यह तय नहीं करते कि क्या होगा; वे बस ध्यान दिलाते हैं कि दोहराया गया यह गुण आज आपके फैसलों और प्रतिक्रियाओं में कहाँ दिखाई दे रहा है।`;
+      }
+      if (coreBalanceRepeat) {
+        return `आज ${first} अंक दो बार आया है, इसलिए “${a.keyword}” दिशा और संतुलन—दोनों में मौजूद है; सहारे की भूमिका में “${b.keyword}” है। ये अंक यह तय नहीं करते कि क्या होगा; वे बस ध्यान दिलाते हैं कि दोहराया गया यह गुण आज आपकी दिशा और आपके संतुलन—दोनों में कैसे काम कर रहा है।`;
+      }
+      if (supportBalanceRepeat) {
+        return `आज ${second} अंक दो बार आया है, इसलिए “${b.keyword}” सहारे और संतुलन—दोनों में मौजूद है; दिशा की भूमिका में “${a.keyword}” है। ये अंक यह तय नहीं करते कि क्या होगा; वे बस ध्यान दिलाते हैं कि यह दोहराया गया गुण आज आपके फैसलों और प्रतिक्रियाओं को कैसे संभाल रहा है।`;
+      }
       return `आज “${a.keyword}” को दिशा बनने दें, “${b.keyword}” को सहारा और “${c.keyword}” को संतुलन। ये तीन अंक यह तय नहीं करते कि क्या होगा; वे बस याद दिलाते हैं कि आज फैसलों और प्रतिक्रियाओं में किन तीन गुणों पर ध्यान देना उपयोगी हो सकता है।`;
     }
-    return `Let ${a.keyword.toLowerCase()} set the direction, ${b.keyword.toLowerCase()} become the support, and ${c.keyword.toLowerCase()} keep the day in balance. These numbers do not decide what will happen; they simply give you three qualities to notice as you choose how to respond.`;
+
+    const aKey = a.keyword.toLowerCase();
+    const bKey = b.keyword.toLowerCase();
+    const cKey = c.keyword.toLowerCase();
+    if (allSame) {
+      return `${a.keyword} is strongly emphasized today: the same digit appears in all three roles, so this quality carries the direction, support, and balance of the day. It does not predict what will happen; it simply invites you to notice this theme more deliberately in your choices and responses.`;
+    }
+    if (coreSupportRepeat) {
+      return `${a.keyword} is emphasized twice today, shaping both the direction and the support, while ${cKey} helps keep the day in balance. These numbers do not decide what will happen; they simply invite you to notice how the repeated quality is showing up in your choices and responses.`;
+    }
+    if (coreBalanceRepeat) {
+      return `${a.keyword} connects both the direction and the balance of the day, while ${bKey} provides the support. These numbers do not decide what will happen; they simply invite you to notice how the repeated quality is shaping both your direction and your sense of balance.`;
+    }
+    if (supportBalanceRepeat) {
+      return `Let ${aKey} set the direction, while ${bKey} is emphasized in both support and balance. These numbers do not decide what will happen; they simply invite you to notice how the repeated quality is helping steady your choices and responses.`;
+    }
+    return `Let ${aKey} set the direction, ${bKey} become the support, and ${cKey} keep the day in balance. These numbers do not decide what will happen; they simply give you three qualities to notice as you choose how to respond.`;
   }
 
   window.LGTLuckyContent = Object.freeze({

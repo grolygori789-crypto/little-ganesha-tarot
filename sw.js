@@ -1,6 +1,6 @@
 'use strict';
 
-const BUILD = '0.16.0-fullscreen1';
+const BUILD = '0.16.0-fullscreen1-lucky12';
 const CACHE_PREFIX = 'little-ganesha-tarot-';
 const SHELL_CACHE = `${CACHE_PREFIX}shell-${BUILD}`;
 const RUNTIME_CACHE = `${CACHE_PREFIX}runtime-${BUILD}`;
@@ -70,9 +70,9 @@ const APP_SHELL = [
   url('js/hindi-narratives.js?v=0.16.0'),
   url('js/hindi-runtime.js?v=0.16.0'),
   url('js/hindi-export.js?v=0.16.0'),
-  url('js/lucky-content.js?v=0.16.0'),
-  url('js/lucky-storage.js?v=0.16.0'),
-  url('js/lucky-machine.js?v=0.16.0'),
+  url('js/lucky-content.js?v=0.16.0-lucky12'),
+  url('js/lucky-storage.js?v=0.16.0-lucky12'),
+  url('js/lucky-machine.js?v=0.16.0-lucky12'),
   url('js/lucky-sfx.js?v=0.16.0'),
   url('js/lucky-export.js?v=0.16.0'),
   url('js/lucky-ui.js?v=0.16.0'),

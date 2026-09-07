@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'lucky-storage-v1.1';
+  const VERSION = 'lucky-storage-v1.2';
   const KEY = 'lgt.lucky.v1';
   const SCHEMA = 1;
 
@@ -15,7 +15,6 @@
   function validNumbers(numbers) {
     return Array.isArray(numbers)
       && numbers.length === 3
-      && new Set(numbers).size === 3
       && numbers.every((number) => Number.isInteger(number) && number >= 0 && number <= 9);
   }
 
@@ -46,7 +45,7 @@
 
   function randomInt(maxExclusive) {
     if (globalThis.crypto?.getRandomValues) {
-      // Rejection sampling keeps the tiny modulo bias out of daily selection.
+      // Rejection sampling keeps modulo bias out of each independent digit draw.
       const limit = Math.floor(0x100000000 / maxExclusive) * maxExclusive;
       const box = new Uint32Array(1);
       do { globalThis.crypto.getRandomValues(box); } while (box[0] >= limit);
@@ -56,13 +55,9 @@
   }
 
   function generateNumbers() {
-    const pool = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    const out = [];
-    while (out.length < 3) {
-      const index = randomInt(pool.length);
-      out.push(pool.splice(index, 1)[0]);
-    }
-    return out;
+    // Core, Supporting and Balancing are three independent 0..9 draws.
+    // Repeated digits are valid: 000, 777, 121, etc. all remain possible.
+    return [randomInt(10), randomInt(10), randomInt(10)];
   }
 
   function getToday() {

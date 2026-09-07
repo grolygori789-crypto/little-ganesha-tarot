@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'lucky-machine-v1.1';
+  const VERSION = 'lucky-machine-v1.2';
   const TAU = Math.PI * 2;
   const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
   const lerp = (a, b, t) => a + ((b - a) * t);
@@ -52,12 +52,15 @@
     geometry() {
       const w = this.width;
       const h = this.height;
-      const r = Math.min(w * 0.315, h * 0.245);
+      // Keep the machine footprint unchanged. Only the glass chamber grows a few percent,
+      // while its 30 mixing orbs become smaller than the three result orbs in the tray.
+      const r = Math.min(w * 0.33, h * 0.255);
       return {
         cx: w * 0.5,
         cy: h * 0.36,
         chamberR: r,
         ballR: Math.max(16, Math.min(w, h) * 0.053),
+        mixBallR: Math.max(10.5, Math.min(w, h) * 0.034),
         gateX: w * 0.5,
         gateY: h * 0.36 + r * 0.88,
         trayY: h * 0.855,
@@ -85,21 +88,38 @@
 
     resetBalls() {
       const g = this.geometry();
-      const positions = [
-        [-0.43, -0.44], [0, -0.51], [0.43, -0.42],
-        [-0.54, -0.03], [-0.18, -0.07], [0.19, -0.03], [0.54, 0.02],
-        [-0.38, 0.40], [0.05, 0.48], [0.42, 0.38]
+      const positions = [];
+      const rings = [
+        { count: 1, radius: 0, offset: 0 },
+        { count: 6, radius: 0.31, offset: -Math.PI / 2 },
+        { count: 10, radius: 0.58, offset: 0.11 },
+        { count: 13, radius: 0.82, offset: 0.04 }
       ];
+
+      rings.forEach(({ count, radius, offset }) => {
+        for (let index = 0; index < count; index += 1) {
+          const angle = count === 1 ? 0 : offset + ((index / count) * TAU);
+          positions.push([
+            Math.cos(angle) * radius,
+            Math.sin(angle) * radius
+          ]);
+        }
+      });
+
+      // Three physical copies of every digit: 0..9 × 3 = 30 orbs.
+      // The copies are presentation only; number selection itself happens independently in storage.
       this.balls = positions.map(([px, py], index) => ({
-        number: index,
-        x: g.cx + (px * g.chamberR * 1.15),
-        y: g.cy + (py * g.chamberR * 1.15),
+        number: index % 10,
+        copyIndex: Math.floor(index / 10),
+        x: g.cx + (px * g.chamberR),
+        y: g.cy + (py * g.chamberR),
         vx: 0,
         vy: 0,
         rotation: (index * 0.51) % TAU,
         spin: 0,
         ejected: false,
         ejectedAt: 0,
+        landed: false,
         startX: 0,
         startY: 0,
         slotIndex: -1
@@ -179,7 +199,7 @@
         const speed = g.chamberR * (1.35 + ((index % 3) * 0.13));
         ball.vx = Math.cos(angle) * speed;
         ball.vy = Math.sin(angle) * speed;
-        ball.spin = (index % 2 ? 1 : -1) * (3.2 + (index * 0.18));
+        ball.spin = (index % 2 ? 1 : -1) * (3.2 + ((index % 10) * 0.18));
       });
       this.state = 'playing';
       this.phase = 'spin';
@@ -195,9 +215,10 @@
       this.reducedVisible = 3;
       this.resetBalls();
       this.selected.forEach((number, index) => {
-        const ball = this.balls.find((candidate) => candidate.number === number);
+        const ball = this.balls.find((candidate) => candidate.number === number && !candidate.ejected);
         if (ball) {
           ball.ejected = true;
+          ball.landed = true;
           ball.slotIndex = index;
         }
       });
@@ -219,7 +240,8 @@
       revealTimes.forEach((time, index) => {
         if (elapsed >= time && !this.revealFlags[index]) {
           this.revealFlags[index] = true;
-          const ball = this.balls.find((candidate) => candidate.number === this.selected[index]);
+          // Repeated results use a different physical copy of the same digit.
+          const ball = this.balls.find((candidate) => candidate.number === this.selected[index] && !candidate.ejected);
           if (ball) {
             ball.ejected = true;
             ball.ejectedAt = now;
@@ -248,7 +270,7 @@
 
         const fromCenterX = ball.x - g.cx;
         const fromCenterY = ball.y - g.cy;
-        const maxDistance = g.chamberR - (g.ballR * 1.03);
+        const maxDistance = g.chamberR - (g.mixBallR * 1.03);
         const currentDistance = Math.hypot(fromCenterX, fromCenterY);
         if (currentDistance > maxDistance) {
           const nx = fromCenterX / currentDistance;
@@ -261,7 +283,7 @@
         }
       });
 
-      // Lightweight equal-mass collisions keep the ten crystal orbs tactile without a heavy physics dependency.
+      // Lightweight equal-mass collisions keep all 30 crystal orbs tactile without a heavy physics dependency.
       for (let i = 0; i < live.length; i += 1) {
         for (let j = i + 1; j < live.length; j += 1) {
           const a = live[i];
@@ -269,7 +291,7 @@
           const dx = b.x - a.x;
           const dy = b.y - a.y;
           const distance = Math.max(0.001, Math.hypot(dx, dy));
-          const minimum = g.ballR * 2.03;
+          const minimum = g.mixBallR * 2.03;
           if (distance >= minimum) continue;
           const nx = dx / distance;
           const ny = dy / distance;
@@ -346,10 +368,10 @@
         let x = ball.x;
         let y = ball.y;
         if (this.state === 'idle') {
-          x += Math.sin(idleT * 0.65 + index) * 1.15;
-          y += Math.cos(idleT * 0.52 + index * 0.8) * 0.85;
+          x += Math.sin(idleT * 0.65 + index) * 0.72;
+          y += Math.cos(idleT * 0.52 + index * 0.8) * 0.55;
         }
-        this.drawOrb(ctx, x, y, g.ballR, ball.number, ball.rotation, 0.93);
+        this.drawOrb(ctx, x, y, g.mixBallR, ball.number, ball.rotation, 0.93);
       });
 
       this.drawGlassHighlights(ctx, g);
@@ -365,7 +387,10 @@
       } else {
         this.balls.filter((ball) => ball.ejected).forEach((ball) => {
           const bounce = ball.landed ? Math.sin((now - ball.ejectedAt) / 70) * Math.exp(-(now - ball.ejectedAt) / 280) * 2 : 0;
-          this.drawOrb(ctx, ball.x, ball.y + bounce, g.ballR * 1.08, ball.number, ball.rotation, 1);
+          const age = ball.ejectedAt ? Math.max(0, (now - ball.ejectedAt) / 1000) : 1;
+          const grow = easeOutCubic(clamp(age / 0.38, 0, 1));
+          const radius = lerp(g.mixBallR, g.ballR * 1.08, grow);
+          this.drawOrb(ctx, ball.x, ball.y + bounce, radius, ball.number, ball.rotation, 1);
         });
       }
 
@@ -615,7 +640,8 @@
       ctx.fillStyle = '#fff1c4';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.font = `700 ${radius * 0.76}px Georgia, "Times New Roman", serif`;
+      const numeralScale = radius < 15 ? 0.88 : 0.76;
+      ctx.font = `700 ${radius * numeralScale}px Georgia, "Times New Roman", serif`;
       ctx.fillText(String(number), 0, radius * 0.05);
       ctx.restore();
 
